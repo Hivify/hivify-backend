@@ -1,8 +1,8 @@
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using UserMgmt.Application.Contracts;
 using UserMgmt.Application.DTOs;
 
-namespace UserMgmt.Application.Quries;
+namespace UserMgmt.Application.Queries;
 
 public sealed class GetUsersQueryHandler : IQueryHandler<GetUsersQuery, IReadOnlyList<UserListItem>>
 {

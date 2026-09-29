@@ -2,7 +2,7 @@
 using Feeds.Domain.Feeds;
 using Microsoft.EntityFrameworkCore;
 
-namespace Feeds.Infrastructure.Presistence;
+namespace Feeds.Infrastructure.Persistence;
 
 public sealed class FeedRepo : IFeedRepo
 {

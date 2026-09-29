@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserMgmt.Application.Contracts;
 using UserMgmt.Infrastructure.Identity;
-using UserMgmt.Infrastructure.Presistence;
+using UserMgmt.Infrastructure.Persistence;
 
 namespace UserMgmt.Infrastructure
 {

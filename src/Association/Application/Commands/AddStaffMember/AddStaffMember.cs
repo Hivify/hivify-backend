@@ -1,5 +1,5 @@
 using Association.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 
 public sealed record AddStaffMemberCommand(
     Guid AssociationId,

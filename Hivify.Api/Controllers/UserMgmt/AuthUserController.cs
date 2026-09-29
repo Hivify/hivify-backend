@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messeging;
+﻿using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.UserMgmt.Requests;
 using Microsoft.AspNetCore.Mvc;
 using UserMgmt.Application.Commands.LoginUser;

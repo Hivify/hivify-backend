@@ -1,9 +1,9 @@
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using UserMgmt.Application.Commands.LoginUser;
 using UserMgmt.Application.Commands.RegisterUser;
 using UserMgmt.Application.DTOs;
-using UserMgmt.Application.Quries;
+using UserMgmt.Application.Queries;
 
 namespace UserMgmt.Application;
 

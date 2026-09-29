@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValuesObjects;
 
-namespace Feeds.Infrastructure.Presistence;
+namespace Feeds.Infrastructure.Persistence;
 
 public sealed class FeedDbContext(DbContextOptions<FeedDbContext> options) : DbContext(options)
 {

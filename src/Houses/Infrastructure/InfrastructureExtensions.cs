@@ -1,5 +1,5 @@
 ﻿using Houses.Application.Contracts;
-using Houses.Infrastructure.Presistence;
+using Houses.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

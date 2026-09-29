@@ -1,5 +1,5 @@
 ﻿
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using UserMgmt.Application.Contracts;
 using UserMgmt.Application.DTOs;
 

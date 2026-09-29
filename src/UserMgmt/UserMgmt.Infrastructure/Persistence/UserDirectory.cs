@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using UserMgmt.Application.Contracts;
 using UserMgmt.Application.DTOs;
 
-namespace UserMgmt.Infrastructure.Presistence;
+namespace UserMgmt.Infrastructure.Persistence;
 
 public sealed class UserDirectory : IUserDirectory
 {

@@ -3,7 +3,7 @@ using Complaints.Domain;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValuesObjects;
 
-namespace Complaints.Infrastructure.Presistence;
+namespace Complaints.Infrastructure.Persistence;
 
 public class ComplaintRepo : IComplaintRepo
 {
