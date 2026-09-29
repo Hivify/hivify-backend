@@ -1,4 +1,4 @@
-namespace BuildingBlocks.ApplicationPorts.Messeging
+namespace BuildingBlocks.ApplicationPorts.Messaging
 {
     public interface ICommandHandler<TCommand, TResult> where TCommand : ICommand<TResult>
     {

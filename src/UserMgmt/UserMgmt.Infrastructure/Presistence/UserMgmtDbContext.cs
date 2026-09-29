@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using UserMgmt.Infrastructure.Identity;
 
-namespace UserMgmt.Infrastructure.Presistence;
+namespace UserMgmt.Infrastructure.Persistence;
 
 public sealed class UserManagementDbContext(
     DbContextOptions<UserManagementDbContext> options)

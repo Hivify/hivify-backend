@@ -1,5 +1,5 @@
 ﻿
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.Houses.Requests;
 using Houses.Application.Commands.AddTenant;
 using Houses.Application.Commands.CreateHouse;

@@ -1,9 +1,9 @@
 ﻿
 
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.ApplicationPorts.Storage;
 using DocumentsMgmt.Application.Commands;
-using DocumentsMgmt.Application.Quries;
+using DocumentsMgmt.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DocumentsMgmt.Application;

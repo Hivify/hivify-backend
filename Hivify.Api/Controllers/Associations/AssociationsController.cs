@@ -4,7 +4,7 @@ using Association.Application.Queries.GetAssociation.AllAssociations;
 using Association.Application.Queries.GetAssociation.SingleAssociation;
 using Association.Application.Queries.GetMember.AllMembers;
 using Association.Application.Queries.GetMember.SingleMember;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.Associations.Requests;
 using Hivify.Api.Controllers.Associations.Responses;
 using Microsoft.AspNetCore.Authorization;

@@ -1,5 +1,5 @@
 ﻿using Complaints.Application.Contracts;
-using Complaints.Infrastructure.Presistence;
+using Complaints.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,7 +1,7 @@
 using Houses.Domain.Houses;
 using Microsoft.EntityFrameworkCore;
 
-namespace Houses.Infrastructure.Presistence;
+namespace Houses.Infrastructure.Persistence;
 
 public static class HouseSeeder
 {

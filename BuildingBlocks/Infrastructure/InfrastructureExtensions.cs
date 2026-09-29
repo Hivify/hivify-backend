@@ -1,8 +1,8 @@
 ﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.ApplicationPorts.Storage;
 using BuildingBlocks.Infrastructure.CurrentUserProvider;
-using BuildingBlocks.Infrastructure.Messeging;
+using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

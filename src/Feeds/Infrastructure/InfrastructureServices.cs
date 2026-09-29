@@ -1,5 +1,5 @@
 ﻿using Feeds.Application.Contracts;
-using Feeds.Infrastructure.Presistence;
+using Feeds.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

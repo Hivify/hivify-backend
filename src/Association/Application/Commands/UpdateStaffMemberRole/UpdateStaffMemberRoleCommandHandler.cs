@@ -1,7 +1,7 @@
 using Association.Application.Contracts;
 using Association.Domain.Associations;
 using Association.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Association.Application.Commands.UpdateStaffMemberRole;
 

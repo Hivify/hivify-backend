@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.ApplicationPorts.Storage;
 
 namespace DocumentsMgmt.Application.Commands

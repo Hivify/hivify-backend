@@ -1,6 +1,6 @@
 using Association.Application.Contracts;
 using Association.Domain.Associations;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using SharedKernel.ValuesObjects;
 
 namespace Association.Application.Commands.AddAssociation;

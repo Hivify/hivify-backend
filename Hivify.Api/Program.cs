@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using UserMgmt.Application;
 using UserMgmt.Infrastructure;
-using UserMgmt.Infrastructure.Presistence;
+using UserMgmt.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 

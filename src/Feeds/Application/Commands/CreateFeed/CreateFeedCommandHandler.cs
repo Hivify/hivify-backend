@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Feeds.Application.Contracts;
 using Feeds.Domain.Feeds;
 using SharedKernel.ValuesObjects;

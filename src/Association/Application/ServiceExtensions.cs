@@ -9,7 +9,7 @@ using Association.Application.Queries.GetMember.AllMembers;
 using Association.Application.Queries.GetMember.SingleMember;
 using Association.Domain.Associations;
 using Association.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messeging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Association.Application;

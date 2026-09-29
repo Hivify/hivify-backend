@@ -1,4 +1,4 @@
-namespace BuildingBlocks.ApplicationPorts.Messeging;
+namespace BuildingBlocks.ApplicationPorts.Messaging;
 
 public interface IQuerySender
 {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValuesObjects;
 
-namespace Complaints.Infrastructure.Presistence;
+namespace Complaints.Infrastructure.Persistence;
 
 public sealed class ComplaintDbContext(
     DbContextOptions<ComplaintDbContext> options)
