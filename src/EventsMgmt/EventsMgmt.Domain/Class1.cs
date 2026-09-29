@@ -1,4 +1,4 @@
-﻿namespace EventsMgt.Domain
+﻿namespace EventsMgmt.Domain
 {
     public class Class1
     {
