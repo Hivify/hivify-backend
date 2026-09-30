@@ -19,6 +19,7 @@
     <Project Path="src/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />
   </Folder>
   <Folder Name="/src/EventsMgmt/">
+    <Project Path="EventsMgmt.Application/EventsMgmt.Application.csproj" Id="fc4493ce-70ed-4c2f-9584-281058101b68" />
     <Project Path="src/EventsMgmt/EventsMgmt.Domain/EventsMgmt.Domain.csproj" Id="b5a93728-e277-4b10-997b-2da4166b29c9" />
   </Folder>
 
