@@ -21,9 +21,6 @@
 		<ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
 		<ProjectReference Include="..\Hivify.AI\Hivify.AI.csproj" />
 
-		<ProjectReference Include="..\src\Association\Application\Association.Application.csproj" />
-		<ProjectReference Include="..\src\Association\Infrastructure\Association.Infrastructure.csproj" />
-
 		<ProjectReference Include="..\src\Complaints\Application\Complaints.Application.csproj" />
 		<ProjectReference Include="..\src\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
 

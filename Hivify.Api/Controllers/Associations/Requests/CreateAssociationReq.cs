@@ -1,14 +1,14 @@
 ﻿using FluentValidation;
-namespace Hivify.Api.Controllers.Associations.Requests
+namespace Hivify.Api.Controllers.Departments.Requests
 {
-    public sealed record CreateAssociationReq(
+    public sealed record CreateDepartmentReq(
     string Name);
 
 
 
-    public sealed class CreateAssociationReqValidator : AbstractValidator<CreateAssociationReq>
+    public sealed class CreateDepartmentReqValidator : AbstractValidator<CreateDepartmentReq>
     {
-        public CreateAssociationReqValidator()
+        public CreateDepartmentReqValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
