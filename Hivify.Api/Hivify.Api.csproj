@@ -21,9 +21,6 @@
 		<ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
 		<ProjectReference Include="..\Hivify.AI\Hivify.AI.csproj" />
 
-		<ProjectReference Include="..\src\Association\Application\Association.Application.csproj" />
-		<ProjectReference Include="..\src\Association\Infrastructure\Association.Infrastructure.csproj" />
-
 		<ProjectReference Include="..\src\Complaints\Application\Complaints.Application.csproj" />
 		<ProjectReference Include="..\src\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
 
@@ -37,6 +34,11 @@
 
 		<ProjectReference Include="..\src\UserMgmt\UserMgmt.Application\UserMgmt.Application.csproj" />
 		<ProjectReference Include="..\src\UserMgmt\UserMgmt.Infrastructure\UserMgmt.Infrastructure.csproj" />
+
+		<!-- Department module references -->
+		<ProjectReference Include="..\src\Department\Application\Department.Application.csproj" />
+		<ProjectReference Include="..\src\Department\Infrastructure\Department.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\Department\Domain\Department.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

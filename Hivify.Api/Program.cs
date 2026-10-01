@@ -1,5 +1,5 @@
-using Association.Application;
-using Association.Infrastructure;
+using Department.Application;
+using Department.Infrastructure;
 using BuildingBlocks.Infrastructure;
 using Complaints.Application;
 using Complaints.Infrastructure;
@@ -72,9 +72,9 @@ builder.Services.AddHousesInfrastructure(connectionString);
 // Feed
 builder.Services.AddFeedServices();
 builder.Services.AddFeedInfrastructure(connectionString);
-// Association
-builder.Services.AddAssociationServices();
-builder.Services.AddAssociationInfrastructure(connectionString);
+// Department
+builder.Services.AddDepartmentServices();
+builder.Services.AddDepartmentInfrastructure(connectionString);
 
 #endregion
 

@@ -1,4 +1,4 @@
-﻿namespace Hivify.Api.Controllers.Associations.Responses;
+﻿namespace Hivify.Api.Controllers.Departments.Responses;
 
 
-public sealed record CreatedAssociationRes(Guid Id);
+public sealed record CreatedDepartmentRes(Guid Id);

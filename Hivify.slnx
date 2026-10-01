@@ -4,16 +4,15 @@
   </Folder>
   <Folder Name="/src/" />
 
-  <Folder Name="/src/Association/">
-    <Project Path="src/Association/Application/Association.Application.csproj" />
-    <Project Path="src/Association/Domain/Association.Domain.csproj" />
-    <Project Path="src/Association/Infrastructure/Association.Infrastructure.csproj" />
-  </Folder>
-
   <Folder Name="/src/Complaints/">
     <Project Path="src/Complaints/Application/Complaints.Application.csproj" />
     <Project Path="src/Complaints/Domain/Complaints.Domain.csproj" />
     <Project Path="src/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Department/">
+    <Project Path="src/Department/Application/Department.Application.csproj" />
+    <Project Path="src/Department/Domain/Department.Domain.csproj" />
+    <Project Path="src/Department/Infrastructure/Department.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/DocumentsMgmt/">
     <Project Path="src/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />

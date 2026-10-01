@@ -1,8 +1,8 @@
-﻿using Association.Domain.Members;
+﻿using Department.Domain.Members;
 using FluentValidation;
-namespace Hivify.Api.Controllers.Associations.Requests
+namespace Hivify.Api.Controllers.Departments.Requests
 {
-    public sealed record CreateAssociationMemberReq(
+    public sealed record CreateDepartmentMemberReq(
      Guid UserId,
      string FullName,
     string Email,
@@ -10,9 +10,9 @@ namespace Hivify.Api.Controllers.Associations.Requests
      );
 
 
-    public sealed class CreateAssociationMemberReqValidator : AbstractValidator<CreateAssociationMemberReq>
+    public sealed class CreateDepartmentMemberReqValidator : AbstractValidator<CreateDepartmentMemberReq>
     {
-        public CreateAssociationMemberReqValidator()
+        public CreateDepartmentMemberReqValidator()
         {
             RuleFor(x => x.FullName)
                 .NotEmpty()

@@ -18,18 +18,18 @@ tasks:
 
 
   # ============================================================
-  # Association
+  # Department
   # ============================================================
 
-  add-association-migration:
-    desc: Create EF Core migration for Association
+  add-department-migration:
+    desc: Create EF Core migration for Department
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context AssociationDbContext --project src/Association/Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context DepartmentDbContext --project src/Department/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
-  migrate-association:
-    desc: Apply EF Core migrations for Association
+  migrate-department:
+    desc: Apply EF Core migrations for Department
     cmds:
-      - dotnet ef database update --context AssociationDbContext --project src/Association/Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef database update --context DepartmentDbContext --project src/Department/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
 
   # ============================================================
@@ -85,7 +85,7 @@ tasks:
     desc: Apply migrations for all bounded contexts
     deps:
       - migrate-house
-      - migrate-association
+      - migrate-department
       - migrate-feed
       - migrate-complaint
       - migrate-user
