@@ -43,7 +43,7 @@ public sealed class IdentityService : IUserIdentityService
                 .ToList());
     }
 
-    public async Task<LoginResultDto> LoginAsync(
+    public async Task<LoginUserResult> LoginAsync(
         string email,
         string password,
         bool rememberMe,
@@ -56,7 +56,7 @@ public sealed class IdentityService : IUserIdentityService
                 rememberMe,
                 lockoutOnFailure: true);
 
-        return new LoginResultDto(
+        return new LoginUserResult(
             result.Succeeded,
             result.IsLockedOut,
             result.RequiresTwoFactor);
