@@ -9,14 +9,9 @@
     <Project Path="src/Complaints/Domain/Complaints.Domain.csproj" />
     <Project Path="src/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/src/Department/" />
-  <Folder Name="/src/Department/Application/">
+  <Folder Name="/src/Department/">
     <Project Path="src/Department/Application/Department.Application.csproj" />
-  </Folder>
-  <Folder Name="/src/Department/Domain/">
     <Project Path="src/Department/Domain/Department.Domain.csproj" />
-  </Folder>
-  <Folder Name="/src/Department/Infrastructure/">
     <Project Path="src/Department/Infrastructure/Department.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/DocumentsMgmt/">
