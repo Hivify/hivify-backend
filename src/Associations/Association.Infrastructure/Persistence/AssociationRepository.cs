@@ -26,6 +26,16 @@ internal sealed class AssociationRepository(
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(
+        UserID userId,
+        CancellationToken cancellationToken = default)
+    {
+        return await dbContext.Associations
+            .Include(a => a.Members)
+            .Where(a => a.Members.Any(m => m.UserID == userId))
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task AddAsync(
         AssociationEntity association,
         CancellationToken cancellationToken = default)
@@ -33,14 +43,7 @@ internal sealed class AssociationRepository(
         await dbContext.Associations.AddAsync(
             association,
             cancellationToken);
-    }
-    public async Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(
-    UserID userId,
-    CancellationToken cancellationToken = default)
-    {
-        return await dbContext.Associations
-            .Include(a => a.Members)
-            .Where(a => a.Members.Any(m => m.UserID == userId))
-            .ToListAsync(cancellationToken);
+
+        await dbContext.SaveChangesAsync(cancellationToken);
     }
 }
