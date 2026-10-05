@@ -3,16 +3,13 @@
     <File Path="Taskfile.yml" />
   </Folder>
   <Folder Name="/src/" />
-  <Folder Name="/src/AppTenant/">
-    <Project Path="src/AppTenant/AppTenant.Domain/AppTenant.Domain.csproj" Id="28c67f5a-774f-430b-a7e7-5cd54940f67e" />
-  </Folder>
 
   <Folder Name="/src/Complaints/">
     <Project Path="src/Complaints/Application/Complaints.Application.csproj" />
     <Project Path="src/Complaints/Domain/Complaints.Domain.csproj" />
     <Project Path="src/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/src/Departments/">
+  <Folder Name="/src/Departments/" Id="aca9702d-1335-7bcb-f014-c12e31339fed">
     <Project Path="src/Department/Application/Department.Application.csproj" />
     <Project Path="src/Department/Domain/Department.Domain.csproj" />
     <Project Path="src/Department/Infrastructure/Department.Infrastructure.csproj" />
@@ -31,6 +28,9 @@
     <Project Path="src/Houses/Application/Houses.Application.csproj" />
     <Project Path="src/Houses/Domain/Houses.Domain.csproj" />
     <Project Path="src/Houses/Infrastructure/Houses.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Tenants/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
+    <Project Path="src/AppTenant/AppTenant.Domain/AppTenant.Domain.csproj" Id="28c67f5a-774f-430b-a7e7-5cd54940f67e" />
   </Folder>
   <Folder Name="/src/UserMgmt/">
     <Project Path="src/UserMgmt/UserMgmt.Application/UserMgmt.Application.csproj" />
