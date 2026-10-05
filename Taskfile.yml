@@ -32,6 +32,23 @@ tasks:
       - dotnet ef database update --context DepartmentDbContext --project src/Department/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
 
+        # ============================================================
+  # Associations
+  # ============================================================
+
+  add-association-migration:
+    desc: Create EF Core migration for Associations
+    cmds:
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context AssociationDbContext --project src/Associations/Association.Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+
+  migrate-association:
+    desc: Apply EF Core migrations for Associations
+    cmds:
+      - dotnet ef database update --context AssociationDbContext --project src/Associations/Association.Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+
+
+
+
   # ============================================================
   # Feeds
   # ============================================================
@@ -85,6 +102,7 @@ tasks:
     desc: Apply migrations for all bounded contexts
     deps:
       - migrate-house
+      - migrate-association
       - migrate-department
       - migrate-feed
       - migrate-complaint

@@ -5,7 +5,7 @@ using UserMgmt.Application.DTOs;
 
 namespace UserMgmt.Application.Commands.LoginUser;
 
-public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, LoginResultDto>
+public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, LoginUserResult>
 {
     private readonly IUserIdentityService _identityService;
 
@@ -14,7 +14,7 @@ public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, 
         _identityService = identityService;
     }
 
-    public async Task<LoginResultDto> Handle(LoginUserCommand command, CancellationToken cancellationToken)
+    public async Task<LoginUserResult> Handle(LoginUserCommand command, CancellationToken cancellationToken)
     {
         return await _identityService.LoginAsync(
             command.Email,

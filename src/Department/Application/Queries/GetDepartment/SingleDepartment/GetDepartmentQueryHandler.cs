@@ -1,8 +1,7 @@
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Contracts;
 using Department.Application.DTOs;
 using Department.Domain.Departments;
-using Department.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Department.Application.Queries.GetDepartment.SingleDepartment;
 
@@ -19,7 +18,8 @@ public sealed class GetDepartmentQueryHandler : IQueryHandler<GetDepartmentQuery
     {
         var department = await _departmentRepository.GetByIdAsync(new DepartmentID(query.DepartmentId), cancellationToken);
 
-        if (department is null) return null;
+        if (department is null)
+            return null;
 
         return new DepartmentListItem
         {

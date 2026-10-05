@@ -11,7 +11,7 @@ public interface IUserIdentityService
         string fullName,
         CancellationToken cancellationToken);
 
-    Task<LoginResultDto> LoginAsync(
+    Task<LoginUserResult> LoginAsync(
         string email,
         string password,
         bool rememberMe,

@@ -1,3 +1,4 @@
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Commands.AddDepartment;
 using Department.Application.Commands.AddStaffMember;
 using Department.Application.Commands.RemoveStaffMember;
@@ -9,7 +10,6 @@ using Department.Application.Queries.GetMember.AllMembers;
 using Department.Application.Queries.GetMember.SingleMember;
 using Department.Domain.Departments;
 using Department.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Department.Application;

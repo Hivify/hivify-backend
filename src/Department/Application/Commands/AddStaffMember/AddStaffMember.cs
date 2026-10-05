@@ -1,5 +1,5 @@
-using Department.Domain.Members;
 using BuildingBlocks.ApplicationPorts.Messaging;
+using Department.Domain.Members;
 
 public sealed record AddStaffMemberCommand(
     Guid DepartmentId,

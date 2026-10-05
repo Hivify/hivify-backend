@@ -33,7 +33,7 @@ public sealed class CreateComplaintCommandHandler : ICommandHandler<CreateCompla
 
         var complaint = Complaint.Create(
             new UserID(userId),
-            new AssociationID(command.AssociationId),
+            new DepartmentID(command.AssociationId),
             new Title(command.Title),
             new Description(command.Description),
             command.ImageUrl);

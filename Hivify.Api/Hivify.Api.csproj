@@ -7,12 +7,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.4" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		  <PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+		<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.4" />
+		<PackageReference Include="Finbuckle.MultiTenant" Version="10.1.4" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
 	</ItemGroup>
 
@@ -20,6 +26,8 @@
 		<ProjectReference Include="..\BuildingBlocks\BuildingBlocks.csproj" />
 		<ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
 		<ProjectReference Include="..\Hivify.AI\Hivify.AI.csproj" />
+		<ProjectReference Include="..\src\Associations\Association.Application\Association.Application.csproj" />
+		<ProjectReference Include="..\src\Associations\Association.Infrastructure\Association.Infrastructure.csproj" />
 
 		<ProjectReference Include="..\src\Complaints\Application\Complaints.Application.csproj" />
 		<ProjectReference Include="..\src\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />

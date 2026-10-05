@@ -1,8 +1,12 @@
 ﻿using SharedKernel;
 
-namespace Complaints.Domain
+
+namespace Association.Domain
 {
     public readonly record struct AssociationID(Guid Value) : IValue
     {
     }
 }
+
+
+
