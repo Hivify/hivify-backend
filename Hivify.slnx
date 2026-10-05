@@ -3,9 +3,10 @@
     <File Path="Taskfile.yml" />
   </Folder>
   <Folder Name="/src/" />
-  <Folder Name="/src/Association/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
-    <Project Path="src/Association/Association.Application/Association.Application.csproj" />
-    <Project Path="src/Association/Association.Domain/Association.Domain.csproj" />
+  <Folder Name="/src/Associations/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
+    <Project Path="src/Associations/Association.Application/Association.Application.csproj" />
+    <Project Path="src/Associations/Association.Domain/Association.Domain.csproj" />
+    <Project Path="src/Associations/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
   </Folder>
 
   <Folder Name="/src/Complaints/">

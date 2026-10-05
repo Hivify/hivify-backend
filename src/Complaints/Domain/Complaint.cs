@@ -56,15 +56,15 @@ namespace Complaints.Domain
 
         public void UpdateDetails(Title title, Description description)
         {
-            Title = title ?? throw new DomainException("Du måste ange en titel.");
-            Description = description ?? throw new DomainException("Du måste ange en beskrivning.");
+            Title = title ?? throw new DomainException("You must provide a title.");
+            Description = description ?? throw new DomainException("You must provide a description.");
             UpdatedDate = DateTime.UtcNow;
         }
 
         public void SetImage(string imageUrl)
         {
             if (string.IsNullOrWhiteSpace(imageUrl))
-                throw new DomainException("Ange en bild URL.");
+                throw new DomainException("You must provide an image URL.");
             ImageUrl = imageUrl;
             UpdatedDate = DateTime.UtcNow;
         }
@@ -83,7 +83,7 @@ namespace Complaints.Domain
         public void AddAdminComment(string comment)
         {
             if (string.IsNullOrWhiteSpace(comment))
-                throw new DomainException("Adminkommentar krävs.");
+                throw new DomainException("You must provide an admin comment.");
             AdminComment = comment.Trim();
             UpdatedDate = DateTime.UtcNow;
         }

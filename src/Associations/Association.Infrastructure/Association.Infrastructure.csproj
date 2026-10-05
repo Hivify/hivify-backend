@@ -7,19 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="10.0.12" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UserMgmt.Application\UserMgmt.Application.csproj" />
+    <ProjectReference Include="..\Association.Application\Association.Application.csproj" />
+    <ProjectReference Include="..\Association.Domain\Association.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using SharedKernel;
 
-namespace AppTenant.Domain
+
+namespace Association.Domain
 {
     public sealed record AssociationIdentifier : BaseValue<string>
     {

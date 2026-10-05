@@ -1,6 +1,7 @@
 ﻿using SharedKernel;
 
-namespace AppTenant.Domain
+
+namespace Association.Domain
 {
     public readonly record struct AssociationID(Guid Value) : IValue
     {

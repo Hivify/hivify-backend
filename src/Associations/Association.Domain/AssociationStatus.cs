@@ -1,4 +1,5 @@
-﻿namespace AppTenant.Domain
+﻿
+namespace Association.Domain
 {
     public enum AssociationStatus
     {

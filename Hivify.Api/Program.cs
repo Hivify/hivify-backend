@@ -1,3 +1,5 @@
+using Association.Application;
+using Association.Infrastructure;
 using BuildingBlocks.Infrastructure;
 using Complaints.Application;
 using Complaints.Infrastructure;
@@ -6,7 +8,6 @@ using Department.Infrastructure;
 using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
-
 using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Finbuckle.MultiTenant.Extensions;
@@ -83,6 +84,10 @@ builder.Services.AddFeedInfrastructure(connectionString);
 // Department
 builder.Services.AddDepartmentServices();
 builder.Services.AddDepartmentInfrastructure(connectionString);
+// Association
+builder.Services.AddAssociationServices();
+builder.Services.AddAssociationInfrastructure(connectionString);
+
 
 #endregion
 
