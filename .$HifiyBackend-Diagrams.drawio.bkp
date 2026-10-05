@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="aMzB9z_E-46nJsG3Iqd6-38" connectable="0" parent="1" style="group" value="" vertex="1">
-          <mxGeometry height="361" width="520" x="180" y="190" as="geometry" />
+          <mxGeometry height="361" width="520" x="90" y="60" as="geometry" />
         </mxCell>
         <mxCell id="aMzB9z_E-46nJsG3Iqd6-15" connectable="0" parent="aMzB9z_E-46nJsG3Iqd6-38" style="group" value="" vertex="1">
           <mxGeometry height="311" width="520" y="50" as="geometry" />
@@ -36,14 +36,8 @@
         <mxCell id="aMzB9z_E-46nJsG3Iqd6-24" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#E51400,#FF0000);fontColor=#ffffff;strokeColor=#B20000;" value="&lt;div&gt;DocsMgmt&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="180" y="115" as="geometry" />
         </mxCell>
-        <mxCell id="48EcaS-QiCIMtF6BGarD-12" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" value="&lt;div&gt;MemberPayment&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="330" y="41" as="geometry" />
-        </mxCell>
-        <mxCell id="48EcaS-QiCIMtF6BGarD-11" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#E51400,#FF0000);fontColor=#ffffff;strokeColor=#B20000;" value="&lt;div&gt;YearlyPlanner&lt;/div&gt;" vertex="1">
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-36" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#E51400,#FF0000);fontColor=#ffffff;strokeColor=#B20000;" value="&lt;div&gt;YearlyPlanner&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="180" y="189" as="geometry" />
-        </mxCell>
-        <mxCell id="48EcaS-QiCIMtF6BGarD-13" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" value="&lt;div&gt;HomeMgmt&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="340" y="125.5" as="geometry" />
         </mxCell>
         <mxCell id="aMzB9z_E-46nJsG3Iqd6-37" parent="aMzB9z_E-46nJsG3Iqd6-38" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Starter Plan Services" vertex="1">
           <mxGeometry height="40" width="240" x="30" y="20" as="geometry" />

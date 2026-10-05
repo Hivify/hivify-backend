@@ -1,7 +1,7 @@
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Contracts;
 using Department.Domain.Departments;
 using Department.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Department.Application.Commands.UpdateStaffMemberRole;
 

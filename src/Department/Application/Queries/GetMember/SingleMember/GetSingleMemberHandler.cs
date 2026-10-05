@@ -1,8 +1,8 @@
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Contracts;
 using Department.Application.DTOs;
 using Department.Domain.Departments;
 using Department.Domain.Members;
-using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Department.Application.Queries.GetMember.SingleMember;
 
@@ -19,11 +19,13 @@ public sealed class GetSingleMemberQueryHandler : IQueryHandler<GetSingleMemberQ
     {
         var department = await _departmentRepository.GetByIdAsync(new DepartmentID(query.DepartmentId), cancellationToken);
 
-        if (department is null) return null;
+        if (department is null)
+            return null;
 
         var member = department.StaffMembers.FirstOrDefault(m => m.Id == new MemberID(query.MemberId) && m.DeletedAt == null);
 
-        if (member is null) return null;
+        if (member is null)
+            return null;
 
         return new StaffMemberItem(member.Id.Value, member.FullName.Value, member.Email.Value, member.Role);
     }

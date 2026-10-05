@@ -1,8 +1,8 @@
-using Department.Application;
-using Department.Infrastructure;
 using BuildingBlocks.Infrastructure;
 using Complaints.Application;
 using Complaints.Infrastructure;
+using Department.Application;
+using Department.Infrastructure;
 using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;

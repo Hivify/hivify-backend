@@ -1,10 +1,10 @@
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Commands.AddDepartment;
 using Department.Application.Commands.RemoveStaffMember;
 using Department.Application.Queries.GetDepartment.AllDepartments;
 using Department.Application.Queries.GetDepartment.SingleDepartment;
 using Department.Application.Queries.GetMember.AllMembers;
 using Department.Application.Queries.GetMember.SingleMember;
-using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.Departments.Requests;
 using Hivify.Api.Controllers.Departments.Responses;
 using Microsoft.AspNetCore.Authorization;

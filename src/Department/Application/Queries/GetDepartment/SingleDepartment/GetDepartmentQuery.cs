@@ -1,5 +1,5 @@
-using Department.Application.DTOs;
 using BuildingBlocks.ApplicationPorts.Messaging;
+using Department.Application.DTOs;
 
 namespace Department.Application.Queries.GetDepartment.SingleDepartment;
 

@@ -1,5 +1,5 @@
-using Department.Domain.Departments;
 using BuildingBlocks.ApplicationPorts.Messaging;
+using Department.Domain.Departments;
 
 namespace Department.Application.Commands.AddDepartment;
 

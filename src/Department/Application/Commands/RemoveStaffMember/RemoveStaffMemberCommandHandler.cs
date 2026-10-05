@@ -1,6 +1,6 @@
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Contracts;
 using Department.Domain.Departments;
-using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Department.Application.Commands.RemoveStaffMember;
 
