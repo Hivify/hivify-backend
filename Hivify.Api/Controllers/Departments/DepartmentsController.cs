@@ -5,8 +5,8 @@ using Department.Application.Queries.GetDepartment.AllDepartments;
 using Department.Application.Queries.GetDepartment.SingleDepartment;
 using Department.Application.Queries.GetMember.AllMembers;
 using Department.Application.Queries.GetMember.SingleMember;
-using Hivify.Api.Controllers.Associations.Requests;
-using Hivify.Api.Controllers.Associations.Responses;
+using Hivify.Api.Controllers.Departments.Requests;
+using Hivify.Api.Controllers.Departments.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

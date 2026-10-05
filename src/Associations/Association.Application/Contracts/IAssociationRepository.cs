@@ -1,4 +1,5 @@
 using Association.Domain;
+using SharedKernel.ValuesObjects;
 
 public interface IAssociationRepository
 {
@@ -7,6 +8,10 @@ public interface IAssociationRepository
         CancellationToken cancellationToken = default);
 
     Task<IReadOnlyList<AssociationEntity>> GetAllAsync(
+        CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(
+        UserID userId,
         CancellationToken cancellationToken = default);
 
     Task AddAsync(

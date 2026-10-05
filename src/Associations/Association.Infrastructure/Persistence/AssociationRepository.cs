@@ -1,5 +1,6 @@
 ﻿using Association.Domain;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel.ValuesObjects;
 
 namespace Association.Infrastructure.Persistence;
 
@@ -32,5 +33,14 @@ internal sealed class AssociationRepository(
         await dbContext.Associations.AddAsync(
             association,
             cancellationToken);
+    }
+    public async Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(
+    UserID userId,
+    CancellationToken cancellationToken = default)
+    {
+        return await dbContext.Associations
+            .Include(a => a.Members)
+            .Where(a => a.Members.Any(m => m.UserID == userId))
+            .ToListAsync(cancellationToken);
     }
 }
