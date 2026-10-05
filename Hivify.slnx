@@ -3,6 +3,9 @@
     <File Path="Taskfile.yml" />
   </Folder>
   <Folder Name="/src/" />
+  <Folder Name="/src/AppTenant/">
+    <Project Path="src/AppTenant/AppTenant.Domain/AppTenant.Domain.csproj" Id="28c67f5a-774f-430b-a7e7-5cd54940f67e" />
+  </Folder>
 
   <Folder Name="/src/Complaints/">
     <Project Path="src/Complaints/Application/Complaints.Application.csproj" />

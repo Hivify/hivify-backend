@@ -31,7 +31,7 @@ public sealed class ComplaintDbContext(
             entity.Property(c => c.AssociationId)
                 .HasConversion(
                     associationId => associationId.Value,
-                    value => new AssociationID(value));
+                    value => new DepartmentID(value));
 
             // Title
             entity.OwnsOne(
