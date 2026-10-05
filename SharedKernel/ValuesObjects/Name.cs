@@ -11,12 +11,12 @@ namespace SharedKernel.ValuesObjects
         internal static string Validate(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                throw new DomainException("Namn är obligatoriskt.");
+                throw new DomainException("Name is required.");
 
             value = value.Trim();
             if (value.Length > 100)
             {
-                throw new DomainException("Namn får inte vara längre än 100 tecken.");
+                throw new DomainException("Name cannot be longer than 100 characters.");
             }
             return value;
         }

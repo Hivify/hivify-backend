@@ -2,7 +2,7 @@
 
 namespace AppTenant.Domain
 {
-    public readonly record struct TenantID(Guid Value) : IValue
+    public readonly record struct AssociationID(Guid Value) : IValue
     {
     }
 }

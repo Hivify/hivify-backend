@@ -6,6 +6,10 @@ using Department.Infrastructure;
 using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
+
+using Finbuckle.MultiTenant.Abstractions;
+using Finbuckle.MultiTenant.AspNetCore.Extensions;
+using Finbuckle.MultiTenant.Extensions;
 using Houses.Application;
 using Houses.Infrastructure;
 using Microsoft.AspNetCore.Identity;
@@ -21,6 +25,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
+// add MultiTenant services
+builder.Services.AddMultiTenant<TenantInfo>()
+    .WithHostStrategy()
+    .WithConfigurationStore();
 #endregion
 
 
@@ -88,6 +96,8 @@ builder.Services.AddHivifyAIServices();
 
 var app = builder.Build();
 
+
+
 using (var scope = app.Services.CreateScope())
 {
     await IdentitySeeder.SeedAsync(scope.ServiceProvider);
@@ -101,8 +111,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
+// add the MultiTenant middleware
+app.UseMultiTenant();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -110,6 +120,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 #endregion
 
