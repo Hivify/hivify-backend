@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Commands\CreateEvent\CreateEventCommandHandler.cs" />
-    <Compile Remove="Commands\ReportAttendance\ReportAttendanceCommandHandler.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\src\EventsMgmt\EventsMgmt.Domain\EventsMgmt.Domain.csproj" />
   </ItemGroup>
