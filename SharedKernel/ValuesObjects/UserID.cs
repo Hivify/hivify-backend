@@ -10,7 +10,7 @@ public readonly record struct UserID : IValue
     public UserID(Guid value)
     {
         if (value == Guid.Empty)
-            throw new DomainException("Tenant ID cannot be empty.");
+            throw new DomainException("User ID cannot be empty.");
 
         Value = value;
     }
