@@ -1,5 +1,4 @@
-﻿
-namespace Association.Domain
+﻿namespace Association.Domain.Enums
 {
     public enum AssociationStatus
     {

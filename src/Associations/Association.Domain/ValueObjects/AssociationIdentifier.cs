@@ -1,7 +1,7 @@
 ﻿using SharedKernel;
 
 
-namespace Association.Domain
+namespace Association.Domain.ValueObjects
 {
     public sealed record AssociationIdentifier : BaseValue<string>
     {

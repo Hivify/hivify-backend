@@ -1,4 +1,6 @@
-﻿using Association.Domain;
+﻿using Association.Domain.Entities;
+using Association.Domain.Enums;
+using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using SharedKernel.ValuesObjects;

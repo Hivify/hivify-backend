@@ -1,6 +1,8 @@
-﻿using SharedKernel.ValuesObjects;
+﻿using Association.Domain.Enums;
+using Association.Domain.ValueObjects;
+using SharedKernel.ValuesObjects;
 
-namespace Association.Domain;
+namespace Association.Domain.Entities;
 
 public class Membership
 {

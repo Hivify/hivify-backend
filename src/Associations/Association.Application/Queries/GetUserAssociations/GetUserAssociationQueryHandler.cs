@@ -1,5 +1,4 @@
 ﻿using Association.Application.DTOs;
-using Association.Application.Queries.GetMyAssociations;
 using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using SharedKernel.ValuesObjects;

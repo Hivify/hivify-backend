@@ -1,7 +1,6 @@
 ﻿
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.DTOs;
-using Association.Application.Queries.GetMyAssociations;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using Microsoft.Extensions.DependencyInjection;

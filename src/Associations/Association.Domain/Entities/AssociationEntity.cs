@@ -1,7 +1,9 @@
-﻿using SharedKernel;
+﻿using Association.Domain.Enums;
+using Association.Domain.ValueObjects;
+using SharedKernel;
 using SharedKernel.ValuesObjects;
 
-namespace Association.Domain;
+namespace Association.Domain.Entities;
 
 public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 {
