@@ -3,41 +3,41 @@
     <File Path="Taskfile.yml" />
   </Folder>
   <Folder Name="/src/" />
-  <Folder Name="/src/Associations/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
-    <Project Path="src/Associations/Association.Application/Association.Application.csproj" />
-    <Project Path="src/Associations/Association.Domain/Association.Domain.csproj" />
-    <Project Path="src/Associations/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
-  </Folder>
-
-  <Folder Name="/src/Complaints/">
+  <Folder Name="/src/AppPlane/" />
+  <Folder Name="/src/AppPlane/Complaints/">
     <Project Path="src/Complaints/Application/Complaints.Application.csproj" />
     <Project Path="src/Complaints/Domain/Complaints.Domain.csproj" />
     <Project Path="src/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/src/Departments/">
+  <Folder Name="/src/AppPlane/Departments/">
     <Project Path="src/Department/Application/Department.Application.csproj" />
     <Project Path="src/Department/Domain/Department.Domain.csproj" />
     <Project Path="src/Department/Infrastructure/Department.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/src/DocumentsMgmt/">
+  <Folder Name="/src/AppPlane/DocumentsMgmt/">
     <Project Path="src/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />
   </Folder>
-
-  <Folder Name="/src/Feeds/">
+  <Folder Name="/src/AppPlane/Feeds/">
     <Project Path="src/Feeds/Application/Feeds.Application.csproj" />
     <Project Path="src/Feeds/Domain/Feeds.Domain.csproj" />
     <Project Path="src/Feeds/Infrastructure/Feeds.Infrastructure.csproj" />
   </Folder>
-
-  <Folder Name="/src/Houses/">
+  <Folder Name="/src/AppPlane/Houses/">
     <Project Path="src/Houses/Application/Houses.Application.csproj" />
     <Project Path="src/Houses/Domain/Houses.Domain.csproj" />
     <Project Path="src/Houses/Infrastructure/Houses.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/src/UserMgmt/">
-    <Project Path="src/UserMgmt/UserMgmt.Application/UserMgmt.Application.csproj" />
-    <Project Path="src/UserMgmt/UserMgmt.Infrastructure/UserMgmt.Infrastructure.csproj" />
+  <Folder Name="/src/ControlPlane/" />
+  <Folder Name="/src/ControlPlane/Associations/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
+    <Project Path="src/Associations/Association.Application/Association.Application.csproj" />
+    <Project Path="src/Associations/Association.Domain/Association.Domain.csproj" />
+    <Project Path="src/Associations/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
   </Folder>
+  <Folder Name="/src/ControlPlane/Identity/">
+    <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
+    <Project Path="src/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/ControlPlane/OnBoarding/" />
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />
   <Project Path="Hivify.AI/Hivify.AI.csproj" />
   <Project Path="Hivify.Api/Hivify.Api.csproj" Id="74f6a290-9423-4985-b768-e2f9143a49ac" />

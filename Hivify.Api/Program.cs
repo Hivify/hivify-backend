@@ -10,11 +10,11 @@ using Feeds.Application;
 using Feeds.Infrastructure;
 using Houses.Application;
 using Houses.Infrastructure;
+using Identity.Application;
+using Identity.Infrastructure;
+using Identity.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using UserMgmt.Application;
-using UserMgmt.Infrastructure;
-using UserMgmt.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
