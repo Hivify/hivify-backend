@@ -1,4 +1,5 @@
-﻿using Association.Domain;
+﻿using Association.Domain.Entities;
+using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValuesObjects;
 
@@ -16,7 +17,7 @@ public sealed class AssociationDbContext(
 
         modelBuilder.Entity<AssociationEntity>(entity =>
         {
-            // ID
+            // Association ID
             entity.Property(a => a.Id)
                 .HasConversion(
                     id => id.Value,
@@ -57,7 +58,7 @@ public sealed class AssociationDbContext(
             entity.Property(a => a.DeletedAt)
                 .IsRequired(false);
 
-            // Members
+            // Memberships
             entity.OwnsMany(
                 a => a.Members,
                 member =>

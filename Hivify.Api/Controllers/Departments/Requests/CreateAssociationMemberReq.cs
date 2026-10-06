@@ -1,6 +1,6 @@
 ﻿using Department.Domain.Members;
 using FluentValidation;
-namespace Hivify.Api.Controllers.Associations.Requests
+namespace Hivify.Api.Controllers.Departments.Requests
 {
     public sealed record CreateDepartmentMemberReq(
      Guid UserId,
