@@ -1,8 +1,8 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.AppUsers;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Houses.Application.Commands.AddTenant;
 using Houses.Application.Contracts;
 using Houses.Domain.Houses;
-using Identity.Application.Contracts;
 using SharedKernel.ValuesObjects;
 
 public sealed class AddHouseTenantCommandHandler : ICommandHandler<AddHouseTenantCommand, Guid>

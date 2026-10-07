@@ -3,7 +3,7 @@ using Identity.Application.DTOs;
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 
-namespace Identity.Infrastructure.Identity;
+namespace Identity.Infrastructure.DotNETIdentity;
 
 public sealed class IdentityService : IUserIdentityService
 {

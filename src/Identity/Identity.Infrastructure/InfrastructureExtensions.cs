@@ -1,7 +1,6 @@
-﻿using DotNETIdentity.Infrastructure.Identity;
-using Identity.Application.Contracts;
+﻿using Identity.Application.Contracts;
 using Identity.Domain;
-using Identity.Infrastructure.Identity;
+using Identity.Infrastructure.DotNETIdentity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 

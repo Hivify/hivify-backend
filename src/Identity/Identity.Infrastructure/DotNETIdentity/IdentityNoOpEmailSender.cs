@@ -1,7 +1,7 @@
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 
-namespace DotNETIdentity.Infrastructure.Identity;
+namespace Identity.Infrastructure.DotNETIdentity;
 
 public sealed class IdentityNoOpEmailSender : IEmailSender<DotNETApplicationUser>
 {
