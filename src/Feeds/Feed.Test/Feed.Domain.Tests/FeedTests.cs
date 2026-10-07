@@ -1,4 +1,5 @@
 ﻿using Feeds.Domain.Feeds;
+using SharedKernel.Exceptions;
 using SharedKernel.ValuesObjects;
 
 namespace Feeds.Domain.Tests;
@@ -44,4 +45,26 @@ public class FeedTests
         Assert.Equal(content, feed.Content);
         Assert.Null(feed.DeletedAt);
     }
+
+    [Fact]
+    public void UpdateFeed_WithValidData_ShouldUpdateProperties()
+    {
+        // Arrange
+        var authorId = new UserID(Guid.NewGuid());
+        var title = new Title("Test title");
+        var content = new Description("Test content");
+        var feed = Feed.CreateFeed(
+            authorId,
+            title,
+            content);
+        var newTitle = new Title("Updated title");
+        var newContent = new Description("Updated content");
+        // Act
+        feed.Update(newTitle, newContent);
+        // Assert
+        Assert.Equal(newTitle, feed.Title);
+        Assert.Equal(newContent, feed.Content);
+    }
+
+
 }
