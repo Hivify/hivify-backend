@@ -66,5 +66,71 @@ public class FeedTests
         Assert.Equal(newContent, feed.Content);
     }
 
+    [Fact]
+    public void DeleteFeed_ShouldSetDeletedAt()
+    {
+        // Arrange
+        var authorId = new UserID(Guid.NewGuid());
+        var title = new Title("Test title");
+        var content = new Description("Test content");
+        var feed = Feed.CreateFeed(
+            authorId,
+            title,
+            content);
+        // Act
+        feed.Delete();
+        // Assert
+        Assert.NotNull(feed.DeletedAt);
+    }
+
+
+    [Fact]
+    public void UpdateFeed_WhenDeleted_ShouldThrowDomainException()
+    {
+        // Arrange
+        var authorId = new UserID(Guid.NewGuid());
+        var title = new Title("Test title");
+        var content = new Description("Test content");
+
+        var feed = Feed.CreateFeed(
+            authorId,
+            title,
+            content);
+
+        feed.Delete();
+
+        var newTitle = new Title("Updated title");
+        var newContent = new Description("Updated content");
+
+        // Act
+        var action = () => feed.Update(
+            newTitle,
+            newContent);
+
+        // Assert
+        Assert.Throws<DomainException>(action);
+    }
+
+    [Fact]
+    public void DeleteFeed_WhenAlreadyDeleted_ShouldThrowDomainException()
+    {
+        // Arrange
+        var authorId = new UserID(Guid.NewGuid());
+        var title = new Title("Test title");
+        var content = new Description("Test content");
+
+        var feed = Feed.CreateFeed(
+            authorId,
+            title,
+            content);
+
+        feed.Delete();
+
+        // Act
+        var action = () => feed.Delete();
+
+        // Assert
+        Assert.Throws<DomainException>(action);
+    }
 
 }
