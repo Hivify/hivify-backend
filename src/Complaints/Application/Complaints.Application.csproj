@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.csproj" />
-    <ProjectReference Include="..\..\UserMgmt\UserMgmt.Application\UserMgmt.Application.csproj" />
     <ProjectReference Include="..\Domain\Complaints.Domain.csproj" />
   </ItemGroup>
 

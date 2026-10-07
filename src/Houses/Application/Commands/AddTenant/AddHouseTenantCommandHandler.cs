@@ -2,15 +2,15 @@
 using Houses.Application.Commands.AddTenant;
 using Houses.Application.Contracts;
 using Houses.Domain.Houses;
+using Identity.Application.Contracts;
 using SharedKernel.ValuesObjects;
-using UserMgmt.Application.Contracts;
 
 public sealed class AddHouseTenantCommandHandler : ICommandHandler<AddHouseTenantCommand, Guid>
 {
     private readonly IHouseRepo _houseRepo;
-    private readonly IUserDirectory _userManagementService;
+    private readonly IUserHivifyDirectory _userManagementService;
 
-    public AddHouseTenantCommandHandler(IHouseRepo houseRepo, IUserDirectory userManagementService)
+    public AddHouseTenantCommandHandler(IHouseRepo houseRepo, IUserHivifyDirectory userManagementService)
     {
         _houseRepo = houseRepo;
         _userManagementService = userManagementService;
@@ -18,7 +18,7 @@ public sealed class AddHouseTenantCommandHandler : ICommandHandler<AddHouseTenan
 
     public async Task<Guid> Handle(AddHouseTenantCommand command, CancellationToken cancellationToken)
     {
-        var user = await _userManagementService.GetUserByIdAsync(command.UserId, cancellationToken);
+        var user = await _userManagementService.GetByIdAsync(command.UserId, cancellationToken);
 
         if (user is null)
             throw new InvalidOperationException(

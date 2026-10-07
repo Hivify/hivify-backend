@@ -1,8 +1,8 @@
 ﻿using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.UserMgmt.Requests;
+using Identity.Application.Commands.LoginUser;
+using Identity.Application.Commands.RegisterUser;
 using Microsoft.AspNetCore.Mvc;
-using UserMgmt.Application.Commands.LoginUser;
-using UserMgmt.Application.Commands.RegisterUser;
 
 [ApiController]
 [Route("api/auth")]

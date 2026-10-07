@@ -43,9 +43,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
             name);
     }
 
-    public void AddMember(
-        UserID userId,
-        AssociationRoles role)
+    public void AddMember(UserID userId, AssociationRoles role)
     {
         if (_members.Any(m => m.UserID == userId))
         {
@@ -53,10 +51,6 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
                 "User is already a member of this association.");
         }
 
-        _members.Add(
-            Membership.Create(
-                Id,
-                userId,
-                role));
+        _members.Add(Membership.Create(Id, userId, role));
     }
 }

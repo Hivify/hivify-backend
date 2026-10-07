@@ -40,13 +40,11 @@
 		<ProjectReference Include="..\src\Houses\Application\Houses.Application.csproj" />
 		<ProjectReference Include="..\src\Houses\Infrastructure\Houses.Infrastructure.csproj" />
 
-		<ProjectReference Include="..\src\UserMgmt\UserMgmt.Application\UserMgmt.Application.csproj" />
-		<ProjectReference Include="..\src\UserMgmt\UserMgmt.Infrastructure\UserMgmt.Infrastructure.csproj" />
-
 		<!-- Department module references -->
 		<ProjectReference Include="..\src\Department\Application\Department.Application.csproj" />
 		<ProjectReference Include="..\src\Department\Infrastructure\Department.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\Department\Domain\Department.Domain.csproj" />
+		<ProjectReference Include="..\src\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>
