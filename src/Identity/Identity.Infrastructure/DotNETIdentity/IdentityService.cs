@@ -1,17 +1,18 @@
 ﻿using Identity.Application.Contracts;
 using Identity.Application.DTOs;
+using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 
 namespace Identity.Infrastructure.Identity;
 
 public sealed class IdentityService : IUserIdentityService
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<DotNETApplicationUser> _userManager;
+    private readonly SignInManager<DotNETApplicationUser> _signInManager;
 
     public IdentityService(
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager)
+        UserManager<DotNETApplicationUser> userManager,
+        SignInManager<DotNETApplicationUser> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -23,7 +24,7 @@ public sealed class IdentityService : IUserIdentityService
         string fullName,
         CancellationToken cancellationToken)
     {
-        var user = new ApplicationUser
+        var user = new DotNETApplicationUser
         {
             Id = Guid.NewGuid(),
             UserName = email,

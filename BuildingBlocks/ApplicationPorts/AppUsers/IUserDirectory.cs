@@ -1,6 +1,4 @@
-﻿using Identity.Application.DTOs;
-
-namespace Identity.Application.Contracts;
+﻿namespace BuildingBlocks.ApplicationPorts.AppUsers;
 
 public interface IUserDirectory
 {
