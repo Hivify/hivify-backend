@@ -22,6 +22,9 @@
     <Project Path="src/Feeds/Domain/Feeds.Domain.csproj" />
     <Project Path="src/Feeds/Infrastructure/Feeds.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/src/AppPlane/Feeds/Tests/">
+    <Project Path="src/Feeds/Feed.Test/Feed.Domain.Tests/Feed.Domain.Tests.csproj" Id="c2168469-e331-47bd-945c-bdea4c4eb4b2" />
+  </Folder>
   <Folder Name="/src/AppPlane/Houses/">
     <Project Path="src/Houses/Application/Houses.Application.csproj" />
     <Project Path="src/Houses/Domain/Houses.Domain.csproj" />
@@ -37,7 +40,6 @@
     <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
     <Project Path="src/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/src/ControlPlane/OnBoarding/" />
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />
   <Project Path="Hivify.AI/Hivify.AI.csproj" />
   <Project Path="Hivify.Api/Hivify.Api.csproj" Id="74f6a290-9423-4985-b768-e2f9143a49ac" />
