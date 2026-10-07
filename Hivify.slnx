@@ -38,6 +38,7 @@
   </Folder>
   <Folder Name="/src/ControlPlane/Identity/">
     <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
+    <Project Path="src/Identity/Identity.Domain/Identity.Domain.csproj" Id="d0aa1cce-6086-42dd-9497-73dde6a0c220" />
     <Project Path="src/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
   </Folder>
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />

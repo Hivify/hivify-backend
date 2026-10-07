@@ -12,7 +12,7 @@ using Houses.Application;
 using Houses.Infrastructure;
 using Identity.Application;
 using Identity.Infrastructure;
-using Identity.Infrastructure.Persistence;
+using Identity.Infrastructure.DotNETIdentity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

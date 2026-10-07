@@ -1,16 +1,15 @@
-using Identity.Infrastructure.Identity;
+using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Identity.Infrastructure.Persistence;
+namespace Identity.Infrastructure.DotNETIdentity;
 
 public static class IdentitySeeder
 {
     public static async Task SeedAsync(IServiceProvider services)
     {
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var dbContext = services.GetRequiredService<UserManagementDbContext>();
+        var userManager = services.GetRequiredService<UserManager<DotNETApplicationUser>>();
 
         // Seed role
         if (!await roleManager.RoleExistsAsync("Admin"))
@@ -28,7 +27,7 @@ public static class IdentitySeeder
 
         if (adminUser == null)
         {
-            adminUser = new ApplicationUser
+            adminUser = new DotNETApplicationUser
             {
                 FullName = adminEmail,
                 UserName = adminEmail,
