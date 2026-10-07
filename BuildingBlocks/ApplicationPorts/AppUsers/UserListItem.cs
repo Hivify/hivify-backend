@@ -1,4 +1,4 @@
-namespace Identity.Application.DTOs;
+namespace BuildingBlocks.ApplicationPorts.AppUsers;
 
 public sealed record UserListItem(
     Guid Id,
