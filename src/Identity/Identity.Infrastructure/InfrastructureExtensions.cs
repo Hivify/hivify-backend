@@ -1,8 +1,7 @@
 ﻿using Identity.Application.Contracts;
-using Identity.Infrastructure.Identity;
-using Identity.Infrastructure.Persistence;
+using Identity.Domain;
+using Identity.Infrastructure.DotNETIdentity;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Infrastructure
@@ -14,28 +13,10 @@ namespace Identity.Infrastructure
             public IServiceCollection AddUserMgmtInfrastructure(string connectionString)
             {
 
-                services.AddDbContextFactory<UserManagementDbContext>(options =>
-                {
-                    options.UseSqlServer(connectionString);
-                });
-                services.AddIdentityCore<ApplicationUser>(options =>
-            {
-                options.User.RequireUniqueEmail = true;
 
-                options.Password.RequiredLength = 8;
-                options.Password.RequireDigit = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = false;
-            })
-            .AddRoles<IdentityRole<Guid>>()
-            .AddEntityFrameworkStores<UserManagementDbContext>()
-            .AddSignInManager()
-            .AddDefaultTokenProviders();
 
                 services.AddScoped<IUserIdentityService, IdentityService>();
-                services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
-                services.AddScoped<IUserDirectory, UserDirectory>();
+                services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
 
 
                 return services;
