@@ -33,11 +33,6 @@
     <Project Path="src/Associations/Association.Domain/Association.Domain.csproj" />
     <Project Path="src/Associations/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
   </Folder>
-  <Folder Name="/src/ControlPlane/HivfiyUserMgmt/">
-    <Project Path="src/HivifyUserMgmt/HivifyUserMgmt.Application/HivifyUserMgmt.Application.csproj" />
-    <Project Path="src/HivifyUserMgmt/HivifyUserMgmt.Domain/HivifyUserMgmt.Domain.csproj" />
-    <Project Path="src/HivifyUserMgmt/HivifyUserMgmt.Infrastructure/HivifyUserMgmt.Infrastructure.csproj" />
-  </Folder>
   <Folder Name="/src/ControlPlane/Identity/">
     <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
     <Project Path="src/Identity/Identity.Domain/Identity.Domain.csproj" Id="d0aa1cce-6086-42dd-9497-73dde6a0c220" />

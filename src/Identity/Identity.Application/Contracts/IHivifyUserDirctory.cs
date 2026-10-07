@@ -1,4 +1,4 @@
-﻿namespace HivifyUserMgmt.Application.Contracts;
+﻿namespace Identity.Application.Contracts;
 
 public interface IUserHivifyDirectory
 {

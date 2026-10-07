@@ -1,5 +1,5 @@
+using BuildingBlocks.ApplicationPorts.HvifiyUsers;
 using BuildingBlocks.ApplicationPorts.Messaging;
-using HivifyUserMgmt.Application.Contracts;
 using HivifyUserMgmt.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;
 

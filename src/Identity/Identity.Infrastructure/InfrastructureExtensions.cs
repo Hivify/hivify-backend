@@ -19,6 +19,7 @@ namespace Identity.Infrastructure
                 services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
 
 
+
                 return services;
             }
         }

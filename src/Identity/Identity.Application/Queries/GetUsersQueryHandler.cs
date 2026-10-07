@@ -1,7 +1,7 @@
-using BuildingBlocks.ApplicationPorts.HvifiyUsers;
 using BuildingBlocks.ApplicationPorts.Messaging;
+using Identity.Application.Contracts;
 
-namespace HivifyUserMgmt.Application.Queries;
+namespace Identity.Application.Queries;
 
 public sealed class GetUsersQueryHandler : IQueryHandler<GetUsersQuery, IReadOnlyList<UserInfo>>
 {
