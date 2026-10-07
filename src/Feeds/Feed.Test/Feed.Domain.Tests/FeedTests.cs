@@ -73,14 +73,26 @@ public class FeedTests
         var authorId = new UserID(Guid.NewGuid());
         var title = new Title("Test title");
         var content = new Description("Test content");
+
         var feed = Feed.CreateFeed(
             authorId,
             title,
             content);
+
+        var before = DateTime.UtcNow;
+
         // Act
         feed.Delete();
+
+        var after = DateTime.UtcNow;
+
         // Assert
         Assert.NotNull(feed.DeletedAt);
+
+        Assert.InRange(
+            feed.DeletedAt!.Value,
+            before,
+            after);
     }
 
 
