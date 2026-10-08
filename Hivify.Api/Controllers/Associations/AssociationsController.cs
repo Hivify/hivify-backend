@@ -45,9 +45,7 @@ public sealed class AssociationsController : ControllerBase
         CreateAssociationRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new CreateAssociationCommand(
-            request.Name,
-            request.Identifier);
+        var command = new CreateAssociationCommand(request.Name);
 
         var id = await _sender.Send(
             command,

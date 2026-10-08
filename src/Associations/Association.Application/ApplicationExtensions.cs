@@ -14,7 +14,7 @@ namespace Association.Application
             public IServiceCollection AddAssociationServices()
             {
                 services.AddScoped<ICommandHandler<CreateAssociationCommand, Guid>, CreateAssociationCommandHandler>();
-                services.AddScoped<IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<UserAssociationListItem>>, GetUserAssociationsQueryHandler>();
+                services.AddScoped<IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>, GetUserAssociationsQueryHandler>();
 
 
                 return services;

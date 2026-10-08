@@ -5,8 +5,7 @@ namespace Hivify.Api.Controllers.Associations.Mappers;
 
 public static class AssociationResponseMapper
 {
-    public static MyAssociationResponse ToMyResponse(
-        UserAssociationListItem association)
+    public static MyAssociationResponse ToMyResponse(TenantAssociationOutput association)
     {
         return new MyAssociationResponse(
             association.AssociationId,
