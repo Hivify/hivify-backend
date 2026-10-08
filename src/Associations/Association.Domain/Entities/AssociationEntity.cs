@@ -1,4 +1,5 @@
 ﻿using Association.Domain.Enums;
+using Association.Domain.Events;
 using Association.Domain.ValueObjects;
 using SharedKernel;
 using SharedKernel.ValuesObjects;
@@ -31,15 +32,22 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
         Name = name;
         Identifier = identifier;
         Status = AssociationStatus.Active;
+        OnBoardingStatus = OnBoardingStatus.NotStarted;
         CreatedDate = DateTime.UtcNow;
     }
 
-    public static AssociationEntity Create(Name name)
+    public static AssociationEntity Create(Name name, UserID ownerId)
     {
-        return new AssociationEntity(
+        var association = new AssociationEntity(
             new AssociationID(Guid.NewGuid()),
             new AssociationIdentifier(Guid.NewGuid()),
             name);
+
+        association.AddMember(ownerId, AssociationRoles.Owner);
+
+        association.RaiseDomainEvent(new AssociationCreatedDomainEvent(association.Id, ownerId));
+
+        return association;
     }
 
     public void AddMember(UserID userId, AssociationRoles role)

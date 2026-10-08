@@ -1,6 +1,5 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Entities;
-using Association.Domain.Enums;
 using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
 using SharedKernel.ValuesObjects;
 
@@ -26,17 +25,9 @@ public sealed class AssociationService : IAssociationService
 
         var associationName = new Name(name);
 
-        var association = AssociationEntity.Create(
-            associationName
-            );
+        var association = AssociationEntity.Create(associationName, new UserID(userId));
 
-        association.AddMember(
-            new UserID(userId),
-            AssociationRoles.Owner);
-
-        await _associationRepository.AddAsync(
-            association,
-            cancellationToken);
+        await _associationRepository.AddAsync(association, cancellationToken);
 
         return association.Id.Value;
     }
