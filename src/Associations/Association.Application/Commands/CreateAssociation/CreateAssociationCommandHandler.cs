@@ -1,8 +1,7 @@
 ﻿using Association.Domain.Entities;
 using Association.Domain.Enums;
-using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using SharedKernel.ValuesObjects;
 
 namespace Association.Application.Commands.CreateAssociation;
@@ -30,12 +29,9 @@ public sealed class CreateAssociationCommandHandler : ICommandHandler<CreateAsso
 
         var name = new Name(command.Name);
 
-        var identifier = new AssociationIdentifier(
-            command.Identifier);
 
-        var association = AssociationEntity.Create(
-            identifier,
-            name);
+
+        var association = AssociationEntity.Create(name);
 
         association.AddMember(new UserID(userId), AssociationRoles.Owner);
 

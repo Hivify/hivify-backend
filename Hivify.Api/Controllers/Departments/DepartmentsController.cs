@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Department.Application.Commands.AddDepartment;
 using Department.Application.Commands.RemoveStaffMember;
 using Department.Application.Queries.GetDepartment.AllDepartments;

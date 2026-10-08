@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Feeds.Application.DTOs;
 
 namespace Feeds.Application.Queries.GetFeeds;

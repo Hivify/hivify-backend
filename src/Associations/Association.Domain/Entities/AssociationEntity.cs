@@ -10,6 +10,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
     public Name Name { get; private set; }
     public AssociationIdentifier Identifier { get; private set; }
     public AssociationStatus Status { get; private set; }
+    public OnBoardingStatus OnBoardingStatus { get; private set; }
     public DateTime CreatedDate { get; private set; }
     public DateTime? DeletedAt { get; private set; }
 
@@ -33,13 +34,11 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
         CreatedDate = DateTime.UtcNow;
     }
 
-    public static AssociationEntity Create(
-        AssociationIdentifier identifier,
-        Name name)
+    public static AssociationEntity Create(Name name)
     {
         return new AssociationEntity(
             new AssociationID(Guid.NewGuid()),
-            identifier,
+            new AssociationIdentifier(Guid.NewGuid()),
             name);
     }
 

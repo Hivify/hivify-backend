@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Department.Domain.Members;
 
 namespace Department.Application.Commands.UpdateStaffMemberRole;

@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Complaints.Domain;
 
 namespace Complaints.Application.Commands.UpdateComplaintStatus;

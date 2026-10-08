@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

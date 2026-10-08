@@ -1,4 +1,6 @@
-﻿namespace Identity.Application.Contracts;
+﻿using Identity.Application.DTOs;
+
+namespace Identity.Application.Contracts;
 
 public interface IUserHivifyDirectory
 {

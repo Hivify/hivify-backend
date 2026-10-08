@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Identity.Application.DTOs;
 
 namespace Identity.Application.Commands.LoginUser;

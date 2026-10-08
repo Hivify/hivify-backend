@@ -2,8 +2,11 @@
 {
     public enum AssociationStatus
     {
+        Pending,
+        provisioning,
         Active,
-        Inactive,
-        Deleted
+        Suspended,
+        Deactivated,
+        Decommissioned
     }
 }

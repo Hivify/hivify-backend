@@ -3,19 +3,16 @@
 
 namespace Association.Domain.ValueObjects
 {
-    public sealed record AssociationIdentifier : BaseValue<string>
+    public sealed record AssociationIdentifier : BaseValue<Guid>
     {
-        public AssociationIdentifier(string value) : base(value)
+        public AssociationIdentifier(Guid value) : base(value)
         {
         }
 
-        private static string Validate(string value)
+        private static Guid Validate(Guid value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (value == Guid.Empty)
                 throw new ArgumentException("Identifier is required.");
-            value = value.Trim();
-            if (value.Length > 50)
-                throw new ArgumentException("Identifier cannot exceed 50 characters.");
             return value;
         }
     }

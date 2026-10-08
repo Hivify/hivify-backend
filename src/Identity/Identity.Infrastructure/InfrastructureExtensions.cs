@@ -38,6 +38,7 @@ namespace Identity.Infrastructure
                 .AddDefaultTokenProviders();
 
 
+
                 services.AddScoped<IUserIdentityService, IdentityService>();
                 services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
 

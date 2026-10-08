@@ -3,6 +3,6 @@
     public sealed record UserAssociationListItem(
       Guid AssociationId,
       string Name,
-      string Identifier,
+      Guid Identifier,
       string Role);
 }

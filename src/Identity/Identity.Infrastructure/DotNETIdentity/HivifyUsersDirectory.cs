@@ -1,4 +1,5 @@
 ﻿using Identity.Application.Contracts;
+using Identity.Application.DTOs;
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
