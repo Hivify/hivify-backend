@@ -1,6 +1,6 @@
 ﻿using Feeds.Domain.Feeds;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Feeds.Infrastructure.Persistence;
 

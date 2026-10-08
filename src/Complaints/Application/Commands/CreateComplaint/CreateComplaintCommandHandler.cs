@@ -2,7 +2,7 @@ using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using Complaints.Application.Contracts;
 using Complaints.Domain;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Complaints.Application.Commands.CreateComplaint;
 

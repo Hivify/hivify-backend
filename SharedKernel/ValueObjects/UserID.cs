@@ -1,7 +1,6 @@
 using SharedKernel.Exceptions;
 
-namespace SharedKernel.ValuesObjects;
-
+namespace SharedKernel.ValueObjects;
 
 public readonly record struct UserID : IValue
 {

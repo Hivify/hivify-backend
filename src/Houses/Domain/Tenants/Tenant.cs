@@ -1,6 +1,6 @@
 ﻿using Houses.Domain.Tenants;
 using SharedKernel;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 public class Tenant : BaseEntity<TenantID>
 {

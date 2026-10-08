@@ -1,7 +1,7 @@
 ﻿using Houses.Domain.Tenants;
 using SharedKernel;
 using SharedKernel.Exceptions;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Houses.Domain.Houses;
 

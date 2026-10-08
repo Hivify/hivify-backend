@@ -1,6 +1,6 @@
 ﻿using FeedEntity = Feeds.Domain.Feeds.Feed;
 using SharedKernel.Exceptions;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Feeds.Domain.Tests.Feeds;
 

@@ -1,6 +1,6 @@
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 public interface IAssociationRepository
 {

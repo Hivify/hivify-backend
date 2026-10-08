@@ -1,5 +1,5 @@
 ﻿using Complaints.Domain;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Complaints.Application.Contracts;
 

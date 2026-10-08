@@ -1,7 +1,7 @@
 using Department.Domain.Departments;
 using Department.Domain.Members;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 
 namespace Department.Infrastructure.Persistence

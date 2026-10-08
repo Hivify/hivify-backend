@@ -1,7 +1,7 @@
 ﻿using Association.Application.DTOs;
 using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using BuildingBlocks.ApplicationPorts.Messaging;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Association.Application.Queries.GetUserAssociations;
 

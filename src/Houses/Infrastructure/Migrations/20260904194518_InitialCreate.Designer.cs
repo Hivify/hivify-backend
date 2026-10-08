@@ -149,7 +149,7 @@ namespace Houses.Infrastructure.Migrations
                         .WithMany("Tenants")
                         .HasForeignKey("HouseId");
 
-                    b.OwnsOne("SharedKernel.ValuesObjects.Name", "FullName", b1 =>
+                    b.OwnsOne("SharedKernel.ValueObjects.Name", "FullName", b1 =>
                         {
                             b1.Property<Guid>("TenantId")
                                 .HasColumnType("uniqueidentifier");
@@ -168,7 +168,7 @@ namespace Houses.Infrastructure.Migrations
                                 .HasForeignKey("TenantId");
                         });
 
-                    b.OwnsOne("SharedKernel.ValuesObjects.PhoneNumber", "PhoneNumber", b1 =>
+                    b.OwnsOne("SharedKernel.ValueObjects.PhoneNumber", "PhoneNumber", b1 =>
                         {
                             b1.Property<Guid>("TenantId")
                                 .HasColumnType("uniqueidentifier");

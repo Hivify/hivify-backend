@@ -1,7 +1,7 @@
 using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.Contracts;
 using Department.Domain.Departments;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Department.Application.Commands.AddDepartment;
 

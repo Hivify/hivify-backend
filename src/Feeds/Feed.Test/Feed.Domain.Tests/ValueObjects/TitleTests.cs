@@ -1,5 +1,5 @@
 using SharedKernel.Exceptions;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Feeds.Domain.Tests.ValueObjects;
 

@@ -63,7 +63,7 @@ namespace Complaints.Infrastructure.Migrations
 
             modelBuilder.Entity("Complaints.Domain.Complaint", b =>
                 {
-                    b.OwnsOne("SharedKernel.ValuesObjects.Description", "Description", b1 =>
+                    b.OwnsOne("SharedKernel.ValueObjects.Description", "Description", b1 =>
                         {
                             b1.Property<Guid>("ComplaintId")
                                 .HasColumnType("uniqueidentifier");
@@ -82,7 +82,7 @@ namespace Complaints.Infrastructure.Migrations
                                 .HasForeignKey("ComplaintId");
                         });
 
-                    b.OwnsOne("SharedKernel.ValuesObjects.Title", "Title", b1 =>
+                    b.OwnsOne("SharedKernel.ValueObjects.Title", "Title", b1 =>
                         {
                             b1.Property<Guid>("ComplaintId")
                                 .HasColumnType("uniqueidentifier");

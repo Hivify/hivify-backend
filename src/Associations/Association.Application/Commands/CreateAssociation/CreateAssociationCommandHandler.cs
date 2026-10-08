@@ -3,7 +3,7 @@ using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using BuildingBlocks.ApplicationPorts.Messaging;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.CreateAssociation;
 

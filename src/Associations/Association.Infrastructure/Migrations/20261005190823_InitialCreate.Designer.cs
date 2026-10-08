@@ -89,7 +89,7 @@ namespace Association.Infrastructure.Migrations
                                 .HasForeignKey("AssociationEntityId");
                         });
 
-                    b.OwnsOne("SharedKernel.ValuesObjects.Name", "Name", b1 =>
+                    b.OwnsOne("SharedKernel.ValueObjects.Name", "Name", b1 =>
                         {
                             b1.Property<Guid>("AssociationEntityId")
                                 .HasColumnType("uniqueidentifier");
