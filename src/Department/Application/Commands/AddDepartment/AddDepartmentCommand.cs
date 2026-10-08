@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Department.Domain.Departments;
 
 namespace Department.Application.Commands.AddDepartment;

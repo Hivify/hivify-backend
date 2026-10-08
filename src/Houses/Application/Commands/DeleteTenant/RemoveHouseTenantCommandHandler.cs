@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Houses.Application.Contracts;
 using Houses.Domain.Houses;
 using Houses.Domain.Tenants;

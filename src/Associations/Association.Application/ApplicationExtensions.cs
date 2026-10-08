@@ -2,7 +2,7 @@
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetUserAssociations;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Association.Application
@@ -14,7 +14,7 @@ namespace Association.Application
             public IServiceCollection AddAssociationServices()
             {
                 services.AddScoped<ICommandHandler<CreateAssociationCommand, Guid>, CreateAssociationCommandHandler>();
-                services.AddScoped<IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<UserAssociationListItem>>, GetUserAssociationsQueryHandler>();
+                services.AddScoped<IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>, GetUserAssociationsQueryHandler>();
 
 
                 return services;

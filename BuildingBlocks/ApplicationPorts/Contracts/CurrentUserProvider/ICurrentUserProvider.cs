@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.CurrentUserProvider
+﻿namespace BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider
 {
     public interface ICurrentUser
     {

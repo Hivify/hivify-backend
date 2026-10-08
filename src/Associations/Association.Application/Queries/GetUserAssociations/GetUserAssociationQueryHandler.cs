@@ -1,11 +1,11 @@
 ﻿using Association.Application.DTOs;
-using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using SharedKernel.ValuesObjects;
 
 namespace Association.Application.Queries.GetUserAssociations;
 
-public sealed class GetUserAssociationsQueryHandler : IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<UserAssociationListItem>>
+public sealed class GetUserAssociationsQueryHandler : IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>
 {
     private readonly IAssociationRepository _associationRepository;
     private readonly ICurrentUser _currentUser;
@@ -18,7 +18,7 @@ public sealed class GetUserAssociationsQueryHandler : IQueryHandler<GetUserAssoc
         _currentUser = currentUser;
     }
 
-    public async Task<IReadOnlyList<UserAssociationListItem>> Handle(
+    public async Task<IReadOnlyList<TenantAssociationOutput>> Handle(
         GetUserAssociationsQuery query,
         CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public sealed class GetUserAssociationsQueryHandler : IQueryHandler<GetUserAssoc
                 var membership = a.Members
                     .First(m => m.UserID == userId);
 
-                return new UserAssociationListItem(
+                return new TenantAssociationOutput(
                     a.Id.Value,
                     a.Name.Value,
                     a.Identifier.Value,

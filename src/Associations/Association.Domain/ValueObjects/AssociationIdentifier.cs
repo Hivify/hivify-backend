@@ -1,22 +1,18 @@
 ﻿using SharedKernel;
 
+namespace Association.Domain.ValueObjects;
 
-namespace Association.Domain.ValueObjects
+public sealed record AssociationIdentifier : BaseValue<Guid>
 {
-    public sealed record AssociationIdentifier : BaseValue<string>
+    public AssociationIdentifier(Guid value) : base(Validate(value))
     {
-        public AssociationIdentifier(string value) : base(value)
-        {
-        }
+    }
 
-        private static string Validate(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException("Identifier is required.");
-            value = value.Trim();
-            if (value.Length > 50)
-                throw new ArgumentException("Identifier cannot exceed 50 characters.");
-            return value;
-        }
+    private static Guid Validate(Guid value)
+    {
+        if (value == Guid.Empty)
+            throw new ArgumentException("Identifier is required.");
+
+        return value;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Identity.Application.Contracts;
+﻿namespace Identity.Application.DTOs;
 
 public sealed record UserInfo(
    Guid Id,

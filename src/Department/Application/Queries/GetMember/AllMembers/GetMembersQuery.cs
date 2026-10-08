@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Department.Application.DTOs;
 
 namespace Department.Application.Queries.GetMember.AllMembers;

@@ -28,7 +28,7 @@
     <Project Path="src/Houses/Infrastructure/Houses.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/ControlPlane/" />
-  <Folder Name="/src/ControlPlane/Associations/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
+  <Folder Name="/src/ControlPlane/AssociationsMgmt/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
     <Project Path="src/Associations/Association.Application/Association.Application.csproj" />
     <Project Path="src/Associations/Association.Domain/Association.Domain.csproj" />
     <Project Path="src/Associations/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
@@ -37,6 +37,9 @@
     <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
     <Project Path="src/Identity/Identity.Domain/Identity.Domain.csproj" Id="d0aa1cce-6086-42dd-9497-73dde6a0c220" />
     <Project Path="src/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/ControlPlane/OnBoarding/">
+    <Project Path="src/OnBoarding/OnBoarding.Application/OnBoarding.Application.csproj" Id="2d84b6c1-845d-4141-8a4b-eb2deaacac5a" />
   </Folder>
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />
   <Project Path="Hivify.AI/Hivify.AI.csproj" />

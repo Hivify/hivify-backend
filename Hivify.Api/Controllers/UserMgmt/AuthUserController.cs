@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Hivify.Api.Controllers.UserMgmt.Requests;
 using Identity.Application.Commands.LoginUser;
 using Identity.Application.Commands.RegisterUser;

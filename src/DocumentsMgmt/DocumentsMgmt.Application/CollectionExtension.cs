@@ -1,7 +1,7 @@
 ﻿
 
-using BuildingBlocks.ApplicationPorts.Messaging;
-using BuildingBlocks.ApplicationPorts.Storage;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.DTOs;
 using DocumentsMgmt.Application.Commands;
 using DocumentsMgmt.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;

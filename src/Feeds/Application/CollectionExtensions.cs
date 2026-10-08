@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Feeds.Application.Commands.CreateFeed;
 using Feeds.Application.Commands.DeleteFeed;
 using Feeds.Application.Commands.UpdateFeed;
