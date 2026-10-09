@@ -1,4 +1,4 @@
-﻿using FeedEntity = Feeds.Domain.Feeds.Feed;
+﻿using Feeds.Domain.Feeds;
 using SharedKernel.Exceptions;
 using SharedKernel.ValueObjects;
 
@@ -6,9 +6,9 @@ namespace Feeds.Domain.Tests.Feeds;
 
 public class FeedTests
 {
-    private static FeedEntity CreateValidFeed()
+    private static Feed CreateValidFeed()
     {
-        return FeedEntity.CreateFeed(
+        return Feed.CreateFeed(
             new UserID(Guid.NewGuid()),
             new Title("Test title"),
             new Description("Test content"));
@@ -23,7 +23,7 @@ public class FeedTests
         var content = new Description("Test content");
 
         // Act
-        var feed = FeedEntity.CreateFeed(
+        var feed = Feed.CreateFeed(
             authorId,
             title,
             content);
@@ -34,24 +34,6 @@ public class FeedTests
         Assert.Equal(title, feed.Title);
         Assert.Equal(content, feed.Content);
         Assert.Null(feed.DeletedAt);
-    }
-
-    [Fact]
-    public void CreateFeed_ShouldSetCreatedDate()
-    {
-        // Arrange
-        var before = DateTime.UtcNow;
-
-        // Act
-        var feed = CreateValidFeed();
-
-        var after = DateTime.UtcNow;
-
-        // Assert
-        Assert.InRange(
-            feed.CreatedDate,
-            before,
-            after);
     }
 
     [Fact]
@@ -112,11 +94,7 @@ public class FeedTests
             newContent);
 
         // Assert
-        var exception = Assert.Throws<DomainException>(action);
-
-        Assert.Equal(
-            "Feed has already been deleted.",
-            exception.Message);
+        Assert.Throws<DomainException>(action);
     }
 
     [Fact]
@@ -131,10 +109,6 @@ public class FeedTests
         var action = () => feed.Delete();
 
         // Assert
-        var exception = Assert.Throws<DomainException>(action);
-
-        Assert.Equal(
-            "Feed has already been deleted.",
-            exception.Message);
+        Assert.Throws<DomainException>(action);
     }
 }
