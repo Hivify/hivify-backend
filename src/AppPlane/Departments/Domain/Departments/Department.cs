@@ -1,7 +1,7 @@
 using Department.Domain.Members;
 using SharedKernel;
 using SharedKernel.Exceptions;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Department.Domain.Departments;
 

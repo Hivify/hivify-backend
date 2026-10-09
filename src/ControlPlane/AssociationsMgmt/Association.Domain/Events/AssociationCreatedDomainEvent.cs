@@ -1,6 +1,6 @@
 ﻿using Association.Domain.ValueObjects;
 using SharedKernel;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Association.Domain.Events;
 

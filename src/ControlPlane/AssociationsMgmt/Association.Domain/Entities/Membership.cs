@@ -1,6 +1,6 @@
 ﻿using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Association.Domain.Entities;
 

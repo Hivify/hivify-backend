@@ -2,7 +2,7 @@ using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Department.Application.Contracts;
 using Department.Domain.Departments;
 using Department.Domain.Members;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Department.Application.Commands.AddStaffMember;
 

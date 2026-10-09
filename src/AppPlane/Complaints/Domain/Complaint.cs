@@ -1,6 +1,6 @@
 using SharedKernel;
 using SharedKernel.Exceptions;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Complaints.Domain
 {

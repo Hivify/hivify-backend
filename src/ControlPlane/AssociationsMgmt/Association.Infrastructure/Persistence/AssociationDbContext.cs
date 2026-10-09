@@ -1,7 +1,7 @@
 ﻿using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Association.Infrastructure.Persistence;
 

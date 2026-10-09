@@ -1,7 +1,7 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Entities;
 using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 namespace Association.Application.Services;
 

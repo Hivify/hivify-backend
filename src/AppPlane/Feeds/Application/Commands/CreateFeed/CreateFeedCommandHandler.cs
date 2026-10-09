@@ -2,7 +2,7 @@
 using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Feeds.Application.Contracts;
 using Feeds.Domain.Feeds;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 namespace Feeds.Application.Commands.CreateFeed;
 
 public sealed class CreateFeedCommandHandler

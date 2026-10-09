@@ -1,7 +1,7 @@
 using Department.Domain.Departments;
 using SharedKernel;
 using SharedKernel.Exceptions;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 namespace Department.Domain.Members;
 
 public class Member : BaseEntity<MemberID>

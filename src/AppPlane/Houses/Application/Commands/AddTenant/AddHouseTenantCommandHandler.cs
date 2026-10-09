@@ -3,7 +3,7 @@ using Houses.Application.Commands.AddTenant;
 using Houses.Application.Contracts;
 using Houses.Domain.Houses;
 using Identity.Application.Contracts;
-using SharedKernel.ValuesObjects;
+using SharedKernel.ValueObjects;
 
 public sealed class AddHouseTenantCommandHandler : ICommandHandler<AddHouseTenantCommand, Guid>
 {
