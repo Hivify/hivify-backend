@@ -2,7 +2,7 @@
 using Feeds.Application.Contracts;
 using Feeds.Application.DTOs;
 using Feeds.Application.Queries.GetSingleFeed;
-using Feeds.Domain.Feeds;
+using Feeds.Domain.ValueObjects;
 
 
 public sealed class GetSingleFeedQueryHandler : IQueryHandler<GetSingleFeedQuery, FeedListItem>

@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Feeds.Application.Contracts;
-using Feeds.Domain.Feeds;
+using Feeds.Domain.ValueObjects;
 using SharedKernel.ValueObjects;
 
 namespace Feeds.Application.Commands.UpdateFeed;
