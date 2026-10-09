@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
@@ -18,7 +18,6 @@
 		<PackageReference Include="Finbuckle.MultiTenant" Version="10.1.4" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
-
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
 	</ItemGroup>
 
@@ -30,36 +29,16 @@
 		<ProjectReference Include="..\src\AppPlane\Complaints\Domain\Complaints.Domain.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Departments\Application\Department.Application.csproj" />
-		<ProjectReference Include="..\src\AppPlane\Departments\Domain\Department.Domain.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Departments\Infrastructure\Department.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\AppPlane\DocumentsMgmt\DocumentsMgmt.Application\DocumentsMgmt.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Feeds\Application\Feeds.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Feeds\Infrastructure\Feeds.Infrastructure.csproj" />
-		<ProjectReference Include="..\src\AppPlane\Houses\Application\Houses.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Houses\Infrastructure\Houses.Infrastructure.csproj" />
-		<ProjectReference Include="..\src\Associations\Association.Application\Association.Application.csproj" />
-		<ProjectReference Include="..\src\Associations\Association.Infrastructure\Association.Infrastructure.csproj" />
-
-		<ProjectReference Include="..\src\Complaints\Application\Complaints.Application.csproj" />
-		<ProjectReference Include="..\src\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\AssociationsMgmt\Association.Application\Association.Application.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\AssociationsMgmt\Association.Infrastructure\Association.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\OnBoarding\OnBoarding.Application\OnBoarding.Application.csproj" />
-
-		<ProjectReference Include="..\src\DocumentsMgmt\DocumentsMgmt.Application\DocumentsMgmt.Application.csproj" />
-
-		<ProjectReference Include="..\src\Feeds\Application\Feeds.Application.csproj" />
-		<ProjectReference Include="..\src\Feeds\Infrastructure\Feeds.Infrastructure.csproj" />
-
-		<ProjectReference Include="..\src\Houses\Application\Houses.Application.csproj" />
-		<ProjectReference Include="..\src\Houses\Infrastructure\Houses.Infrastructure.csproj" />
-
-		<!-- Department module references -->
-		<ProjectReference Include="..\src\Department\Application\Department.Application.csproj" />
-		<ProjectReference Include="..\src\Department\Infrastructure\Department.Infrastructure.csproj" />
-		<ProjectReference Include="..\src\Department\Domain\Department.Domain.csproj" />
 		
 	</ItemGroup>
 
