@@ -60,7 +60,7 @@
 		<ProjectReference Include="..\src\Department\Application\Department.Application.csproj" />
 		<ProjectReference Include="..\src\Department\Infrastructure\Department.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\Department\Domain\Department.Domain.csproj" />
-		<ProjectReference Include="..\src\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+		
 	</ItemGroup>
 
 </Project>

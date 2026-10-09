@@ -21,9 +21,7 @@
     <Project Path="src/AppPlane/Feeds/Application/Feeds.Application.csproj" />
     <Project Path="src/AppPlane/Feeds/Domain/Feeds.Domain.csproj" />
     <Project Path="src/AppPlane/Feeds/Infrastructure/Feeds.Infrastructure.csproj" />
-  </Folder>
-  <Folder Name="/src/AppPlane/Feeds/Tests/">
-    <Project Path="src/Feeds/Feed.Test/Feed.Domain.Tests/Feed.Domain.Tests.csproj" Id="c2168469-e331-47bd-945c-bdea4c4eb4b2" />
+    <Project Path="src/AppPlane/Feeds/Tests/Domain.Tests/Domain.Tests.csproj" Id="9ffad6b6-b73d-423d-a0ea-282b98bc8628" />
   </Folder>
   <Folder Name="/src/AppPlane/Houses/">
     <Project Path="src/AppPlane/Houses/Application/Houses.Application.csproj" />

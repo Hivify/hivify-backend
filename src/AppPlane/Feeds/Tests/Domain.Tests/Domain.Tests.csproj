@@ -15,8 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SharedKernel\SharedKernel.csproj" />
-    <ProjectReference Include="..\..\..\AppPlane\Feeds\Domain\Feeds.Domain.csproj" />
     <ProjectReference Include="..\..\Domain\Feeds.Domain.csproj" />
   </ItemGroup>
 
