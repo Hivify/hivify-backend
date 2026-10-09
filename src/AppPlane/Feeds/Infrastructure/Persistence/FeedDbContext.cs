@@ -1,4 +1,5 @@
 ﻿using Feeds.Domain.Feeds;
+using Feeds.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
 

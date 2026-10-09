@@ -1,4 +1,5 @@
-﻿using SharedKernel;
+﻿using Feeds.Domain.ValueObjects;
+using SharedKernel;
 using SharedKernel.Exceptions;
 using SharedKernel.ValueObjects;
 

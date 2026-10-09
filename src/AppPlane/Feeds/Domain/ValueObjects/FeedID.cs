@@ -1,6 +1,6 @@
 ﻿using SharedKernel;
 
-namespace Feeds.Domain.Feeds
+namespace Feeds.Domain.ValueObjects
 {
     public readonly record struct FeedID(Guid Value) : IValue
     {
