@@ -3,5 +3,5 @@
 public sealed record MyAssociationResponse(
     Guid AssociationId,
     string Name,
-    string Identifier,
+    Guid Identifier,
     string Role);

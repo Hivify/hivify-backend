@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using BuildingBlocks.ApplicationPorts.Messaging;
-using BuildingBlocks.ApplicationPorts.Storage;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Storage;
 using BuildingBlocks.Infrastructure.CurrentUserProvider;
 using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;

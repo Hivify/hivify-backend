@@ -5,41 +5,44 @@
   <Folder Name="/src/" />
   <Folder Name="/src/AppPlane/" />
   <Folder Name="/src/AppPlane/Complaints/">
-    <Project Path="src/Complaints/Application/Complaints.Application.csproj" />
-    <Project Path="src/Complaints/Domain/Complaints.Domain.csproj" />
-    <Project Path="src/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
+    <Project Path="src/AppPlane/Complaints/Application/Complaints.Application.csproj" />
+    <Project Path="src/AppPlane/Complaints/Domain/Complaints.Domain.csproj" />
+    <Project Path="src/AppPlane/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Departments/">
-    <Project Path="src/Department/Application/Department.Application.csproj" />
-    <Project Path="src/Department/Domain/Department.Domain.csproj" />
-    <Project Path="src/Department/Infrastructure/Department.Infrastructure.csproj" />
+    <Project Path="src/AppPlane/Departments/Application/Department.Application.csproj" />
+    <Project Path="src/AppPlane/Departments/Domain/Department.Domain.csproj" />
+    <Project Path="src/AppPlane/Departments/Infrastructure/Department.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/DocumentsMgmt/">
-    <Project Path="src/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />
+    <Project Path="src/AppPlane/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Feeds/">
-    <Project Path="src/Feeds/Application/Feeds.Application.csproj" />
-    <Project Path="src/Feeds/Domain/Feeds.Domain.csproj" />
-    <Project Path="src/Feeds/Infrastructure/Feeds.Infrastructure.csproj" />
+    <Project Path="src/AppPlane/Feeds/Application/Feeds.Application.csproj" />
+    <Project Path="src/AppPlane/Feeds/Domain/Feeds.Domain.csproj" />
+    <Project Path="src/AppPlane/Feeds/Infrastructure/Feeds.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Feeds/Tests/">
     <Project Path="src/Feeds/Feed.Test/Feed.Domain.Tests/Feed.Domain.Tests.csproj" Id="c2168469-e331-47bd-945c-bdea4c4eb4b2" />
   </Folder>
   <Folder Name="/src/AppPlane/Houses/">
-    <Project Path="src/Houses/Application/Houses.Application.csproj" />
-    <Project Path="src/Houses/Domain/Houses.Domain.csproj" />
-    <Project Path="src/Houses/Infrastructure/Houses.Infrastructure.csproj" />
+    <Project Path="src/AppPlane/Houses/Application/Houses.Application.csproj" />
+    <Project Path="src/AppPlane/Houses/Domain/Houses.Domain.csproj" />
+    <Project Path="src/AppPlane/Houses/Infrastructure/Houses.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/ControlPlane/" />
-  <Folder Name="/src/ControlPlane/Associations/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
-    <Project Path="src/Associations/Association.Application/Association.Application.csproj" />
-    <Project Path="src/Associations/Association.Domain/Association.Domain.csproj" />
-    <Project Path="src/Associations/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
+  <Folder Name="/src/ControlPlane/AssociationsMgmt/" Id="4801e34f-c36f-3dfb-da15-bbb73c788c48">
+    <Project Path="src/ControlPlane/AssociationsMgmt/Association.Application/Association.Application.csproj" />
+    <Project Path="src/ControlPlane/AssociationsMgmt/Association.Domain/Association.Domain.csproj" />
+    <Project Path="src/ControlPlane/AssociationsMgmt/Association.Infrastructure/Association.Infrastructure.csproj" Id="05a8eaf2-fd20-4a66-b5e0-b50f105b69e5" />
   </Folder>
   <Folder Name="/src/ControlPlane/Identity/">
-    <Project Path="src/Identity/Identity.Application/Identity.Application.csproj" />
-    <Project Path="src/Identity/Identity.Domain/Identity.Domain.csproj" Id="d0aa1cce-6086-42dd-9497-73dde6a0c220" />
-    <Project Path="src/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
+    <Project Path="src/ControlPlane/Identity/Identity.Application/Identity.Application.csproj" />
+    <Project Path="src/ControlPlane/Identity/Identity.Domain/Identity.Domain.csproj" Id="d0aa1cce-6086-42dd-9497-73dde6a0c220" />
+    <Project Path="src/ControlPlane/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/ControlPlane/OnBoarding/">
+    <Project Path="src/ControlPlane/OnBoarding/OnBoarding.Application/OnBoarding.Application.csproj" Id="2d84b6c1-845d-4141-8a4b-eb2deaacac5a" />
   </Folder>
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />
   <Project Path="Hivify.AI/Hivify.AI.csproj" />

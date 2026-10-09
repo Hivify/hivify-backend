@@ -26,11 +26,27 @@
 		<ProjectReference Include="..\BuildingBlocks\BuildingBlocks.csproj" />
 		<ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
 		<ProjectReference Include="..\Hivify.AI\Hivify.AI.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Complaints\Application\Complaints.Application.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Complaints\Domain\Complaints.Domain.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Departments\Application\Department.Application.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Departments\Domain\Department.Domain.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Departments\Infrastructure\Department.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\AppPlane\DocumentsMgmt\DocumentsMgmt.Application\DocumentsMgmt.Application.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Feeds\Application\Feeds.Application.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Feeds\Infrastructure\Feeds.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Houses\Application\Houses.Application.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Houses\Infrastructure\Houses.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\Associations\Association.Application\Association.Application.csproj" />
 		<ProjectReference Include="..\src\Associations\Association.Infrastructure\Association.Infrastructure.csproj" />
 
 		<ProjectReference Include="..\src\Complaints\Application\Complaints.Application.csproj" />
 		<ProjectReference Include="..\src\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\AssociationsMgmt\Association.Application\Association.Application.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\AssociationsMgmt\Association.Infrastructure\Association.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Application\Identity.Application.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\OnBoarding\OnBoarding.Application\OnBoarding.Application.csproj" />
 
 		<ProjectReference Include="..\src\DocumentsMgmt\DocumentsMgmt.Application\DocumentsMgmt.Application.csproj" />
 

@@ -1,6 +1,6 @@
 ﻿using Association.Application.Commands.CreateAssociation;
 using Association.Application.Queries.GetUserAssociations;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Hivify.Api.Controllers.Associations.Mappers;
 using Hivify.Api.Controllers.Associations.Requests;
 using Hivify.Api.Controllers.Associations.Responses;
@@ -45,9 +45,7 @@ public sealed class AssociationsController : ControllerBase
         CreateAssociationRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new CreateAssociationCommand(
-            request.Name,
-            request.Identifier);
+        var command = new CreateAssociationCommand(request.Name);
 
         var id = await _sender.Send(
             command,
