@@ -1,6 +1,6 @@
-﻿namespace Association.Domain.Enums
+﻿namespace OnBoarding.Domain.Enums
 {
-    public enum OnBoardingStatus
+    public enum OnboardingStatus
     {
         NotStarted,
         InProgress,
