@@ -19,5 +19,6 @@ public sealed class CreateAssociationForUser
         return await _associationService.CreateAssociationAsync(
             name,
             cancellationToken);
+
     }
 }
