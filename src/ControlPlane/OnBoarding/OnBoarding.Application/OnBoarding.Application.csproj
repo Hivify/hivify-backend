@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AssociationsMgmt\Association.Application\Association.Application.csproj" />
+    <ProjectReference Include="..\OnBoarding.Domain\OnBoarding.Domain.csproj" />
   </ItemGroup>
 
 </Project>
