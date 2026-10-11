@@ -1,10 +1,9 @@
 ﻿using OnBoarding.Domain.Enums;
 using OnBoarding.Domain.ValueObjects;
-using OnBoarding.Domain.ValuesObjts;
 using SharedKernel;
 using SharedKernel.ValueObjects;
 
-namespace OnBoarding.Domain.Enitities
+namespace OnBoarding.Domain.Entities
 {
     public class OnboardingProcess : BaseEntity<OnBoardingID>, IAggregateRoot
     {
