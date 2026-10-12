@@ -15,7 +15,8 @@ using Identity.Infrastructure;
 using Identity.Infrastructure.DotNETIdentity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using OnBoarding.Application;
+using OnBoarding.Infrastructure;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -86,6 +87,10 @@ builder.Services.AddDepartmentInfrastructure(connectionString);
 // Association
 builder.Services.AddAssociationServices();
 builder.Services.AddAssociationInfrastructure(connectionString);
+
+// Onboarding
+builder.Services.AddOnBoardingServices();
+builder.Services.AddOnboardingInfrastructure(connectionString);
 
 
 #endregion

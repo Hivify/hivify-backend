@@ -7,12 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\..\AssociationsMgmt\Association.Application\Association.Application.csproj" />
     <ProjectReference Include="..\OnBoarding.Domain\OnBoarding.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Serivces\" />
   </ItemGroup>
 
 </Project>

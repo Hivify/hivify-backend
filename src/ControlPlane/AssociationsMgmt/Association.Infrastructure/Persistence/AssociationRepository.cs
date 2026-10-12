@@ -1,5 +1,5 @@
-﻿using Association.Domain.Entities;
-using Association.Domain.ValueObjects;
+﻿using Association.Application.Contracts;
+using Association.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
 

@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using Microsoft.Extensions.DependencyInjection;
+using OnBoarding.Application.Commands.StartOnboarding;
+using OnBoarding.Application.DTOs;
 
 namespace OnBoarding.Application
 {
@@ -6,9 +9,10 @@ namespace OnBoarding.Application
     {
         extension(IServiceCollection services)
         {
-            public IServiceCollection AddAssociationServices()
+            public IServiceCollection AddOnBoardingServices()
             {
-                //services.AddScoped<IOnboardingService, OnboardingService>();
+
+                services.AddScoped<ICommandHandler<StartOnboardingCommand, StartOnboardingResult>, StartOnboardingCommandHandler>();
 
 
                 return services;

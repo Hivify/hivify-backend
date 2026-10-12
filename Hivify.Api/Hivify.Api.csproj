@@ -39,6 +39,7 @@
 		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\OnBoarding\OnBoarding.Application\OnBoarding.Application.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\OnBoarding\OnBoarding.Infrastructure\OnBoarding.Infrastructure.csproj" />
 		
 	</ItemGroup>
 

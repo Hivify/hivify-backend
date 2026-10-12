@@ -8,9 +8,11 @@ namespace OnBoarding.Domain.Entities
     public class UserOnboardingProcess : BaseEntity<OnBoardingID>, IAggregateRoot
     {
         public UserID UserId { get; private set; }
-        public AssociationID? AssociationId { get; private set; }
 
         public OnboardingStatus Status { get; private set; }
+        public DateTime StartedAt { get; private set; }
+
+        public DateTime? CompletedAt { get; private set; }
 
 
         private UserOnboardingProcess()
@@ -22,6 +24,7 @@ namespace OnBoarding.Domain.Entities
         {
             UserId = userId;
             Status = OnboardingStatus.InProgress;
+            StartedAt = DateTime.UtcNow;
         }
 
         public static UserOnboardingProcess Start(UserID userId)
@@ -34,36 +37,14 @@ namespace OnBoarding.Domain.Entities
                 userId);
         }
 
-        public void CompleteCreateAssociation(AssociationID associationId)
-        {
-            if (Status != OnboardingStatus.InProgress)
-                throw new InvalidOperationException("Onboarding is not in progress.");
-
-
-
-            if (AssociationId is not null)
-                throw new InvalidOperationException(
-                    "An association has already been created for this process.");
-
-            if (associationId.Value == Guid.Empty)
-                throw new ArgumentException(
-                    "Association ID is required.", nameof(associationId));
-
-            AssociationId = associationId;
-        }
-
-        public void Complete(AssociationID associationId)
+        public void Complete()
         {
             if (Status != OnboardingStatus.InProgress)
                 throw new InvalidOperationException(
                     "Onboarding is not in progress.");
 
-            if (associationId.Value == Guid.Empty)
-                throw new ArgumentException(
-                    "Association ID is required.", nameof(associationId));
-
-            AssociationId = associationId;
             Status = OnboardingStatus.Completed;
+            CompletedAt = DateTime.UtcNow;
         }
     }
 }

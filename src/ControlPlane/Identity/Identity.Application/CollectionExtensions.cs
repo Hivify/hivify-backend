@@ -19,6 +19,7 @@ public static class ServiceCollectionExtensions
             services.AddScoped<ICommandHandler<LoginUserCommand, LoginUserResult>, LoginUserCommandHandler>();
             services.AddScoped<IQueryHandler<GetUsersQuery, IReadOnlyList<UserInfo>>, GetUsersQueryHandler>();
 
+
             return services;
         }
     }

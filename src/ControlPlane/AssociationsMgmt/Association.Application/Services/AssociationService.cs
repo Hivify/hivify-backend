@@ -1,5 +1,6 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Entities;
+using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
 using SharedKernel.ValueObjects;
 
@@ -23,7 +24,7 @@ public sealed class AssociationService : IAssociationService
     {
         var userId = _currentUser.UserId;
 
-        var associationName = new Name(name);
+        var associationName = new AssociationName(name);
 
         var association = AssociationEntity.Create(associationName, new UserID(userId));
 

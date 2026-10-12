@@ -1,7 +1,6 @@
 version: '3'
 
 tasks:
-
   # ============================================================
   # Houses
   # ============================================================
@@ -9,60 +8,54 @@ tasks:
   add-house-migration:
     desc: Create EF Core migration for Houses
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context HouseDbContext --project src/Houses/Infrastructure/Houses.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context HouseDbContext --project src/AppPlane/Houses/Infrastructure/Houses.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   migrate-house:
     desc: Apply EF Core migrations for Houses
     cmds:
-      - dotnet ef database update --context HouseDbContext --project src/Houses/Infrastructure/Houses.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
-
+      - dotnet ef database update --context HouseDbContext --project src/AppPlane/Houses/Infrastructure/Houses.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   # ============================================================
-  # Department
+  # Departments
   # ============================================================
 
   add-department-migration:
     desc: Create EF Core migration for Department
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context DepartmentDbContext --project src/Department/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context DepartmentDbContext --project src/AppPlane/Departments/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   migrate-department:
     desc: Apply EF Core migrations for Department
     cmds:
-      - dotnet ef database update --context DepartmentDbContext --project src/Department/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef database update --context DepartmentDbContext --project src/AppPlane/Departments/Infrastructure/Department.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
-
-        # ============================================================
+  # ============================================================
   # Associations
   # ============================================================
 
   add-association-migration:
-    desc: Create EF Core migration for Associations
+    desc: Create EF Core migration for Association
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context AssociationDbContext --project src/Associations/Association.Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context AssociationDbContext --project src/ControlPlane/AssociationsMgmt/Association.Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   migrate-association:
-    desc: Apply EF Core migrations for Associations
+    desc: Apply EF Core migrations for Association
     cmds:
-      - dotnet ef database update --context AssociationDbContext --project src/Associations/Association.Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
-
-
-
+      - dotnet ef database update --context AssociationDbContext --project src/ControlPlane/AssociationsMgmt/Association.Infrastructure/Association.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   # ============================================================
-  # Feeds
+  # OnBoarding
   # ============================================================
 
-  add-feed-migration:
-    desc: Create EF Core migration for Feeds
+  add-onboarding-migration:
+    desc: Create EF Core migration for OnBoarding
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context FeedDbContext --project src/Feeds/Infrastructure/Feeds.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context OnboardingDbContext --project src/ControlPlane/OnBoarding/OnBoarding.Infrastructure/OnBoarding.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
-  migrate-feed:
-    desc: Apply EF Core migrations for Feeds
+  migrate-onboarding:
+    desc: Apply EF Core migrations for OnBoarding
     cmds:
-      - dotnet ef database update --context FeedDbContext --project src/Feeds/Infrastructure/Feeds.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
-
+      - dotnet ef database update --context OnboardingDbContext --project src/ControlPlane/OnBoarding/OnBoarding.Infrastructure/OnBoarding.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   # ============================================================
   # Complaints
@@ -71,29 +64,26 @@ tasks:
   add-complaint-migration:
     desc: Create EF Core migration for Complaints
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context ComplaintDbContext --project src/Complaints/Infrastructure/Complaints.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context ComplaintDbContext --project src/AppPlane/Complaints/Infrastructure/Complaints.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   migrate-complaint:
     desc: Apply EF Core migrations for Complaints
     cmds:
-      - dotnet ef database update --context ComplaintDbContext --project src/Complaints/Infrastructure/Complaints.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
-
+      - dotnet ef database update --context ComplaintDbContext --project src/AppPlane/Complaints/Infrastructure/Complaints.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
   # ============================================================
-  # User Management
+  # Feeds
   # ============================================================
 
-  add-user-migration:
-    desc: Create EF Core migration for User Management
+  add-feed-migration:
+    desc: Create EF Core migration for Feeds
     cmds:
-      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context UserManagementDbContext --project src/UserMgmt/UserMgmt.Infrastructure/UserMgmt.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context FeedDbContext --project src/AppPlane/Feeds/Infrastructure/Feeds.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
 
-  migrate-user:
-    desc: Apply EF Core migrations for User Management
+  migrate-feed:
+    desc: Apply EF Core migrations for Feeds
     cmds:
-      - dotnet ef database update --context UserManagementDbContext --project src/UserMgmt/UserMgmt.Infrastructure/UserMgmt.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
-
-
+      - dotnet ef database update --context FeedDbContext --project src/AppPlane/Feeds/Infrastructure/Feeds.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
   # ============================================================
   # All migrations
   # ============================================================
@@ -107,3 +97,4 @@ tasks:
       - migrate-feed
       - migrate-complaint
       - migrate-user
+      - migrate-onboarding
