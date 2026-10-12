@@ -9,14 +9,14 @@ public sealed class OnboardingDbContext(
     DbContextOptions<OnboardingDbContext> options)
     : DbContext(options)
 {
-    public DbSet<OnboardingProcess> OnboardingProcesses =>
-        Set<OnboardingProcess>();
+    public DbSet<UserOnboardingProcess> OnboardingProcesses =>
+        Set<UserOnboardingProcess>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<OnboardingProcess>(entity =>
+        modelBuilder.Entity<UserOnboardingProcess>(entity =>
         {
             // Onboarding ID
             entity.Property(o => o.Id)

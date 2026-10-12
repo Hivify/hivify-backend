@@ -8,7 +8,7 @@ namespace OnBoarding.Infrastructure.Persistence;
 internal sealed class OnboardingRepository(OnboardingDbContext context) : IOnboardingRepository
 {
     public async Task AddAsync(
-        OnboardingProcess process,
+        UserOnboardingProcess process,
         CancellationToken cancellationToken = default)
     {
         await context.OnboardingProcesses.AddAsync(
@@ -16,7 +16,7 @@ internal sealed class OnboardingRepository(OnboardingDbContext context) : IOnboa
             cancellationToken);
     }
 
-    public async Task<OnboardingProcess?> GetInProgressByUserIdAsync(
+    public async Task<UserOnboardingProcess?> GetInProgressByUserIdAsync(
         Guid userId,
         CancellationToken cancellationToken = default)
     {

@@ -5,7 +5,7 @@ using SharedKernel.ValueObjects;
 
 namespace OnBoarding.Domain.Entities
 {
-    public class OnboardingProcess : BaseEntity<OnBoardingID>, IAggregateRoot
+    public class UserOnboardingProcess : BaseEntity<OnBoardingID>, IAggregateRoot
     {
         public UserID UserId { get; private set; }
         public AssociationID? AssociationId { get; private set; }
@@ -14,24 +14,24 @@ namespace OnBoarding.Domain.Entities
         public CurrentStep CurrentStep { get; private set; }
 
 
-        private OnboardingProcess()
+        private UserOnboardingProcess()
         {
             // Required by EF Core
         }
 
-        private OnboardingProcess(OnBoardingID id, UserID userId) : base(id)
+        private UserOnboardingProcess(OnBoardingID id, UserID userId) : base(id)
         {
             UserId = userId;
             Status = OnboardingStatus.InProgress;
             CurrentStep = CurrentStep.AssociationCreation;
         }
 
-        public static OnboardingProcess Start(UserID userId)
+        public static UserOnboardingProcess Start(UserID userId)
         {
             if (userId.Value == Guid.Empty)
                 throw new ArgumentException("User ID is required.", nameof(userId));
 
-            return new OnboardingProcess(
+            return new UserOnboardingProcess(
                 new OnBoardingID(Guid.NewGuid()),
                 userId);
         }

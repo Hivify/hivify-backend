@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OnBoarding.Application.Contracts;
-using OnBoarding.Application.Serivces;
 
 namespace OnBoarding.Application
 {
@@ -10,7 +8,7 @@ namespace OnBoarding.Application
         {
             public IServiceCollection AddAssociationServices()
             {
-                services.AddScoped<IOnboardingService, OnboardingService>();
+                //services.AddScoped<IOnboardingService, OnboardingService>();
 
 
                 return services;

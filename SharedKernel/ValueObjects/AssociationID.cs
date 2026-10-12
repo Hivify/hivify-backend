@@ -1,7 +1,4 @@
-﻿using SharedKernel;
-
-
-namespace Association.Domain.ValueObjects
+﻿namespace SharedKernel.ValueObjects
 {
     public readonly record struct AssociationID(Guid Value) : IValue
     {
