@@ -8,7 +8,7 @@ namespace Association.Domain.Entities;
 
 public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 {
-    public Name Name { get; private set; }
+    public AssociationName Name { get; private set; }
     public AssociationIdentifier Identifier { get; private set; }
     public AssociationStatus Status { get; private set; }
     public DateTime CreatedDate { get; private set; }
@@ -25,7 +25,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
     private AssociationEntity(
         AssociationID id,
         AssociationIdentifier identifier,
-        Name name)
+        AssociationName name)
         : base(id)
     {
         Name = name;
@@ -34,7 +34,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
         CreatedDate = DateTime.UtcNow;
     }
 
-    public static AssociationEntity Create(Name name, UserID ownerId)
+    public static AssociationEntity Create(AssociationName name, UserID ownerId)
     {
         var association = new AssociationEntity(
             new AssociationID(Guid.NewGuid()),

@@ -11,7 +11,6 @@ namespace OnBoarding.Domain.Entities
         public AssociationID? AssociationId { get; private set; }
 
         public OnboardingStatus Status { get; private set; }
-        public CurrentStep CurrentStep { get; private set; }
 
 
         private UserOnboardingProcess()
@@ -23,7 +22,6 @@ namespace OnBoarding.Domain.Entities
         {
             UserId = userId;
             Status = OnboardingStatus.InProgress;
-            CurrentStep = CurrentStep.AssociationCreation;
         }
 
         public static UserOnboardingProcess Start(UserID userId)
@@ -41,8 +39,7 @@ namespace OnBoarding.Domain.Entities
             if (Status != OnboardingStatus.InProgress)
                 throw new InvalidOperationException("Onboarding is not in progress.");
 
-            if (CurrentStep != CurrentStep.AssociationCreation)
-                throw new InvalidOperationException("The current step is not creating an association.");
+
 
             if (AssociationId is not null)
                 throw new InvalidOperationException(
@@ -67,7 +64,6 @@ namespace OnBoarding.Domain.Entities
 
             AssociationId = associationId;
             Status = OnboardingStatus.Completed;
-            CurrentStep = CurrentStep.Completion;
         }
     }
 }
