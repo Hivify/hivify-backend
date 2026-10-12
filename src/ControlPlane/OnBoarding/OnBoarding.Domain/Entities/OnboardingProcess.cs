@@ -19,8 +19,7 @@ namespace OnBoarding.Domain.Entities
             // Required by EF Core
         }
 
-        private OnboardingProcess(OnBoardingID id, UserID userId)
-            : base(id)
+        private OnboardingProcess(OnBoardingID id, UserID userId) : base(id)
         {
             UserId = userId;
             Status = OnboardingStatus.InProgress;
@@ -40,12 +39,10 @@ namespace OnBoarding.Domain.Entities
         public void CompleteCreateAssociation(AssociationID associationId)
         {
             if (Status != OnboardingStatus.InProgress)
-                throw new InvalidOperationException(
-                    "Onboarding is not in progress.");
+                throw new InvalidOperationException("Onboarding is not in progress.");
 
             if (CurrentStep != CurrentStep.AssociationCreation)
-                throw new InvalidOperationException(
-                    "The current step is not creating an association.");
+                throw new InvalidOperationException("The current step is not creating an association.");
 
             if (AssociationId is not null)
                 throw new InvalidOperationException(

@@ -2,15 +2,9 @@
 
 namespace OnBoarding.Application.OnBoardingSteps;
 
-public sealed class CreateAssociationForUser
+public sealed class CreateAssociationForUser(IAssociationService associationService)
 {
-    private readonly IAssociationService _associationService;
-
-    public CreateAssociationForUser(
-        IAssociationService associationService)
-    {
-        _associationService = associationService;
-    }
+    private readonly IAssociationService _associationService = associationService;
 
     public async Task<Guid> ExecuteAsync(
         string name,

@@ -6,5 +6,7 @@ public interface IOnboardingRepository
 {
     Task AddAsync(OnboardingProcess process, CancellationToken cancellationToken = default);
 
+    Task<OnboardingProcess?> GetInProgressByUserIdAsync(Guid userId, CancellationToken cancellationToken = default);
+
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

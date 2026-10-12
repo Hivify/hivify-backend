@@ -1,6 +1,8 @@
-﻿namespace OnBoarding.Application.Contracts;
+﻿using OnBoarding.Application.DTOs;
+
+namespace OnBoarding.Application.Contracts;
 
 public interface IOnboardingService
 {
-    Task<Guid> StartAsync(string associationName, CancellationToken cancellationToken = default);
+    Task<StartOnboardingResult> StartAsync(string associationName, CancellationToken cancellationToken = default);
 }
