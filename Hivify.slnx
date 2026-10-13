@@ -9,6 +9,9 @@
     <Project Path="src/AppPlane/Complaints/Domain/Complaints.Domain.csproj" />
     <Project Path="src/AppPlane/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/src/AppPlane/Complaints/__Tests__/">
+    <Project Path="Domain.Tests/Domain.Tests.csproj" Id="6132ad58-4b01-45a0-a266-8cb083a99c22" />
+  </Folder>
   <Folder Name="/src/AppPlane/Departments/">
     <Project Path="src/AppPlane/Departments/Application/Department.Application.csproj" />
     <Project Path="src/AppPlane/Departments/Domain/Department.Domain.csproj" />
