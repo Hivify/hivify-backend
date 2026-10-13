@@ -5,6 +5,7 @@ namespace Association.Application.Contracts
 {
     public interface IAssociationRepository
     {
+        Task AddAsync(AssociationEntity association, CancellationToken ct = default);
         Task<AssociationEntity?> GetByIdAsync(
             AssociationID associationId,
             CancellationToken cancellationToken = default);
@@ -14,9 +15,7 @@ namespace Association.Application.Contracts
 
         Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(UserID userId, CancellationToken cancellationToken = default);
 
-        Task AddAsync(
-            AssociationEntity association,
-            CancellationToken cancellationToken = default);
+
     }
 }
 

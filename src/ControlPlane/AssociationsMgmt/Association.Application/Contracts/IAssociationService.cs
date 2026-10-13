@@ -2,5 +2,5 @@
 
 public interface IAssociationService
 {
-    Task<Guid> CreateAssociationAsync(string name, CancellationToken cancellationToken = default);
+    Task<Guid> CreateAssociationAsync(string name, CancellationToken ct = default);
 }
