@@ -23,7 +23,7 @@ internal sealed class OnboardingRepository(OnboardingDbContext context) : IOnboa
     public async Task<UserOnboardingProcess?> GetProcessByUserIdAsync(UserID userId, CancellationToken ct = default)
     {
         return await context.OnboardingProcesses
-            .FirstOrDefaultAsync(p => p.UserId.Value == userId.Value, ct);
+            .FirstOrDefaultAsync(p => p.UserId == userId, ct);
     }
 
 

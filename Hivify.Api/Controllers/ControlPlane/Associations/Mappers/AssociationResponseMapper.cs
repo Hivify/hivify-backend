@@ -1,7 +1,7 @@
 ﻿using Association.Application.DTOs;
-using Hivify.Api.Controllers.Associations.Responses;
+using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 
-namespace Hivify.Api.Controllers.Associations.Mappers;
+namespace Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 
 public static class AssociationResponseMapper
 {

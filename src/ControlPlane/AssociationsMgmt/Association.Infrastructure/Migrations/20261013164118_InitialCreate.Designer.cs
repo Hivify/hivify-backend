@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Association.Infrastructure.Migrations
 {
     [DbContext(typeof(AssociationDbContext))]
-    [Migration("20261012150708_InitialCreate")]
+    [Migration("20261013164118_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -76,7 +76,6 @@ namespace Association.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<Guid>("Value")
-                                .HasMaxLength(100)
                                 .HasColumnType("uniqueidentifier")
                                 .HasColumnName("Identifier");
 

@@ -1,13 +1,13 @@
 ﻿using Association.Application.Contracts;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
-using Hivify.Api.Controllers.Associations.Mappers;
-using Hivify.Api.Controllers.Associations.Requests;
-using Hivify.Api.Controllers.Associations.Responses;
+using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
+using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
+using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hivify.Api.Controllers.Associations;
+namespace Hivify.Api.Controllers.ControlPlane.Associations;
 
 [ApiController]
 [Route("api/associations")]

@@ -33,14 +33,14 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
 
             // Association Identifier
             entity.OwnsOne(
-                a => a.Identifier,
-                identifier =>
-                {
-                    identifier.Property(i => i.Value)
-                        .HasColumnName("Identifier")
-                        .HasMaxLength(100)
-                        .IsRequired();
-                });
+                  a => a.Identifier,
+                  identifier =>
+                  {
+                      identifier.Property(i => i.Value)
+                          .HasColumnName("Identifier")
+                          .HasColumnType("uniqueidentifier")
+                          .IsRequired();
+                  });
 
             // Status
             entity.Property(a => a.Status)
