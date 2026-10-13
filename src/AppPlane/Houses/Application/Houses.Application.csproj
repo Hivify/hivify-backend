@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.12" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\..\..\..\src\ControlPlane\Identity\Identity.Application\Identity.Application.csproj" />
+    <ProjectReference Include="..\Domain\Houses.Domain.csproj" />
     <ProjectReference Include="..\Domain\Houses.Domain.csproj" />
   </ItemGroup>
 

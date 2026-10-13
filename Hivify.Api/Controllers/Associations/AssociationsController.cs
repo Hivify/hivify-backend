@@ -1,4 +1,4 @@
-﻿using Association.Application.Commands.CreateAssociation;
+﻿using Association.Application.Contracts;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
 using Hivify.Api.Controllers.Associations.Mappers;
@@ -12,18 +12,12 @@ namespace Hivify.Api.Controllers.Associations;
 [ApiController]
 [Route("api/associations")]
 [Authorize]
-public sealed class AssociationsController : ControllerBase
+public sealed class AssociationsController(
+    IQuerySender querySender,
+    IAssociationService associationService) : ControllerBase
 {
-    private readonly ISender _sender;
-    private readonly IQuerySender _querySender;
-
-    public AssociationsController(
-        ISender sender,
-        IQuerySender querySender)
-    {
-        _sender = sender;
-        _querySender = querySender;
-    }
+    private readonly IAssociationService _associationService = associationService;
+    private readonly IQuerySender _querySender = querySender;
 
     [HttpGet("my")]
     public async Task<ActionResult<IReadOnlyCollection<MyAssociationResponse>>> GetMyAssociations(
@@ -45,12 +39,8 @@ public sealed class AssociationsController : ControllerBase
         CreateAssociationRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new CreateAssociationCommand(request.Name);
 
-        var id = await _sender.Send(
-            command,
-            cancellationToken);
-
+        var id = await _associationService.CreateAssociationAsync(request.Name, cancellationToken);
         return CreatedAtAction(
             nameof(GetMyAssociations),
             new { id },

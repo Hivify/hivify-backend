@@ -6,16 +6,11 @@ using Houses.Domain.Houses;
 
 namespace Houses.Application.Commands.CreateHouse;
 
-public sealed class AddHouseCommandHandler
-    : ICommandHandler<AddHouseCommand, Guid>
+public sealed class AddHouseCommandHandler(
+    IHouseRepo houseRepo)
+        : ICommandHandler<AddHouseCommand, Guid>
 {
-    private readonly IHouseRepo _houseRepo;
-
-    public AddHouseCommandHandler(
-        IHouseRepo houseRepo)
-    {
-        _houseRepo = houseRepo;
-    }
+    private readonly IHouseRepo _houseRepo = houseRepo;
 
     public async Task<Guid> Handle(
         AddHouseCommand command,

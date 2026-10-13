@@ -33,18 +33,4 @@ public sealed class AssociationService : IAssociationService
         return association.Id.Value;
     }
 
-
-
-    public async Task<bool> HasAssociationsAsync(
-        CancellationToken cancellationToken = default)
-    {
-        var userId = new UserID(_currentUser.UserId);
-
-        var associations = await _associationRepository
-            .GetByUserIdAsync(userId, cancellationToken);
-
-        return associations.Count > 0;
-    }
-
-
 }
