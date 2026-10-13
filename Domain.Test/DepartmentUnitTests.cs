@@ -1,7 +1,5 @@
 ﻿using Department.Domain.Departments;
 using SharedKernel.ValueObjects;
-using System;
-using System.Xml.Linq;
 using Xunit;
 
 namespace Domain.Tests;
