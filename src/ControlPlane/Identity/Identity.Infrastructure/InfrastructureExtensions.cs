@@ -39,7 +39,7 @@ namespace Identity.Infrastructure
 
 
 
-                services.AddScoped<IUserIdentityService, IdentityService>();
+                services.AddScoped<IUserHivifyDirectory, HivifyUsersDirectory>();
                 services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
 
 

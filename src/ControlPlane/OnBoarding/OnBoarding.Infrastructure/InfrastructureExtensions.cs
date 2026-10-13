@@ -8,7 +8,7 @@ namespace OnBoarding.Infrastructure
     {
         extension(IServiceCollection services)
         {
-            public IServiceCollection AddAssociationInfrastructure(string connectionString)
+            public IServiceCollection AddOnboardingInfrastructure(string connectionString)
             {
                 // Database
                 services.AddDbContextFactory<OnboardingDbContext>(options =>

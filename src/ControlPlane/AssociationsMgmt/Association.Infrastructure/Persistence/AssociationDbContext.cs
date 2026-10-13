@@ -1,13 +1,10 @@
 ﻿using Association.Domain.Entities;
-using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
 
 namespace Association.Infrastructure.Persistence;
 
-public sealed class AssociationDbContext(
-    DbContextOptions<AssociationDbContext> options)
-    : DbContext(options)
+public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> options) : DbContext(options)
 {
     public DbSet<AssociationEntity> Associations => Set<AssociationEntity>();
 

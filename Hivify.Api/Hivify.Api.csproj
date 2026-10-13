@@ -33,12 +33,14 @@
 		<ProjectReference Include="..\src\AppPlane\DocumentsMgmt\DocumentsMgmt.Application\DocumentsMgmt.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Feeds\Application\Feeds.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Feeds\Infrastructure\Feeds.Infrastructure.csproj" />
+		<ProjectReference Include="..\src\AppPlane\Houses\Application\Houses.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Houses\Infrastructure\Houses.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\AssociationsMgmt\Association.Application\Association.Application.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\AssociationsMgmt\Association.Infrastructure\Association.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\ControlPlane\OnBoarding\OnBoarding.Application\OnBoarding.Application.csproj" />
+		<ProjectReference Include="..\src\ControlPlane\OnBoarding\OnBoarding.Infrastructure\OnBoarding.Infrastructure.csproj" />
 		
 	</ItemGroup>
 

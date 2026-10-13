@@ -22,7 +22,7 @@ namespace Association.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Association.Domain.AssociationEntity", b =>
+            modelBuilder.Entity("Association.Domain.Entities.AssociationEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -41,28 +41,9 @@ namespace Association.Infrastructure.Migrations
                     b.ToTable("Associations");
                 });
 
-            modelBuilder.Entity("Association.Domain.AssociationEntity", b =>
+            modelBuilder.Entity("Association.Domain.Entities.AssociationEntity", b =>
                 {
-                    b.OwnsOne("Association.Domain.AssociationIdentifier", "Identifier", b1 =>
-                        {
-                            b1.Property<Guid>("AssociationEntityId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("Identifier");
-
-                            b1.HasKey("AssociationEntityId");
-
-                            b1.ToTable("Associations");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AssociationEntityId");
-                        });
-
-                    b.OwnsMany("Association.Domain.Membership", "Members", b1 =>
+                    b.OwnsMany("Association.Domain.Entities.Membership", "Members", b1 =>
                         {
                             b1.Property<Guid>("AssociationID")
                                 .HasColumnType("uniqueidentifier");
@@ -86,7 +67,25 @@ namespace Association.Infrastructure.Migrations
                                 .HasForeignKey("AssociationEntityId");
                         });
 
-                    b.OwnsOne("SharedKernel.ValueObjects.Name", "Name", b1 =>
+                    b.OwnsOne("Association.Domain.ValueObjects.AssociationIdentifier", "Identifier", b1 =>
+                        {
+                            b1.Property<Guid>("AssociationEntityId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("Value")
+                                .HasMaxLength(100)
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("Identifier");
+
+                            b1.HasKey("AssociationEntityId");
+
+                            b1.ToTable("Associations");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AssociationEntityId");
+                        });
+
+                    b.OwnsOne("Association.Domain.ValueObjects.AssociationName", "Name", b1 =>
                         {
                             b1.Property<Guid>("AssociationEntityId")
                                 .HasColumnType("uniqueidentifier");

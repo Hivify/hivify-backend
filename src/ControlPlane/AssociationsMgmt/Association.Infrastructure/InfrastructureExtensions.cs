@@ -1,4 +1,5 @@
-﻿using Association.Infrastructure.Persistence;
+﻿using Association.Application.Contracts;
+using Association.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 namespace Association.Infrastructure
