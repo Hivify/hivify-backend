@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
-using Hivify.Api.Controllers.UserMgmt.Requests;
+using Hivify.Api.Controllers.ControlPlane.Identity.Requests;
 using Identity.Application.Commands.LoginUser;
 using Identity.Application.Commands.RegisterUser;
 using Microsoft.AspNetCore.Mvc;

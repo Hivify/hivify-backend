@@ -73,7 +73,6 @@ namespace Association.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<Guid>("Value")
-                                .HasMaxLength(100)
                                 .HasColumnType("uniqueidentifier")
                                 .HasColumnName("Identifier");
 

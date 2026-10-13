@@ -11,7 +11,6 @@ namespace OnBoarding.Domain.Entities
 
         public OnboardingStatus Status { get; private set; } = OnboardingStatus.NotStarted;
 
-        public string? CurrentStep { get; private set; }
         public DateTime StartedAt { get; private set; }
 
         public DateTime? CompletedAt { get; private set; }
@@ -27,7 +26,6 @@ namespace OnBoarding.Domain.Entities
             UserId = userId;
             Status = OnboardingStatus.InProgress;
             StartedAt = DateTime.UtcNow;
-            CurrentStep = null;
         }
 
 

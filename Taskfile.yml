@@ -1,6 +1,21 @@
 version: '3'
 
 tasks:
+
+
+  # ============================================================
+  # Identity
+  # ============================================================
+
+  add-identity-migration:
+    desc: Create EF Core migration for Identity
+    cmds:
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context IdentityDbContext --project src/ControlPlane/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+
+  migrate-identity:
+    desc: Apply EF Core migrations for Identity
+    cmds:
+      - dotnet ef database update --context IdentityDbContext --project src/ControlPlane/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
   # ============================================================
   # Houses
   # ============================================================
@@ -96,5 +111,4 @@ tasks:
       - migrate-department
       - migrate-feed
       - migrate-complaint
-      - migrate-user
       - migrate-onboarding

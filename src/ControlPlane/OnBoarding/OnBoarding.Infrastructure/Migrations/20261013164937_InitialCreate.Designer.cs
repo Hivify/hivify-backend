@@ -12,7 +12,7 @@ using OnBoarding.Infrastructure.Persistence;
 namespace OnBoarding.Infrastructure.Migrations
 {
     [DbContext(typeof(OnboardingDbContext))]
-    [Migration("20261012150804_InitialCreate")]
+    [Migration("20261013164937_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

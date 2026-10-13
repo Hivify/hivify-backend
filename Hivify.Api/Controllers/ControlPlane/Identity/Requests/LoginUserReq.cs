@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Hivify.Api.Controllers.UserMgmt.Requests
+namespace Hivify.Api.Controllers.ControlPlane.Identity.Requests
 {
     public sealed record LoginUserReq(
         string Email,

@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
+using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
 using OnBoarding.Domain.Entities;
@@ -9,7 +10,9 @@ namespace OnBoarding.Application.Services;
 public sealed class OnboardingService(
     ICurrentUser currentUser,
     IOnboardingRepository onboardingRepository,
-    IOnboardingOrchestrator orchestrator
+    IOnboardingOrchestrator orchestrator,
+
+       ILogger<OnboardingService> logger
     )
     : IOnboardingService
 {
@@ -37,17 +40,23 @@ public sealed class OnboardingService(
         }
 
         var process = UserOnboardingProcess.Start(userId);
+        logger.LogInformation("Starting onboarding process for user {userId}", userId);
 
         // Step 1: Persist the process first.
         await onboardingRepository.AddProcessAsync(process, ct);
-
+        logger.LogInformation("Onboarding process persisted for user {userId}", userId);
         await onboardingRepository.SaveChangesAsync(ct);
+
 
         // Step 2: Execute onboarding steps.
         await orchestrator.ExecuteAsync(associationName, ct);
 
+
+
         // Step 3: Mark onboarding as completed.
         process.Complete();
+
+        logger.LogInformation("Onboarding status changed to {Status}", process.Status);
 
         await onboardingRepository.SaveChangesAsync(ct);
 

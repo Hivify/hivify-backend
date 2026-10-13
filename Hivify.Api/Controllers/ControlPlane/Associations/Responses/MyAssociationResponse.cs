@@ -1,4 +1,4 @@
-﻿namespace Hivify.Api.Controllers.Associations.Responses;
+﻿namespace Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 
 public sealed record MyAssociationResponse(
     Guid AssociationId,
