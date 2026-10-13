@@ -68,7 +68,7 @@ public class DepartmentEntity : BaseEntity<DepartmentID>, IAggregateRoot
         if (member is null)
         {
             throw new DomainException(
-                "Styrelsemedlemmen finns inte i denna f�rening.");
+                "Styrelsemedlemmen finns inte i denna förening.");
         }
 
         member.ChangeRole(role);
@@ -90,7 +90,7 @@ public class DepartmentEntity : BaseEntity<DepartmentID>, IAggregateRoot
             member.DeletedAt == null))
         {
             throw new DomainException(
-                "Anv�ndaren �r redan styrelsemedlem i denna f�rening.");
+                "Användaren är redan styrelsemedlem i denna förening.");
         }
     }
 
@@ -100,7 +100,7 @@ public class DepartmentEntity : BaseEntity<DepartmentID>, IAggregateRoot
         if (!_members.Contains(member))
         {
             throw new DomainException(
-                "Styrelsemedlemmen finns inte i denna f�rening.");
+                "Styrelsemedlemmen finns inte i denna förening.");
         }
     }
 }
