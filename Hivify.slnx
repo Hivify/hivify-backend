@@ -15,7 +15,7 @@
     <Project Path="src/AppPlane/Departments/Infrastructure/Department.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Departments/__Tests__/">
-    <Project Path="Domain.Test/Domain.Test.csproj" Id="8d2f67a1-cacb-45f6-b689-b214f222e347" />
+    <Project Path="Domain.Test/Domain.Tests.csproj" Id="8d2f67a1-cacb-45f6-b689-b214f222e347" />
   </Folder>
   <Folder Name="/src/AppPlane/DocumentsMgmt/">
     <Project Path="src/AppPlane/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />
