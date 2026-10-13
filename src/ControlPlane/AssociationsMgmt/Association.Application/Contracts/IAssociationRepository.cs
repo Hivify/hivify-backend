@@ -16,6 +16,9 @@ namespace Association.Application.Contracts
         Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(UserID userId, CancellationToken cancellationToken = default);
 
 
+        Task SaveChangesAsync(CancellationToken cancellationToken);
+
+
     }
 }
 

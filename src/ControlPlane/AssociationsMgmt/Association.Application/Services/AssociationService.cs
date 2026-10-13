@@ -24,6 +24,8 @@ public sealed class AssociationService(
 
         await _associationRepository.AddAsync(association, cancellationToken);
 
+        await _associationRepository.SaveChangesAsync(cancellationToken);
+
         return association.Id.Value;
     }
 

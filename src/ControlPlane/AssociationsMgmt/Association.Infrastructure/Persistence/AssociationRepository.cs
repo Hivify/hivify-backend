@@ -44,7 +44,10 @@ internal sealed class AssociationRepository(
         await dbContext.Associations.AddAsync(
             association,
             cancellationToken);
+    }
 
-        await dbContext.SaveChangesAsync(cancellationToken);
+    public async Task SaveChangesAsync(CancellationToken ct = default)
+    {
+        await dbContext.SaveChangesAsync(ct);
     }
 }
