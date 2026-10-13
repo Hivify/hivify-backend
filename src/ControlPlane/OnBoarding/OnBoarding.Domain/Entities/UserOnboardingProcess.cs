@@ -9,7 +9,9 @@ namespace OnBoarding.Domain.Entities
     {
         public UserID UserId { get; private set; }
 
-        public OnboardingStatus Status { get; private set; }
+        public OnboardingStatus Status { get; private set; } = OnboardingStatus.NotStarted;
+
+        public string? CurrentStep { get; private set; }
         public DateTime StartedAt { get; private set; }
 
         public DateTime? CompletedAt { get; private set; }
@@ -25,7 +27,11 @@ namespace OnBoarding.Domain.Entities
             UserId = userId;
             Status = OnboardingStatus.InProgress;
             StartedAt = DateTime.UtcNow;
+            CurrentStep = null;
         }
+
+
+
 
         public static UserOnboardingProcess Start(UserID userId)
         {
@@ -36,6 +42,10 @@ namespace OnBoarding.Domain.Entities
                 new OnBoardingID(Guid.NewGuid()),
                 userId);
         }
+
+
+
+
 
         public void Complete()
         {

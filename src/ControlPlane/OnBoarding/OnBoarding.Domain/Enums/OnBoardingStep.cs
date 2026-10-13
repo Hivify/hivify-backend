@@ -2,6 +2,7 @@
 {
     public enum OnBoardingStep
     {
+
         CreateAssociation,
         Completed
     }

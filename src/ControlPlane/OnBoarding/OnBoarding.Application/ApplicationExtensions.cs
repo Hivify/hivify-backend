@@ -1,7 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
-using Microsoft.Extensions.DependencyInjection;
-using OnBoarding.Application.Commands.StartOnboarding;
-using OnBoarding.Application.DTOs;
+﻿using Microsoft.Extensions.DependencyInjection;
+using OnBoarding.Application.Contracts;
+using OnBoarding.Application.Services;
 
 namespace OnBoarding.Application
 {
@@ -12,8 +11,8 @@ namespace OnBoarding.Application
             public IServiceCollection AddOnBoardingServices()
             {
 
-                services.AddScoped<ICommandHandler<StartOnboardingCommand, StartOnboardingResult>, StartOnboardingCommandHandler>();
-
+                services.AddScoped<IOnboardingService, OnboardingService>();
+                services.AddScoped<IOnboardingOrchestrator, OnboardingOrchestrator>();
 
                 return services;
             }

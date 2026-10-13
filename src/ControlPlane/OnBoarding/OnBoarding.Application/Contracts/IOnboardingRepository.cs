@@ -1,12 +1,18 @@
 ﻿using OnBoarding.Domain.Entities;
+using SharedKernel.ValueObjects;
 
 namespace OnBoarding.Application.Contracts;
 
 public interface IOnboardingRepository
 {
-    Task AddProcessAsync(UserOnboardingProcess process, CancellationToken cancellationToken = default);
+    Task<UserOnboardingProcess?> GetProcessByUserIdAsync(
+           UserID userId,
+           CancellationToken cancellationToken);
 
-    Task<UserOnboardingProcess?> GetProcessInProgressByUserIdAsync(Guid userId, CancellationToken cancellationToken = default);
+    Task AddProcessAsync(
+        UserOnboardingProcess process,
+        CancellationToken cancellationToken);
 
-    Task SaveChangesAsync(CancellationToken cancellationToken = default);
+    Task SaveChangesAsync(
+        CancellationToken cancellationToken);
 }

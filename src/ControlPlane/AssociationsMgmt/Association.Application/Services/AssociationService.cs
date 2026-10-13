@@ -6,18 +6,12 @@ using SharedKernel.ValueObjects;
 
 namespace Association.Application.Services;
 
-public sealed class AssociationService : IAssociationService
+public sealed class AssociationService(
+    IAssociationRepository associationRepository,
+    ICurrentUser currentUser) : IAssociationService
 {
-    private readonly IAssociationRepository _associationRepository;
-    private readonly ICurrentUser _currentUser;
-
-    public AssociationService(
-        IAssociationRepository associationRepository,
-        ICurrentUser currentUser)
-    {
-        _associationRepository = associationRepository;
-        _currentUser = currentUser;
-    }
+    private readonly IAssociationRepository _associationRepository = associationRepository;
+    private readonly ICurrentUser _currentUser = currentUser;
 
     public async Task<Guid> CreateAssociationAsync(string name,
         CancellationToken cancellationToken = default)
