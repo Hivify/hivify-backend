@@ -5,14 +5,9 @@ namespace OnBoarding.Application.Contracts;
 
 public interface IOnboardingRepository
 {
-    Task<UserOnboardingProcess?> GetProcessByUserIdAsync(
-           UserID userId,
-           CancellationToken cancellationToken);
+    Task AddProcessAsync(UserOnboardingProcess process, CancellationToken ct);
 
-    Task AddProcessAsync(
-        UserOnboardingProcess process,
-        CancellationToken cancellationToken);
+    Task<UserOnboardingProcess?> GetProcessByUserIdAsync(UserID userId, CancellationToken ct);
 
-    Task SaveChangesAsync(
-        CancellationToken cancellationToken);
+    Task SaveChangesAsync(CancellationToken ct);
 }
