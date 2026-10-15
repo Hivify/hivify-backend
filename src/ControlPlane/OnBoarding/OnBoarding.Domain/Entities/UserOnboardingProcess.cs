@@ -9,7 +9,7 @@ namespace OnBoarding.Domain.Entities
     {
         public UserID UserId { get; private set; }
 
-        public OnboardingStatus Status { get; private set; } = OnboardingStatus.NotStarted;
+        public OnboardingStatus Status { get; private set; }
 
         public DateTime StartedAt { get; private set; }
 

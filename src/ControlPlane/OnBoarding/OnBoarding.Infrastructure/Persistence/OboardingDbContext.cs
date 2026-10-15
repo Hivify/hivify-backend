@@ -39,7 +39,7 @@ public sealed class OnboardingDbContext(DbContextOptions<OnboardingDbContext> op
             entity.Property(o => o.CompletedAt)
                 .IsRequired(false);
 
-            entity.HasIndex(o => new { o.UserId, o.Status });
+            entity.HasIndex(o => o.UserId).IsUnique();
         });
     }
 }

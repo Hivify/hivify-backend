@@ -10,9 +10,8 @@ namespace OnBoarding.Application.Services;
 public sealed class OnboardingService(
     ICurrentUser currentUser,
     IOnboardingRepository onboardingRepository,
-    IOnboardingOrchestrator orchestrator,
 
-       ILogger<OnboardingService> logger
+    ILogger<OnboardingService> logger
     )
     : IOnboardingService
 {
@@ -48,8 +47,8 @@ public sealed class OnboardingService(
         await onboardingRepository.SaveChangesAsync(ct);
 
 
-        // Step 2: Execute onboarding steps.
-        await orchestrator.ExecuteAsync(associationName, ct);
+        //// Step 2: Execute onboarding steps.
+        //await orchestrator.ExecuteAsync(associationName, ct);
 
 
 

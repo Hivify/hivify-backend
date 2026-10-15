@@ -2,7 +2,6 @@
 {
     public enum OnboardingStatus
     {
-        NotStarted,
         InProgress,
         Completed,
         Failed
