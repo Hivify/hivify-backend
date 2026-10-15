@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Department.Application.DTOs;
 
 namespace Department.Application.Queries.GetDepartment.AllDepartments;

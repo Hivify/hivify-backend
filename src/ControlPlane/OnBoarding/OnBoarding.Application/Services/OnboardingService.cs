@@ -1,5 +1,5 @@
 ﻿using Association.Application.Contracts;
-using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
+using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
@@ -12,7 +12,6 @@ public sealed class OnboardingService(
     ICurrentUser currentUser,
     IAssociationService associationService,
     IOnboardingRepository onboardingRepository,
-
     ILogger<OnboardingService> logger
     )
     : IOnboardingService

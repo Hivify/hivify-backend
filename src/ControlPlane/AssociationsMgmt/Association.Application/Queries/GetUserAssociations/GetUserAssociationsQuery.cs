@@ -1,5 +1,5 @@
 ﻿using Association.Application.DTOs;
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Association.Application.Queries.GetUserAssociations;
 

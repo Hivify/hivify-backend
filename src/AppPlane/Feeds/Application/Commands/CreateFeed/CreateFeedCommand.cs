@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Feeds.Application.Commands.CreateFeed;
 

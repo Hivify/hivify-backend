@@ -1,5 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.Storage;
-using BuildingBlocks.ApplicationPorts.DTOs;
+﻿using BuildingBlocks.ApplicationPorts.Storage;
+using BuildingBlocks.ApplicationPorts.Storage.DTOs;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;

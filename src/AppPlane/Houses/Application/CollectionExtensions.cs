@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Messaging;
 using Houses.Application.Commands.AddTenant;
 using Houses.Application.Commands.CreateHouse;
 using Houses.Application.Commands.DeleteTenant;

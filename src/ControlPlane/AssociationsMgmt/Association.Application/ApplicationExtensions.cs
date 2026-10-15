@@ -2,7 +2,7 @@
 using Association.Application.DTOs;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Association.Application
