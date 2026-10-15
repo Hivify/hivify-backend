@@ -1,31 +1,23 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
-using Hivify.Api.Controllers.ControlPlane.Identity.Requests;
-using Identity.Application.Commands.LoginUser;
-using Identity.Application.Commands.RegisterUser;
+﻿using Hivify.Api.Controllers.ControlPlane.Identity.Requests;
+using Identity.Application.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/auth")]
-public sealed class AuthController : ControllerBase
+public sealed class AuthController(IUserIdentityService identitySerivce) : ControllerBase
 {
-    private readonly ISender _sender;
-
-    public AuthController(ISender sender)
-    {
-        _sender = sender;
-    }
+    private readonly IUserIdentityService _identitySerivce = identitySerivce;
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(
         RegisterUserReq request,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
-        var userId = await _sender.Send(
-            new RegisterUserCommand(
-                request.Email,
-                request.Password,
-                request.FullName),
-            cancellationToken);
+        var userId = await _identitySerivce.RegisterAsync(
+            request.Email,
+            request.Password,
+            request.FullName,
+            ct);
 
         return Ok(new
         {
@@ -35,15 +27,13 @@ public sealed class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(
        LoginUserReq request,
-       CancellationToken cancellationToken)
+       CancellationToken ct)
     {
-        var result = await _sender.Send(
-            new LoginUserCommand(
-                request.Email,
-                request.Password,
-                request.RememberMe
-                ),
-            cancellationToken);
+        var result = await _identitySerivce.LoginAsync(
+            request.Email,
+            request.Password,
+            request.RememberMe,
+            ct);
 
         if (!result.Succeeded)
         {

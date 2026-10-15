@@ -10,11 +10,15 @@ internal sealed class OnboardingRepository(OnboardingDbContext context) : IOnboa
 
 
 
-    public async Task AddProcessAsync(UserOnboardingProcess process, CancellationToken cancellationToken = default)
+    public async Task AddProcessAsync(UserOnboardingProcess process, CancellationToken ct = default)
     {
         await context.OnboardingProcesses.AddAsync(
             process,
-            cancellationToken);
+            ct);
+
+
+
+
     }
 
 

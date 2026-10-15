@@ -4,7 +4,5 @@ namespace OnBoarding.Application.Contracts;
 
 public interface IOnboardingService
 {
-
-    Task<StartOnboardingResult> StartAsync(string associationName, CancellationToken ct);
-
+    Task<StartOnboardingResult> StartOnboardingAsync(string associationName, CancellationToken ct);
 }

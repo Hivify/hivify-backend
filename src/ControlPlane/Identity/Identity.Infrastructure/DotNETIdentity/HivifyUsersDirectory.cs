@@ -6,15 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.DotNETIdentity
 {
-    public sealed class HivifyUsersDirectory : IUserHivifyDirectory
+    public sealed class HivifyUsersDirectory(
+        UserManager<DotNETApplicationUser> userManager) : IUserHivifyDirectory
     {
-        private readonly UserManager<DotNETApplicationUser> _userManager;
-
-        public HivifyUsersDirectory(
-            UserManager<DotNETApplicationUser> userManager)
-        {
-            _userManager = userManager;
-        }
+        private readonly UserManager<DotNETApplicationUser> _userManager = userManager;
 
         public async Task<UserInfo?> GetByIdAsync(
             Guid userId,

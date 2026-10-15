@@ -12,7 +12,6 @@ namespace OnBoarding.Application
             {
 
                 services.AddScoped<IOnboardingService, OnboardingService>();
-                services.AddScoped<IOnboardingOrchestrator, OnboardingOrchestrator>();
 
                 return services;
             }
