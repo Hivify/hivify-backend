@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
+﻿using Association.Application.Contracts;
+using BuildingBlocks.ApplicationPorts.Contracts.CurrentUserProvider;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
@@ -9,14 +10,14 @@ namespace OnBoarding.Application.Services;
 
 public sealed class OnboardingService(
     ICurrentUser currentUser,
+    IAssociationService associationService,
     IOnboardingRepository onboardingRepository,
 
     ILogger<OnboardingService> logger
     )
     : IOnboardingService
 {
-    public async Task<StartOnboardingResult> StartOnboardingAsync(
-        string associationName,
+    public async Task<StartOnboardingResult> StartOnboardingAsync(string associationName,
         CancellationToken ct = default)
     {
         if (!currentUser.IsAuthenticated)
@@ -26,13 +27,13 @@ public sealed class OnboardingService(
 
         var userId = new UserID(currentUser.UserId);
 
-        var existingProcess =
-            await onboardingRepository.GetProcessByUserIdAsync(
-                userId,
-                ct);
+
+        // Check if the user already has an onboarding process. 
+        var existingProcess = await onboardingRepository.GetProcessByUserIdAsync(userId, ct);
 
         if (existingProcess is not null)
         {
+            logger.LogInformation("User {userId} already has an onboarding process", userId);
             return new StartOnboardingResult(
                 existingProcess.Id.Value,
                 existingProcess.Status);
@@ -48,7 +49,7 @@ public sealed class OnboardingService(
 
 
         //// Step 2: Execute onboarding steps.
-        //await orchestrator.ExecuteAsync(associationName, ct);
+        await associationService.CreateAssociationAsync(associationName, ct);
 
 
 
