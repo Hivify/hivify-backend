@@ -17,9 +17,9 @@ public sealed class OnboardingController(IOnboardingService onboardingService) :
     [HttpPost]
     public async Task<ActionResult<CreatedOnboardingResponse>> CreateOnboarding(
         CreateOnboardingRequest request,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
-        var result = await _onboardingService.StartAsync(request.AssociationName, cancellationToken);
+        var result = await _onboardingService.StartOnboardingAsync(request.AssociationName, ct);
 
         return CreatedAtAction(
             nameof(CreateOnboarding),
