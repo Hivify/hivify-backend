@@ -6,18 +6,12 @@ using SharedKernel.ValueObjects;
 
 namespace Association.Application.Queries.GetUserAssociations;
 
-public sealed class GetUserAssociationsQueryHandler : IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>
+public sealed class GetUserAssociationsQueryHandler(
+    IAssociationRepository associationRepository,
+    ICurrentUser currentUser) : IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>
 {
-    private readonly IAssociationRepository _associationRepository;
-    private readonly ICurrentUser _currentUser;
-
-    public GetUserAssociationsQueryHandler(
-        IAssociationRepository associationRepository,
-        ICurrentUser currentUser)
-    {
-        _associationRepository = associationRepository;
-        _currentUser = currentUser;
-    }
+    private readonly IAssociationRepository _associationRepository = associationRepository;
+    private readonly ICurrentUser _currentUser = currentUser;
 
     public async Task<IReadOnlyList<TenantAssociationOutput>> Handle(
         GetUserAssociationsQuery query,

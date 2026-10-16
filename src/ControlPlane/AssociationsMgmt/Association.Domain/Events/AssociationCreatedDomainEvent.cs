@@ -1,5 +1,4 @@
-﻿using Association.Domain.ValueObjects;
-using SharedKernel;
+﻿using SharedKernel;
 using SharedKernel.ValueObjects;
 
 namespace Association.Domain.Events;

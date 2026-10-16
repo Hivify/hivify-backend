@@ -14,10 +14,10 @@ _domainEvents.AsReadOnly();
     {
     }
 
-protected BaseEntity(TId id)
-{
-    Id = id;
-}
+    protected BaseEntity(TId id)
+    {
+        Id = id;
+    }
 
 
     protected void RaiseDomainEvent(IDomainEvent domainEvent)

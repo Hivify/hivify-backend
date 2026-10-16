@@ -34,4 +34,22 @@ public sealed class AssociationsController : ControllerBase
 
         return Ok(response);
     }
+
+    [HttpGet("all-associations")]
+    public async Task<ActionResult<IReadOnlyCollection<MyAssociationResponse>>> GetAllAssociations(
+    CancellationToken cancellationToken)
+    {
+        var associations = await _querySender.Send(
+            new GetAssociationsQuery(),
+            cancellationToken);
+
+        var response = associations
+            .Select(AssociationResponseMapper.ToMyResponse)
+            .ToList();
+
+        return Ok(response);
+    }
+
+
+
 }
