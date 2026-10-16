@@ -42,6 +42,9 @@ namespace Identity.Infrastructure
                 services.AddScoped<IUserHivifyDirectory, HivifyUsersDirectory>();
                 services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
 
+                services.AddScoped<IUserClaimsPrincipalFactory<DotNETApplicationUser>,
+                HivifyClaimsPrincipalFactory>();
+
 
 
                 return services;

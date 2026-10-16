@@ -1,5 +1,5 @@
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
-using BuildingBlocks.ApplicationPorts.Contracts.Storage;
+using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.Storage;
 
 namespace DocumentsMgmt.Application.Commands
 {

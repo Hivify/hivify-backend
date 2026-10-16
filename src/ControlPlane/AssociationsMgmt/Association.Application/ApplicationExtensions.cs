@@ -2,7 +2,8 @@
 using Association.Application.DTOs;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
+using Identity.Application.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Association.Application
@@ -18,7 +19,7 @@ namespace Association.Application
 
                 services.AddScoped<IAssociationService, AssociationService>();
 
-
+                services.AddScoped<ITenantClaimsService, AssociationTenantClaimsService>();
                 return services;
             }
 

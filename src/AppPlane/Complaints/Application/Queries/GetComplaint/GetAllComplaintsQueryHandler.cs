@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Complaints.Application.Contracts;
 using Complaints.Application.DTOs;
 

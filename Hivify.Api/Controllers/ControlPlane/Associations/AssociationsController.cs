@@ -1,5 +1,5 @@
 ﻿using Association.Application.Queries.GetUserAssociations;
-using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 using Microsoft.AspNetCore.Authorization;

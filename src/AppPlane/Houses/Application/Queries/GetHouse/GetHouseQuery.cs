@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Contracts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Messaging;
 using Houses.Application.DTOs;
 
 namespace Houses.Application.Queries.GetHouse;
