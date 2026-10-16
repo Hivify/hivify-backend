@@ -18,7 +18,7 @@ namespace Association.Application
 
                 services.AddScoped<IAssociationService, AssociationService>();
 
-
+                services.AddScoped<ITenantClaimsService, AssociationTenantClaimsService>();
                 return services;
             }
 
