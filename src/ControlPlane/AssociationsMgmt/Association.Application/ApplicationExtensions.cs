@@ -3,6 +3,7 @@ using Association.Application.DTOs;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.Messaging;
+using Identity.Application.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Association.Application

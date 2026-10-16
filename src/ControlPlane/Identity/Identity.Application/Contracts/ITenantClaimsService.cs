@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Association.Application.Contracts;
+namespace Identity.Application.Contracts;
 
 public interface ITenantClaimsService
 {

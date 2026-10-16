@@ -1,5 +1,6 @@
 ﻿using Association.Application.Constants;
 using Association.Application.Contracts;
+using Identity.Application.Contracts;
 using SharedKernel.ValueObjects;
 using System.Security.Claims;
 
