@@ -34,8 +34,8 @@ public sealed class GetAllAssociationsQueryHandler(
             .Select(a => new TenantAssociationOutput(
                 a.Id.Value,
                 a.Name.Value,
-                a.Identifier.Value,
-                ""))
+                a.Identifier.Value
+              ))
             .ToList();
     }
 }

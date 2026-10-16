@@ -33,8 +33,8 @@ public sealed class GetUserAssociationsQueryHandler(
                 return new TenantAssociationOutput(
                     a.Id.Value,
                     a.Name.Value,
-                    a.Identifier.Value,
-                    membership.Role.ToString());
+                    a.Identifier.Value
+                 );
             })
             .ToList();
     }
