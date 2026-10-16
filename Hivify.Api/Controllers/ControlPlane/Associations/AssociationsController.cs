@@ -1,4 +1,5 @@
-﻿using Association.Application.Queries.GetUserAssociations;
+﻿using Association.Application.Queries.GetAllAssociations;
+using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
@@ -35,12 +36,14 @@ public sealed class AssociationsController : ControllerBase
         return Ok(response);
     }
 
+
+    [Authorize(Roles = "Admin")]
     [HttpGet("all-associations")]
     public async Task<ActionResult<IReadOnlyCollection<MyAssociationResponse>>> GetAllAssociations(
     CancellationToken cancellationToken)
     {
         var associations = await _querySender.Send(
-            new GetAssociationsQuery(),
+            new GetAllAssociationsQuery(),
             cancellationToken);
 
         var response = associations
