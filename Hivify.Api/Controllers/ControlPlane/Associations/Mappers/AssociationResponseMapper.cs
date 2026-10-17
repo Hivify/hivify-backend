@@ -10,7 +10,7 @@ public static class AssociationResponseMapper
         return new MyAssociationResponse(
             association.AssociationId,
             association.Name,
-            association.Identifier,
-            association.Role);
+            association.Identifier
+            );
     }
 }

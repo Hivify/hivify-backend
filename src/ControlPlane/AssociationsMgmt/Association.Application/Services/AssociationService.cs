@@ -1,4 +1,5 @@
 ﻿using Association.Application.Contracts;
+using Association.Application.DTOs;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
@@ -27,6 +28,27 @@ public sealed class AssociationService(
         await _associationRepository.SaveChangesAsync(cancellationToken);
 
         return association.Id.Value;
+    }
+
+    public async Task<TenantAssociationOutput?> GetByIdentifierAsync(
+    Guid identifier,
+    CancellationToken cancellationToken = default)
+    {
+        if (identifier == Guid.Empty)
+            return null;
+
+        var association = await _associationRepository.GetByIdentifierAsync(
+            new AssociationIdentifier(identifier),
+            cancellationToken);
+
+        if (association is null)
+            return null;
+
+        return new TenantAssociationOutput(
+            association.Id.Value,
+            association.Name.Value,
+            association.Identifier.Value
+            );
     }
 
 }

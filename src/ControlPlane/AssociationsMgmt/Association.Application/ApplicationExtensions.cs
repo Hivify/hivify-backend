@@ -1,5 +1,6 @@
 ﻿using Association.Application.Contracts;
 using Association.Application.DTOs;
+using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.Messaging;
@@ -16,6 +17,8 @@ namespace Association.Application
             {
 
                 services.AddScoped<IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>, GetUserAssociationsQueryHandler>();
+
+                services.AddScoped<IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>, GetAllAssociationsQueryHandler>();
 
                 services.AddScoped<IAssociationService, AssociationService>();
 

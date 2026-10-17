@@ -1,4 +1,5 @@
 using Association.Domain.Entities;
+using Association.Domain.ValueObjects;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Contracts
@@ -15,6 +16,9 @@ namespace Association.Application.Contracts
 
         Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(UserID userId, CancellationToken cancellationToken = default);
 
+        Task<AssociationEntity?> GetByIdentifierAsync(
+            AssociationIdentifier associationIdentifier,
+            CancellationToken cancellationToken = default);
 
         Task SaveChangesAsync(CancellationToken cancellationToken);
 
