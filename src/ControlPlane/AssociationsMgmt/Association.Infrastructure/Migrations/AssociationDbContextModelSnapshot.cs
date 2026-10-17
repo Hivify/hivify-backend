@@ -33,6 +33,10 @@ namespace Association.Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("Identifier")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Identifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -67,23 +71,6 @@ namespace Association.Infrastructure.Migrations
                                 .HasForeignKey("AssociationEntityId");
                         });
 
-                    b.OwnsOne("Association.Domain.ValueObjects.AssociationIdentifier", "Identifier", b1 =>
-                        {
-                            b1.Property<Guid>("AssociationEntityId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<Guid>("Value")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("Identifier");
-
-                            b1.HasKey("AssociationEntityId");
-
-                            b1.ToTable("Associations");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AssociationEntityId");
-                        });
-
                     b.OwnsOne("Association.Domain.ValueObjects.AssociationName", "Name", b1 =>
                         {
                             b1.Property<Guid>("AssociationEntityId")
@@ -102,9 +89,6 @@ namespace Association.Infrastructure.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("AssociationEntityId");
                         });
-
-                    b.Navigation("Identifier")
-                        .IsRequired();
 
                     b.Navigation("Members");
 

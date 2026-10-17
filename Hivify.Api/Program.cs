@@ -8,6 +8,10 @@ using Department.Infrastructure;
 using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
+using Finbuckle.MultiTenant.Abstractions;
+using Finbuckle.MultiTenant.AspNetCore.Extensions;
+using Finbuckle.MultiTenant.Extensions;
+using Hivify.Api.Controllers.ControlPlane.Associations;
 using Houses.Application;
 using Houses.Infrastructure;
 using Identity.Application;
@@ -27,9 +31,10 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 // add MultiTenant services
-//builder.Services.AddMultiTenant<TenantInfo>()
-//    .WithHostStrategy()
-//    .WithConfigurationStore();
+builder.Services
+    .AddMultiTenant<TenantInfo>()
+    .WithHostStrategy("__tenant__.localhost")
+    .WithStore<AssociationTenantStore>(ServiceLifetime.Scoped);
 #endregion
 
 
@@ -121,7 +126,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 // add the MultiTenant middleware
-//app.UseMultiTenant();
+app.UseMultiTenant();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

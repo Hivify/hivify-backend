@@ -1,4 +1,5 @@
 ﻿using Association.Domain.Entities;
+using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
 
@@ -32,15 +33,13 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                 });
 
             // Association Identifier
-            entity.OwnsOne(
-                  a => a.Identifier,
-                  identifier =>
-                  {
-                      identifier.Property(i => i.Value)
-                          .HasColumnName("Identifier")
-                          .HasColumnType("uniqueidentifier")
-                          .IsRequired();
-                  });
+            entity.Property(a => a.Identifier)
+               .HasConversion(
+                   identifier => identifier.Value,
+                   value => new AssociationIdentifier(value))
+               .HasColumnName("Identifier")
+               .HasColumnType("uniqueidentifier")
+               .IsRequired();
 
             // Status
             entity.Property(a => a.Status)

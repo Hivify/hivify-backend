@@ -1,5 +1,6 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Entities;
+using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
 
@@ -44,6 +45,16 @@ internal sealed class AssociationRepository(
         await dbContext.Associations.AddAsync(
             association,
             cancellationToken);
+    }
+
+    public async Task<AssociationEntity?> GetByIdentifierAsync(
+        AssociationIdentifier identifier,
+        CancellationToken cancellationToken = default)
+    {
+        return await dbContext.Associations
+            .FirstOrDefaultAsync(
+                a => a.Identifier == identifier,
+                cancellationToken);
     }
 
     public async Task SaveChangesAsync(CancellationToken ct = default)
