@@ -1,7 +1,7 @@
 ﻿using Association.Application.Contracts;
 using Finbuckle.MultiTenant.Abstractions;
 
-namespace Hivify.Api.Controllers.ControlPlane.Associations
+namespace Hivify.Api.MultiTenancy
 {
     public sealed class AssociationTenantStore(
     IAssociationService associationService)
