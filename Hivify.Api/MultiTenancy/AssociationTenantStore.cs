@@ -1,32 +1,12 @@
 ﻿using Association.Application.Contracts;
 using Finbuckle.MultiTenant.Abstractions;
 
-namespace Hivify.Api.Controllers.ControlPlane.Associations
+namespace Hivify.Api.MultiTenancy
 {
     public sealed class AssociationTenantStore(
     IAssociationService associationService)
     : IMultiTenantStore<TenantInfo>
     {
-        public Task<bool> AddAsync(TenantInfo tenantInfo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<TenantInfo>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<TenantInfo>> GetAllAsync(int take, int skip)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TenantInfo?> GetAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<TenantInfo?> GetByIdentifierAsync(string identifier)
         {
             if (!Guid.TryParse(identifier, out var associationIdentifier) ||
@@ -48,6 +28,27 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations
                 Name = association.Name
             };
         }
+        public Task<bool> AddAsync(TenantInfo tenantInfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TenantInfo>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TenantInfo>> GetAllAsync(int take, int skip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TenantInfo?> GetAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         public Task<bool> RemoveAsync(string identifier)
         {

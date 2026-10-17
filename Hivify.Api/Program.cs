@@ -1,5 +1,7 @@
 using Association.Application;
 using Association.Infrastructure;
+using BuildingBlocks.ApplicationPorts.CurrentTenantProvider;
+using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using BuildingBlocks.Infrastructure;
 using Complaints.Application;
 using Complaints.Infrastructure;
@@ -11,7 +13,8 @@ using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Finbuckle.MultiTenant.Extensions;
-using Hivify.Api.Controllers.ControlPlane.Associations;
+using Hivify.Api.CurrentUserProvider;
+using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
 using Identity.Application;
@@ -59,6 +62,14 @@ builder.Services.AddAuthentication(options =>
 .AddIdentityCookies();
 
 builder.Services.AddAuthorization();
+
+
+// current User
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+
+// current Tenant
+builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
 
 #endregion
 

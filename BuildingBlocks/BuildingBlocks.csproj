@@ -14,8 +14,4 @@
     <PackageReference Include="CloudinaryDotNet" Version="1.29.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApplicationPorts\CurrentUserProvider\" />
-  </ItemGroup>
-
 </Project>

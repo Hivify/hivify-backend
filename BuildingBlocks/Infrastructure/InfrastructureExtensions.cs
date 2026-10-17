@@ -1,7 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.ApplicationPorts.Storage;
-using BuildingBlocks.Infrastructure.CurrentUserProvider;
 using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
 using Microsoft.Extensions.Configuration;
@@ -25,9 +23,7 @@ namespace BuildingBlocks.Infrastructure
 
                 services.AddScoped<IFileStorage, CloudinaryFileStorage>();
 
-                // current User
-                services.AddHttpContextAccessor();
-                services.AddScoped<ICurrentUser, CurrentUser>();
+
                 return services;
             }
         }

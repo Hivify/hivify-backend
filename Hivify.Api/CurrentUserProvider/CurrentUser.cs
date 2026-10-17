@@ -1,8 +1,7 @@
 ﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
-using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace BuildingBlocks.Infrastructure.CurrentUserProvider;
+namespace Hivify.Api.CurrentUserProvider;
 
 public sealed class CurrentUser : ICurrentUser
 {
