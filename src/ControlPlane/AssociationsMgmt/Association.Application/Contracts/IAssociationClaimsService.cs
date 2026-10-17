@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-namespace Identity.Application.Contracts;
+namespace Association.Application.Contracts;
 
-public interface ITenantClaimsService
+public interface IAssociationClaimsService
 {
     Task<IReadOnlyCollection<Claim>> GetClaimsAsync(
         Guid userId,

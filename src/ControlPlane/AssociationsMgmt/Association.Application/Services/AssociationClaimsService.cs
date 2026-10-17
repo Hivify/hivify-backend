@@ -1,14 +1,13 @@
 ﻿using Association.Application.Constants;
 using Association.Application.Contracts;
-using Identity.Application.Contracts;
 using SharedKernel.ValueObjects;
 using System.Security.Claims;
 
 namespace Association.Application.Services;
 
-public sealed class AssociationTenantClaimsService(
+public sealed class AssociationClaimsService(
     IAssociationRepository associationRepository)
-    : ITenantClaimsService
+    : IAssociationClaimsService
 {
     public async Task<IReadOnlyCollection<Claim>> GetClaimsAsync(
         Guid userId,

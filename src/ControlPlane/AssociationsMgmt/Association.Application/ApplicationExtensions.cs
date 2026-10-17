@@ -22,7 +22,7 @@ namespace Association.Application
 
                 services.AddScoped<IAssociationService, AssociationService>();
 
-                services.AddScoped<ITenantClaimsService, AssociationTenantClaimsService>();
+                services.AddScoped<IAssociationClaimsService, AssociationClaimsService>();
                 return services;
             }
 
