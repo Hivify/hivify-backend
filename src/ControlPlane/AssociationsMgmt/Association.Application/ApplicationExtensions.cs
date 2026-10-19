@@ -2,6 +2,7 @@
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetAssociationByIdentifier;
+using Association.Application.Queries.GetAssociationsForUser;
 using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
@@ -23,8 +24,8 @@ public static class ApplicationExtensions
                 CreateAssociationCommandHandler>();
 
             services.AddScoped<
-                IQueryHandler<GetUserAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>,
-                GetUserAssociationsQueryHandler>();
+                IQueryHandler<GetAssociationsForUserQuery, IReadOnlyList<UserAssociationOutput>>,
+                GetAssociationsForUserQueryHandler>();
 
             services.AddScoped<
                 IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>,
@@ -41,6 +42,8 @@ public static class ApplicationExtensions
             services.AddScoped<IAssociationClaimsProvider, AssociationClaimsProvider>();
 
             services.AddScoped<IAssociationOnboardingPort, AssociationOnboardingAdapter>();
+
+
 
             return services;
         }

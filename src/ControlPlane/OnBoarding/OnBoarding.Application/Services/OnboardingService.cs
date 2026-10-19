@@ -48,7 +48,7 @@ public sealed class OnboardingService(
 
 
         //// Step 2: Execute onboarding steps.
-        await associationOnboardingPort.CreateAssociationAsync(associationName, userId, ct);
+        await associationOnboardingPort.CreateAssociationAsync(associationName, userId, currentUser.EmailAddress, ct);
 
 
 

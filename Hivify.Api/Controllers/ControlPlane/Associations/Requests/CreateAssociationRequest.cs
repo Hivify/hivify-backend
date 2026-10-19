@@ -2,4 +2,5 @@
 
 public sealed record CreateAssociationRequest(
     string Name,
-    string Identifier);
+    Guid OwnerUserId,
+    string OwnerEmailAddress);

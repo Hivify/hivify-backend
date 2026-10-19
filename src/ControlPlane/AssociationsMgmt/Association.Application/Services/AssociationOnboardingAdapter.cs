@@ -10,9 +10,10 @@ public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociati
     public Task<Guid> CreateAssociationAsync(
         string name,
         Guid ownerUserId,
+        string ownerEmailAddress,
         CancellationToken ct = default)
     {
-        var command = new CreateAssociationCommand(name, ownerUserId);
+        var command = new CreateAssociationCommand(name, ownerUserId, ownerEmailAddress);
 
         return commandHandler.Handle(command, ct);
     }

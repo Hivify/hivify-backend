@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.Authorization;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.ApplicationPorts.Storage;
 using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
@@ -21,6 +22,9 @@ namespace BuildingBlocks.Infrastructure
                 services.Configure<CloudinaryOptions>(configuration.GetSection("Cloudinary"));
 
                 services.AddScoped<IFileStorage, CloudinaryFileStorage>();
+
+
+                services.AddScoped<IApplicationAuthorization, ApplicationAuthorization>();
 
 
                 return services;

@@ -1,5 +1,7 @@
 ﻿using Association.Application.Contracts;
+using Association.Application.DTOs;
 using Association.Domain.Entities;
+using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
@@ -16,6 +18,32 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
                 a => a.Id == associationId,
                 ct);
     }
+
+
+    public async Task<AssociationDetailsData?> GetDetailsByIdAsync(AssociationID associationId, CancellationToken ct = default)
+    {
+        return await dbContext.Associations
+            .AsNoTracking()
+            .Where(a => a.Id == associationId)
+            .Select(a => new AssociationDetailsData(
+                a.Id.Value,
+                a.Name.Value,
+                a.Identifier.Value,
+                a.Status,
+                a.CreatedDate,
+                a.Members
+                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
+                    .Select(m => m.UserID.Value)
+                    .FirstOrDefault(),
+                a.Members
+                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
+                    .Select(m => m.MemeberEmail.Value)
+                    .FirstOrDefault()!,
+                a.Members.Count()))
+            .FirstOrDefaultAsync(ct);
+    }
+
+
 
     public async Task<IReadOnlyList<AssociationEntity>> GetAllAsync(
         CancellationToken ct = default)
@@ -52,6 +80,22 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
             .FirstOrDefaultAsync(
                 a => a.Identifier == identifier,
                 cancellationToken);
+    }
+
+    public async Task<bool> ExistsForUserAsync(
+    UserID userId,
+    CancellationToken ct = default)
+    {
+        return await dbContext.Associations
+            .AnyAsync(a => a.Members.Any(m => m.UserID == userId), ct);
+    }
+
+    public async Task<bool> ExistsWithNameAsync(
+       AssociationName name,
+       CancellationToken ct = default)
+    {
+        return await dbContext.Associations
+            .AnyAsync(a => a.Name.Value == name.Value, ct);
     }
 
     public async Task SaveChangesAsync(CancellationToken ct = default)
