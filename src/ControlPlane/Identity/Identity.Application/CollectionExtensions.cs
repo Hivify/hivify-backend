@@ -11,11 +11,7 @@ public static class ServiceCollectionExtensions
     {
         public IServiceCollection AddUserMgmtServices()
         {
-
-
             services.AddScoped<IUserIdentityService, IdentityService>();
-
-
             return services;
         }
     }

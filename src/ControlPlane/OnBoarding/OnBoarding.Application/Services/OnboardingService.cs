@@ -1,4 +1,4 @@
-﻿using Association.Application.Contracts;
+﻿using BuildingBlocks.ApplicationPorts.Association;
 using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
@@ -10,7 +10,7 @@ namespace OnBoarding.Application.Services;
 
 public sealed class OnboardingService(
     ICurrentUser currentUser,
-    IAssociationService associationService,
+    IAssociationOnboardingPort associationOnboardingPort,
     IOnboardingRepository onboardingRepository,
     ILogger<OnboardingService> logger
     )
@@ -24,11 +24,11 @@ public sealed class OnboardingService(
             throw new UnauthorizedAccessException();
         }
 
-        var userId = new UserID(currentUser.UserId);
+        var userId = currentUser.UserId;
 
 
         // Check if the user already has an onboarding process. 
-        var existingProcess = await onboardingRepository.GetProcessByUserIdAsync(userId, ct);
+        var existingProcess = await onboardingRepository.GetProcessByUserIdAsync(new UserID(userId), ct);
 
         if (existingProcess is not null)
         {
@@ -38,7 +38,7 @@ public sealed class OnboardingService(
                 existingProcess.Status);
         }
 
-        var process = UserOnboardingProcess.Start(userId);
+        var process = UserOnboardingProcess.Start(new UserID(userId));
         logger.LogInformation("Starting onboarding process for user {userId}", userId);
 
         // Step 1: Persist the process first.
@@ -48,7 +48,7 @@ public sealed class OnboardingService(
 
 
         //// Step 2: Execute onboarding steps.
-        await associationService.CreateAssociationAsync(associationName, ct);
+        await associationOnboardingPort.CreateAssociationAsync(associationName, userId, currentUser.EmailAddress, ct);
 
 
 

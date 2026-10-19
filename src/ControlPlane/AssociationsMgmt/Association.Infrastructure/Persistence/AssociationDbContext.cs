@@ -22,15 +22,26 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     value => new AssociationID(value));
 
             // Name
+            entity.OwnsOne(a => a.Name, name =>
+            {
+                name.Property(n => n.Value)
+                    .HasColumnName("Name")
+                    .HasMaxLength(100)
+                    .IsRequired();
+
+                name.HasIndex(n => n.Value)
+                    .IsUnique();
+            });
+
             entity.OwnsOne(
-                a => a.Name,
-                name =>
-                {
-                    name.Property(n => n.Value)
-                        .HasColumnName("Name")
-                        .HasMaxLength(100)
-                        .IsRequired();
-                });
+                 a => a.ContactEmail,
+                 name =>
+                 {
+                     name.Property(n => n.Value)
+                         .HasColumnName("ContactEmail")
+                         .HasMaxLength(320)
+                         .IsRequired();
+                 });
 
             // Association Identifier
             entity.Property(a => a.Identifier)
@@ -86,6 +97,17 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     member.Property(m => m.Role)
                         .HasConversion<int>()
                         .IsRequired();
+                    // Email value object
+                    member.OwnsOne(
+                        m => m.MemeberEmail,
+                        email =>
+                        {
+                            email.Property(e => e.Value)
+                                .HasColumnName("MemeberEmail")
+                                .HasMaxLength(320)
+                                .IsRequired();
+                        });
+
                 });
         });
     }

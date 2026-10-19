@@ -1,7 +1,9 @@
 ﻿namespace Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 
-public sealed record MyAssociationResponse(
+public sealed record AssociationResponse(
     Guid AssociationId,
     string Name,
-    Guid Identifier
+    Guid Identifier,
+    string Status,
+    DateTime CreatedDate
 );

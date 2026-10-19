@@ -7,21 +7,19 @@ namespace Association.Application.Contracts
     public interface IAssociationRepository
     {
         Task AddAsync(AssociationEntity association, CancellationToken ct = default);
-        Task<AssociationEntity?> GetByIdAsync(
-            AssociationID associationId,
-            CancellationToken cancellationToken = default);
+        Task<AssociationEntity?> GetByIdAsync(AssociationID associationId, CancellationToken ct = default);
 
-        Task<IReadOnlyList<AssociationEntity>> GetAllAsync(
-            CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<AssociationEntity>> GetAllAsync(CancellationToken ct = default);
 
-        Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(UserID userId, CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(UserID userId, CancellationToken ct = default);
 
-        Task<AssociationEntity?> GetByIdentifierAsync(
-            AssociationIdentifier associationIdentifier,
-            CancellationToken cancellationToken = default);
+        Task<AssociationEntity?> GetByIdentifierAsync(AssociationIdentifier associationIdentifier, CancellationToken ct = default);
 
-        Task SaveChangesAsync(CancellationToken cancellationToken);
+        Task<bool> ExistsForUserAsync(UserID userId, CancellationToken ct = default);
 
+        Task<bool> ExistsWithNameAsync(AssociationName name, CancellationToken ct = default);
+
+        Task SaveChangesAsync(CancellationToken ct);
 
     }
 }

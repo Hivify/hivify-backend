@@ -3,4 +3,7 @@ using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Association.Application.Queries.GetUserAssociations;
 
-public sealed record GetUserAssociationsQuery : IQuery<IReadOnlyList<TenantAssociationOutput>>;
+
+
+
+public sealed record GetAssociationsForUserQuery(Guid UserId) : IQuery<IReadOnlyList<UserAssociationOutput>>;
