@@ -30,10 +30,19 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
     {
         Name = name;
         Identifier = identifier;
-        Status = AssociationStatus.Active;
+        Status = AssociationStatus.Pending;
         CreatedDate = DateTime.UtcNow;
     }
 
+
+
+
+    /// <summary>
+    ///     Create an association and add the owner as a member with the TenantAdmin role.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="ownerId"></param>
+    /// <returns> The created association. </returns>
     public static AssociationEntity Create(AssociationName name, UserID ownerId)
     {
         var association = new AssociationEntity(
@@ -41,12 +50,23 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
             new AssociationIdentifier(Guid.NewGuid()),
             name);
 
-        association.AddMember(ownerId, AssociationRoles.Owner);
+        association.AddMember(ownerId, AssociationRoles.TenantAdmin);
 
         association.RaiseDomainEvent(new AssociationCreatedDomainEvent(association.Id, ownerId));
 
         return association;
     }
+
+
+
+
+    /// <summary>
+    /// Adds a member to the association.
+    /// </summary>
+    /// <param name="userId">The ID of the user to add.</param>
+    /// <param name="role">The role of the user in the association.</param>
+    /// <returns></returns>
+
 
     public void AddMember(UserID userId, AssociationRoles role)
     {
