@@ -4,7 +4,5 @@ namespace Association.Application.Contracts;
 
 public interface IAssociationClaimsService
 {
-    Task<IReadOnlyCollection<Claim>> GetClaimsAsync(
-        Guid userId,
-        CancellationToken cancellationToken = default);
+    Task<IReadOnlyCollection<Claim>> GetClaimsAsync(Guid userId, CancellationToken ct = default);
 }

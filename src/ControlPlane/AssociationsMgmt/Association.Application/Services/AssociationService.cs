@@ -14,32 +14,29 @@ public sealed class AssociationService(
     private readonly IAssociationRepository _associationRepository = associationRepository;
     private readonly ICurrentUser _currentUser = currentUser;
 
-    public async Task<Guid> CreateAssociationAsync(string name,
-        CancellationToken cancellationToken = default)
+    public async Task<Guid> CreateAssociationAsync(string name, CancellationToken ct = default)
     {
         var userId = _currentUser.UserId;
 
-        var associationName = new AssociationName(name);
+        var association = AssociationEntity.Create(new AssociationName(name), new UserID(userId));
 
-        var association = AssociationEntity.Create(associationName, new UserID(userId));
+        await _associationRepository.AddAsync(association, ct);
 
-        await _associationRepository.AddAsync(association, cancellationToken);
-
-        await _associationRepository.SaveChangesAsync(cancellationToken);
+        await _associationRepository.SaveChangesAsync(ct);
 
         return association.Id.Value;
     }
 
-    public async Task<TenantAssociationOutput?> GetByIdentifierAsync(
+    public async Task<TenantAssociationOutput?> GetAssociationByIdentifierAsync(
     Guid identifier,
-    CancellationToken cancellationToken = default)
+    CancellationToken ct)
     {
         if (identifier == Guid.Empty)
             return null;
 
         var association = await _associationRepository.GetByIdentifierAsync(
             new AssociationIdentifier(identifier),
-            cancellationToken);
+            ct);
 
         if (association is null)
             return null;

@@ -18,8 +18,7 @@ namespace BuildingBlocks.Infrastructure
                 services.AddScoped<IQuerySender, QuerySender>();
 
                 // Storage
-                services.Configure<CloudinaryOptions>(
-                    configuration.GetSection("Cloudinary"));
+                services.Configure<CloudinaryOptions>(configuration.GetSection("Cloudinary"));
 
                 services.AddScoped<IFileStorage, CloudinaryFileStorage>();
 
