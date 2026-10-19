@@ -2,7 +2,7 @@
 {
     public enum AssociationRoles
     {
-        Owner,
-        Memeber,
+        TenantAdmin,
+        TenantMember,
     }
 }
