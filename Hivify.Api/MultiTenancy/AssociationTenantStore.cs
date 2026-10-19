@@ -1,63 +1,53 @@
-﻿using Association.Application.Contracts;
+﻿using Association.Application.DTOs;
+using Association.Application.Queries.GetAssociationByIdentifier;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Finbuckle.MultiTenant.Abstractions;
 
-namespace Hivify.Api.MultiTenancy
-{
-    public sealed class AssociationTenantStore(
-    IAssociationService associationService)
+namespace Hivify.Api.MultiTenancy;
+
+public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentifierQuery, TenantAssociationOutput?> queryHandler)
     : IMultiTenantStore<TenantInfo>
+{
+    public async Task<TenantInfo?> GetByIdentifierAsync(string identifier)
     {
-        public async Task<TenantInfo?> GetByIdentifierAsync(string identifier)
+        if (!Guid.TryParse(identifier, out var associationIdentifier) ||
+            associationIdentifier == Guid.Empty)
         {
-            if (!Guid.TryParse(identifier, out var associationIdentifier) ||
-                associationIdentifier == Guid.Empty)
-            {
-                return null;
-            }
-
-            var association = await associationService.GetByIdentifierAsync(
-                associationIdentifier);
-
-            if (association is null)
-                return null;
-
-            return new TenantInfo
-            {
-                Id = association.AssociationId.ToString(),
-                Identifier = association.Identifier.ToString(),
-                Name = association.Name
-            };
-        }
-        public Task<bool> AddAsync(TenantInfo tenantInfo)
-        {
-            throw new NotImplementedException();
+            return null;
         }
 
-        public Task<IEnumerable<TenantInfo>> GetAllAsync()
+        var query = new GetAssociationByIdentifierQuery(associationIdentifier);
+
+        var association = await queryHandler.Handle(
+            query,
+            CancellationToken.None);
+
+        if (association is null)
+            return null;
+
+        return new TenantInfo
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<TenantInfo>> GetAllAsync(int take, int skip)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TenantInfo?> GetAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public Task<bool> RemoveAsync(string identifier)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateAsync(TenantInfo tenantInfo)
-        {
-            throw new NotImplementedException();
-        }
+            Id = association.AssociationId.ToString(),
+            Identifier = association.Identifier.ToString(),
+            Name = association.Name
+        };
     }
+
+    public Task<bool> AddAsync(TenantInfo tenantInfo)
+        => throw new NotSupportedException();
+
+    public Task<IEnumerable<TenantInfo>> GetAllAsync()
+        => throw new NotSupportedException();
+
+    public Task<IEnumerable<TenantInfo>> GetAllAsync(int take, int skip)
+        => throw new NotSupportedException();
+
+    public Task<TenantInfo?> GetAsync(string id)
+        => throw new NotSupportedException();
+
+    public Task<bool> RemoveAsync(string identifier)
+        => throw new NotSupportedException();
+
+    public Task<bool> UpdateAsync(TenantInfo tenantInfo)
+        => throw new NotSupportedException();
 }

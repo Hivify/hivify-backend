@@ -3,5 +3,8 @@
     public sealed record TenantAssociationOutput(
       Guid AssociationId,
       string Name,
-      Guid Identifier);
+      Guid Identifier,
+      string Status,
+      DateTime CreatedDate
+     );
 }

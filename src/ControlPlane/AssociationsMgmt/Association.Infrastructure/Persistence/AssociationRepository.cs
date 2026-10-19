@@ -6,26 +6,23 @@ using SharedKernel.ValueObjects;
 
 namespace Association.Infrastructure.Persistence;
 
-internal sealed class AssociationRepository(
-    AssociationDbContext dbContext) : IAssociationRepository
+internal sealed class AssociationRepository(AssociationDbContext dbContext) : IAssociationRepository
 {
-    public async Task<AssociationEntity?> GetByIdAsync(
-        AssociationID associationId,
-        CancellationToken cancellationToken = default)
+    public async Task<AssociationEntity?> GetByIdAsync(AssociationID associationId, CancellationToken ct = default)
     {
         return await dbContext.Associations
             .Include(a => a.Members)
             .FirstOrDefaultAsync(
                 a => a.Id == associationId,
-                cancellationToken);
+                ct);
     }
 
     public async Task<IReadOnlyList<AssociationEntity>> GetAllAsync(
-        CancellationToken cancellationToken = default)
+        CancellationToken ct = default)
     {
         return await dbContext.Associations
             .Include(a => a.Members)
-            .ToListAsync(cancellationToken);
+            .ToListAsync(ct);
     }
 
     public async Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(

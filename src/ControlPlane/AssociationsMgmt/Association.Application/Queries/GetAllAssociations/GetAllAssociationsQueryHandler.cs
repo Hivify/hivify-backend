@@ -5,17 +5,13 @@ using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Association.Application.Queries.GetAllAssociations;
 
-public sealed class GetAllAssociationsQueryHandler(
-    IAssociationRepository associationRepository,
-    ICurrentUser currentUser)
+public sealed class GetAllAssociationsQueryHandler(IAssociationRepository associationRepository, ICurrentUser currentUser)
     : IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>
 {
     private readonly IAssociationRepository _associationRepository = associationRepository;
     private readonly ICurrentUser _currentUser = currentUser;
 
-    public async Task<IReadOnlyList<TenantAssociationOutput>> Handle(
-        GetAllAssociationsQuery query,
-        CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<TenantAssociationOutput>> Handle(GetAllAssociationsQuery query, CancellationToken ct)
     {
         if (!_currentUser.IsAuthenticated)
         {
@@ -28,13 +24,15 @@ public sealed class GetAllAssociationsQueryHandler(
                 "Only application administrators can retrieve all associations.");
         }
 
-        var associations = await _associationRepository.GetAllAsync(cancellationToken);
+        var associations = await _associationRepository.GetAllAsync(ct);
 
         return associations
             .Select(a => new TenantAssociationOutput(
-                a.Id.Value,
-                a.Name.Value,
-                a.Identifier.Value
+                    a.Id.Value,
+                    a.Name.Value,
+                    a.Identifier.Value,
+                    a.Status.ToString(),
+                    a.CreatedDate
               ))
             .ToList();
     }

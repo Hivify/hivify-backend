@@ -1,4 +1,4 @@
-﻿namespace Association.Application.Constants
+﻿namespace Association.Application.Queries.GetUserAssociationClaims
 {
     public static class HivifyClaimTypes
     {

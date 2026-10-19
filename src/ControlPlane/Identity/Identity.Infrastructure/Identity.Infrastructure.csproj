@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AssociationsMgmt\Association.Application\Association.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
     <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
   </ItemGroup>
