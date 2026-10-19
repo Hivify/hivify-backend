@@ -6,8 +6,7 @@ using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.CreateAssociation;
 
-public sealed class CreateAssociationCommandHandler(
-    IAssociationRepository associationRepository)
+public sealed class CreateAssociationCommandHandler(IAssociationRepository associationRepository)
     : ICommandHandler<CreateAssociationCommand, Guid>
 {
     private readonly IAssociationRepository _associationRepository =

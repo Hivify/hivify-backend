@@ -11,8 +11,6 @@ public sealed class AssociationClaimsProvider(IQuerySender querySender) : IAssoc
 
     public Task<IReadOnlyCollection<Claim>> GetUserAssociationClaimsAsync(Guid userId, CancellationToken ct = default)
     {
-        return _querySender.Send(
-            new GetUserAssociationClaimsQuery(userId),
-            ct);
+        return _querySender.Send(new GetUserAssociationClaimsQuery(userId), ct);
     }
 }
