@@ -41,7 +41,8 @@ namespace OnBoarding.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "Status");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("OnboardingProcesses");
                 });

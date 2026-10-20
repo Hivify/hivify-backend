@@ -27,9 +27,10 @@ namespace OnBoarding.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_OnboardingProcesses_UserId_Status",
+                name: "IX_OnboardingProcesses_UserId",
                 table: "OnboardingProcesses",
-                columns: new[] { "UserId", "Status" });
+                column: "UserId",
+                unique: true);
         }
 
         /// <inheritdoc />

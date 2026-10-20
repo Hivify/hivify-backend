@@ -97,6 +97,11 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     member.Property(m => m.Role)
                         .HasConversion<int>()
                         .IsRequired();
+
+                    // JoinedAt
+                    member.Property(m => m.JoinedAt)
+                        .IsRequired();
+
                     // Email value object
                     member.OwnsOne(
                         m => m.MemeberEmail,

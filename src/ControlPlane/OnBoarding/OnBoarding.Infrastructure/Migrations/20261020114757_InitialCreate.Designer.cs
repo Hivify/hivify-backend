@@ -12,7 +12,7 @@ using OnBoarding.Infrastructure.Persistence;
 namespace OnBoarding.Infrastructure.Migrations
 {
     [DbContext(typeof(OnboardingDbContext))]
-    [Migration("20261013164937_InitialCreate")]
+    [Migration("20261020114757_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -44,7 +44,8 @@ namespace OnBoarding.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "Status");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("OnboardingProcesses");
                 });
