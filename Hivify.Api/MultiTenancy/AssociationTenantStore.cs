@@ -29,7 +29,7 @@ public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentif
         {
             Id = association.AssociationId.ToString(),
             Identifier = association.Identifier.ToString(),
-            Name = association.Name
+            Name = association.AssociationName
         };
     }
 

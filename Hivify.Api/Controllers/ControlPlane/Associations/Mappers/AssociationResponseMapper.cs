@@ -9,7 +9,8 @@ public static class AssociationResponseMapper
     {
         return new AssociationResponse(
             association.AssociationId,
-            association.Name,
+            association.AssociationName,
+            association.AdminAssociationEmail,
             association.Identifier,
             association.Status,
             association.CreatedDate

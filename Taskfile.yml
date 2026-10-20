@@ -108,6 +108,7 @@ tasks:
     deps:
       - migrate-house
       - migrate-association
+      - migrate-identity
       - migrate-department
       - migrate-feed
       - migrate-complaint

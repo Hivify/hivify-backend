@@ -21,6 +21,7 @@ public sealed class GetAllAssociationsQueryHandler(IAssociationRepository associ
             .Select(a => new TenantAssociationOutput(
                     a.Id.Value,
                     a.Name.Value,
+                    a.ContactEmail.Value,
                     a.Identifier.Value,
                     a.Status.ToString(),
                     a.CreatedDate

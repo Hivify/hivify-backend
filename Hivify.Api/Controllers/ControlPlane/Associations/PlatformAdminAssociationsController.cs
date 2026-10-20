@@ -50,8 +50,7 @@ public sealed class PlatformAdminAssociationsController(
     /// <param name="ct"></param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyCollection<AssociationResponse>>>
-        GetAllAssociations(CancellationToken ct)
+    public async Task<ActionResult<IReadOnlyCollection<AssociationResponse>>> GetAllAssociations(CancellationToken ct)
     {
         var associations = await querySender.Send(
             new GetAllAssociationsQuery(),

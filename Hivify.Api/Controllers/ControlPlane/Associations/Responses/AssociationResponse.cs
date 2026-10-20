@@ -2,7 +2,8 @@
 
 public sealed record AssociationResponse(
     Guid AssociationId,
-    string Name,
+    string AssociationName,
+    string AdminAssociationEmail,
     Guid Identifier,
     string Status,
     DateTime CreatedDate
