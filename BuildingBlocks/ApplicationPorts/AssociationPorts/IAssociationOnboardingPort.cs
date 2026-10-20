@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.Association;
+﻿namespace BuildingBlocks.ApplicationPorts.AssociationPorts;
 
 public interface IAssociationOnboardingPort
 {

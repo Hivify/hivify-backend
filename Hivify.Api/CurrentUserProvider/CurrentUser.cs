@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
+﻿using BuildingBlocks.ApplicationPorts.CurrentUserPort;
 using System.Security.Claims;
 
 namespace Hivify.Api.CurrentUserProvider;

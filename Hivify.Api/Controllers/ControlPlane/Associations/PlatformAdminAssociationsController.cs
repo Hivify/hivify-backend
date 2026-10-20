@@ -2,6 +2,7 @@
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.Messaging;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
@@ -15,8 +16,12 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations;
 [Authorize(Roles = "Admin")]
 public sealed class PlatformAdminAssociationsController(
     IQuerySender querySender,
-    ISender commandSender) : ControllerBase
+    ISender commandSender,
+    IApplicationAuthorization authorization
+    ) : ControllerBase
 {
+
+    private readonly IApplicationAuthorization _authorization = authorization;
 
 
     /// <summary>
@@ -30,6 +35,9 @@ public sealed class PlatformAdminAssociationsController(
         [FromBody] CreateAssociationRequest request,
         CancellationToken ct)
     {
+
+        await _authorization.EnsureApplicationAdminAsync(ct);
+
         var associationId = await commandSender.Send(
             new CreateAssociationCommand(
                 request.Name,
@@ -75,6 +83,9 @@ public sealed class PlatformAdminAssociationsController(
         Guid userId,
         CancellationToken ct)
     {
+
+        await authorization.EnsureApplicationAdminAsync(ct);
+
         var associations = await querySender.Send(
             new GetAssociationsForUserQuery(userId),
             ct);

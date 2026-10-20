@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.CurrentTenantProvider
+﻿namespace BuildingBlocks.ApplicationPorts.CurrentTenantPort
 {
     public interface ICurrentTenant
     {

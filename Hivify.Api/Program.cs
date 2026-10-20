@@ -1,7 +1,7 @@
 using Association.Application;
 using Association.Infrastructure;
-using BuildingBlocks.ApplicationPorts.CurrentTenantProvider;
-using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
+using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
+using BuildingBlocks.ApplicationPorts.CurrentUserPort;
 using BuildingBlocks.Infrastructure;
 using Complaints.Application;
 using Complaints.Infrastructure;
@@ -13,6 +13,7 @@ using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Finbuckle.MultiTenant.Extensions;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization;
 using Hivify.Api.CurrentUserProvider;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
@@ -20,6 +21,7 @@ using Houses.Infrastructure;
 using Identity.Application;
 using Identity.Infrastructure;
 using Identity.Infrastructure.DotNETIdentity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnBoarding.Application;
@@ -38,6 +40,10 @@ builder.Services
     .AddMultiTenant<TenantInfo>()
     .WithHostStrategy("__tenant__.localhost")
     .WithStore<AssociationTenantStore>(ServiceLifetime.Scoped);
+
+
+
+
 #endregion
 
 
@@ -54,6 +60,9 @@ var connectionString =
 
 #region Authentication & Authorization
 
+
+
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -61,15 +70,27 @@ builder.Services.AddAuthentication(options =>
 })
 .AddIdentityCookies();
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("TenantAdmin", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+
+        policy.AddRequirements(
+            new TenantRoleRequirement("TenantAdmin"));
+    });
+});
 
 
 // current User
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+builder.Services.AddScoped<IApplicationAuthorization, ApplicationAuthorization>();
+
 
 // current Tenant
 builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
+builder.Services.AddScoped<IAuthorizationHandler, TenantRoleAuthorizationHandler>();
 
 #endregion
 
@@ -152,6 +173,7 @@ if (app.Environment.IsDevelopment())
 }
 // add the MultiTenant middleware
 app.UseMultiTenant();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

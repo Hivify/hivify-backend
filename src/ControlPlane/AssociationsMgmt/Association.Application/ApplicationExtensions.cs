@@ -2,11 +2,10 @@
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetAssociationByIdentifier;
-using Association.Application.Queries.GetAssociationsForUser;
 using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
-using BuildingBlocks.ApplicationPorts.Association;
+using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;

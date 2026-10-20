@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Association;
+﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
