@@ -1,5 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.Association;
-using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
+﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.CurrentUserPort;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;

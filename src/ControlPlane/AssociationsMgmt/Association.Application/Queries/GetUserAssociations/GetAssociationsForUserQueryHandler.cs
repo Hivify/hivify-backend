@@ -1,15 +1,12 @@
 ﻿using Association.Application.Contracts;
 using Association.Application.DTOs;
-using Association.Application.Queries.GetUserAssociations;
-using BuildingBlocks.ApplicationPorts.Authorization;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using SharedKernel.ValueObjects;
 
-namespace Association.Application.Queries.GetAssociationsForUser;
+namespace Association.Application.Queries.GetUserAssociations;
 
 public sealed class GetAssociationsForUserQueryHandler(
-    IAssociationRepository associationRepository,
-    IApplicationAuthorization authorization)
+    IAssociationRepository associationRepository)
     : IQueryHandler<GetAssociationsForUserQuery,
         IReadOnlyList<UserAssociationOutput>>
 {
@@ -17,7 +14,6 @@ public sealed class GetAssociationsForUserQueryHandler(
         GetAssociationsForUserQuery query,
         CancellationToken ct)
     {
-        await authorization.EnsureApplicationAdminAsync(ct);
 
         if (query.UserId == Guid.Empty)
             throw new ArgumentException("User ID cannot be empty.");

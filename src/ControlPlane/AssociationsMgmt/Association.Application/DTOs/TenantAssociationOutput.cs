@@ -4,7 +4,8 @@ namespace Association.Application.DTOs
 {
     public sealed record TenantAssociationOutput(
       Guid AssociationId,
-      string Name,
+      string AssociationName,
+      string AdminAssociationEmail,
       Guid Identifier,
       string Status,
       DateTime CreatedDate);

@@ -1,5 +1,5 @@
 ﻿using Association.Application.Queries.GetUserAssociationClaims;
-using BuildingBlocks.ApplicationPorts.Association;
+using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using System.Security.Claims;
 

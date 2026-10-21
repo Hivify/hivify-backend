@@ -1,5 +1,5 @@
 ﻿using Association.Application.Commands.CreateAssociation;
-using BuildingBlocks.ApplicationPorts.Association;
+using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Association.Application.Services;

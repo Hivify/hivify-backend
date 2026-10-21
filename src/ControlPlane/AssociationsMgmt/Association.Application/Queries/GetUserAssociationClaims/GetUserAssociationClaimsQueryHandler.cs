@@ -1,4 +1,5 @@
 ﻿using Association.Application.Contracts;
+using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using SharedKernel.ValueObjects;
 using System.Security.Claims;

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserProvider;
+﻿using BuildingBlocks.ApplicationPorts.CurrentUserPort;
 using BuildingBlocks.ApplicationPorts.Messaging;
 using Feeds.Application.Contracts;
 using Feeds.Domain.ValueObjects;

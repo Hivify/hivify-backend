@@ -23,6 +23,7 @@ public sealed class GetAssociationByIdentifierQueryHandler(IAssociationRepositor
         return new TenantAssociationOutput(
             association.Id.Value,
             association.Name.Value,
+            association.ContactEmail.Value,
             association.Identifier.Value,
             association.Status.ToString(),
             association.CreatedDate);
