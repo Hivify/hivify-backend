@@ -1,11 +1,26 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentTenantProvider;
+﻿
+using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
 using Finbuckle.MultiTenant.Abstractions;
 
-namespace Hivify.Api.MultiTenancy
+namespace Hivify.Api.MultiTenancy;
+
+public sealed class CurrentTenant(
+    IMultiTenantContextAccessor<TenantInfo> accessor) : ICurrentTenant
 {
-    public sealed class CurrentTenant(IMultiTenantContextAccessor<TenantInfo> accessor) : ICurrentTenant
+    public Guid? AssociationId
     {
-        public Guid AssociationId =>
-            Guid.Parse(accessor.MultiTenantContext.TenantInfo!.Id);
+        get
+        {
+            var tenantInfo = accessor.MultiTenantContext?.TenantInfo;
+
+            if (tenantInfo is null ||
+                !Guid.TryParse(tenantInfo.Id, out var associationId) ||
+                associationId == Guid.Empty)
+            {
+                return null;
+            }
+
+            return associationId;
+        }
     }
 }

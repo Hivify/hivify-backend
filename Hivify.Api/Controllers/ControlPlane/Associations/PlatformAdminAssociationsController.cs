@@ -2,7 +2,7 @@
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.Messaging;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;

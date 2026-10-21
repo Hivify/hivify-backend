@@ -1,4 +1,4 @@
-﻿namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization;
+﻿namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 
 public interface IApplicationAuthorization
 {

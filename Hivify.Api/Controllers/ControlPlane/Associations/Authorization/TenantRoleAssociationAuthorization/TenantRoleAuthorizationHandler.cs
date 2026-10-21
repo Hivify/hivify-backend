@@ -1,8 +1,8 @@
-﻿using Association.Application.Queries.GetUserAssociationClaims;
+﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization
+namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization
 {
     public sealed class TenantRoleAuthorizationHandler(
         ICurrentTenant currentTenant) : AuthorizationHandler<TenantRoleRequirement>

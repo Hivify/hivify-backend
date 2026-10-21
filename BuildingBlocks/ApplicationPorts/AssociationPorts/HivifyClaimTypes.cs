@@ -1,4 +1,4 @@
-﻿namespace Association.Application.Queries.GetUserAssociationClaims
+﻿namespace BuildingBlocks.ApplicationPorts.AssociationPorts
 {
     public static class HivifyClaimTypes
     {

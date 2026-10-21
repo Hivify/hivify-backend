@@ -15,8 +15,13 @@ public sealed class GetCurrentAssociationDetailsQueryHandler(
         GetCurrentAssociationDetailsQuery query,
         CancellationToken ct)
     {
+        var associationId = currentTenant.AssociationId;
+
+        if (associationId is null)
+            return null;
+
         var association = await associationRepository.GetDetailsByIdAsync(
-            new AssociationID(currentTenant.AssociationId),
+            new AssociationID(associationId.Value),
             ct);
 
         if (association is null)

@@ -13,7 +13,8 @@ using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Finbuckle.MultiTenant.Extensions;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization;
 using Hivify.Api.CurrentUserProvider;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
@@ -21,11 +22,14 @@ using Houses.Infrastructure;
 using Identity.Application;
 using Identity.Infrastructure;
 using Identity.Infrastructure.DotNETIdentity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnBoarding.Application;
 using OnBoarding.Infrastructure;
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -63,6 +67,7 @@ var connectionString =
 
 
 
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -75,11 +80,29 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("TenantAdmin", policy =>
     {
         policy.RequireAuthenticatedUser();
-
         policy.AddRequirements(
             new TenantRoleRequirement("TenantAdmin"));
     });
 });
+
+// User Management
+builder.Services.AddUserMgmtServices();
+builder.Services.AddUserMgmtInfrastructure(connectionString);
+
+
+// Configure the Identity application cookie
+
+builder.Services
+    .AddOptions<CookieAuthenticationOptions>(
+        IdentityConstants.ApplicationScheme)
+    .Configure(options =>
+    {
+        // No Cookie.Domain: the cookie is scoped to the current host.
+        options.Cookie.Path = "/";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    });
 
 
 // current User
@@ -100,9 +123,6 @@ builder.Services.AddBuildingBlocks(builder.Configuration);
 
 
 
-// User Management
-builder.Services.AddUserMgmtServices();
-builder.Services.AddUserMgmtInfrastructure(connectionString);
 
 // Documents
 builder.Services.AddDocumentServices();
@@ -145,10 +165,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials();
+        policy.SetIsOriginAllowed(origin => new Uri(origin).Host.EndsWith(".localhost"))
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowCredentials();
     });
 });
 

@@ -2,6 +2,6 @@
 {
     public interface ICurrentTenant
     {
-        Guid AssociationId { get; }
+        Guid? AssociationId { get; }
     }
 }

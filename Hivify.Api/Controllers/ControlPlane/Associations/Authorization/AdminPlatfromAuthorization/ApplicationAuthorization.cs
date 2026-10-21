@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.CurrentUserPort;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 
 public sealed class ApplicationAuthorization(ICurrentUser currentUser) : IApplicationAuthorization
 {
