@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.ObjectStorage.DTOs;
+﻿using BuildingBlocks.ApplicationPorts.Storage.DTOs;
 
-namespace BuildingBlocks.ApplicationPorts.ObjectStorage
+namespace BuildingBlocks.ApplicationPorts.Storage
 {
     public interface IFileStorage
     {

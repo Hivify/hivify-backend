@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.ObjectStorage.DTOs;
+using BuildingBlocks.ApplicationPorts.Storage.DTOs;
 using DocumentsMgmt.Application.Commands;
 using DocumentsMgmt.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;

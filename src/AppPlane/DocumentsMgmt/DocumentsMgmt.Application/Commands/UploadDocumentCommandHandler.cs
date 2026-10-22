@@ -1,5 +1,5 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.ObjectStorage;
+using BuildingBlocks.ApplicationPorts.Storage;
 
 namespace DocumentsMgmt.Application.Commands
 {

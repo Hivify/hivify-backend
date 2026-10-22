@@ -1,6 +1,6 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
-namespace BuildingBlocks.Infrastructure.Messaging;
+namespace BuildingBlocks.Infrastructure.CQRSMessaging;
 
 public sealed class QuerySender(IServiceProvider serviceProvider) : IQuerySender
 {
