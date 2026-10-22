@@ -54,6 +54,12 @@ public class Member : BaseEntity<MemberID>
 
     internal void Delete()
     {
+        if (DeletedAt is not null)
+        {
+            throw new DomainException(
+                "Member has already been removed.");
+        }
+
         DeletedAt = DateTime.UtcNow;
     }
 }

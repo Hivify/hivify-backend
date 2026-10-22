@@ -1,23 +1,49 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using Feeds.Application.Contracts;
 using Feeds.Application.DTOs;
-using Feeds.Application.Queries.GetSingleFeed;
 using Feeds.Domain.ValueObjects;
+using SharedKernel.ValueObjects;
 
+namespace Feeds.Application.Queries.GetSingleFeed;
 
-public sealed class GetSingleFeedQueryHandler : IQueryHandler<GetSingleFeedQuery, FeedListItem>
+public sealed class GetSingleFeedQueryHandler
+    : IQueryHandler<GetSingleFeedQuery, FeedListItem?>
 {
     private readonly IFeedRepo _feedRepository;
-    public GetSingleFeedQueryHandler(IFeedRepo feedRepository)
+    private readonly ICurrentTenant _currentTenant;
+
+    public GetSingleFeedQueryHandler(
+        IFeedRepo feedRepository,
+        ICurrentTenant currentTenant)
     {
         _feedRepository = feedRepository;
+        _currentTenant = currentTenant;
     }
-    public async Task<FeedListItem> Handle(GetSingleFeedQuery query, CancellationToken cancellationToken)
+
+    public async Task<FeedListItem?> Handle(
+        GetSingleFeedQuery query,
+        CancellationToken cancellationToken)
     {
-        var feed = await _feedRepository.GetByIdAsync(new FeedID(query.FeedId), cancellationToken);
+        ArgumentNullException.ThrowIfNull(query);
+
+        var associationId = _currentTenant.AssociationId;
+
+        if (associationId is null || associationId == Guid.Empty)
+        {
+            return null;
+        }
+
+        var feed = await _feedRepository.GetByIdAsync(
+            new FeedID(query.FeedId),
+            new AssociationID(associationId.Value),
+            cancellationToken);
 
         if (feed is null)
-            throw new InvalidOperationException("Feed was not found.");
+        {
+            return null;
+        }
+
         return new FeedListItem(
             feed.Id.Value,
             feed.Title.Value,

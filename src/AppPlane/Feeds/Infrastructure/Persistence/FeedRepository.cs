@@ -2,6 +2,7 @@
 using Feeds.Domain.Feeds;
 using Feeds.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel.ValueObjects;
 
 namespace Feeds.Infrastructure.Persistence;
 
@@ -32,12 +33,15 @@ public sealed class FeedRepo : IFeedRepo
     }
 
     public async Task<Feed?> GetByIdAsync(
-        FeedID id,
-        CancellationToken cancellationToken = default)
+    FeedID id,
+    AssociationID associationId,
+    CancellationToken cancellationToken = default)
     {
         return await _context.Feeds
             .FirstOrDefaultAsync(
-                f => f.Id == id,
+                f => f.Id == id
+                    && f.AssociationId == associationId
+                    && f.DeletedAt == null,
                 cancellationToken);
     }
 

@@ -25,6 +25,14 @@ public sealed class FeedDbContext(DbContextOptions<FeedDbContext> options) : DbC
                     id => id.Value,
                     value => new UserID(value));
 
+            entity.Property(f => f.AssociationId)
+                .HasConversion(
+                    id => id.Value,
+                    value => new AssociationID(value))
+                .IsRequired();
+
+            entity.HasIndex(f => f.AssociationId);
+
             entity.Property(f => f.Title)
                 .HasConversion(
                     title => title.Value,
