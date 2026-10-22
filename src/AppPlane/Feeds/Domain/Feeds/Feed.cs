@@ -13,6 +13,8 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
 
     public UserID AuthorId { get; private set; }
 
+    public AssociationID AssociationId { get; private set; }
+
     public DateTime CreatedDate { get; private set; }
 
     public DateTime? DeletedAt { get; private set; }
