@@ -10,6 +10,7 @@ public class FeedTests
     private static Feed CreateValidFeed()
     {
         return Feed.CreateFeed(
+            new AssociationID(Guid.NewGuid()),
             new UserID(Guid.NewGuid()),
             new Title("Test title"),
             new Description("Test content"));
@@ -19,18 +20,21 @@ public class FeedTests
     public void CreateFeed_WithValidData_ShouldSetProperties()
     {
         // Arrange
+        var associationId = new AssociationID(Guid.NewGuid());
         var authorId = new UserID(Guid.NewGuid());
         var title = new Title("Test title");
         var content = new Description("Test content");
 
         // Act
         var feed = Feed.CreateFeed(
+            associationId,
             authorId,
             title,
             content);
 
         // Assert
         Assert.NotEqual(Guid.Empty, feed.Id.Value);
+        Assert.Equal(associationId, feed.AssociationId);
         Assert.Equal(authorId, feed.AuthorId);
         Assert.Equal(title, feed.Title);
         Assert.Equal(content, feed.Content);
@@ -38,10 +42,32 @@ public class FeedTests
     }
 
     [Fact]
-    public void UpdateFeed_WithValidData_ShouldUpdateProperties()
+    public void CreateFeed_WithEmptyAssociationId_ShouldThrowDomainException()
+    {
+        // Arrange
+        var associationId = new AssociationID(Guid.Empty);
+        var authorId = new UserID(Guid.NewGuid());
+        var title = new Title("Test title");
+        var content = new Description("Test content");
+
+        // Act
+        var action = () => Feed.CreateFeed(
+            associationId,
+            authorId,
+            title,
+            content);
+
+        // Assert
+        Assert.Throws<DomainException>(action);
+    }
+
+    [Fact]
+    public void UpdateFeed_WithValidData_ShouldUpdatePropertiesAndPreserveOwnership()
     {
         // Arrange
         var feed = CreateValidFeed();
+        var associationId = feed.AssociationId;
+        var authorId = feed.AuthorId;
 
         var newTitle = new Title("Updated title");
         var newContent = new Description("Updated content");
@@ -54,6 +80,8 @@ public class FeedTests
         // Assert
         Assert.Equal(newTitle, feed.Title);
         Assert.Equal(newContent, feed.Content);
+        Assert.Equal(associationId, feed.AssociationId);
+        Assert.Equal(authorId, feed.AuthorId);
     }
 
     [Fact]
@@ -61,7 +89,6 @@ public class FeedTests
     {
         // Arrange
         var feed = CreateValidFeed();
-
         var before = DateTime.UtcNow;
 
         // Act
@@ -83,7 +110,6 @@ public class FeedTests
     {
         // Arrange
         var feed = CreateValidFeed();
-
         feed.Delete();
 
         var newTitle = new Title("Updated title");
@@ -103,7 +129,6 @@ public class FeedTests
     {
         // Arrange
         var feed = CreateValidFeed();
-
         feed.Delete();
 
         // Act
