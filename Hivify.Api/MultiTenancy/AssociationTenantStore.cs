@@ -5,7 +5,7 @@ using Finbuckle.MultiTenant.Abstractions;
 
 namespace Hivify.Api.MultiTenancy;
 
-public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentifierQuery, TenantAssociationOutput?> queryHandler)
+public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentifierQuery, AssociationDto?> queryHandler)
     : IMultiTenantStore<TenantInfo>
 {
     public async Task<TenantInfo?> GetByIdentifierAsync(string identifier)
@@ -29,7 +29,7 @@ public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentif
         {
             Id = association.AssociationId.ToString(),
             Identifier = association.Identifier.ToString(),
-            Name = association.AssociationName
+            Name = association.Name,
         };
     }
 

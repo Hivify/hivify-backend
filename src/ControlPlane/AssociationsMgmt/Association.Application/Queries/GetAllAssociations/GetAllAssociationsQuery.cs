@@ -3,5 +3,5 @@ using BuildingBlocks.ApplicationPorts.Messaging;
 
 namespace Association.Application.Queries.GetAllAssociations
 {
-    public sealed record GetAllAssociationsQuery : IQuery<IReadOnlyList<TenantAssociationOutput>>;
+    public sealed record GetAllAssociationsQuery : IQuery<IReadOnlyList<AssociationDto>>;
 }

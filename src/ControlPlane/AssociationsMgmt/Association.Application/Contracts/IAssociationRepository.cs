@@ -10,7 +10,7 @@ namespace Association.Application.Contracts
         Task AddAsync(AssociationEntity association, CancellationToken ct = default);
         Task<AssociationEntity?> GetByIdAsync(AssociationID associationId, CancellationToken ct = default);
 
-        Task<AssociationDetailsData?> GetDetailsByIdAsync(AssociationID associationId, CancellationToken ct = default);
+        Task<AssociationDto?> GetDetailsByIdAsync(AssociationID associationId, CancellationToken ct = default);
 
         Task<IReadOnlyList<AssociationEntity>> GetAllAsync(CancellationToken ct = default);
 

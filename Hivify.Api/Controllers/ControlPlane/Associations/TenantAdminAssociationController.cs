@@ -13,7 +13,7 @@ public sealed class TenantAdminAssociationController(
     IQuerySender querySender) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<AssociationDetailsOutput>> GetCurrentAssociation(
+    public async Task<ActionResult<AssociationDto>> GetCurrentAssociation(
         CancellationToken ct)
     {
         var association = await querySender.Send(

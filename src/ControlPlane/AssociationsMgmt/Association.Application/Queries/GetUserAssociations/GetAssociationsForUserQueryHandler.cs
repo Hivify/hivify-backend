@@ -8,9 +8,9 @@ namespace Association.Application.Queries.GetUserAssociations;
 public sealed class GetAssociationsForUserQueryHandler(
     IAssociationRepository associationRepository)
     : IQueryHandler<GetAssociationsForUserQuery,
-        IReadOnlyList<UserAssociationOutput>>
+        IReadOnlyList<AssciationMemberDto>>
 {
-    public async Task<IReadOnlyList<UserAssociationOutput>> Handle(
+    public async Task<IReadOnlyList<AssciationMemberDto>> Handle(
         GetAssociationsForUserQuery query,
         CancellationToken ct)
     {
@@ -29,7 +29,7 @@ public sealed class GetAssociationsForUserQueryHandler(
                 var membership = a.Members
                     .First(m => m.UserID == userId);
 
-                return new UserAssociationOutput(
+                return new AssciationMemberDto(
                     a.Id.Value,
                     a.Name.Value,
                     a.Status.ToString(),
