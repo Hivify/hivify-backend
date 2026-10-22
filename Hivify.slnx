@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="Taskfile.yml" />
+    <File Path="TextFile1.txt" />
   </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/AppPlane/" />
