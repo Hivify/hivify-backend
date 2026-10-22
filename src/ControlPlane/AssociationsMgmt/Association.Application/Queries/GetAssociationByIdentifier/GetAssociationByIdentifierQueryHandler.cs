@@ -3,7 +3,7 @@ using Association.Application.Contracts;
 using Association.Application.DTOs;
 using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
 namespace Association.Application.Queries.GetAssociationByIdentifier;
 

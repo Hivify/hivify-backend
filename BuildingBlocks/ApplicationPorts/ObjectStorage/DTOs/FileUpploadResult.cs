@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.Storage.DTOs
+﻿namespace BuildingBlocks.ApplicationPorts.ObjectStorage.DTOs
 {
     public sealed record FileUploadResult(
       string PublicId,

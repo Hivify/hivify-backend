@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
 namespace Association.Application.Commands.CreateAssociation;
 

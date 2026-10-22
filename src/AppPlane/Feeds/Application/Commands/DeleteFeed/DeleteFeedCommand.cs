@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
 namespace Feeds.Application.Commands.DeleteFeed;
 

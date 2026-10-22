@@ -8,7 +8,7 @@ using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 

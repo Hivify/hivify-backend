@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Houses.Application.Contracts;
 using Houses.Application.DTOs;
 

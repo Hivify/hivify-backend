@@ -1,6 +1,6 @@
 ﻿using Association.Application.DTOs;
 using Association.Application.Queries.GetAssociationDetailsById;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

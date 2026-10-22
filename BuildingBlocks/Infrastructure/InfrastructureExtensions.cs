@@ -1,5 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
-using BuildingBlocks.ApplicationPorts.Storage;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.ObjectStorage;
 using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
 using Microsoft.Extensions.Configuration;

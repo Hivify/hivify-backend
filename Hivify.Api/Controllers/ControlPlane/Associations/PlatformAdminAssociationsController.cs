@@ -1,7 +1,7 @@
 ﻿using Association.Application.Commands.CreateAssociation;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetUserAssociations;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;

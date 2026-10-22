@@ -1,6 +1,6 @@
-using BuildingBlocks.ApplicationPorts.Messaging;
-using BuildingBlocks.ApplicationPorts.Storage;
-using BuildingBlocks.ApplicationPorts.Storage.DTOs;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.ObjectStorage;
+using BuildingBlocks.ApplicationPorts.ObjectStorage.DTOs;
 
 namespace DocumentsMgmt.Application.Queries
 {

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Feeds.Application.Commands.CreateFeed;
 using Feeds.Application.Commands.UpdateFeed;
 using Feeds.Application.Queries.GetFeeds;

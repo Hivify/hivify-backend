@@ -1,6 +1,6 @@
 ﻿using Association.Application.DTOs;
 using Association.Application.Queries.GetAssociationByIdentifier;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Finbuckle.MultiTenant.Abstractions;
 
 namespace Hivify.Api.MultiTenancy;

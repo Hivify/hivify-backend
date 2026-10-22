@@ -1,7 +1,7 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.CreateAssociation;

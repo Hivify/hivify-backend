@@ -1,8 +1,8 @@
 ﻿
 using Association.Application.Contracts;
 using Association.Application.DTOs;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
-using BuildingBlocks.ApplicationPorts.Messaging;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Queries.GetAssociationDetailsById;
