@@ -1,5 +1,6 @@
 ﻿using Feeds.Domain.Feeds;
 using Feeds.Domain.ValueObjects;
+using SharedKernel.ValueObjects;
 
 namespace Feeds.Application.Contracts;
 
@@ -17,9 +18,9 @@ public interface IFeedRepo
         CancellationToken cancellationToken = default);
 
     Task<Feed?> GetByIdAsync(
-        FeedID id,
-        CancellationToken cancellationToken = default);
-
+    FeedID id,
+    AssociationID associationId,
+    CancellationToken cancellationToken = default);
     Task UpdateFeedAsync(
         Feed feed,
         CancellationToken cancellationToken = default);
