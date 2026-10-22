@@ -5,6 +5,7 @@ using Feeds.Application.Queries.GetFeeds;
 using Feeds.Application.Queries.GetSingleFeed;
 using Hivify.Api.Controllers.AppPlane.Feeds.Requests;
 using Hivify.Api.Controllers.AppPlane.Feeds.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hivify.Api.Controllers.AppPlane.Feeds;
@@ -65,6 +66,7 @@ public sealed class FeedsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = "TenantAdmin")]
     public async Task<ActionResult<GetFeedRes>> Create(
         CreateFeedRequest request,
         CancellationToken cancellationToken)
