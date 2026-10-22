@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.ApplicationPorts.Messaging;
 using Feeds.Application.Commands.CreateFeed;
+using Feeds.Application.Commands.DeleteFeed;
 using Feeds.Application.Commands.UpdateFeed;
 using Feeds.Application.Queries.GetFeeds;
 using Feeds.Application.Queries.GetSingleFeed;
@@ -99,10 +100,11 @@ public sealed class FeedsController : ControllerBase
     }
 
     [HttpPut("{feedId:guid}")]
+    [Authorize(Policy = "TenantAdmin")]
     public async Task<IActionResult> Update(
-       Guid feedId,
-       UpdateFeedRequest request,
-       CancellationToken cancellationToken)
+    Guid feedId,
+    UpdateFeedRequest request,
+    CancellationToken cancellationToken)
     {
         await _sender.Send(
             new UpdateFeedCommand(
