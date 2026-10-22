@@ -24,25 +24,35 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
     }
 
     private Feed(
-        FeedID id,
-        UserID authorId,
-        Title title,
-        Description content) : base(id)
+    FeedID id,
+    AssociationID associationId,
+    UserID authorId,
+    Title title,
+    Description content) : base(id)
     {
-        CreatedDate = DateTime.UtcNow;
+        if (associationId.Value == Guid.Empty)
+        {
+            throw new DomainException(
+                "A feed must belong to an association.");
+        }
+
+        AssociationId = associationId;
         AuthorId = authorId;
+        CreatedDate = DateTime.UtcNow;
 
         SetTitle(title);
         SetContent(content);
     }
 
     public static Feed CreateFeed(
-        UserID authorId,
-        Title title,
-        Description content)
+    AssociationID associationId,
+    UserID authorId,
+    Title title,
+    Description content)
     {
         return new Feed(
             new FeedID(Guid.NewGuid()),
+            associationId,
             authorId,
             title,
             content);
