@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
-using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Feeds.Application.Contracts;
 using Feeds.Application.DTOs;
 using Feeds.Domain.ValueObjects;

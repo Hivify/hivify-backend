@@ -1,6 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.CurrentUserPort;
-using BuildingBlocks.ApplicationPorts.Messaging;
 using Feeds.Application.Contracts;
 using Feeds.Domain.ValueObjects;
 using SharedKernel.ValueObjects;

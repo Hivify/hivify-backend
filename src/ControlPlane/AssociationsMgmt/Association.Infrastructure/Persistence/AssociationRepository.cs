@@ -20,29 +20,31 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
     }
 
 
-    public async Task<AssociationDetailsData?> GetDetailsByIdAsync(AssociationID associationId, CancellationToken ct = default)
+    public async Task<AssociationDto?> GetDetailsByIdAsync(
+        AssociationID associationId,
+        CancellationToken ct = default)
     {
         return await dbContext.Associations
             .AsNoTracking()
             .Where(a => a.Id == associationId)
-            .Select(a => new AssociationDetailsData(
+            .Select(a => new AssociationDto(
                 a.Id.Value,
                 a.Name.Value,
-                a.Identifier.Value,
-                a.Status,
-                a.CreatedDate,
-                a.Members
-                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
-                    .Select(m => m.UserID.Value)
-                    .FirstOrDefault(),
                 a.Members
                     .Where(m => m.Role == AssociationRoles.TenantAdmin)
                     .Select(m => m.MemeberEmail.Value)
                     .FirstOrDefault()!,
-                a.Members.Count()))
+                a.Identifier.Value,
+                a.Status.ToString(),
+                a.Members
+                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
+                    .Select(m => m.UserID.Value)
+                    .FirstOrDefault(),
+                a.Members.Count(),
+                a.CreatedDate
+            ))
             .FirstOrDefaultAsync(ct);
     }
-
 
 
     public async Task<IReadOnlyList<AssociationEntity>> GetAllAsync(

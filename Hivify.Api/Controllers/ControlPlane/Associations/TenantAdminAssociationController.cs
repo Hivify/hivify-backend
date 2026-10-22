@@ -1,6 +1,6 @@
 ﻿using Association.Application.DTOs;
 using Association.Application.Queries.GetAssociationDetailsById;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +13,7 @@ public sealed class TenantAdminAssociationController(
     IQuerySender querySender) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<AssociationDetailsOutput>> GetCurrentAssociation(
+    public async Task<ActionResult<AssociationDto>> GetCurrentAssociation(
         CancellationToken ct)
     {
         var association = await querySender.Send(

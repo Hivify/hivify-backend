@@ -1,5 +1,5 @@
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.CurrentUserPort;
-using BuildingBlocks.ApplicationPorts.Messaging;
 using Complaints.Application.Contracts;
 using Complaints.Domain;
 using SharedKernel.ValueObjects;

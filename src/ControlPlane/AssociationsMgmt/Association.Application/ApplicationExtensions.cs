@@ -1,4 +1,5 @@
-﻿using Association.Application.Commands.CreateAssociation;
+﻿
+using Association.Application.Commands.CreateAssociation;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetAssociationByIdentifier;
@@ -7,7 +8,7 @@ using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 
@@ -24,15 +25,15 @@ public static class ApplicationExtensions
                 CreateAssociationCommandHandler>();
 
             services.AddScoped<
-                IQueryHandler<GetAssociationsForUserQuery, IReadOnlyList<UserAssociationOutput>>,
+                IQueryHandler<GetAssociationsForUserQuery, IReadOnlyList<AssciationMemberDto>>,
                 GetAssociationsForUserQueryHandler>();
 
             services.AddScoped<
-                IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<TenantAssociationOutput>>,
+                IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<AssociationDto>>,
                 GetAllAssociationsQueryHandler>();
 
             services.AddScoped<
-                IQueryHandler<GetAssociationByIdentifierQuery, TenantAssociationOutput?>,
+                IQueryHandler<GetAssociationByIdentifierQuery, AssociationDto?>,
                 GetAssociationByIdentifierQueryHandler>();
 
             services.AddScoped<
@@ -44,10 +45,8 @@ public static class ApplicationExtensions
             services.AddScoped<IAssociationOnboardingPort, AssociationOnboardingAdapter>();
 
             services.AddScoped<
-                IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDetailsOutput?>,
+                IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>,
                 GetCurrentAssociationDetailsQueryHandler>();
-
-
 
             return services;
         }

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Storage.DTOs;
 using DocumentsMgmt.Application.Commands;
 using DocumentsMgmt.Application.Queries;
