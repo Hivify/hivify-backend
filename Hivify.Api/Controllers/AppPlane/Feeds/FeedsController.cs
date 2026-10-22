@@ -115,5 +115,18 @@ public sealed class FeedsController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpDelete("{feedId:guid}")]
+    [Authorize(Policy = "TenantAdmin")]
+    public async Task<IActionResult> Delete(
+    Guid feedId,
+    CancellationToken cancellationToken)
+    {
+        await _sender.Send(
+            new DeleteFeedCommand(feedId),
+            cancellationToken);
+
+        return NoContent();
+    }
 }
 
