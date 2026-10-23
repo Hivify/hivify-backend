@@ -1,10 +1,12 @@
 ﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Feeds.Application.Commands.CreateFeed;
+using Feeds.Application.Commands.DeleteFeed;
 using Feeds.Application.Commands.UpdateFeed;
 using Feeds.Application.Queries.GetFeeds;
 using Feeds.Application.Queries.GetSingleFeed;
 using Hivify.Api.Controllers.AppPlane.Feeds.Requests;
 using Hivify.Api.Controllers.AppPlane.Feeds.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hivify.Api.Controllers.AppPlane.Feeds;
@@ -65,6 +67,7 @@ public sealed class FeedsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = "TenantAdmin")]
     public async Task<ActionResult<GetFeedRes>> Create(
         CreateFeedRequest request,
         CancellationToken cancellationToken)
@@ -97,16 +100,30 @@ public sealed class FeedsController : ControllerBase
     }
 
     [HttpPut("{feedId:guid}")]
+    [Authorize(Policy = "TenantAdmin")]
     public async Task<IActionResult> Update(
-       Guid feedId,
-       UpdateFeedRequest request,
-       CancellationToken cancellationToken)
+    Guid feedId,
+    UpdateFeedRequest request,
+    CancellationToken cancellationToken)
     {
         await _sender.Send(
             new UpdateFeedCommand(
                 feedId,
                 request.Title,
                 request.Description),
+            cancellationToken);
+
+        return NoContent();
+    }
+
+    [HttpDelete("{feedId:guid}")]
+    [Authorize(Policy = "TenantAdmin")]
+    public async Task<IActionResult> Delete(
+    Guid feedId,
+    CancellationToken cancellationToken)
+    {
+        await _sender.Send(
+            new DeleteFeedCommand(feedId),
             cancellationToken);
 
         return NoContent();
