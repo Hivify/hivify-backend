@@ -14,7 +14,7 @@ namespace BuildingBlocks.Infrastructure
             public IServiceCollection AddBuildingBlocks(IConfiguration configuration)
             {
                 // Messaging 
-                services.AddScoped<ISender, Sender>();
+                services.AddScoped<ISender, CommandSender>();
                 services.AddScoped<IQuerySender, QuerySender>();
 
                 // Storage

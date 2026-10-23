@@ -2,7 +2,7 @@ using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
 namespace BuildingBlocks.Infrastructure.CQRSMessaging;
 
-public sealed class Sender(IServiceProvider serviceProvider) : ISender
+public sealed class CommandSender(IServiceProvider serviceProvider) : ISender
 {
     public async Task<TResponse> Send<TResponse>(
         ICommand<TResponse> command,
