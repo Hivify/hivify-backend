@@ -72,12 +72,23 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                 {
                     member.ToTable("Memberships");
 
-                    // Composite primary key
-                    member.HasKey(m => new
+                    // Primary key: identifies one membership record.
+                    member.HasKey(m => m.Id);
+
+                    // Business rule: one membership per user per association.
+                    member.HasIndex(m => new
                     {
                         m.AssociationID,
                         m.UserID
-                    });
+                    })
+                    .IsUnique();
+
+                    // Membership ID
+                    member.Property(m => m.Id)
+                        .HasConversion(
+                            id => id.Value,
+                            value => new MembershipID(value))
+                        .IsRequired();
 
                     // Association ID
                     member.Property(m => m.AssociationID)
@@ -102,17 +113,16 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     member.Property(m => m.JoinedAt)
                         .IsRequired();
 
-                    // Email value object
+                    // Member email
                     member.OwnsOne(
                         m => m.MemeberEmail,
                         email =>
                         {
                             email.Property(e => e.Value)
-                                .HasColumnName("MemeberEmail")
+                                .HasColumnName("MemberEmail")
                                 .HasMaxLength(320)
                                 .IsRequired();
                         });
-
                 });
         });
     }
