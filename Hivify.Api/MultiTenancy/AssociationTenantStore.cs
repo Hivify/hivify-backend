@@ -5,8 +5,7 @@ using Finbuckle.MultiTenant.Abstractions;
 
 namespace Hivify.Api.MultiTenancy;
 
-public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentifierQuery, AssociationDto?> queryHandler)
-    : IMultiTenantStore<TenantInfo>
+public sealed class AssociationTenantStore(IQueryHandler<GetAssociationByIdentifierQuery, AssociationDto?> queryHandler) : IMultiTenantStore<TenantInfo>
 {
     public async Task<TenantInfo?> GetByIdentifierAsync(string identifier)
     {
