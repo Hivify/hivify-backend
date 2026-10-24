@@ -10,7 +10,7 @@ public sealed class HivifyClaimsPrincipalFactory(
     UserManager<DotNETApplicationUser> userManager,
     RoleManager<IdentityRole<Guid>> roleManager,
     IOptions<IdentityOptions> options,
-    IAssociationClaimsProvider tenantClaimsProvider)
+    IAssociationClaimsProvider associationClaimsProvider)
     : UserClaimsPrincipalFactory<
         DotNETApplicationUser,
         IdentityRole<Guid>>(
@@ -24,9 +24,9 @@ public sealed class HivifyClaimsPrincipalFactory(
         var identity = await base.GenerateClaimsAsync(user);
 
         // Add claims for this user's saved tenant memberships.
-        var tenantClaims = await tenantClaimsProvider.GetUserAssociationClaimsAsync(user.Id);
+        var associationClaims = await associationClaimsProvider.GetUserAssociationClaimsAsync(user.Id);
 
-        foreach (var claim in tenantClaims)
+        foreach (var claim in associationClaims)
         {
             identity.AddClaim(claim);
         }
