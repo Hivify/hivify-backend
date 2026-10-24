@@ -16,8 +16,7 @@ public sealed class OnboardingService(
     )
     : IOnboardingService
 {
-    public async Task<StartOnboardingResult> StartOnboardingAsync(string associationName,
-        CancellationToken ct = default)
+    public async Task<StartOnboardingResult> StartOnboardingAsync(string associationName, CancellationToken ct = default)
     {
         if (!currentUser.IsAuthenticated)
         {

@@ -9,9 +9,7 @@ public sealed class AuthController(IUserIdentityService identitySerivce) : Contr
     private readonly IUserIdentityService _identitySerivce = identitySerivce;
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(
-        RegisterUserReq request,
-        CancellationToken ct)
+    public async Task<IActionResult> Register(RegisterUserReq request, CancellationToken ct)
     {
         var userId = await _identitySerivce.RegisterAsync(
             request.Email,

@@ -3,15 +3,10 @@ using System.Security.Claims;
 
 namespace Hivify.Api.CurrentUserProvider;
 
-public sealed class CurrentUser : ICurrentUser
+public sealed class CurrentUser(
+    IHttpContextAccessor httpContextAccessor) : ICurrentUser
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public CurrentUser(
-        IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
+    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
     public Guid UserId
     {
