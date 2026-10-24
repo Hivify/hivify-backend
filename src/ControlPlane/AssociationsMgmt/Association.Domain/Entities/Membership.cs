@@ -1,10 +1,11 @@
 ﻿using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
+using SharedKernel;
 using SharedKernel.ValueObjects;
 
 namespace Association.Domain.Entities;
 
-public class Membership
+public class Membership : BaseEntity<MembershipID>
 {
     public AssociationID AssociationID { get; private set; }
     public UserID UserID { get; private set; }
@@ -17,10 +18,11 @@ public class Membership
     }
 
     private Membership(
+        MembershipID membershipID,
         AssociationID associationId,
         UserID userId,
         ContactEmail memberEmail,
-        AssociationRoles role)
+        AssociationRoles role) : base(membershipID)
     {
         AssociationID = associationId;
         UserID = userId;
@@ -35,6 +37,7 @@ public class Membership
         ContactEmail memberEmail)
     {
         return new Membership(
+            new MembershipID(Guid.NewGuid()),
             associationId,
             userId,
             memberEmail,

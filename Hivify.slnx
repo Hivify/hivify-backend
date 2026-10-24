@@ -11,7 +11,7 @@
     <Project Path="src/AppPlane/Complaints/Infrastructure/Complaints.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Complaints/__Tests__/">
-    <Project Path="Domain.Tests/Domain.Tests.csproj" Id="6132ad58-4b01-45a0-a266-8cb083a99c22" />
+    <Project Path="src/AppPlane/Complaints/Tests/Domain.Tests/Domain.Tests.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Departments/">
     <Project Path="src/AppPlane/Departments/Application/Department.Application.csproj" />
@@ -19,7 +19,7 @@
     <Project Path="src/AppPlane/Departments/Infrastructure/Department.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Departments/__Tests__/">
-    <Project Path="Domain.Test/Domain.Tests.csproj" Id="8d2f67a1-cacb-45f6-b689-b214f222e347" />
+    <Project Path="src/AppPlane/Departments/Tests/Domain.Test/Domain.Tests.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/DocumentsMgmt/">
     <Project Path="src/AppPlane/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />

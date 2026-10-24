@@ -17,9 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
-    <ProjectReference Include="..\src\AppPlane\Complaints\Domain\Complaints.Domain.csproj" />
-    <ProjectReference Include="..\src\AppPlane\Departments\Domain\Department.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\Domain\Complaints.Domain.csproj" />
   </ItemGroup>
 
 </Project>
