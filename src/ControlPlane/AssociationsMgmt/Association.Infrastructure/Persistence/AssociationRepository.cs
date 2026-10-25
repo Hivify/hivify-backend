@@ -100,6 +100,24 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
             .AnyAsync(a => a.Name.Value == name.Value, ct);
     }
 
+
+
+    public async Task<bool> IsMemberByEmailAsync(
+        AssociationID associationId,
+        ContactEmail email,
+        CancellationToken ct = default)
+    {
+        return await dbContext.Associations
+            .AnyAsync(
+                association =>
+                    association.Id == associationId &&
+                    association.Members.Any(
+                        member => member.MemberEmail.Value == email.Value),
+                ct);
+    }
+
+
+
     public async Task SaveChangesAsync(CancellationToken ct = default)
     {
         await dbContext.SaveChangesAsync(ct);

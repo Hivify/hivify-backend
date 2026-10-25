@@ -45,6 +45,44 @@ namespace Association.Infrastructure.Migrations
                     b.ToTable("Associations");
                 });
 
+            modelBuilder.Entity("Association.Domain.Entities.AssociationInvitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("AcceptedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("AssociationID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("InvitedByUserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TokenHash")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssociationID");
+
+                    b.HasIndex("TokenHash")
+                        .IsUnique();
+
+                    b.ToTable("AssociationInvitations", (string)null);
+                });
+
             modelBuilder.Entity("Association.Domain.Entities.AssociationEntity", b =>
                 {
                     b.OwnsOne("Association.Domain.ValueObjects.ContactEmail", "ContactEmail", b1 =>
@@ -144,6 +182,31 @@ namespace Association.Infrastructure.Migrations
                     b.Navigation("Members");
 
                     b.Navigation("Name")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Association.Domain.Entities.AssociationInvitation", b =>
+                {
+                    b.OwnsOne("Association.Domain.ValueObjects.ContactEmail", "Email", b1 =>
+                        {
+                            b1.Property<Guid>("AssociationInvitationId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(320)
+                                .HasColumnType("nvarchar(320)")
+                                .HasColumnName("Email");
+
+                            b1.HasKey("AssociationInvitationId");
+
+                            b1.ToTable("AssociationInvitations");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AssociationInvitationId");
+                        });
+
+                    b.Navigation("Email")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
