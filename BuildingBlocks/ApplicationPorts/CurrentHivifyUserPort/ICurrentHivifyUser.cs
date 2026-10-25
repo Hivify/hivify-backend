@@ -1,6 +1,6 @@
-﻿namespace BuildingBlocks.ApplicationPorts.CurrentUserPort
+﻿namespace BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort
 {
-    public interface ICurrentUser
+    public interface ICurrentHivifyUser
     {
         Guid UserId { get; }
         bool IsAuthenticated { get; }

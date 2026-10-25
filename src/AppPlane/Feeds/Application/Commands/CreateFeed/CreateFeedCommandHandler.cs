@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using Feeds.Application.Contracts;
 using Feeds.Domain.Feeds;
 using SharedKernel.ValueObjects;
@@ -11,13 +11,13 @@ public sealed class CreateFeedCommandHandler
     : ICommandHandler<CreateFeedCommand, Guid>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentUser _currentUser;
-    private readonly ICurrentTenant _currentTenant;
+    private readonly ICurrentHivifyUser _currentUser;
+    private readonly ICurrentAssociationTenant _currentTenant;
 
     public CreateFeedCommandHandler(
         IFeedRepo feedRepository,
-        ICurrentUser currentUser,
-        ICurrentTenant currentTenant)
+        ICurrentHivifyUser currentUser,
+        ICurrentAssociationTenant currentTenant)
     {
         _feedRepository = feedRepository;
         _currentUser = currentUser;

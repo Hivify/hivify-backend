@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using Feeds.Application.Contracts;
 using Feeds.Domain.ValueObjects;
 using SharedKernel.ValueObjects;
@@ -11,13 +11,13 @@ public sealed class UpdateFeedCommandHandler
     : ICommandHandler<UpdateFeedCommand, bool>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentTenant _currentTenant;
-    private readonly ICurrentUser _currentUser;
+    private readonly ICurrentAssociationTenant _currentTenant;
+    private readonly ICurrentHivifyUser _currentUser;
 
     public UpdateFeedCommandHandler(
         IFeedRepo feedRepository,
-        ICurrentTenant currentTenant,
-        ICurrentUser currentUser)
+        ICurrentAssociationTenant currentTenant,
+        ICurrentHivifyUser currentUser)
     {
         _feedRepository = feedRepository;
         _currentTenant = currentTenant;

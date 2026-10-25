@@ -1,5 +1,5 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using Complaints.Application.Contracts;
 using Complaints.Domain;
 using SharedKernel.ValueObjects;
@@ -9,11 +9,11 @@ namespace Complaints.Application.Commands.CreateComplaint;
 public sealed class CreateComplaintCommandHandler : ICommandHandler<CreateComplaintCommand, Guid>
 {
     private readonly IComplaintRepo _complaintRepository;
-    private readonly ICurrentUser _currentUser;
+    private readonly ICurrentHivifyUser _currentUser;
 
     public CreateComplaintCommandHandler(
         IComplaintRepo complaintRepository,
-        ICurrentUser currentUser
+        ICurrentHivifyUser currentUser
     )
     {
         _complaintRepository = complaintRepository;

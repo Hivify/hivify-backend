@@ -1,11 +1,10 @@
 ﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization
 {
     public sealed class TenantRoleAuthorizationHandler(
-        ICurrentTenant currentTenant) : AuthorizationHandler<TenantRoleRequirement>
+        ICurrentAssociationTenant currentTenant) : AuthorizationHandler<TenantRoleRequirement>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,

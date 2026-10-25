@@ -1,5 +1,5 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using Complaints.Application.Contracts;
 using Complaints.Application.DTOs;
 using SharedKernel.ValueObjects;
@@ -10,9 +10,9 @@ public sealed class GetUserComplaintsQueryHandler
     : IQueryHandler<GetUserComplaintsQuery, IReadOnlyList<ComplaintListItem>>
 {
     private readonly IComplaintRepo _complaintRepository;
-    private readonly ICurrentUser _currentUser;
+    private readonly ICurrentHivifyUser _currentUser;
 
-    public GetUserComplaintsQueryHandler(IComplaintRepo complaintRepository, ICurrentUser currentUser)
+    public GetUserComplaintsQueryHandler(IComplaintRepo complaintRepository, ICurrentHivifyUser currentUser)
     {
         _complaintRepository = complaintRepository;
         _currentUser = currentUser;

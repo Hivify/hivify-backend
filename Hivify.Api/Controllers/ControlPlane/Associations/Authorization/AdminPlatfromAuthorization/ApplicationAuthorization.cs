@@ -1,7 +1,7 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+﻿using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 
-public sealed class ApplicationAuthorization(ICurrentUser currentUser) : IApplicationAuthorization
+public sealed class ApplicationAuthorization(ICurrentHivifyUser currentUser) : IApplicationAuthorization
 {
     public Task EnsureAuthenticatedAsync(CancellationToken ct = default)
     {

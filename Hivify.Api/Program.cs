@@ -1,8 +1,8 @@
 using Association.Application;
 using Association.Infrastructure;
-using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using BuildingBlocks.Infrastructure;
+using BuildingBlocks.Infrastructure.CurrentHivifyUser;
 using Complaints.Application;
 using Complaints.Infrastructure;
 using Department.Application;
@@ -10,12 +10,9 @@ using Department.Infrastructure;
 using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
-using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
-using Finbuckle.MultiTenant.Extensions;
 using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization;
-using Hivify.Api.CurrentUserProvider;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
@@ -39,11 +36,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
-// add MultiTenant services
-builder.Services
-    .AddMultiTenant<TenantInfo>()
-    .WithHostStrategy("__tenant__.localhost")
-    .WithStore<AssociationTenantStore>(ServiceLifetime.Scoped);
+
 
 
 
@@ -107,12 +100,11 @@ builder.Services
 
 // current User
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 builder.Services.AddScoped<IApplicationAuthorization, ApplicationAuthorization>();
-
+builder.Services.AddScoped<ICurrentHivifyUser, CurrentHivifyUser>();
 
 // current Tenant
-builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
+builder.Services.AddHivifyMultiTenancy();
 builder.Services.AddScoped<IAuthorizationHandler, TenantRoleAuthorizationHandler>();
 
 #endregion
