@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace Association.Application.Services;
 
-public sealed class AssociationClaimsProvider(IQuerySender querySender) : IAssociationClaimsProvider
+public sealed class AssociationClaimsProvider(IQuerySender querySender) : IAssociationUserClaims
 {
     private readonly IQuerySender _querySender = querySender;
 

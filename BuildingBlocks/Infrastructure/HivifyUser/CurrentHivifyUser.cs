@@ -1,10 +1,11 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+﻿using BuildingBlocks.ApplicationPorts.HivifyUserPort;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Hivify.Api.CurrentUserProvider;
+namespace BuildingBlocks.Infrastructure.HivifyUser;
 
-public sealed class CurrentUser(
-    IHttpContextAccessor httpContextAccessor) : ICurrentUser
+public sealed class CurrentHivifyUser(
+    IHttpContextAccessor httpContextAccessor) : ICurrentHivifyUser
 {
     private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 

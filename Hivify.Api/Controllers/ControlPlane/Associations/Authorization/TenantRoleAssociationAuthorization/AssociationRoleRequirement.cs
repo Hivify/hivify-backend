@@ -3,5 +3,5 @@
 namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization
 {
 
-    public sealed record TenantRoleRequirement(string Role) : IAuthorizationRequirement;
+    public sealed record AssociationRoleRequirement(string Role) : IAuthorizationRequirement;
 }

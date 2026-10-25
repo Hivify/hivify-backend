@@ -1,5 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
+﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Feeds.Application.Contracts;
 using Feeds.Application.DTOs;
 using Feeds.Domain.ValueObjects;
@@ -11,11 +11,11 @@ public sealed class GetSingleFeedQueryHandler
     : IQueryHandler<GetSingleFeedQuery, FeedListItem?>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentTenant _currentTenant;
+    private readonly ICurrentAssociationTenant _currentTenant;
 
     public GetSingleFeedQueryHandler(
         IFeedRepo feedRepository,
-        ICurrentTenant currentTenant)
+        ICurrentAssociationTenant currentTenant)
     {
         _feedRepository = feedRepository;
         _currentTenant = currentTenant;

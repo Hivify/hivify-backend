@@ -1,5 +1,5 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using Complaints.Application.Contracts;
 using Complaints.Domain;
 
@@ -9,12 +9,12 @@ public sealed class UpdateComplaintStatusCommandHandler
     : ICommandHandler<UpdateComplaintStatusCommand, bool>
 {
     private readonly IComplaintRepo _complaintRepository;
-    private readonly ICurrentUser _currentUser;
+    private readonly ICurrentHivifyUser _currentUser;
 
 
     public UpdateComplaintStatusCommandHandler(
         IComplaintRepo complaintRepository,
-        ICurrentUser currentUser
+        ICurrentHivifyUser currentUser
        )
     {
         _complaintRepository = complaintRepository;

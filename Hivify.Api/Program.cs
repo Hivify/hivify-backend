@@ -1,7 +1,5 @@
 using Association.Application;
 using Association.Infrastructure;
-using BuildingBlocks.ApplicationPorts.CurrentTenantPort;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
 using BuildingBlocks.Infrastructure;
 using Complaints.Application;
 using Complaints.Infrastructure;
@@ -10,12 +8,8 @@ using Department.Infrastructure;
 using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
-using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
-using Finbuckle.MultiTenant.Extensions;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization;
-using Hivify.Api.CurrentUserProvider;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
@@ -39,11 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
-// add MultiTenant services
-builder.Services
-    .AddMultiTenant<TenantInfo>()
-    .WithHostStrategy("__tenant__.localhost")
-    .WithStore<AssociationTenantStore>(ServiceLifetime.Scoped);
+
 
 
 
@@ -65,9 +55,6 @@ var connectionString =
 #region Authentication & Authorization
 
 
-
-
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -75,19 +62,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddIdentityCookies();
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("TenantAdmin", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.AddRequirements(
-            new TenantRoleRequirement("TenantAdmin"));
-    });
-});
 
-// User Management
-builder.Services.AddUserMgmtServices();
-builder.Services.AddUserMgmtInfrastructure(connectionString);
+
 
 
 // Configure the Identity application cookie
@@ -105,23 +81,33 @@ builder.Services
     });
 
 
-// current User
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ICurrentUser, CurrentUser>();
-builder.Services.AddScoped<IApplicationAuthorization, ApplicationAuthorization>();
 
 
-// current Tenant
-builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
-builder.Services.AddScoped<IAuthorizationHandler, TenantRoleAuthorizationHandler>();
 
+// Register the custom authorization handler for the AssociationRoleRequirement
+builder.Services.AddScoped<IAuthorizationHandler, AssociationRoleAuthorizationHandler>();
+
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("TenantAdmin", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.AddRequirements(
+            new AssociationRoleRequirement("TenantAdmin"));
+    });
 #endregion
 
 
-#region Building Blocks
+// Multi-Tenancy configuration 
+builder.Services.AddHivifyMultiTenancy();
+
+#region Building Blocks and Application Services
 builder.Services.AddBuildingBlocks(builder.Configuration);
 
 
+
+// User Management
+builder.Services.AddUserMgmtServices();
+builder.Services.AddUserMgmtInfrastructure(connectionString);
 
 
 // Documents

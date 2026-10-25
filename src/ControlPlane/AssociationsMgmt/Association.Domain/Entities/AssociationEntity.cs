@@ -83,6 +83,6 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
                 "User is already a member of this association.");
         }
 
-        _members.Add(Membership.Create(Id, userId, role, memberEmail));
+        _members.Add(Membership.Create(userId, role, memberEmail));
     }
 }

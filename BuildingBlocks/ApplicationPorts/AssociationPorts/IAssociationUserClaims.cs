@@ -2,7 +2,7 @@
 
 namespace BuildingBlocks.ApplicationPorts.AssociationPorts
 {
-    public interface IAssociationClaimsProvider
+    public interface IAssociationUserClaims
     {
         Task<IReadOnlyCollection<Claim>> GetUserAssociationClaimsAsync(Guid userId, CancellationToken ct = default);
     }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Association.Infrastructure.Migrations
 {
     [DbContext(typeof(AssociationDbContext))]
-    [Migration("20261019234127_InitialCreate")]
+    [Migration("20261025205441_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -69,58 +69,6 @@ namespace Association.Infrastructure.Migrations
                                 .HasForeignKey("AssociationEntityId");
                         });
 
-                    b.OwnsMany("Association.Domain.Entities.Membership", "Members", b1 =>
-                        {
-                            b1.Property<Guid>("AssociationID")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<Guid>("UserID")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<Guid>("AssociationEntityId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("JoinedAt")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<int>("Role")
-                                .HasColumnType("int");
-
-                            b1.HasKey("AssociationID", "UserID");
-
-                            b1.HasIndex("AssociationEntityId");
-
-                            b1.ToTable("Memberships", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("AssociationEntityId");
-
-                            b1.OwnsOne("Association.Domain.ValueObjects.ContactEmail", "MemeberEmail", b2 =>
-                                {
-                                    b2.Property<Guid>("MembershipAssociationID")
-                                        .HasColumnType("uniqueidentifier");
-
-                                    b2.Property<Guid>("MembershipUserID")
-                                        .HasColumnType("uniqueidentifier");
-
-                                    b2.Property<string>("Value")
-                                        .IsRequired()
-                                        .HasMaxLength(320)
-                                        .HasColumnType("nvarchar(320)")
-                                        .HasColumnName("MemeberEmail");
-
-                                    b2.HasKey("MembershipAssociationID", "MembershipUserID");
-
-                                    b2.ToTable("Memberships");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("MembershipAssociationID", "MembershipUserID");
-                                });
-
-                            b1.Navigation("MemeberEmail")
-                                .IsRequired();
-                        });
-
                     b.OwnsOne("Association.Domain.ValueObjects.AssociationName", "Name", b1 =>
                         {
                             b1.Property<Guid>("AssociationEntityId")
@@ -141,6 +89,56 @@ namespace Association.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("AssociationEntityId");
+                        });
+
+                    b.OwnsMany("Membership", "Members", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("AssociationID")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<DateTime>("JoinedAt")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<int>("Role")
+                                .HasColumnType("int");
+
+                            b1.Property<Guid>("UserID")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("AssociationID", "UserID")
+                                .IsUnique();
+
+                            b1.ToTable("Memberships", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("AssociationID");
+
+                            b1.OwnsOne("Association.Domain.ValueObjects.ContactEmail", "MemberEmail", b2 =>
+                                {
+                                    b2.Property<Guid>("MembershipId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<string>("Value")
+                                        .IsRequired()
+                                        .HasMaxLength(320)
+                                        .HasColumnType("nvarchar(320)")
+                                        .HasColumnName("MemberEmail");
+
+                                    b2.HasKey("MembershipId");
+
+                                    b2.ToTable("Memberships");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("MembershipId");
+                                });
+
+                            b1.Navigation("MemberEmail")
+                                .IsRequired();
                         });
 
                     b.Navigation("ContactEmail")
