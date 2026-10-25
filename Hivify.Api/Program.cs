@@ -55,9 +55,6 @@ var connectionString =
 #region Authentication & Authorization
 
 
-
-
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -65,19 +62,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddIdentityCookies();
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("TenantAdmin", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.AddRequirements(
-            new AssociationRoleRequirement("TenantAdmin"));
-    });
-});
 
-// User Management
-builder.Services.AddUserMgmtServices();
-builder.Services.AddUserMgmtInfrastructure(connectionString);
+
 
 
 // Configure the Identity application cookie
@@ -96,17 +82,32 @@ builder.Services
 
 
 
-// current Tenant
-builder.Services.AddHivifyMultiTenancy();
+
+
+// Register the custom authorization handler for the AssociationRoleRequirement
 builder.Services.AddScoped<IAuthorizationHandler, AssociationRoleAuthorizationHandler>();
 
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("TenantAdmin", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.AddRequirements(
+            new AssociationRoleRequirement("TenantAdmin"));
+    });
 #endregion
 
 
-#region Building Blocks
+// Multi-Tenancy configuration 
+builder.Services.AddHivifyMultiTenancy();
+
+#region Building Blocks and Application Services
 builder.Services.AddBuildingBlocks(builder.Configuration);
 
 
+
+// User Management
+builder.Services.AddUserMgmtServices();
+builder.Services.AddUserMgmtInfrastructure(connectionString);
 
 
 // Documents
