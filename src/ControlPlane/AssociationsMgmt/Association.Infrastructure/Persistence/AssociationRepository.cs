@@ -32,7 +32,7 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
                 a.Name.Value,
                 a.Members
                     .Where(m => m.Role == AssociationRoles.TenantAdmin)
-                    .Select(m => m.MemeberEmail.Value)
+                    .Select(m => m.MemberEmail.Value)
                     .FirstOrDefault()!,
                 a.Identifier.Value,
                 a.Status.ToString(),

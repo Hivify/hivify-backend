@@ -65,65 +65,42 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(a => a.DeletedAt)
                 .IsRequired(false);
 
-            // Memberships
-            entity.OwnsMany(
-                a => a.Members,
-                member =>
+            entity.OwnsMany(a => a.Members, member =>
+            {
+                member.ToTable("Memberships");
+
+                member.WithOwner()
+                    .HasForeignKey("AssociationID");
+
+                member.HasKey(m => m.Id);
+
+                member.Property(m => m.Id)
+                    .HasConversion(
+                        id => id.Value,
+                        value => new MembershipID(value));
+
+                member.Property(m => m.UserID)
+                    .HasConversion(
+                        id => id.Value,
+                        value => new UserID(value));
+
+                member.Property(m => m.Role)
+                    .HasConversion<int>();
+
+                member.Property(m => m.JoinedAt)
+                    .IsRequired();
+
+                member.OwnsOne(m => m.MemberEmail, email =>
                 {
-                    member.ToTable("Memberships");
-
-                    // Primary key: identifies one membership record.
-                    member.HasKey(m => m.Id);
-
-                    // Business rule: one membership per user per association.
-                    member.HasIndex(m => new
-                    {
-                        m.AssociationID,
-                        m.UserID
-                    })
-                    .IsUnique();
-
-                    // Membership ID
-                    member.Property(m => m.Id)
-                        .HasConversion(
-                            id => id.Value,
-                            value => new MembershipID(value))
+                    email.Property(e => e.Value)
+                        .HasColumnName("MemberEmail")
+                        .HasMaxLength(320)
                         .IsRequired();
-
-                    // Association ID
-                    member.Property(m => m.AssociationID)
-                        .HasConversion(
-                            id => id.Value,
-                            value => new AssociationID(value))
-                        .IsRequired();
-
-                    // User ID
-                    member.Property(m => m.UserID)
-                        .HasConversion(
-                            id => id.Value,
-                            value => new UserID(value))
-                        .IsRequired();
-
-                    // Role
-                    member.Property(m => m.Role)
-                        .HasConversion<int>()
-                        .IsRequired();
-
-                    // JoinedAt
-                    member.Property(m => m.JoinedAt)
-                        .IsRequired();
-
-                    // Member email
-                    member.OwnsOne(
-                        m => m.MemeberEmail,
-                        email =>
-                        {
-                            email.Property(e => e.Value)
-                                .HasColumnName("MemberEmail")
-                                .HasMaxLength(320)
-                                .IsRequired();
-                        });
                 });
+
+                member.HasIndex("AssociationID", nameof(Membership.UserID))
+                    .IsUnique();
+            });
         });
     }
 }

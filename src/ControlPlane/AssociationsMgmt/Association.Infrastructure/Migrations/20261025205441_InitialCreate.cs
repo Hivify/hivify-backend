@@ -32,19 +32,19 @@ namespace Association.Infrastructure.Migrations
                 name: "Memberships",
                 columns: table => new
                 {
-                    AssociationID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MemeberEmail = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
+                    MemberEmail = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
                     JoinedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
-                    AssociationEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AssociationID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Memberships", x => new { x.AssociationID, x.UserID });
+                    table.PrimaryKey("PK_Memberships", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Memberships_Associations_AssociationEntityId",
-                        column: x => x.AssociationEntityId,
+                        name: "FK_Memberships_Associations_AssociationID",
+                        column: x => x.AssociationID,
                         principalTable: "Associations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -57,9 +57,10 @@ namespace Association.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Memberships_AssociationEntityId",
+                name: "IX_Memberships_AssociationID_UserID",
                 table: "Memberships",
-                column: "AssociationEntityId");
+                columns: new[] { "AssociationID", "UserID" },
+                unique: true);
         }
 
         /// <inheritdoc />
