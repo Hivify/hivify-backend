@@ -10,7 +10,7 @@ public sealed class HivifyClaimsPrincipalFactory(
     UserManager<DotNETApplicationUser> userManager,
     RoleManager<IdentityRole<Guid>> roleManager,
     IOptions<IdentityOptions> options,
-    IAssociationClaimsProvider associationClaimsProvider)
+    IAssociationUserClaims associationClaimsProvider)
     : UserClaimsPrincipalFactory<
         DotNETApplicationUser,
         IdentityRole<Guid>>(

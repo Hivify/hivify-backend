@@ -13,7 +13,7 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantR
             var associationId = currentAssociationTenant.AssociationId;
 
             var hasRequiredRole = context.User
-                .FindAll(HivifyClaimTypes.TenantMembership)
+                .FindAll(AssociationClaimTypes.TenantMembership)
                 .Any(claim =>
                 {
                     var parts = claim.Value.Split('|');
