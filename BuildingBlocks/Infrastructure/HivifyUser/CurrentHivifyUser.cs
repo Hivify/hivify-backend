@@ -1,8 +1,8 @@
-﻿using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
+﻿using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace BuildingBlocks.Infrastructure.CurrentHivifyUser;
+namespace BuildingBlocks.Infrastructure.HivifyUser;
 
 public sealed class CurrentHivifyUser(
     IHttpContextAccessor httpContextAccessor) : ICurrentHivifyUser

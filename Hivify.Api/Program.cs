@@ -1,8 +1,6 @@
 using Association.Application;
 using Association.Infrastructure;
-using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
 using BuildingBlocks.Infrastructure;
-using BuildingBlocks.Infrastructure.CurrentHivifyUser;
 using Complaints.Application;
 using Complaints.Infrastructure;
 using Department.Application;
@@ -11,7 +9,6 @@ using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AdminPlatfromAuthorization;
 using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
@@ -74,7 +71,7 @@ builder.Services.AddAuthorization(options =>
     {
         policy.RequireAuthenticatedUser();
         policy.AddRequirements(
-            new TenantRoleRequirement("TenantAdmin"));
+            new AssociationRoleRequirement("TenantAdmin"));
     });
 });
 
@@ -98,14 +95,10 @@ builder.Services
     });
 
 
-// current User
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IApplicationAuthorization, ApplicationAuthorization>();
-builder.Services.AddScoped<ICurrentHivifyUser, CurrentHivifyUser>();
 
 // current Tenant
 builder.Services.AddHivifyMultiTenancy();
-builder.Services.AddScoped<IAuthorizationHandler, TenantRoleAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, AssociationRoleAuthorizationHandler>();
 
 #endregion
 

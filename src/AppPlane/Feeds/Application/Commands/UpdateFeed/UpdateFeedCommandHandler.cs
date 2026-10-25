@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using Feeds.Application.Contracts;
 using Feeds.Domain.ValueObjects;
 using SharedKernel.ValueObjects;

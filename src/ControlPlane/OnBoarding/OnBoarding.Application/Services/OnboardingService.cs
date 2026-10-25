@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.CurrentHivifyUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
