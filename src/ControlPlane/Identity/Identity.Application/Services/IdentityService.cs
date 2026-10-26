@@ -74,6 +74,64 @@ public sealed class IdentityService(
             []);
     }
 
+
+    public async Task<ConfirmEmailResult> ConfirmEmailAsync(
+        string userId,
+        string token,
+        CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+
+        if (!Guid.TryParse(userId, out var parsedUserId))
+        {
+            return new ConfirmEmailResult(
+                false,
+                ["Invalid user ID."]);
+        }
+
+        var user = await _userManager.FindByIdAsync(parsedUserId.ToString());
+
+        if (user is null)
+        {
+            return new ConfirmEmailResult(
+                false,
+                ["Invalid confirmation request."]);
+        }
+
+        if (user.EmailConfirmed)
+        {
+            return new ConfirmEmailResult(true, []);
+        }
+
+        string decodedToken;
+
+        try
+        {
+            decodedToken = Encoding.UTF8.GetString(
+                WebEncoders.Base64UrlDecode(token));
+        }
+        catch (FormatException)
+        {
+            return new ConfirmEmailResult(
+                false,
+                ["Invalid or expired confirmation token."]);
+        }
+
+        var result = await _userManager.ConfirmEmailAsync(
+            user,
+            decodedToken);
+
+        if (!result.Succeeded)
+        {
+            return new ConfirmEmailResult(
+                false,
+                result.Errors.Select(error => error.Description).ToArray());
+        }
+
+        return new ConfirmEmailResult(true, []);
+    }
+
+
     public async Task<LoginUserResult> LoginAsync(
         string email,
         string password,

@@ -11,6 +11,11 @@ public interface IUserIdentityService
         string fullName,
         CancellationToken cancellationToken);
 
+    Task<ConfirmEmailResult> ConfirmEmailAsync(
+    string userId,
+    string token,
+    CancellationToken cancellationToken);
+
     Task<LoginUserResult> LoginAsync(
         string email,
         string password,
