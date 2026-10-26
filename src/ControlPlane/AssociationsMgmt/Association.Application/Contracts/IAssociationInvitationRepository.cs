@@ -15,5 +15,7 @@ public interface IAssociationInvitationRepository
         AssociationInvitation invitation,
         CancellationToken ct = default);
 
+    Task<AssociationInvitation?> GetByTokenHashAsync(string tokenHash, CancellationToken ct = default);
+
     Task SaveChangesAsync(CancellationToken ct = default);
 }

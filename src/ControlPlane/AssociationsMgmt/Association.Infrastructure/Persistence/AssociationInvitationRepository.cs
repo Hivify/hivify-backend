@@ -31,8 +31,17 @@ public sealed class AssociationInvitationRepository(
         await context.Invitations.AddAsync(invitation, ct);
     }
 
-    public async Task SaveChangesAsync(
-        CancellationToken ct = default)
+    public async Task<AssociationInvitation?> GetByTokenHashAsync(
+    string tokenHash,
+    CancellationToken ct = default)
+    {
+        return await context.Invitations.FirstOrDefaultAsync(
+                invitation => invitation.TokenHash == tokenHash,
+                ct);
+    }
+
+
+    public async Task SaveChangesAsync(CancellationToken ct = default)
     {
         await context.SaveChangesAsync(ct);
     }
