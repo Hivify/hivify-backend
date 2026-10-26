@@ -1,4 +1,5 @@
 ﻿using Association.Application.Contracts;
+using Association.Infrastructure.Email;
 using Association.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,9 @@ namespace Association.Infrastructure
 
                 // Infrastructure
                 services.AddScoped<IAssociationRepository, AssociationRepository>();
+
+                services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
+                services.AddScoped<IAssociationInvitationEmailSender, DevelopmentAssociationInvitationEmailSender>();
 
                 return services;
             }
