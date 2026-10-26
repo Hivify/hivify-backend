@@ -1,5 +1,6 @@
 ﻿
 using Association.Application.Commands.CreateAssociation;
+using Association.Application.Commands.InviteMember;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetAssociationByIdentifier;
@@ -23,6 +24,10 @@ public static class ApplicationExtensions
             services.AddScoped<
                 ICommandHandler<CreateAssociationCommand, Guid>,
                 CreateAssociationCommandHandler>();
+
+            services.AddScoped<
+           ICommandHandler<InviteMemberCommand, Guid>,
+           InviteMemberCommandHandler>();
 
             services.AddScoped<
                 IQueryHandler<GetAssociationsForUserQuery, IReadOnlyList<AssciationMemberDto>>,

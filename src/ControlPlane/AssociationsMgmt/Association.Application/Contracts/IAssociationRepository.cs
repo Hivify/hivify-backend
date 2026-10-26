@@ -18,6 +18,8 @@ namespace Association.Application.Contracts
 
         Task<AssociationEntity?> GetByIdentifierAsync(AssociationIdentifier associationIdentifier, CancellationToken ct = default);
 
+        Task<bool> IsMemberByEmailAsync(AssociationID associationId, ContactEmail email, CancellationToken ct = default);
+
         Task<bool> ExistsForUserAsync(UserID userId, CancellationToken ct = default);
 
         Task<bool> ExistsWithNameAsync(AssociationName name, CancellationToken ct = default);

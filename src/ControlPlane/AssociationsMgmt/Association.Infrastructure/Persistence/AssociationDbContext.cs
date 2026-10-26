@@ -9,6 +9,8 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
 {
     public DbSet<AssociationEntity> Associations => Set<AssociationEntity>();
 
+    public DbSet<AssociationInvitation> Invitations => Set<AssociationInvitation>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -101,6 +103,69 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                 member.HasIndex("AssociationID", nameof(Membership.UserID))
                     .IsUnique();
             });
+
+
+
         });
+
+
+
+        // Configure the AssociationInvitation entity
+        modelBuilder.Entity<AssociationInvitation>(entity =>
+        {
+            entity.ToTable("AssociationInvitations");
+
+            entity.HasKey(i => i.Id);
+
+            entity.Property(i => i.Id)
+                .HasConversion(
+                    id => id.Value,
+                    value => new InvitationID(value))
+                .IsRequired();
+
+            entity.Property(i => i.AssociationID)
+                .HasConversion(
+                    id => id.Value,
+                    value => new AssociationID(value))
+                .IsRequired();
+
+            entity.Property(i => i.InvitedByUserID)
+                .HasConversion(
+                    id => id.Value,
+                    value => new UserID(value))
+                .IsRequired();
+
+            entity.OwnsOne(i => i.Email, email =>
+            {
+                email.Property(e => e.Value)
+                    .HasColumnName("Email")
+                    .HasMaxLength(320)
+                    .IsRequired();
+            });
+
+            entity.Property(i => i.TokenHash)
+                .HasMaxLength(256)
+                .IsRequired();
+
+            entity.Property(i => i.Status)
+                .HasConversion<int>()
+                .IsRequired();
+
+            entity.Property(i => i.CreatedAt)
+                .IsRequired();
+
+            entity.Property(i => i.ExpiresAt)
+                .IsRequired();
+
+            entity.Property(i => i.AcceptedAt)
+                .IsRequired(false);
+
+            entity.HasIndex(i => i.AssociationID);
+
+            entity.HasIndex(i => i.TokenHash)
+                .IsUnique();
+        });
+
     }
+
 }
