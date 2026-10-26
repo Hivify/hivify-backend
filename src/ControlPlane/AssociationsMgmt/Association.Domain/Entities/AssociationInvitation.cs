@@ -1,5 +1,4 @@
-﻿
-using Association.Domain.Enums;
+﻿using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
 using SharedKernel;
 using SharedKernel.ValueObjects;
@@ -48,18 +47,34 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
         DateTime expiresAt)
     {
         if (associationID.Value == Guid.Empty)
-            throw new ArgumentException("Association ID cannot be empty.");
+            throw new ArgumentException(
+                "Association ID cannot be empty.",
+                nameof(associationID));
 
         if (invitedByUserID.Value == Guid.Empty)
-            throw new ArgumentException("Inviter user ID cannot be empty.");
+            throw new ArgumentException(
+                "Inviter user ID cannot be empty.",
+                nameof(invitedByUserID));
 
         ArgumentNullException.ThrowIfNull(email);
 
         if (string.IsNullOrWhiteSpace(tokenHash))
-            throw new ArgumentException("Token hash is required.");
+            throw new ArgumentException(
+                "Token hash is required.",
+                nameof(tokenHash));
+
+        if (tokenHash.Length != 64 ||
+            !tokenHash.All(Uri.IsHexDigit))
+        {
+            throw new ArgumentException(
+                "Token hash must be a 64-character hexadecimal SHA-256 hash.",
+                nameof(tokenHash));
+        }
 
         if (expiresAt <= DateTime.UtcNow)
-            throw new ArgumentException("Expiration must be in the future.");
+            throw new ArgumentException(
+                "Expiration must be in the future.",
+                nameof(expiresAt));
 
         return new AssociationInvitation(
             new InvitationID(Guid.NewGuid()),
@@ -76,7 +91,6 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
 
         if (DateTime.UtcNow >= ExpiresAt)
         {
-            Status = InvitationStatus.Expired;
             throw new InvalidOperationException(
                 "This invitation has expired.");
         }

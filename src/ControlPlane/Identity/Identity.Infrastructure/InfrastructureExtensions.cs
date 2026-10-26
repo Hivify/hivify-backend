@@ -23,7 +23,7 @@ namespace Identity.Infrastructure
                 services.AddIdentityCore<DotNETApplicationUser>(options =>
                 {
                     options.User.RequireUniqueEmail = true;
-
+                    options.SignIn.RequireConfirmedEmail = true;
                     options.Password.RequiredLength = 8;
                     options.Password.RequireDigit = true;
                     options.Password.RequireUppercase = true;
