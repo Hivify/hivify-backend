@@ -1,9 +1,9 @@
 ﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.Email;
+using BuildingBlocks.ApplicationPorts.EmailSender;
 using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using BuildingBlocks.ApplicationPorts.Storage;
 using BuildingBlocks.Infrastructure.CQRSMessaging;
-using BuildingBlocks.Infrastructure.Email;
+using BuildingBlocks.Infrastructure.EmailSender;
 using BuildingBlocks.Infrastructure.HivifyUser;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
 using Microsoft.Extensions.Configuration;

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Email;
+﻿using BuildingBlocks.ApplicationPorts.EmailSender;
 using Identity.Application.Contracts;
 using Identity.Application.DTOs;
 using Identity.Domain;
@@ -60,7 +60,7 @@ public sealed class IdentityService(
             $"{confirmationBaseUrl}?userId={user.Id}" +
             $"&token={Uri.EscapeDataString(encodedToken)}";
 
-        var confirmationMessage = new ConfirmationMessage(
+        var confirmationMessage = new SentEmailMessage(
             user.Email!,
             "Confirm your email",
             $"<p>Please confirm your email by clicking <a href=\"{confirmationLink}\">here</a>.</p>"
