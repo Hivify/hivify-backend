@@ -1,6 +1,6 @@
 ﻿using Association.Application.Commands.CreateAssociation;
 using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
 namespace Association.Application.Services;
 
@@ -8,12 +8,12 @@ public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociati
     : IAssociationOnboardingPort
 {
     public Task<Guid> CreateAssociationAsync(
-        string name,
+        string AssociationName,
         Guid ownerUserId,
         string ownerEmailAddress,
         CancellationToken ct = default)
     {
-        var command = new CreateAssociationCommand(name, ownerUserId, ownerEmailAddress);
+        var command = new CreateAssociationCommand(AssociationName, ownerUserId, ownerEmailAddress);
 
         return commandHandler.Handle(command, ct);
     }

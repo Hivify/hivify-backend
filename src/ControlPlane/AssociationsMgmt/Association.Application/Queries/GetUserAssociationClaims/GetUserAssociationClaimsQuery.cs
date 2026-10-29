@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Messaging;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using System.Security.Claims;
 
 namespace Association.Application.Queries.GetUserAssociationClaims;

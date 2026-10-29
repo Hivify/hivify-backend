@@ -1,6 +1,6 @@
 ﻿using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 using System.Security.Claims;
 
@@ -29,7 +29,7 @@ public sealed class GetUserAssociationClaimsQueryHandler(IAssociationRepository 
             var value = $"{association.Id.Value:D}|{membership.Role}";
 
             claims.Add(
-                new Claim(HivifyClaimTypes.TenantMembership, value)
+                new Claim(AssociationClaimTypes.TenantMembership, value)
                 );
         }
 

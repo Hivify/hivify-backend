@@ -1,11 +1,11 @@
 ﻿using Association.Application.Queries.GetUserAssociationClaims;
 using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.Messaging;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using System.Security.Claims;
 
 namespace Association.Application.Services;
 
-public sealed class AssociationClaimsProvider(IQuerySender querySender) : IAssociationClaimsProvider
+public sealed class AssociationClaimsProvider(IQuerySender querySender) : IAssociationUserClaims
 {
     private readonly IQuerySender _querySender = querySender;
 

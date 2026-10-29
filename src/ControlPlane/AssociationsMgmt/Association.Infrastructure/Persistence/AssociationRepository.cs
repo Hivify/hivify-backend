@@ -20,29 +20,31 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
     }
 
 
-    public async Task<AssociationDetailsData?> GetDetailsByIdAsync(AssociationID associationId, CancellationToken ct = default)
+    public async Task<AssociationDto?> GetDetailsByIdAsync(
+        AssociationID associationId,
+        CancellationToken ct = default)
     {
         return await dbContext.Associations
             .AsNoTracking()
             .Where(a => a.Id == associationId)
-            .Select(a => new AssociationDetailsData(
+            .Select(a => new AssociationDto(
                 a.Id.Value,
                 a.Name.Value,
+                a.Members
+                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
+                    .Select(m => m.MemberEmail.Value)
+                    .FirstOrDefault()!,
                 a.Identifier.Value,
-                a.Status,
-                a.CreatedDate,
+                a.Status.ToString(),
                 a.Members
                     .Where(m => m.Role == AssociationRoles.TenantAdmin)
                     .Select(m => m.UserID.Value)
                     .FirstOrDefault(),
-                a.Members
-                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
-                    .Select(m => m.MemeberEmail.Value)
-                    .FirstOrDefault()!,
-                a.Members.Count()))
+                a.Members.Count(),
+                a.CreatedDate
+            ))
             .FirstOrDefaultAsync(ct);
     }
-
 
 
     public async Task<IReadOnlyList<AssociationEntity>> GetAllAsync(
@@ -97,6 +99,24 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
         return await dbContext.Associations
             .AnyAsync(a => a.Name.Value == name.Value, ct);
     }
+
+
+
+    public async Task<bool> IsMemberByEmailAsync(
+        AssociationID associationId,
+        ContactEmail email,
+        CancellationToken ct = default)
+    {
+        return await dbContext.Associations
+            .AnyAsync(
+                association =>
+                    association.Id == associationId &&
+                    association.Members.Any(
+                        member => member.MemberEmail.Value == email.Value),
+                ct);
+    }
+
+
 
     public async Task SaveChangesAsync(CancellationToken ct = default)
     {

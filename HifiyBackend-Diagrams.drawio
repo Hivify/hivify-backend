@@ -1,52 +1,292 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="vuYLhaTZJGADmORtLj6Z">
-    <mxGraphModel dx="1266" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="8298" dy="2366" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-38" connectable="0" parent="1" style="group" value="" vertex="1">
-          <mxGeometry height="361" width="520" x="180" y="190" as="geometry" />
-        </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-15" connectable="0" parent="aMzB9z_E-46nJsG3Iqd6-38" style="group" value="" vertex="1">
-          <mxGeometry height="311" width="520" y="50" as="geometry" />
-        </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-25" edge="1" parent="aMzB9z_E-46nJsG3Iqd6-15" source="aMzB9z_E-46nJsG3Iqd6-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="570" y="190" as="targetPoint" />
+        <mxCell id="5Yl1Od61pRew83-mQReF-1" parent="1" style="swimlane;html=1;startSize=42;rounded=1;arcSize=12;fillColor=#eaf2ff;swimlaneFillColor=#f7faff;strokeColor=#4d78b8;strokeWidth=2;fontColor=#17365d;fontStyle=1;" value="CONTROL PLANE&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Tenant lifecycle · platform identity · association administration&lt;/font&gt;" vertex="1">
+          <mxGeometry height="575" width="1500" x="530" y="2917" as="geometry">
+            <mxRectangle height="42" width="370" x="530" y="2917" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-13" parent="5Yl1Od61pRew83-mQReF-1" style="shape=cylinder;boundedLbl=1;backgroundOutline=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d78b8;strokeWidth=1.5;fontSize=12;" value="Onboarding persistence&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;UserOnboardingProcess&lt;br&gt;Status · StartedAt · CompletedAt&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="260" x="320" y="373" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-2" parent="1" style="swimlane;html=1;startSize=42;rounded=1;arcSize=12;fillColor=#e5f6f2;swimlaneFillColor=#f7fcfb;strokeColor=#258a78;strokeWidth=2;fontColor=#14594f;fontStyle=1;" value="APP PLANE&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Tenant-routed application features · tenant-scoped access&lt;/font&gt;" vertex="1">
+          <mxGeometry height="670" width="2550" x="440" y="3630" as="geometry">
+            <mxRectangle height="42" width="350" x="30" y="505" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-22" parent="5Yl1Od61pRew83-mQReF-2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#258a78;strokeWidth=1.5;fontSize=12;" value="Membership data&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Association ↔ User ↔ Role&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="270" x="650" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-20" parent="5Yl1Od61pRew83-mQReF-2" style="shape=cylinder;boundedLbl=1;backgroundOutline=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#258a78;strokeWidth=1.5;fontSize=12;" value="Tenant application data&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Department and other business data&lt;br&gt;Isolation strategy depends on DB design&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1150" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-21" parent="5Yl1Od61pRew83-mQReF-2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e6;strokeColor=#d6a23b;strokeWidth=1.5;fontSize=12;align=left;spacingLeft=12;spacingTop=8;" value="App plane responsibilities&lt;br&gt;• Resolve tenant from request host&lt;br&gt;• Enforce membership / tenant access&lt;br&gt;• Run tenant-facing business features&lt;br&gt;• Scope data access to the tenant" vertex="1">
+          <mxGeometry height="180" width="220" x="2170" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-19" parent="5Yl1Od61pRew83-mQReF-2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1fae5;strokeColor=#258a78;strokeWidth=1.5;fontSize=13;" value="Departments module&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;App Plane example&lt;br&gt;Application · Domain · Infrastructure&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="250" x="1150" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-30" edge="1" parent="5Yl1Od61pRew83-mQReF-2" source="5Yl1Od61pRew83-mQReF-19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#258a78;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-20" value="read / write tenant data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=1.5;fontSize=14;fontStyle=1;" value="User / Browser" vertex="1">
+          <mxGeometry height="48" width="155" x="820" y="2380" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e6;strokeColor=#d6a23b;strokeWidth=1.5;fontSize=13;" value="Tenant URL&lt;br&gt;&lt;b&gt;{associationIdentifier}.localhost&lt;/b&gt;" vertex="1">
+          <mxGeometry height="58" width="235" x="800" y="2680" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=1.5;fontSize=14;fontStyle=1;" value="Hivify.Api&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;ASP.NET Core entry point&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="225" x="800" y="2530" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-48" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="5Yl1Od61pRew83-mQReF-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-107" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="5Yl1Od61pRew83-mQReF-83">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#4d78b8;strokeWidth=1.5;fontSize=13;" value="Identity context&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;ASP.NET Core Identity&lt;br&gt;Users · sign-in · claims&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="210" x="570" y="2985" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#4d78b8;strokeWidth=1.5;fontSize=13;" value="OnboardingService&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Starts / retrieves one onboarding process per user&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="260" x="850" y="2985" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-8" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="5Yl1Od61pRew83-mQReF-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-9" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="5Yl1Od61pRew83-mQReF-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-10" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="5Yl1Od61pRew83-mQReF-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#4d78b8;strokeWidth=1.5;fontSize=13;" value="OnboardingOrchestrator&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Coordinates the current onboarding step&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="245" x="1170" y="2985" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#4d78b8;strokeWidth=1.5;fontSize=13;" value="AssociationService&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Creates Association + first owner Membership&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="260" x="1475" y="2985" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-14" parent="1" style="shape=cylinder;boundedLbl=1;backgroundOutline=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d78b8;strokeWidth=1.5;fontSize=12;" value="Association persistence&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Association · Membership&lt;br&gt;Identifier · roles&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="260" x="1475" y="3125" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e6;strokeColor=#d6a23b;strokeWidth=1.5;fontSize=12;align=left;spacingLeft=12;spacingTop=8;" value="Control plane responsibilities&lt;br&gt;• User / platform identity&lt;br&gt;• Create and manage associations&lt;br&gt;• Establish the first owner membership&lt;br&gt;• Track onboarding status" vertex="1">
+          <mxGeometry height="180" width="225" x="1770" y="2980" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-49" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="5Yl1Od61pRew83-mQReF-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1fae5;strokeColor=#258a78;strokeWidth=1.5;fontSize=13;" value="Tenant resolution&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Finbuckle / subdomain strategy&lt;br&gt;Resolve identifier → Association&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="250" x="560" y="3690" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-50" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="5Yl1Od61pRew83-mQReF-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1fae5;strokeColor=#258a78;strokeWidth=1.5;fontSize=13;" value="TenantInfo / current tenant&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Association identifier / tenant context&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="235" x="870" y="3690" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-51" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="5Yl1Od61pRew83-mQReF-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1fae5;strokeColor=#258a78;strokeWidth=1.5;fontSize=13;" value="Tenant-scoped authorization&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Authenticated user must have Membership&lt;br&gt;in the resolved Association&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="270" x="1165" y="3690" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-23" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-24" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4d78b8;strokeWidth=2;endArrow=block;endFill=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="5Yl1Od61pRew83-mQReF-4" value="">
+          <mxGeometry relative="1" x="-0.0011" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1207.42" y="2570" />
+              <mxPoint x="1207.42" y="2700" />
+              <mxPoint x="1040" y="2700" />
+              <mxPoint x="1040" y="2704" />
+              <mxPoint x="1035" y="2704" />
+            </Array>
+            <mxPoint x="1019.92" y="2570" as="sourcePoint" />
+            <mxPoint x="1174.92" y="2795" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-25" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4d78b8;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-13" value="persist process">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-26" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4d78b8;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-27" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4d78b8;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-14" value="save Association + owner Membership">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-28" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#258a78;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-16" value="tenant host / identifier">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830.03" y="3144.03" />
+              <mxPoint x="730.03" y="3144.03" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-29" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#258a78;strokeWidth=2;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-22" value="verify membership">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-31" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9b6bca;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" value="lookup by AssociationIdentifier">
+          <mxGeometry relative="1" x="-0.5637" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1475" y="3250.03" />
+              <mxPoint x="685" y="3250.03" />
+            </Array>
+            <mxPoint x="1475" y="3228" as="sourcePoint" />
+            <mxPoint x="685" y="3708" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-32" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#9b6bca;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="5Yl1Od61pRew83-mQReF-18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="675" y="3110" />
+              <mxPoint x="1302.53" y="3110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#cbd5e1;fontSize=12;fontColor=#334155;align=left;spacingLeft=12;" value="Legend:  &lt;font color=&quot;#4d78b8&quot;&gt;&lt;b&gt;Blue&lt;/b&gt;&lt;/font&gt; = Control Plane &amp;nbsp; &lt;font color=&quot;#258a78&quot;&gt;&lt;b&gt;Green&lt;/b&gt;&lt;/font&gt; = App Plane &amp;nbsp; &lt;font color=&quot;#9b6bca&quot;&gt;&lt;b&gt;Purple dashed&lt;/b&gt;&lt;/font&gt; = cross-plane lookup / identity context&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Conceptual blueprint based on the current Hivify context discussed; confirm actual deployment and database boundaries against the repository.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="1065" x="680" y="2270" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-34" edge="1" parent="1" source="5Yl1Od61pRew83-mQReF-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="897.53" y="2530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-44" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="870" width="820" x="-1530" y="2122.5" as="geometry" />
+        </mxCell>
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-15" connectable="0" parent="5Yl1Od61pRew83-mQReF-44" style="group" value="" vertex="1">
+          <mxGeometry height="829.5348837209302" width="820" y="40.46511627906977" as="geometry" />
+        </mxCell>
         <mxCell id="aMzB9z_E-46nJsG3Iqd6-4" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="300" width="520" y="11" as="geometry" />
+          <mxGeometry height="771.2752325581395" width="820" y="27.910813953488372" as="geometry" />
         </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-7" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="UserMgmt" vertex="1">
-          <mxGeometry height="60" width="120" x="30" y="41" as="geometry" />
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-7" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;align=left;" value="" vertex="1">
+          <mxGeometry height="341.09058139534886" width="744.9918360733382" x="38.06109857785644" y="70.81395348837209" as="geometry" />
         </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-9" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="Departments&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="29" y="115" as="geometry" />
-        </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-10" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;Feeds&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="30" y="186" as="geometry" />
-        </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-11" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;Complaints&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="180" y="41" as="geometry" />
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-11" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="341.09058139534886" width="744.9918360733382" x="38.06109857785644" y="435" as="geometry" />
         </mxCell>
         <mxCell id="aMzB9z_E-46nJsG3Iqd6-13" parent="aMzB9z_E-46nJsG3Iqd6-15" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.migration_hub_refactor_spaces_services;" value="" vertex="1">
-          <mxGeometry height="41" width="41" x="-11" y="-20" as="geometry" />
+          <mxGeometry height="63.99462813059034" width="63.99462813059034" x="-17.346153846153847" y="-50.744036491437974" as="geometry" />
         </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-24" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#E51400,#FF0000);fontColor=#ffffff;strokeColor=#B20000;" value="&lt;div&gt;DocsMgmt&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="180" y="115" as="geometry" />
+        <mxCell id="5Yl1Od61pRew83-mQReF-35" parent="aMzB9z_E-46nJsG3Iqd6-15" style="text;strokeColor=none;fillColor=none;html=1;fontSize=41;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Control Plane" vertex="1">
+          <mxGeometry height="58.29" width="380.51900138350516" x="74.05765851104935" y="70.81395348837209" as="geometry" />
         </mxCell>
-        <mxCell id="48EcaS-QiCIMtF6BGarD-12" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" value="&lt;div&gt;MemberPayment&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="330" y="41" as="geometry" />
+        <mxCell id="5Yl1Od61pRew83-mQReF-36" parent="aMzB9z_E-46nJsG3Iqd6-15" style="text;strokeColor=none;fillColor=none;html=1;fontSize=41;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="App Plane" vertex="1">
+          <mxGeometry height="58.29" width="380.51900138350516" x="73.90435118595057" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-37" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;AssociationMgmt&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; white-space: nowrap; background-color: transparent;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20parent%3D%221%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20value%3D%22Departments%26lt%3Bdiv%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Fdiv%26gt%3B%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2286.42659279778394%22%20width%3D%22147.6923076923077%22%20x%3D%2240.002307692307696%22%20y%3D%2230.003130193905832%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="63.683862846032085" y="141.62790697674419" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-39" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;IdentityMgmt&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="63.683862846032085" y="252.90697674418604" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-40" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;OnBoarding&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="257.8731413044833" y="141.62790697674419" as="geometry" />
+        </mxCell>
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-10" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;Feeds&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="53.46651927175656" y="493.2946518069961" as="geometry" />
+        </mxCell>
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-9" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="Departments&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="237.43452319887862" y="495.700841010114" as="geometry" />
         </mxCell>
         <mxCell id="48EcaS-QiCIMtF6BGarD-11" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#E51400,#FF0000);fontColor=#ffffff;strokeColor=#B20000;" value="&lt;div&gt;YearlyPlanner&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="180" y="189" as="geometry" />
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="53.46180212329206" y="606.9726248147911" as="geometry" />
         </mxCell>
-        <mxCell id="48EcaS-QiCIMtF6BGarD-13" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" value="&lt;div&gt;HomeMgmt&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="340" y="125.5" as="geometry" />
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-24" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#E51400,#FF0000);fontColor=#ffffff;strokeColor=#B20000;" value="&lt;div&gt;DocsMgmt&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="237.43059224182485" y="606.9697944984862" as="geometry" />
         </mxCell>
-        <mxCell id="aMzB9z_E-46nJsG3Iqd6-37" parent="aMzB9z_E-46nJsG3Iqd6-38" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Starter Plan Services" vertex="1">
-          <mxGeometry height="40" width="240" x="30" y="20" as="geometry" />
+        <mxCell id="48EcaS-QiCIMtF6BGarD-12" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" value="&lt;div&gt;MemberPayment&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.435" width="150.94639229225612" x="603.0088120551907" y="493.29" as="geometry" />
+        </mxCell>
+        <mxCell id="48EcaS-QiCIMtF6BGarD-13" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;arcSize=23;" value="&lt;div&gt;HomeMgmt&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="603.0103844380122" y="606.9745023513497" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-41" parent="aMzB9z_E-46nJsG3Iqd6-15" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;Compalints&lt;/div&gt;" vertex="1">
+          <mxGeometry height="87.43155317915352" width="150.9487508664884" x="408.81953359673935" y="495.69767441860466" as="geometry" />
+        </mxCell>
+        <mxCell id="aMzB9z_E-46nJsG3Iqd6-37" parent="5Yl1Od61pRew83-mQReF-44" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Hivify Saas featuers Overview" vertex="1">
+          <mxGeometry height="58.29" width="380.51900138350516" x="69.18248557290822" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-82" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="1520" width="910" x="-1050" y="3140" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-83" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="1520" width="910" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-84" parent="5Yl1Od61pRew83-mQReF-82" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" value="Hivify Refresh Sign-In After Onboarding" vertex="1">
+          <mxGeometry height="40" width="760" x="90" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-85" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="User&#xa;Signs in for the first time" vertex="1">
+          <mxGeometry height="60" width="300" x="270" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-86" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" value="ASP.NET Core Identity&#xa;HivifyClaimsPrincipalFactory&#xa;Generates the initial principal" vertex="1">
+          <mxGeometry height="80" width="300" x="270" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-87" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" value="Initial authentication cookie&#xa;No association membership claims yet" vertex="1">
+          <mxGeometry height="65" width="300" x="270" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-88" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" value="OnboardingService.StartAsync()&#xa;Starts onboarding for the current user" vertex="1">
+          <mxGeometry height="65" width="300" x="270" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-89" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" value="OnboardingOrchestrator&#xa;Calls AssociationService" vertex="1">
+          <mxGeometry height="65" width="300" x="270" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-90" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" value="AssociationService&#xa;Creates the Association&#xa;Creates the first owner Membership" vertex="1">
+          <mxGeometry height="80" width="300" x="270" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-91" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" value="Persist changes successfully&#xa;Association + owner Membership saved" vertex="1">
+          <mxGeometry height="65" width="300" x="270" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-92" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" value="RefreshSignInAsync(user)&#xa;Called after successful persistence" vertex="1">
+          <mxGeometry height="70" width="300" x="270" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-93" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" value="HivifyClaimsPrincipalFactory runs again&#xa;AssociationClaimsProvider reads saved memberships&#xa;New membership claims are added" vertex="1">
+          <mxGeometry height="85" width="380" x="230" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-94" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" value="Updated authentication cookie&#xa;Contains the new membership claims" vertex="1">
+          <mxGeometry height="65" width="300" x="270" y="1125" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-95" parent="5Yl1Od61pRew83-mQReF-82" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" value="Redirect to the Association subdomain&#xa;Tenant authorization can use the refreshed claims" vertex="1">
+          <mxGeometry height="70" width="380" x="230" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-96" parent="5Yl1Od61pRew83-mQReF-82" style="shape=note;whiteSpace=wrap;html=1;size=16;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="Important: Shared sign-in across subdomains requires an appropriately configured cookie domain.&#xa;This flow assumes cookie authentication; RefreshSignInAsync does not refresh JWTs." vertex="1">
+          <mxGeometry height="70" width="760" x="90" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-97" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-86">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-98" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-87">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-99" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-100" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-89">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-101" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-102" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-91">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-103" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=11;" target="5Yl1Od61pRew83-mQReF-92" value="Only after save succeeds">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-104" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-93">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-105" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5Yl1Od61pRew83-mQReF-106" edge="1" parent="5Yl1Od61pRew83-mQReF-82" source="5Yl1Od61pRew83-mQReF-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" target="5Yl1Od61pRew83-mQReF-95">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

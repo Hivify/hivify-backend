@@ -9,6 +9,8 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
 {
     public DbSet<AssociationEntity> Associations => Set<AssociationEntity>();
 
+    public DbSet<AssociationInvitation> Invitations => Set<AssociationInvitation>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -65,55 +67,105 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(a => a.DeletedAt)
                 .IsRequired(false);
 
-            // Memberships
-            entity.OwnsMany(
-                a => a.Members,
-                member =>
+            entity.OwnsMany(a => a.Members, member =>
+            {
+                member.ToTable("Memberships");
+
+                member.WithOwner()
+                    .HasForeignKey("AssociationID");
+
+                member.HasKey(m => m.Id);
+
+                member.Property(m => m.Id)
+                    .HasConversion(
+                        id => id.Value,
+                        value => new MembershipID(value));
+
+                member.Property(m => m.UserID)
+                    .HasConversion(
+                        id => id.Value,
+                        value => new UserID(value));
+
+                member.Property(m => m.Role)
+                    .HasConversion<int>();
+
+                member.Property(m => m.JoinedAt)
+                    .IsRequired();
+
+                member.OwnsOne(m => m.MemberEmail, email =>
                 {
-                    member.ToTable("Memberships");
-
-                    // Composite primary key
-                    member.HasKey(m => new
-                    {
-                        m.AssociationID,
-                        m.UserID
-                    });
-
-                    // Association ID
-                    member.Property(m => m.AssociationID)
-                        .HasConversion(
-                            id => id.Value,
-                            value => new AssociationID(value))
+                    email.Property(e => e.Value)
+                        .HasColumnName("MemberEmail")
+                        .HasMaxLength(320)
                         .IsRequired();
-
-                    // User ID
-                    member.Property(m => m.UserID)
-                        .HasConversion(
-                            id => id.Value,
-                            value => new UserID(value))
-                        .IsRequired();
-
-                    // Role
-                    member.Property(m => m.Role)
-                        .HasConversion<int>()
-                        .IsRequired();
-
-                    // JoinedAt
-                    member.Property(m => m.JoinedAt)
-                        .IsRequired();
-
-                    // Email value object
-                    member.OwnsOne(
-                        m => m.MemeberEmail,
-                        email =>
-                        {
-                            email.Property(e => e.Value)
-                                .HasColumnName("MemeberEmail")
-                                .HasMaxLength(320)
-                                .IsRequired();
-                        });
-
                 });
+
+                member.HasIndex("AssociationID", nameof(Membership.UserID))
+                    .IsUnique();
+            });
+
+
+
         });
+
+
+
+        // Configure the AssociationInvitation entity
+        modelBuilder.Entity<AssociationInvitation>(entity =>
+        {
+            entity.ToTable("AssociationInvitations");
+
+            entity.HasKey(i => i.Id);
+
+            entity.Property(i => i.Id)
+                .HasConversion(
+                    id => id.Value,
+                    value => new InvitationID(value))
+                .IsRequired();
+
+            entity.Property(i => i.AssociationID)
+                .HasConversion(
+                    id => id.Value,
+                    value => new AssociationID(value))
+                .IsRequired();
+
+            entity.Property(i => i.InvitedByUserID)
+                .HasConversion(
+                    id => id.Value,
+                    value => new UserID(value))
+                .IsRequired();
+
+            entity.OwnsOne(i => i.Email, email =>
+            {
+                email.Property(e => e.Value)
+                    .HasColumnName("Email")
+                    .HasMaxLength(320)
+                    .IsRequired();
+            });
+
+            entity.Property(i => i.TokenHash)
+                .HasMaxLength(256)
+                .IsRequired();
+
+            entity.Property(i => i.Status)
+                .HasConversion<int>()
+                .IsRequired();
+
+            entity.Property(i => i.CreatedAt)
+                .IsRequired();
+
+            entity.Property(i => i.ExpiresAt)
+                .IsRequired();
+
+            entity.Property(i => i.AcceptedAt)
+                .IsRequired(false);
+
+            entity.HasIndex(i => i.AssociationID);
+
+            entity.HasIndex(i => i.TokenHash)
+                .IsUnique();
+        });
+
     }
+
 }

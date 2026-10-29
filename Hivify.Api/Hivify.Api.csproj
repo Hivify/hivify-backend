@@ -4,22 +4,23 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+	  <UserSecretsId>4166fb23-0ef0-4e3b-a20d-0d6ae01ae66a</UserSecretsId>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.4" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.14">
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		  <PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
-		<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.4" />
-		<PackageReference Include="Finbuckle.MultiTenant" Version="10.1.4" />
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.14" />
+		<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.5" />
+		<PackageReference Include="Finbuckle.MultiTenant" Version="10.1.5" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.14" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
-		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.1" />
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
 	</ItemGroup>
 
 	<ItemGroup>

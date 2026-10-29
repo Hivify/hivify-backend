@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.CurrentUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
@@ -9,15 +9,14 @@ using SharedKernel.ValueObjects;
 namespace OnBoarding.Application.Services;
 
 public sealed class OnboardingService(
-    ICurrentUser currentUser,
+    ICurrentHivifyUser currentUser,
     IAssociationOnboardingPort associationOnboardingPort,
     IOnboardingRepository onboardingRepository,
     ILogger<OnboardingService> logger
     )
     : IOnboardingService
 {
-    public async Task<StartOnboardingResult> StartOnboardingAsync(string associationName,
-        CancellationToken ct = default)
+    public async Task<StartOnboardingResult> StartOnboardingAsync(string associationName, CancellationToken ct = default)
     {
         if (!currentUser.IsAuthenticated)
         {
