@@ -9,7 +9,7 @@ namespace Association.Application.Queries.GetAssociationDetailsById;
 
 public sealed class GetCurrentAssociationDetailsQueryHandler(
     IAssociationRepository associationRepository,
-    ICurrentAssociationTenant currentTenant)
+    ICurrentAssociationAsTenant currentTenant)
     : IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>
 {
     public async Task<AssociationDto?> Handle(

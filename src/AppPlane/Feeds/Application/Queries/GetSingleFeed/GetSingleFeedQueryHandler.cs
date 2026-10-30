@@ -11,11 +11,11 @@ public sealed class GetSingleFeedQueryHandler
     : IQueryHandler<GetSingleFeedQuery, FeedListItem?>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentAssociationTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentTenant;
 
     public GetSingleFeedQueryHandler(
         IFeedRepo feedRepository,
-        ICurrentAssociationTenant currentTenant)
+        ICurrentAssociationAsTenant currentTenant)
     {
         _feedRepository = feedRepository;
         _currentTenant = currentTenant;

@@ -1,15 +1,15 @@
-﻿using BuildingBlocks.ApplicationPorts.Email;
+﻿using BuildingBlocks.ApplicationPorts.EmailSender;
 using Microsoft.Extensions.Configuration;
 using Resend;
 
-namespace BuildingBlocks.Infrastructure.Email;
+namespace BuildingBlocks.Infrastructure.EmailSender;
 
 public sealed class ResendEmailSender(
     IResend resend,
     IConfiguration configuration) : IEmailSender
 {
     public async Task SendAsync(
-        ConfirmationMessage message,
+        SentEmailMessage message,
         CancellationToken cancellationToken = default)
     {
         var from = configuration["Resend:FromEmail"]

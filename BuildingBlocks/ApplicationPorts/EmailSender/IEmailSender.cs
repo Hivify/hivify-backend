@@ -1,10 +1,8 @@
-﻿using Resend;
-
-namespace BuildingBlocks.ApplicationPorts.Email;
+﻿namespace BuildingBlocks.ApplicationPorts.EmailSender;
 
 public interface IEmailSender
 {
     Task SendAsync(
-        ConfirmationMessage message,
+        SentEmailMessage message,
         CancellationToken ct = default);
 }

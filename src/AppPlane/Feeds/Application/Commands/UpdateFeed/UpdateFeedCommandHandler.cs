@@ -11,12 +11,12 @@ public sealed class UpdateFeedCommandHandler
     : ICommandHandler<UpdateFeedCommand, bool>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentAssociationTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentTenant;
     private readonly ICurrentHivifyUser _currentUser;
 
     public UpdateFeedCommandHandler(
         IFeedRepo feedRepository,
-        ICurrentAssociationTenant currentTenant,
+        ICurrentAssociationAsTenant currentTenant,
         ICurrentHivifyUser currentUser)
     {
         _feedRepository = feedRepository;

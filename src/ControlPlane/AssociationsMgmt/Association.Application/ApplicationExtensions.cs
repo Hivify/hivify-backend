@@ -45,7 +45,7 @@ public static class ApplicationExtensions
                 IQueryHandler<GetUserAssociationClaimsQuery, IReadOnlyCollection<Claim>>,
                 GetUserAssociationClaimsQueryHandler>();
 
-            services.AddScoped<IAssociationUserClaims, AssociationClaimsProvider>();
+            services.AddScoped<IAssociationUserClaims, AssociationClaimsAdapter>();
 
             services.AddScoped<IAssociationOnboardingPort, AssociationOnboardingAdapter>();
 
