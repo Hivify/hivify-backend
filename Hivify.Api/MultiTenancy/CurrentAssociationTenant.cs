@@ -7,7 +7,7 @@ namespace Hivify.Api.MultiTenancy;
 public sealed class CurrentAssociationTenant(
     IMultiTenantContextAccessor<TenantInfo> accessor,
     IHttpContextAccessor httpContextAccessor)
-    : ICurrentAssociationTenant
+    : ICurrentAssociationAsTenant
 {
     private ClaimsPrincipal? User =>
         httpContextAccessor.HttpContext?.User;
@@ -55,7 +55,7 @@ public sealed class CurrentAssociationTenant(
             }
 
             foreach (var claim in User.FindAll(
-                AssociationClaimTypes.TenantMembership))
+                AssociationMembershipClaimTypes.TenantMembership))
             {
                 var parts = claim.Value.Split('|');
 

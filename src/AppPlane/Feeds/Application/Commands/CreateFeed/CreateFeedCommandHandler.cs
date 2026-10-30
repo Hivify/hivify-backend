@@ -12,12 +12,12 @@ public sealed class CreateFeedCommandHandler
 {
     private readonly IFeedRepo _feedRepository;
     private readonly ICurrentHivifyUser _currentUser;
-    private readonly ICurrentAssociationTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentTenant;
 
     public CreateFeedCommandHandler(
         IFeedRepo feedRepository,
         ICurrentHivifyUser currentUser,
-        ICurrentAssociationTenant currentTenant)
+        ICurrentAssociationAsTenant currentTenant)
     {
         _feedRepository = feedRepository;
         _currentUser = currentUser;

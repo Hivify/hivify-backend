@@ -1,6 +1,4 @@
-﻿using Resend;
-
-namespace BuildingBlocks.ApplicationPorts.EmailSender;
+﻿namespace BuildingBlocks.ApplicationPorts.EmailSender;
 
 public interface IEmailSender
 {

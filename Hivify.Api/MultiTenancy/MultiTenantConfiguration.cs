@@ -16,7 +16,7 @@ public static class MultiTenantConfiguration
                 .WithHostStrategy("__tenant__.localhost")
                 .WithStore<AssociationTenantStore>(ServiceLifetime.Scoped);
 
-            services.AddScoped<ICurrentAssociationTenant, CurrentAssociationTenant>();
+            services.AddScoped<ICurrentAssociationAsTenant, CurrentAssociationTenant>();
 
             return services;
         }

@@ -29,7 +29,7 @@ public sealed class GetUserAssociationClaimsQueryHandler(IAssociationRepository 
             var value = $"{association.Id.Value:D}|{membership.Role}";
 
             claims.Add(
-                new Claim(AssociationClaimTypes.TenantMembership, value)
+                new Claim(AssociationMembershipClaimTypes.TenantMembership, value)
                 );
         }
 

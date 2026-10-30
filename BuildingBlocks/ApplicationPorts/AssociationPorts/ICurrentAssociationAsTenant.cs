@@ -1,6 +1,6 @@
 ﻿namespace BuildingBlocks.ApplicationPorts.AssociationPorts
 {
-    public interface ICurrentAssociationTenant
+    public interface ICurrentAssociationAsTenant
     {
         Guid? AssociationId { get; }
         Guid? UserId { get; }

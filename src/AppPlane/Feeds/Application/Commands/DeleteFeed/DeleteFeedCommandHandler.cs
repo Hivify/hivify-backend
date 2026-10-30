@@ -11,12 +11,12 @@ public sealed class DeleteFeedCommandHandler
     : ICommandHandler<DeleteFeedCommand, bool>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentAssociationTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentTenant;
     private readonly ICurrentHivifyUser _currentUser;
 
     public DeleteFeedCommandHandler(
         IFeedRepo feedRepository,
-        ICurrentAssociationTenant currentTenant,
+        ICurrentAssociationAsTenant currentTenant,
         ICurrentHivifyUser currentUser)
     {
         _feedRepository = feedRepository;

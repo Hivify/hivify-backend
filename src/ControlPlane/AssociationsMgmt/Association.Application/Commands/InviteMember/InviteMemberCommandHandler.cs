@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 namespace Association.Application.Commands.InviteMember;
 
 public sealed class InviteMemberCommandHandler(
-    ICurrentAssociationTenant currentTenant,
+    ICurrentAssociationAsTenant currentTenant,
     IAssociationRepository associationRepository,
     IAssociationInvitationRepository invitationRepository,
     IAssociationInvitationEmailSender emailSender)
