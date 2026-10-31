@@ -5,7 +5,7 @@ public sealed record InvitationDetailsDto(
     string AssociationName,
     string InvitedByUserName,
     string InvitedByUserEmail,
-    DateTime InvitationSentAt,
-    DateTime InvitationExpiresAt,
+    DateTimeOffset InvitationSentAt,
+    DateTimeOffset InvitationExpiresAt,
     bool IsValid
 );

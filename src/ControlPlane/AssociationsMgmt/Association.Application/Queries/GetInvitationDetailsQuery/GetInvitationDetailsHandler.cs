@@ -44,8 +44,8 @@ public sealed class GetInvitationDetailsHandler(
             association.Name.Value,
             invitation.Email.Value,
             invitation.Status.ToString(),
-            invitation.CreatedAt,
-            invitation.ExpiresAt,
+            invitation.Expiration.CreatedAt,
+            invitation.Expiration.ExpiresAt,
             isValid
         );
     }
