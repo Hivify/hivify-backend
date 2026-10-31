@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.HivifyUserPort;
+﻿using BuildingBlocks.ApplicationPorts.HivifyUser;
 
 public sealed class HivifyUserAuthorization(ICurrentHivifyUser currentUser) : IHivifyUserAuthorization
 {
