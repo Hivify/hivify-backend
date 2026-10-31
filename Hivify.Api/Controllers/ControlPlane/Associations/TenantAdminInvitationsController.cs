@@ -7,7 +7,7 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations;
 
 [ApiController]
 [Route("api/tenant-admin/invitations")]
-[Authorize(Policy = "TenantAdmin")]
+[Authorize(Policy = "AssociationAdmin")]
 public sealed class TenantAdminInvitationsController(ISender commandSender) : ControllerBase
 {
     [HttpPost]

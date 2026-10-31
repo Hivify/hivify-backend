@@ -75,7 +75,7 @@ public sealed class CurrentAssociationAsTenant(
     public bool IsAssociationMemberAdmin =>
         string.Equals(
             AssociationMemberRole,
-            "TenantAdmin",
+            "AssociationAdmin",
             StringComparison.OrdinalIgnoreCase);
 
 

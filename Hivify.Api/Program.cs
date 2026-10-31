@@ -88,11 +88,11 @@ builder.Services
 builder.Services.AddScoped<IAuthorizationHandler, AssociationRoleAuthorizationHandler>();
 
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("TenantAdmin", policy =>
+    .AddPolicy("AssociationAdmin", policy =>
     {
         policy.RequireAuthenticatedUser();
         policy.AddRequirements(
-            new AssociationRoleRequirement("TenantAdmin"));
+            new AssociationRoleRequirement("AssociationAdmin"));
     });
 #endregion
 
