@@ -1,7 +1,7 @@
 ﻿
 using Association.Application.Contracts;
 using Association.Application.DTOs;
-using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 
@@ -9,7 +9,7 @@ namespace Association.Application.Queries.GetAssociationDetailsById;
 
 public sealed class GetCurrentAssociationDetailsQueryHandler(
     IAssociationRepository associationRepository,
-    ICurrentAssociationAsTenant currentTenant)
+    ICurrentAssociationMember currentTenant)
     : IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>
 {
     public async Task<AssociationDto?> Handle(

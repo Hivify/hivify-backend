@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Identity.Infrastructure.DotNETIdentity
 {
     public sealed class HivifyUsersDirectory(
-        UserManager<DotNETApplicationUser> userManager) : IUserHivifyDirectory
+        UserManager<DotNETApplicationUser> userManager) : IHivifyUserDirectory
     {
         private readonly UserManager<DotNETApplicationUser> _userManager = userManager;
 

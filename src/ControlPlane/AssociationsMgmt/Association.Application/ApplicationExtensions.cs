@@ -9,6 +9,7 @@ using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
@@ -45,7 +46,7 @@ public static class ApplicationExtensions
                 IQueryHandler<GetUserAssociationClaimsQuery, IReadOnlyCollection<Claim>>,
                 GetUserAssociationClaimsQueryHandler>();
 
-            services.AddScoped<IAssociationUserClaims, AssociationClaimsAdapter>();
+            services.AddScoped<IAssociationMemberClaims, AssociationClaimsAdapter>();
 
             services.AddScoped<IAssociationOnboardingPort, AssociationOnboardingAdapter>();
 

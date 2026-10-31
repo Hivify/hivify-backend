@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+﻿using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -10,7 +10,7 @@ public sealed class HivifyClaimsPrincipalFactory(
     UserManager<DotNETApplicationUser> userManager,
     RoleManager<IdentityRole<Guid>> roleManager,
     IOptions<IdentityOptions> options,
-    IAssociationUserClaims associationClaimsProvider)
+    IAssociationMemberClaims associationClaimsProvider)
     : UserClaimsPrincipalFactory<
         DotNETApplicationUser,
         IdentityRole<Guid>>(
@@ -24,7 +24,7 @@ public sealed class HivifyClaimsPrincipalFactory(
         var identity = await base.GenerateClaimsAsync(user);
 
         // Add claims for this user's saved tenant memberships.
-        var associationClaims = await associationClaimsProvider.GetUserAssociationClaimsAsync(user.Id);
+        var associationClaims = await associationClaimsProvider.GetAssociationMemberClaimsAsync(user.Id);
 
         foreach (var claim in associationClaims)
         {

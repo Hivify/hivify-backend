@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+﻿using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.HivifyUserPort;
 using Feeds.Application.Contracts;
@@ -12,12 +12,12 @@ public sealed class CreateFeedCommandHandler
 {
     private readonly IFeedRepo _feedRepository;
     private readonly ICurrentHivifyUser _currentUser;
-    private readonly ICurrentAssociationAsTenant _currentTenant;
+    private readonly ICurrentAssociationMember _currentTenant;
 
     public CreateFeedCommandHandler(
         IFeedRepo feedRepository,
         ICurrentHivifyUser currentUser,
-        ICurrentAssociationAsTenant currentTenant)
+        ICurrentAssociationMember currentTenant)
     {
         _feedRepository = feedRepository;
         _currentUser = currentUser;

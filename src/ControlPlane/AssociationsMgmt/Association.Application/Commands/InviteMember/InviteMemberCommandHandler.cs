@@ -2,7 +2,7 @@
 using Association.Application.Contracts;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 using System.Security.Cryptography;
@@ -11,7 +11,7 @@ using System.Text;
 namespace Association.Application.Commands.InviteMember;
 
 public sealed class InviteMemberCommandHandler(
-    ICurrentAssociationAsTenant currentTenant,
+    ICurrentAssociationMember currentTenant,
     IAssociationRepository associationRepository,
     IAssociationInvitationRepository invitationRepository,
     IAssociationInvitationEmailSender emailSender)
@@ -39,7 +39,7 @@ public sealed class InviteMemberCommandHandler(
         }
 
         // 3. Verify the user's role in this association.
-        if (!currentTenant.IsAssociationTenantAdmin)
+        if (!currentTenant.IsAssociationAdmin)
         {
             throw new UnauthorizedAccessException(
                 "Only a TenantAdmin can invite members.");

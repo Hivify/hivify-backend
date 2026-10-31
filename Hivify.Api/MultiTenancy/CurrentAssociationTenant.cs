@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+﻿using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using Finbuckle.MultiTenant.Abstractions;
 using System.Security.Claims;
 
@@ -7,7 +7,7 @@ namespace Hivify.Api.MultiTenancy;
 public sealed class CurrentAssociationTenant(
     IMultiTenantContextAccessor<TenantInfo> accessor,
     IHttpContextAccessor httpContextAccessor)
-    : ICurrentAssociationAsTenant
+    : ICurrentAssociationMember
 {
     private ClaimsPrincipal? User =>
         httpContextAccessor.HttpContext?.User;
@@ -45,7 +45,7 @@ public sealed class CurrentAssociationTenant(
         }
     }
 
-    public string? AssociationRole
+    public string? AssociationMemberRole
     {
         get
         {
@@ -55,7 +55,7 @@ public sealed class CurrentAssociationTenant(
             }
 
             foreach (var claim in User.FindAll(
-                AssociationMembershipClaimTypes.TenantMembership))
+                AssociationMembershipClaimTypes.AssociationMembership))
             {
                 var parts = claim.Value.Split('|');
 
@@ -71,9 +71,10 @@ public sealed class CurrentAssociationTenant(
         }
     }
 
-    public bool IsAssociationTenantAdmin =>
+    public bool IsAssociationAdmin =>
         string.Equals(
-            AssociationRole,
+            AssociationMemberRole,
             "TenantAdmin",
             StringComparison.OrdinalIgnoreCase);
+
 }
