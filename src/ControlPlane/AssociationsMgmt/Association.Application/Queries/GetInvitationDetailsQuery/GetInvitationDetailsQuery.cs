@@ -5,4 +5,4 @@ namespace Association.Application.Queries.GetInvitationDetailsQuery;
 
 
 
-public sealed record GetInvitationDetailsQuery(string Token) : IQuery<InvitationDetailsDto>;
+public sealed record GetInvitationDetailsQuery(string Token) : IQuery<InvitationDetailsDto?>;
