@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.HivifyUserPort;
+﻿using BuildingBlocks.ApplicationPorts.HivifyUser;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

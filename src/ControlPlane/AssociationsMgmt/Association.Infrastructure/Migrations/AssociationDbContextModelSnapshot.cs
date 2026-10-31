@@ -17,7 +17,7 @@ namespace Association.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
+                .HasAnnotation("ProductVersion", "10.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -50,17 +50,11 @@ namespace Association.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("AcceptedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("AcceptedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("AssociationID")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("InvitedByUserID")
                         .HasColumnType("uniqueidentifier");
@@ -70,8 +64,9 @@ namespace Association.Infrastructure.Migrations
 
                     b.Property<string>("TokenHash")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)")
+                        .HasColumnName("TokenHash");
 
                     b.HasKey("Id");
 
@@ -206,7 +201,31 @@ namespace Association.Infrastructure.Migrations
                                 .HasForeignKey("AssociationInvitationId");
                         });
 
+                    b.OwnsOne("InvitationExpiration", "Expiration", b1 =>
+                        {
+                            b1.Property<Guid>("AssociationInvitationId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<DateTimeOffset>("CreatedAt")
+                                .HasColumnType("datetimeoffset")
+                                .HasColumnName("CreatedAt");
+
+                            b1.Property<DateTimeOffset>("ExpiresAt")
+                                .HasColumnType("datetimeoffset")
+                                .HasColumnName("ExpiresAt");
+
+                            b1.HasKey("AssociationInvitationId");
+
+                            b1.ToTable("AssociationInvitations");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AssociationInvitationId");
+                        });
+
                     b.Navigation("Email")
+                        .IsRequired();
+
+                    b.Navigation("Expiration")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

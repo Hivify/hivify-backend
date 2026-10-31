@@ -9,7 +9,7 @@ using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.TenantRoleAssociationAuthorization;
+using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AssociationRoleAuthorization;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
@@ -88,11 +88,11 @@ builder.Services
 builder.Services.AddScoped<IAuthorizationHandler, AssociationRoleAuthorizationHandler>();
 
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("TenantAdmin", policy =>
+    .AddPolicy("AssociationAdmin", policy =>
     {
         policy.RequireAuthenticatedUser();
         policy.AddRequirements(
-            new AssociationRoleRequirement("TenantAdmin"));
+            new AssociationRoleRequirement("AssociationAdmin"));
     });
 #endregion
 

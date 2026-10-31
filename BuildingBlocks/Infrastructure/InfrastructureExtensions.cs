@@ -1,7 +1,9 @@
-﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.EmailSender;
-using BuildingBlocks.ApplicationPorts.HivifyUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUser;
 using BuildingBlocks.ApplicationPorts.Storage;
+using BuildingBlocks.Infrastructure.AssociationAsTenant;
 using BuildingBlocks.Infrastructure.CQRSMessaging;
 using BuildingBlocks.Infrastructure.EmailSender;
 using BuildingBlocks.Infrastructure.HivifyUser;
@@ -22,6 +24,7 @@ namespace BuildingBlocks.Infrastructure
                 services.AddHttpContextAccessor();
                 services.AddScoped<ICurrentHivifyUser, CurrentHivifyUser>();
                 services.AddScoped<IHivifyUserAuthorization, HivifyUserAuthorization>();
+                services.AddScoped<ICurrentAssociationAsTenant, CurrentAssociationAsTenant>();
                 // Messaging 
                 services.AddScoped<ISender, CommandSender>();
                 services.AddScoped<IQuerySender, QuerySender>();

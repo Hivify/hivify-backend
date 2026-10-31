@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using Finbuckle.MultiTenant.Abstractions;
+﻿using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Finbuckle.MultiTenant.Extensions;
 
@@ -16,7 +15,6 @@ public static class MultiTenantConfiguration
                 .WithHostStrategy("__tenant__.localhost")
                 .WithStore<AssociationTenantStore>(ServiceLifetime.Scoped);
 
-            services.AddScoped<ICurrentAssociationAsTenant, CurrentAssociationTenant>();
 
             return services;
         }

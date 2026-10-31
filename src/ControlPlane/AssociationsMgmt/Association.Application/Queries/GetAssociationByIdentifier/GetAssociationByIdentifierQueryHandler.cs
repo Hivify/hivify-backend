@@ -34,7 +34,7 @@ public sealed class GetAssociationByIdentifierQueryHandler(
             association.Identifier.Value,
             association.Status.ToString(),
             association.Members
-                .Where(m => m.Role == AssociationRoles.TenantAdmin)
+                .Where(m => m.Role == AssociationRoles.AssociationAdmin)
                 .Select(m => m.UserID.Value)
                 .FirstOrDefault(),
             association.Members.Count,

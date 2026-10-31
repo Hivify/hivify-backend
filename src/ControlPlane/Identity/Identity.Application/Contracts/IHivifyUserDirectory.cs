@@ -2,7 +2,7 @@
 
 namespace Identity.Application.Contracts;
 
-public interface IUserHivifyDirectory
+public interface IHivifyUserDirectory
 {
     Task<UserInfo?> GetByIdAsync(Guid userId, CancellationToken ct);
 

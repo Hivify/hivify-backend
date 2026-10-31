@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Feeds.Application.Contracts;
 using Feeds.Application.DTOs;
@@ -11,14 +11,14 @@ public sealed class GetSingleFeedQueryHandler
     : IQueryHandler<GetSingleFeedQuery, FeedListItem?>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentAssociationAsTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentAssociationAsTenant;
 
     public GetSingleFeedQueryHandler(
         IFeedRepo feedRepository,
         ICurrentAssociationAsTenant currentTenant)
     {
         _feedRepository = feedRepository;
-        _currentTenant = currentTenant;
+        _currentAssociationAsTenant = currentTenant;
     }
 
     public async Task<FeedListItem?> Handle(
@@ -27,7 +27,7 @@ public sealed class GetSingleFeedQueryHandler
     {
         ArgumentNullException.ThrowIfNull(query);
 
-        var associationId = _currentTenant.AssociationId;
+        var associationId = _currentAssociationAsTenant.AssociationId;
 
         if (associationId is null || associationId == Guid.Empty)
         {

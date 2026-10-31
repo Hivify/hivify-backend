@@ -8,9 +8,8 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations;
 
 [ApiController]
 [Route("api/tenant-admin/association")]
-[Authorize(Policy = "TenantAdmin")]
-public sealed class TenantAdminAssociationController(
-    IQuerySender querySender) : ControllerBase
+[Authorize(Policy = "AssociationAdmin")]
+public sealed class TenantAdminAssociationController(IQuerySender querySender) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<AssociationDto>> GetCurrentAssociation(

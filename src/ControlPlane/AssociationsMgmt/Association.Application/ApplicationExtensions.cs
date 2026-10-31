@@ -5,10 +5,11 @@ using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetAssociationByIdentifier;
 using Association.Application.Queries.GetAssociationDetailsById;
+using Association.Application.Queries.GetInvitationDetailsQuery;
 using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
-using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
@@ -45,13 +46,16 @@ public static class ApplicationExtensions
                 IQueryHandler<GetUserAssociationClaimsQuery, IReadOnlyCollection<Claim>>,
                 GetUserAssociationClaimsQueryHandler>();
 
-            services.AddScoped<IAssociationUserClaims, AssociationClaimsAdapter>();
+            services.AddScoped<IAssociationMemberClaims, AssociationClaimsAdapter>();
 
             services.AddScoped<IAssociationOnboardingPort, AssociationOnboardingAdapter>();
 
             services.AddScoped<
                 IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>,
                 GetCurrentAssociationDetailsQueryHandler>();
+
+            services.AddScoped<IQueryHandler<GetInvitationDetailsQuery, InvitationDetailsDto?>, GetInvitationDetailsHandler>();
+
 
             return services;
         }

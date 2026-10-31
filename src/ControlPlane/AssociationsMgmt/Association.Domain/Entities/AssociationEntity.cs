@@ -41,7 +41,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 
 
     /// <summary>
-    ///     Create an association and add the owner as a member with the TenantAdmin role.
+    ///     Create an association and add the owner as a member with the Admin role.
     /// </summary>
     /// <param name="name"></param>
     /// <param name="ownerId"></param>
@@ -55,7 +55,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
             name,
             contactEmail);
 
-        association.AddMember(ownerId, AssociationRoles.TenantAdmin, contactEmail);
+        association.AddMember(ownerId, AssociationRoles.AssociationAdmin, contactEmail);
 
         association.RaiseDomainEvent(new AssociationCreatedDomainEvent(association.Id, ownerId));
 

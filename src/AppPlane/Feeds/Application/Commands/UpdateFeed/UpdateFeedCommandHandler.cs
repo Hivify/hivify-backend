@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUser;
 using Feeds.Application.Contracts;
 using Feeds.Domain.ValueObjects;
 using SharedKernel.ValueObjects;
@@ -11,7 +11,7 @@ public sealed class UpdateFeedCommandHandler
     : ICommandHandler<UpdateFeedCommand, bool>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentAssociationAsTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentAssociationAsTenant;
     private readonly ICurrentHivifyUser _currentUser;
 
     public UpdateFeedCommandHandler(
@@ -20,7 +20,7 @@ public sealed class UpdateFeedCommandHandler
         ICurrentHivifyUser currentUser)
     {
         _feedRepository = feedRepository;
-        _currentTenant = currentTenant;
+        _currentAssociationAsTenant = currentTenant;
         _currentUser = currentUser;
     }
 
@@ -36,7 +36,7 @@ public sealed class UpdateFeedCommandHandler
                 "Authentication is required.");
         }
 
-        var associationId = _currentTenant.AssociationId;
+        var associationId = _currentAssociationAsTenant.AssociationId;
 
         if (associationId is null || associationId == Guid.Empty)
         {

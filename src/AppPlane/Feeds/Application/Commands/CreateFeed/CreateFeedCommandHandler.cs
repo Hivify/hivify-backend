@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationPorts;
+﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUserPort;
+using BuildingBlocks.ApplicationPorts.HivifyUser;
 using Feeds.Application.Contracts;
 using Feeds.Domain.Feeds;
 using SharedKernel.ValueObjects;
@@ -12,7 +12,7 @@ public sealed class CreateFeedCommandHandler
 {
     private readonly IFeedRepo _feedRepository;
     private readonly ICurrentHivifyUser _currentUser;
-    private readonly ICurrentAssociationAsTenant _currentTenant;
+    private readonly ICurrentAssociationAsTenant _currentAssociationAsTenant;
 
     public CreateFeedCommandHandler(
         IFeedRepo feedRepository,
@@ -21,7 +21,7 @@ public sealed class CreateFeedCommandHandler
     {
         _feedRepository = feedRepository;
         _currentUser = currentUser;
-        _currentTenant = currentTenant;
+        _currentAssociationAsTenant = currentTenant;
     }
 
     public async Task<Guid> Handle(
@@ -36,7 +36,7 @@ public sealed class CreateFeedCommandHandler
                 "Authentication is required.");
         }
 
-        var associationId = _currentTenant.AssociationId;
+        var associationId = _currentAssociationAsTenant.AssociationId;
 
         if (associationId is null || associationId == Guid.Empty)
         {

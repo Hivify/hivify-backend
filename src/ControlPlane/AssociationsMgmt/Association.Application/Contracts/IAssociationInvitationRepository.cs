@@ -1,5 +1,6 @@
 ﻿
 using Association.Domain.Entities;
+using Association.Domain.ValueObjects;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Contracts;
@@ -15,7 +16,9 @@ public interface IAssociationInvitationRepository
         AssociationInvitation invitation,
         CancellationToken ct = default);
 
-    Task<AssociationInvitation?> GetByTokenHashAsync(string tokenHash, CancellationToken ct = default);
+    Task<AssociationInvitation?> GetByTokenHashAsync(InvitationTokenHash tokenHash, CancellationToken ct = default);
+
+    Task<AssociationInvitation?> GetByIdAsync(InvitationID invitationId, CancellationToken ct = default);
 
     Task SaveChangesAsync(CancellationToken ct = default);
 }

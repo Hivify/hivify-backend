@@ -2,7 +2,7 @@
 using Association.Application.Contracts;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 using System.Security.Cryptography;
@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 namespace Association.Application.Commands.InviteMember;
 
 public sealed class InviteMemberCommandHandler(
-    ICurrentAssociationAsTenant currentTenant,
+    ICurrentAssociationAsTenant currentAssociationAsTenant,
     IAssociationRepository associationRepository,
     IAssociationInvitationRepository invitationRepository,
     IAssociationInvitationEmailSender emailSender)
@@ -21,8 +21,8 @@ public sealed class InviteMemberCommandHandler(
         CancellationToken ct)
     {
         // 1. Ensure the request has an authenticated inviter.
-        if (!currentTenant.IsAuthenticated ||
-            currentTenant.UserId is not Guid userId ||
+        if (!currentAssociationAsTenant.IsAssociationMemberAuthenticated ||
+            currentAssociationAsTenant.UserId is not Guid userId ||
             userId == Guid.Empty)
         {
             throw new UnauthorizedAccessException(
@@ -30,7 +30,7 @@ public sealed class InviteMemberCommandHandler(
         }
 
         // 2. Resolve the association from the current tenant.
-        if (currentTenant.AssociationId is not Guid associationId ||
+        if (currentAssociationAsTenant.AssociationId is not Guid associationId ||
             associationId == Guid.Empty)
         {
             throw new InvalidOperationException(
@@ -38,7 +38,7 @@ public sealed class InviteMemberCommandHandler(
         }
 
         // 3. Verify the user's role in this association.
-        if (!currentTenant.IsAssociationTenantAdmin)
+        if (!currentAssociationAsTenant.IsAssociationMemberAdmin)
         {
             throw new UnauthorizedAccessException(
                 "Only a TenantAdmin can invite members.");
@@ -80,19 +80,16 @@ public sealed class InviteMemberCommandHandler(
             .Replace('+', '-')
             .Replace('/', '_');
 
-        // Store only the SHA-256 hash, never the raw token.
-        var tokenHash = Convert.ToHexString(
-            SHA256.HashData(
-                System.Text.Encoding.UTF8.GetBytes(invitationToken)));
+        // . Store only the SHA-256 hash, never the raw token.
+        var tokenHash = InvitationTokenHash.Create(invitationToken);
 
-        var expiresAt = DateTime.UtcNow.AddDays(7);
+
 
         var invitation = AssociationInvitation.Create(
             new AssociationID(associationId),
             new UserID(userId),
             email,
-            tokenHash,
-            expiresAt);
+            tokenHash);
 
         // 8. Persist the invitation before sending the email.
         await invitationRepository.AddAsync(invitation, ct);

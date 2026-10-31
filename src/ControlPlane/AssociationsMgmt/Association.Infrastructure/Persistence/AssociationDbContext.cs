@@ -143,19 +143,30 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     .IsRequired();
             });
 
+            // Invitation token hash
             entity.Property(i => i.TokenHash)
-                .HasMaxLength(256)
+                .HasConversion(
+                    tokenHash => tokenHash.Value,
+                    value => InvitationTokenHash.FromStoredValue(value))
+                .HasColumnName("TokenHash")
+                .HasMaxLength(64)
                 .IsRequired();
 
             entity.Property(i => i.Status)
                 .HasConversion<int>()
                 .IsRequired();
 
-            entity.Property(i => i.CreatedAt)
-                .IsRequired();
+            // Invitation expiration
+            entity.OwnsOne(i => i.Expiration, expiration =>
+            {
+                expiration.Property(x => x.CreatedAt)
+                    .HasColumnName("CreatedAt")
+                    .IsRequired();
 
-            entity.Property(i => i.ExpiresAt)
-                .IsRequired();
+                expiration.Property(x => x.ExpiresAt)
+                    .HasColumnName("ExpiresAt")
+                    .IsRequired();
+            });
 
             entity.Property(i => i.AcceptedAt)
                 .IsRequired(false);

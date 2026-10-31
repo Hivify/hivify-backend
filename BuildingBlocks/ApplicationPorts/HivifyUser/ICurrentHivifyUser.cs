@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.HivifyUserPort
+﻿namespace BuildingBlocks.ApplicationPorts.HivifyUser
 {
     public interface ICurrentHivifyUser
     {

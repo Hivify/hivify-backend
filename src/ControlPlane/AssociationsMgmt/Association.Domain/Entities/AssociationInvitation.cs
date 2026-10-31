@@ -10,15 +10,15 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
     public AssociationID AssociationID { get; private set; }
     public UserID InvitedByUserID { get; private set; }
     public ContactEmail Email { get; private set; }
-    public string TokenHash { get; private set; }
+    public InvitationTokenHash TokenHash { get; private set; }
     public InvitationStatus Status { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime ExpiresAt { get; private set; }
-    public DateTime? AcceptedAt { get; private set; }
+
+    public InvitationExpiration Expiration { get; private set; }
+
+    public DateTimeOffset? AcceptedAt { get; private set; }
 
     private AssociationInvitation()
     {
-        TokenHash = string.Empty;
     }
 
     private AssociationInvitation(
@@ -26,55 +26,28 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
         AssociationID associationID,
         UserID invitedByUserID,
         ContactEmail email,
-        string tokenHash,
-        DateTime expiresAt)
+        InvitationTokenHash tokenHash,
+        InvitationExpiration expiration)
         : base(id)
     {
         AssociationID = associationID;
         InvitedByUserID = invitedByUserID;
         Email = email;
         TokenHash = tokenHash;
+        Expiration = expiration;
         Status = InvitationStatus.Pending;
-        CreatedAt = DateTime.UtcNow;
-        ExpiresAt = expiresAt;
     }
 
     public static AssociationInvitation Create(
         AssociationID associationID,
         UserID invitedByUserID,
         ContactEmail email,
-        string tokenHash,
-        DateTime expiresAt)
+        InvitationTokenHash tokenHash)
     {
-        if (associationID.Value == Guid.Empty)
-            throw new ArgumentException(
-                "Association ID cannot be empty.",
-                nameof(associationID));
-
-        if (invitedByUserID.Value == Guid.Empty)
-            throw new ArgumentException(
-                "Inviter user ID cannot be empty.",
-                nameof(invitedByUserID));
-
         ArgumentNullException.ThrowIfNull(email);
+        ArgumentNullException.ThrowIfNull(tokenHash);
 
-        if (string.IsNullOrWhiteSpace(tokenHash))
-            throw new ArgumentException(
-                "Token hash is required.",
-                nameof(tokenHash));
-
-        if (tokenHash.Length != 64 ||
-            !tokenHash.All(Uri.IsHexDigit))
-        {
-            throw new ArgumentException(
-                "Token hash must be a 64-character hexadecimal SHA-256 hash.",
-                nameof(tokenHash));
-        }
-
-        if (expiresAt <= DateTime.UtcNow)
-            throw new ArgumentException(
-                "Expiration must be in the future.",
-                nameof(expiresAt));
+        var expiration = InvitationExpiration.Create(DateTimeOffset.UtcNow);
 
         return new AssociationInvitation(
             new InvitationID(Guid.NewGuid()),
@@ -82,21 +55,21 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
             invitedByUserID,
             email,
             tokenHash,
-            expiresAt);
+            expiration);
     }
 
     public void Accept()
     {
         EnsurePending();
 
-        if (DateTime.UtcNow >= ExpiresAt)
+        if (Expiration.IsExpired(DateTimeOffset.UtcNow))
         {
             throw new InvalidOperationException(
                 "This invitation has expired.");
         }
 
         Status = InvitationStatus.Accepted;
-        AcceptedAt = DateTime.UtcNow;
+        AcceptedAt = DateTimeOffset.UtcNow;
     }
 
     public void Revoke()
@@ -110,13 +83,19 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
     {
         EnsurePending();
 
-        if (DateTime.UtcNow < ExpiresAt)
+        if (!Expiration.IsExpired(DateTimeOffset.UtcNow))
         {
             throw new InvalidOperationException(
                 "This invitation has not expired.");
         }
 
         Status = InvitationStatus.Expired;
+    }
+
+    public bool IsValid(DateTimeOffset utcNow)
+    {
+        return Status == InvitationStatus.Pending
+            && !Expiration.IsExpired(utcNow);
     }
 
     private void EnsurePending()

@@ -8,9 +8,9 @@ using SharedKernel.ValueObjects;
 public sealed class AddHouseTenantCommandHandler : ICommandHandler<AddHouseTenantCommand, Guid>
 {
     private readonly IHouseRepo _houseRepo;
-    private readonly IUserHivifyDirectory _userManagementService;
+    private readonly IHivifyUserDirectory _userManagementService;
 
-    public AddHouseTenantCommandHandler(IHouseRepo houseRepo, IUserHivifyDirectory userManagementService)
+    public AddHouseTenantCommandHandler(IHouseRepo houseRepo, IHivifyUserDirectory userManagementService)
     {
         _houseRepo = houseRepo;
         _userManagementService = userManagementService;
