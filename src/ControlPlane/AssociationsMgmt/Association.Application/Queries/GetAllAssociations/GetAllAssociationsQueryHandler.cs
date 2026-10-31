@@ -28,7 +28,7 @@ public sealed class GetAllAssociationsQueryHandler(
                 a.Identifier.Value,
                 a.Status.ToString(),
                 a.Members
-                    .Where(m => m.Role == AssociationRoles.TenantAdmin)
+                    .Where(m => m.Role == AssociationRoles.AssociationAdmin)
                     .Select(m => m.UserID.Value)
                     .FirstOrDefault(),
                 a.Members.Count,

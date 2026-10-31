@@ -1,7 +1,7 @@
 ﻿
 using Association.Application.Contracts;
 using Association.Application.DTOs;
-using BuildingBlocks.ApplicationPorts.AssociationUserPort;
+using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 
@@ -9,14 +9,14 @@ namespace Association.Application.Queries.GetAssociationDetailsById;
 
 public sealed class GetCurrentAssociationDetailsQueryHandler(
     IAssociationRepository associationRepository,
-    ICurrentAssociationMember currentTenant)
+    ICurrentAssociationAsTenant currentAssociationAsTenant)
     : IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>
 {
     public async Task<AssociationDto?> Handle(
         GetCurrentAssociationDetailsQuery query,
         CancellationToken ct)
     {
-        var associationId = currentTenant.AssociationId;
+        var associationId = currentAssociationAsTenant.AssociationId;
 
         if (associationId is null)
             return null;

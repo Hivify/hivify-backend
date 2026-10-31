@@ -8,8 +8,7 @@ using Association.Application.Queries.GetAssociationDetailsById;
 using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
-using BuildingBlocks.ApplicationPorts.AssociationPorts;
-using BuildingBlocks.ApplicationPorts.AssociationUserPort;
+using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
@@ -53,6 +52,7 @@ public static class ApplicationExtensions
             services.AddScoped<
                 IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>,
                 GetCurrentAssociationDetailsQueryHandler>();
+
 
             return services;
         }

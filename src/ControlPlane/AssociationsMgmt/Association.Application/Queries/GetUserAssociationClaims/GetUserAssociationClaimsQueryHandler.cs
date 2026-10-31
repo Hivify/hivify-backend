@@ -1,6 +1,6 @@
 ﻿using Association.Application.Contracts;
-using BuildingBlocks.ApplicationPorts.AssociationUserPort;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.Infrastructure.AssociationAsTenant;
 using SharedKernel.ValueObjects;
 using System.Security.Claims;
 
@@ -29,7 +29,7 @@ public sealed class GetUserAssociationClaimsQueryHandler(IAssociationRepository 
             var value = $"{association.Id.Value:D}|{membership.Role}";
 
             claims.Add(
-                new Claim(AssociationMembershipClaimTypes.AssociationMembership, value)
+                new Claim(AssociationMemberClaimTypes.AssociationMembership, value)
                 );
         }
 

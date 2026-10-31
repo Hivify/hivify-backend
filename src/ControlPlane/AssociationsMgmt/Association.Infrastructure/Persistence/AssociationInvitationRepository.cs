@@ -1,6 +1,7 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Entities;
 using Association.Domain.Enums;
+using Association.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel.ValueObjects;
 
@@ -32,12 +33,22 @@ public sealed class AssociationInvitationRepository(
     }
 
     public async Task<AssociationInvitation?> GetByTokenHashAsync(
-    string tokenHash,
+    InvitationTokenHash tokenHash,
     CancellationToken ct = default)
     {
         return await context.Invitations.FirstOrDefaultAsync(
                 invitation => invitation.TokenHash == tokenHash,
                 ct);
+    }
+
+    public async Task<AssociationInvitation?> GetByIdAsync(
+        InvitationID invitationId,
+        CancellationToken ct = default)
+    {
+
+        return await context.Invitations.FirstOrDefaultAsync(
+            invitation => invitation.Id == invitationId,
+            ct);
     }
 
 

@@ -1,5 +1,5 @@
 ﻿using Association.Application.Commands.CreateAssociation;
-using BuildingBlocks.ApplicationPorts.AssociationPorts;
+using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
 namespace Association.Application.Services;

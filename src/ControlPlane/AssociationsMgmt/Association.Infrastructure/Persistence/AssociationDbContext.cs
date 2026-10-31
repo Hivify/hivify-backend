@@ -123,6 +123,8 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     value => new InvitationID(value))
                 .IsRequired();
 
+
+
             entity.Property(i => i.AssociationID)
                 .HasConversion(
                     id => id.Value,
@@ -150,6 +152,17 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(i => i.Status)
                 .HasConversion<int>()
                 .IsRequired();
+
+
+            entity.OwnsOne(i => i.Expiration, expiration =>
+            {
+                expiration.Property(x => x.CreatedAt)
+                    .HasColumnName("CreatedAt");
+
+                expiration.Property(x => x.ExpiresAt)
+                    .HasColumnName("ExpiresAt");
+            });
+
 
             entity.Property(i => i.CreatedAt)
                 .IsRequired();
