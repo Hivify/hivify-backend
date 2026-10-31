@@ -6,6 +6,7 @@ using BuildingBlocks.ApplicationPorts.AssociationPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Association.Application.Commands.InviteMember;
 
@@ -80,10 +81,10 @@ public sealed class InviteMemberCommandHandler(
             .Replace('+', '-')
             .Replace('/', '_');
 
-        // Store only the SHA-256 hash, never the raw token.
+        // . Store only the SHA-256 hash, never the raw token.
         var tokenHash = Convert.ToHexString(
             SHA256.HashData(
-                System.Text.Encoding.UTF8.GetBytes(invitationToken)));
+               Encoding.UTF8.GetBytes(invitationToken)));
 
         var expiresAt = DateTime.UtcNow.AddDays(7);
 
