@@ -1,30 +1,24 @@
-﻿namespace Association.Domain.ValueObjects;
-
-public sealed record InvitationExpiration
+﻿public sealed record InvitationExpiration
 {
     private const int ValidityDays = 5;
 
-    public DateTime CreatedAt { get; }
-    public DateTime ExpiresAt { get; }
+    public DateTimeOffset CreatedAt { get; }
+    public DateTimeOffset ExpiresAt { get; }
 
-    private InvitationExpiration(DateTime createdAt)
+    private InvitationExpiration(DateTimeOffset createdAt)
     {
         CreatedAt = createdAt;
         ExpiresAt = createdAt.AddDays(ValidityDays);
     }
 
-    public static InvitationExpiration Create(DateTime createdAt)
+    public static InvitationExpiration Create(DateTimeOffset createdAt)
     {
         return new InvitationExpiration(createdAt);
     }
 
-    public bool IsExpired(DateTime utcNow)
-    {
-        return utcNow >= ExpiresAt;
-    }
+    public bool IsExpired(DateTimeOffset utcNow)
+        => utcNow >= ExpiresAt;
 
-    public bool IsValid(DateTime utcNow)
-    {
-        return utcNow < ExpiresAt;
-    }
+    public bool IsValid(DateTimeOffset utcNow)
+        => utcNow < ExpiresAt;
 }

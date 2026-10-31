@@ -15,10 +15,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
 
     public InvitationExpiration Expiration { get; private set; }
 
-    public DateTime CreatedAt => Expiration.CreatedAt;
-    public DateTime ExpiresAt => Expiration.ExpiresAt;
-
-    public DateTime? AcceptedAt { get; private set; }
+    public DateTimeOffset? AcceptedAt { get; private set; }
 
     private AssociationInvitation()
     {
@@ -50,7 +47,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
         ArgumentNullException.ThrowIfNull(email);
         ArgumentNullException.ThrowIfNull(tokenHash);
 
-        var expiration = InvitationExpiration.Create(DateTime.UtcNow);
+        var expiration = InvitationExpiration.Create(DateTimeOffset.UtcNow);
 
         return new AssociationInvitation(
             new InvitationID(Guid.NewGuid()),
@@ -65,14 +62,14 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
     {
         EnsurePending();
 
-        if (Expiration.IsExpired(DateTime.UtcNow))
+        if (Expiration.IsExpired(DateTimeOffset.UtcNow))
         {
             throw new InvalidOperationException(
                 "This invitation has expired.");
         }
 
         Status = InvitationStatus.Accepted;
-        AcceptedAt = DateTime.UtcNow;
+        AcceptedAt = DateTimeOffset.UtcNow;
     }
 
     public void Revoke()
@@ -86,7 +83,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
     {
         EnsurePending();
 
-        if (!Expiration.IsExpired(DateTime.UtcNow))
+        if (!Expiration.IsExpired(DateTimeOffset.UtcNow))
         {
             throw new InvalidOperationException(
                 "This invitation has not expired.");
@@ -95,7 +92,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
         Status = InvitationStatus.Expired;
     }
 
-    public bool IsValid(DateTime utcNow)
+    public bool IsValid(DateTimeOffset utcNow)
     {
         return Status == InvitationStatus.Pending
             && !Expiration.IsExpired(utcNow);
