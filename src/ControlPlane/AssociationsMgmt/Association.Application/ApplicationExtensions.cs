@@ -5,6 +5,7 @@ using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetAssociationByIdentifier;
 using Association.Application.Queries.GetAssociationDetailsById;
+using Association.Application.Queries.GetInvitationDetailsQuery;
 using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
@@ -52,6 +53,8 @@ public static class ApplicationExtensions
             services.AddScoped<
                 IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>,
                 GetCurrentAssociationDetailsQueryHandler>();
+
+            services.AddScoped<IQueryHandler<GetInvitationDetailsQuery, InvitationDetailsDto?>, GetInvitationDetailsHandler>();
 
 
             return services;
