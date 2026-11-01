@@ -2,7 +2,7 @@
 using Association.Application.Contracts;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
+using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 using System.Security.Cryptography;

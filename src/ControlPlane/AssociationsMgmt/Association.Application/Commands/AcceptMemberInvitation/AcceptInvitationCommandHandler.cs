@@ -5,7 +5,7 @@ using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.HivifyUser;
 using SharedKernel.ValueObjects;
 
-namespace Association.Application.Commands.AcceptInvitation;
+namespace Association.Application.Commands.AcceptMemberInvitation;
 
 public sealed class AcceptInvitationCommandHandler(
     ICurrentHivifyUser currentUser,
@@ -61,6 +61,8 @@ public sealed class AcceptInvitationCommandHandler(
 
         // 7. Persist both changes.
         await associationRepository.SaveChangesAsync(ct);
+
+        // 8. Refresh the user's sign-in session to reflect new association membership.
 
         await signInRefresher.RefreshAsync();
 

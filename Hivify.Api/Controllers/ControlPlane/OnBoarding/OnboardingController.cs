@@ -1,9 +1,8 @@
+using BuildingBlocks.ApplicationPorts.HivifyUser;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Mappers;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Requests;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Responses;
-using Identity.Domain;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Domain.Enums;
@@ -15,8 +14,7 @@ namespace Hivify.Api.Controllers.ControlPlane.OnBoarding;
 [Authorize]
 public sealed class OnboardingController(
     IOnboardingService onboardingService,
-    UserManager<DotNETApplicationUser> userManager,
-    SignInManager<DotNETApplicationUser> signInManager) : ControllerBase
+    IUserSignInRefresher signInRefresher) : ControllerBase
 {
     [HttpPost]
     public async Task<ActionResult<CreatedOnboardingResponse>> CreateOnboarding(
@@ -28,14 +26,7 @@ public sealed class OnboardingController(
             ct);
 
         if (result.Status == OnboardingStatus.Completed)
-        {
-            var user = await userManager.GetUserAsync(User);
-
-            if (user is null)
-                return Unauthorized();
-
-            await signInManager.RefreshSignInAsync(user);
-        }
+            await signInRefresher.RefreshAsync();
 
         return CreatedAtAction(
             nameof(CreateOnboarding),

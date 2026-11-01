@@ -15,11 +15,11 @@ namespace Hivify.Api.Controllers.AppPlane.Feeds;
 [Route("api/feeds")]
 public sealed class FeedsController : ControllerBase
 {
-    private readonly ISender _sender;
+    private readonly ICommandSender _sender;
     private readonly IQuerySender _querySender;
 
     public FeedsController(
-        ISender sender,
+        ICommandSender sender,
         IQuerySender querySender)
     {
         _sender = sender;

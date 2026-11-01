@@ -1,4 +1,4 @@
-﻿using Association.Application.Commands.AcceptInvitation;
+﻿using Association.Application.Commands.AcceptMemberInvitation;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
@@ -11,7 +11,7 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations;
 [Route("api/associations/invitations")]
 [Authorize]
 public sealed class AcceptInvitationController(
-    ISender commandSender) : ControllerBase
+    ICommandSender commandSender) : ControllerBase
 {
     [HttpPost("accept")]
     public async Task<ActionResult<AcceptInvitationResponse>> AcceptInvitation(

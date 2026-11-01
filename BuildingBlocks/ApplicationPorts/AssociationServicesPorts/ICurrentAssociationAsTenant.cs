@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.AssociationAsTenant
+﻿namespace BuildingBlocks.ApplicationPorts.AssociationServicesPorts
 {
     public interface ICurrentAssociationAsTenant
     {

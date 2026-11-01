@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
+﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;

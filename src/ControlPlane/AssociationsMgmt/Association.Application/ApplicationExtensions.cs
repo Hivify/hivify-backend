@@ -1,5 +1,4 @@
-﻿
-using Association.Application.Commands.AcceptInvitation;
+﻿using Association.Application.Commands.AcceptMemberInvitation;
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
 using Association.Application.DTOs;

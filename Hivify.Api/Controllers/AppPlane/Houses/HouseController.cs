@@ -15,11 +15,11 @@ namespace Hivify.Api.Controllers.AppPlane.Houses;
 [Route("api/houses")]
 public sealed class HousesController : ControllerBase
 {
-    private readonly ISender _sender;
+    private readonly ICommandSender _sender;
     private readonly IQuerySender _querySender;
 
     public HousesController(
-        ISender sender,
+        ICommandSender sender,
         IQuerySender querySender)
     {
         _sender = sender;

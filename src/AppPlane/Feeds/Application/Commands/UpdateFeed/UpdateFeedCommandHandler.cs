@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
+﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.HivifyUser;
 using Feeds.Application.Contracts;
