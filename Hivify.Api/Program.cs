@@ -107,7 +107,7 @@ builder.Services.AddBuildingBlocks(builder.Configuration, builder.Environment.Is
 
 // User Management
 builder.Services.AddUserMgmtServices();
-builder.Services.AddUserMgmtInfrastructure(connectionString);
+builder.Services.AddUserIdentityInfrastructure(connectionString);
 
 
 // Documents

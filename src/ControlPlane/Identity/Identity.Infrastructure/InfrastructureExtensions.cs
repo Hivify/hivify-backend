@@ -14,7 +14,7 @@ namespace Identity.Infrastructure
         extension(IServiceCollection services)
         {
 
-            public IServiceCollection AddUserMgmtInfrastructure(string connectionString)
+            public IServiceCollection AddUserIdentityInfrastructure(string connectionString)
             {
 
                 services.AddDbContextFactory<IdentityDbContext>(options =>
