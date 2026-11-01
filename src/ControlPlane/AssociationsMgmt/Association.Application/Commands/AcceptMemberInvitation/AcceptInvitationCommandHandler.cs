@@ -5,7 +5,7 @@ using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.HivifyUser;
 using SharedKernel.ValueObjects;
 
-namespace Association.Application.Commands.AcceptInvitation;
+namespace Association.Application.Commands.AcceptMemberInvitation;
 
 public sealed class AcceptInvitationCommandHandler(
     ICurrentHivifyUser currentUser,

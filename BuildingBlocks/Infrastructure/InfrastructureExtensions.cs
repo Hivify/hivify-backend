@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
+﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.EmailSender;
 using BuildingBlocks.ApplicationPorts.HivifyUser;
@@ -26,7 +26,7 @@ namespace BuildingBlocks.Infrastructure
                 services.AddScoped<IHivifyUserAuthorization, HivifyUserAuthorization>();
                 services.AddScoped<ICurrentAssociationAsTenant, CurrentAssociationAsTenant>();
                 // Messaging 
-                services.AddScoped<ISender, CommandSender>();
+                services.AddScoped<ICommandSender, CommandSender>();
                 services.AddScoped<IQuerySender, QuerySender>();
 
                 // Storage

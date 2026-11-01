@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationAsTenant;
+﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.Infrastructure.AssociationAsTenant;
 using Microsoft.AspNetCore.Authorization;
 

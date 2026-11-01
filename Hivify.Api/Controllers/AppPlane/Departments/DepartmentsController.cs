@@ -17,11 +17,11 @@ namespace Hivify.Api.Controllers.AppPlane.Departments;
 [Route("api/departments")]
 public sealed class DepartmentsController : ControllerBase
 {
-    private readonly ISender _sender;
+    private readonly ICommandSender _sender;
     private readonly IQuerySender _querySender;
 
     public DepartmentsController(
-        ISender sender,
+        ICommandSender sender,
         IQuerySender querySender)
     {
         _sender = sender;

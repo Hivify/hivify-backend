@@ -14,11 +14,11 @@ namespace Hivify.Api.Controllers.AppPlane.Complaints;
 [Route("api/complaints")]
 public sealed class ComplaintsController : ControllerBase
 {
-    private readonly ISender _sender;
+    private readonly ICommandSender _sender;
     private readonly IQuerySender _querySender;
 
     public ComplaintsController(
-        ISender sender,
+        ICommandSender sender,
         IQuerySender querySender)
     {
         _sender = sender;

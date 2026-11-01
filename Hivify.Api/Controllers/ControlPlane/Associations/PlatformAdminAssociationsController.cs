@@ -16,7 +16,7 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations;
 [Authorize(Roles = "Admin")]
 public sealed class PlatformAdminAssociationsController(
     IQuerySender querySender,
-    ISender commandSender,
+    ICommandSender commandSender,
     IHivifyUserAuthorization authorization
     ) : ControllerBase
 {
