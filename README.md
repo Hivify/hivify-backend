@@ -56,7 +56,7 @@ Taskfile.yml                        EF migration tasks
 HifiyBackend-Diagrams.drawio        Architecture diagrams
 ```
 
-All projects target `net10.0`. The repository currently contains the backend solution; `node_modules` and `package-lock.json` are not an active frontend project definition.
+All projects target `net10.0`. The repository currently contains the backend solution;
 
 ## Prerequisites
 
@@ -65,7 +65,7 @@ All projects target `net10.0`. The repository currently contains the backend sol
 - PowerShell (recommended on Windows)
 - Visual Studio 2026 with the .NET workload, or VS Code with C# tooling
 - Ollama with the `phi4-mini` model if using the AI services
-- Task (optional) for the commands in `Taskfile.yml`
+- Task (optional) for the commands in `Taskfile.yml` (database migrations at the bounded context level)
 
 ## Local setup
 
