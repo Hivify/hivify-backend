@@ -1,15 +1,13 @@
 ﻿using Association.Application.Contracts;
-using BuildingBlocks.ApplicationPorts.EmailSender;
+using Microsoft.Extensions.Logging;
 
 namespace Association.Infrastructure.Email;
 
-public sealed class ResendAssociationInvitationEmailSender(
-    IEmailSender emailSender)
+public sealed class DevelopmentAssociationInvitationEmailSender(
+    ILogger<DevelopmentAssociationInvitationEmailSender> logger)
     : IAssociationInvitationEmailSender
 {
-    private readonly IEmailSender _emailSender = emailSender;
-
-    public async Task SendInvitationAsync(
+    public Task SendInvitationAsync(
         string recipientEmail,
         string invitationToken,
         Guid associationId,
@@ -19,21 +17,17 @@ public sealed class ResendAssociationInvitationEmailSender(
             $"http://localhost:3000/accept-invitation" +
             $"?token={Uri.EscapeDataString(invitationToken)}";
 
-        var message = new SentEmailMessage(
-            To: recipientEmail,
-            Subject: "You're invited to join Hivify",
-            HtmlBody: $"""
-                <h2>You've been invited to join Hivify</h2>
-                <p>You've received an invitation to join an association on Hivify.</p>
-                <p>
-                    <a href="{invitationUrl}">Accept invitation</a>
-                </p>
-                <p>This invitation expires in 7 days.</p>
-                """,
-            TextBody:
-                $"You've been invited to join Hivify. " +
-                $"Accept your invitation here: {invitationUrl}");
+        logger.LogInformation(
+            """
+            DEVELOPMENT INVITATION EMAIL
+            Recipient: {Recipient}
+            Association ID: {AssociationId}
+            Invitation URL: {InvitationUrl}
+            """,
+            recipientEmail,
+            associationId,
+            invitationUrl);
 
-        await _emailSender.SendAsync(message, ct);
+        return Task.CompletedTask;
     }
 }

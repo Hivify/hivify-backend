@@ -2,7 +2,5 @@
 
 public interface IEmailSender
 {
-    Task SendAsync(
-        SentEmailMessage message,
-        CancellationToken ct = default);
+    Task SendAsync(SentEmailMessage message, CancellationToken ct = default);
 }

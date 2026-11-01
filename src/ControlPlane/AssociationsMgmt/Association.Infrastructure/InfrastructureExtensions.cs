@@ -21,9 +21,10 @@ namespace Association.Infrastructure
                 services.AddScoped<IAssociationRepository, AssociationRepository>();
 
                 services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
-                services.AddScoped<
-               IAssociationInvitationEmailSender,
-               ResendAssociationInvitationEmailSender>();
+
+
+                services.AddScoped<IAssociationInvitationEmailSender, AssociationInvitationEmailSender>();
+
 
                 return services;
             }
