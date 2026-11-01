@@ -1,4 +1,5 @@
 ﻿
+using Association.Application.Commands.AcceptInvitation;
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
 using Association.Application.DTOs;
@@ -55,6 +56,8 @@ public static class ApplicationExtensions
                 GetCurrentAssociationDetailsQueryHandler>();
 
             services.AddScoped<IQueryHandler<GetInvitationDetailsQuery, InvitationDetailsDto?>, GetInvitationDetailsHandler>();
+
+            services.AddScoped<ICommandHandler<AcceptInvitationCommand, Guid>, AcceptInvitationCommandHandler>();
 
 
             return services;
