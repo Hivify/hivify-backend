@@ -1,4 +1,5 @@
-﻿using Identity.Application.Contracts;
+﻿using BuildingBlocks.ApplicationPorts.HivifyUser;
+using Identity.Application.Contracts;
 using Identity.Domain;
 using Identity.Infrastructure.DotNETIdentity;
 using Identity.Infrastructure.Persistence;
@@ -40,10 +41,8 @@ namespace Identity.Infrastructure
 
                 services.AddScoped<IHivifyUserDirectory, HivifyUsersDirectory>();
                 services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
-
-                services.AddScoped<IUserClaimsPrincipalFactory<DotNETApplicationUser>,
-                HivifyClaimsPrincipalFactory>();
-
+                services.AddScoped<IUserClaimsPrincipalFactory<DotNETApplicationUser>, HivifyClaimsPrincipalFactory>();
+                services.AddScoped<IUserSignInRefresher, UserSignInRefresher>();
 
 
                 return services;
