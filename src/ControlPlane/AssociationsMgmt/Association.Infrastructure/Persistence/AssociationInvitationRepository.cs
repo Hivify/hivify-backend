@@ -11,19 +11,38 @@ public sealed class AssociationInvitationRepository(
     AssociationDbContext context)
     : IAssociationInvitationRepository
 {
+
+
+
+    /// <summary>
+    ///        Checks if an invitation exists and pending for the given email and association id
+    /// </summary>
+    /// <param name="associationId"></param>
+    /// <param name="email"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     public async Task<bool> IsPendingInvitationExistsAsync(
         AssociationID associationId,
-        string email,
+        ContactEmail email,
         CancellationToken ct = default)
     {
         return await context.Invitations
             .AnyAsync(
                 invitation =>
                     invitation.AssociationID == associationId &&
-                    invitation.Email.Value == email &&
+                    invitation.Email == email &&
                     invitation.Status == InvitationStatus.Pending,
                 ct);
     }
+
+
+
+    /// <summary>
+    ///            Adds a new invitation to the database
+    /// </summary>
+    /// <param name="invitation"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
 
     public async Task AddAsync(
         AssociationInvitation invitation,
@@ -31,6 +50,14 @@ public sealed class AssociationInvitationRepository(
     {
         await context.Invitations.AddAsync(invitation, ct);
     }
+
+
+    /// <summary>
+    ///         Gets an invitation by its token hash
+    /// </summary>
+    /// <param name="tokenHash"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
 
     public async Task<AssociationInvitation?> GetByTokenHashAsync(
     InvitationTokenHash tokenHash,
@@ -40,6 +67,13 @@ public sealed class AssociationInvitationRepository(
                 invitation => invitation.TokenHash == tokenHash,
                 ct);
     }
+
+    /// <summary>
+    ///           Gets an invitation by its id
+    /// </summary>
+    /// <param name="invitationId"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
 
     public async Task<AssociationInvitation?> GetByIdAsync(
         InvitationID invitationId,

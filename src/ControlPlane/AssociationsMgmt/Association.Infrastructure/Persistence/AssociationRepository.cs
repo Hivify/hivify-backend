@@ -77,7 +77,7 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
 
 
     /// <summary>
-    ///   Gets all joind associations by the user id.
+    ///   Gets all joined associations by the user id.
     /// </summary>
     /// <param name="userId"></param>
     /// <param name="ct"></param>

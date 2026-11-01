@@ -3,8 +3,7 @@ using BuildingBlocks.ApplicationPorts.EmailSender;
 
 namespace Association.Infrastructure.Email;
 
-public sealed class AssociationInvitationEmailSender(IEmailSender emailSender)
-    : IAssociationInvitationEmailSender
+public sealed class AssociationInvitationEmailSender(IEmailSender emailSender) : IAssociationInvitationEmailSender
 {
     private readonly IEmailSender _emailSender = emailSender;
 
