@@ -12,9 +12,7 @@ public interface IAssociationInvitationRepository
         string email,
         CancellationToken ct = default);
 
-    Task AddAsync(
-        AssociationInvitation invitation,
-        CancellationToken ct = default);
+    Task AddAsync(AssociationInvitation invitation, CancellationToken ct = default);
 
     Task<AssociationInvitation?> GetByTokenHashAsync(InvitationTokenHash tokenHash, CancellationToken ct = default);
 

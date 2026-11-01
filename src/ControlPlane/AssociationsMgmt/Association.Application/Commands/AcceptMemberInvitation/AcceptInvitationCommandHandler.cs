@@ -62,6 +62,8 @@ public sealed class AcceptInvitationCommandHandler(
         // 7. Persist both changes.
         await associationRepository.SaveChangesAsync(ct);
 
+        // 8. Refresh the user's sign-in session to reflect new association membership.
+
         await signInRefresher.RefreshAsync();
 
         return association.Id.Value;
