@@ -101,7 +101,7 @@ builder.Services.AddAuthorizationBuilder()
 builder.Services.AddHivifyMultiTenancy();
 
 #region Building Blocks and Application Services
-builder.Services.AddBuildingBlocks(builder.Configuration);
+builder.Services.AddBuildingBlocks(builder.Configuration, builder.Environment.IsDevelopment());
 
 
 

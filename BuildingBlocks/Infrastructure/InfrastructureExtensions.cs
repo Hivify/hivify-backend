@@ -18,7 +18,7 @@ namespace BuildingBlocks.Infrastructure
     {
         extension(IServiceCollection services)
         {
-            public IServiceCollection AddBuildingBlocks(IConfiguration configuration)
+            public IServiceCollection AddBuildingBlocks(IConfiguration configuration, bool isDevelopment)
             {
                 //HivifyCurrentUser
                 services.AddHttpContextAccessor();
@@ -43,11 +43,14 @@ namespace BuildingBlocks.Infrastructure
                             "Resend:ApiKey is not configured.");
                 });
 
-                services.AddScoped<IEmailSender, ResendEmailSender>();
-
-
-
-
+                if (isDevelopment)
+                {
+                    services.AddScoped<IEmailSender, DevelopmentEmailSender>();
+                }
+                else
+                {
+                    services.AddScoped<IEmailSender, ResendEmailSender>();
+                }
 
                 return services;
             }
