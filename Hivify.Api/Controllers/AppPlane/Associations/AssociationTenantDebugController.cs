@@ -2,7 +2,7 @@ using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hivify.Api.Controllers.Associations;
+namespace Hivify.Api.Controllers.AppPlane.Associations;
 
 [ApiController]
 [Route("api/associations/debug")]

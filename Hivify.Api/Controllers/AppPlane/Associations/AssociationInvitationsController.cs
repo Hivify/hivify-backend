@@ -7,7 +7,7 @@ using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hivify.Api.Controllers.Associations;
+namespace Hivify.Api.Controllers.AppPlane.Associations;
 
 [ApiController]
 [Route("api/associations/invitations")]

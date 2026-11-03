@@ -9,7 +9,7 @@ using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hivify.Api.Controllers.Platform.Associations;
+namespace Hivify.Api.Controllers.ControlPlane.Associations;
 
 [ApiController]
 [Route("api/platform/associations")]

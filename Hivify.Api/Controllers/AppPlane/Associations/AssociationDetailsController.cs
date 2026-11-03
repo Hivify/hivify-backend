@@ -4,7 +4,7 @@ using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hivify.Api.Controllers.Associations;
+namespace Hivify.Api.Controllers.AppPlane.Associations;
 
 [ApiController]
 [Route("api/associations")]
