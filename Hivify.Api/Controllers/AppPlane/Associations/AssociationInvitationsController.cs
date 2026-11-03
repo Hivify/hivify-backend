@@ -2,8 +2,8 @@ using Association.Application.Commands.AcceptMemberInvitation;
 using Association.Application.Commands.InviteMember;
 using Association.Application.Queries.GetInvitationDetailsQuery;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
-using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
+using Hivify.Api.Controllers.AppPlane.Associations.Requests;
+using Hivify.Api.Controllers.AppPlane.Associations.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
