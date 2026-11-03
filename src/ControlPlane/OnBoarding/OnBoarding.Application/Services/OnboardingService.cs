@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
@@ -9,7 +9,7 @@ using SharedKernel.ValueObjects;
 namespace OnBoarding.Application.Services;
 
 public sealed class OnboardingService(
-    ICurrentHivifyUser currentUser,
+    ICurrentPlatformUser currentUser,
     IAssociationOnboardingPort associationOnboardingPort,
     IOnboardingRepository onboardingRepository,
     ILogger<OnboardingService> logger

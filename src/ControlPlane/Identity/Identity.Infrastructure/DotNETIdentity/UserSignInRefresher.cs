@@ -1,9 +1,9 @@
-﻿using BuildingBlocks.ApplicationPorts.HivifyUser;
+﻿using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 
 public sealed class UserSignInRefresher(
-    ICurrentHivifyUser currentUser,
+    ICurrentPlatformUser currentUser,
     UserManager<DotNETApplicationUser> userManager,
     SignInManager<DotNETApplicationUser> signInManager)
     : IUserSignInRefresher

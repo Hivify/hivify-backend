@@ -1,4 +1,4 @@
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Mappers;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Requests;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Responses;

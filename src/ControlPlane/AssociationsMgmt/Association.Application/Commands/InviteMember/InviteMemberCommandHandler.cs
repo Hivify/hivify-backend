@@ -2,15 +2,15 @@
 using Association.Application.Contracts;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
-using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using SharedKernel.ValueObjects;
 using System.Security.Cryptography;
 
 namespace Association.Application.Commands.InviteMember;
 
 public sealed class InviteMemberCommandHandler(
-    ICurrentAssociationAsTenant currentAssociationAsTenant,
+    ICurrentTenantUser currentTenantUser,
     IAssociationRepository associationRepository,
     IAssociationInvitationRepository invitationRepository,
     IAssociationInvitationEmailSender emailSender)
@@ -21,16 +21,22 @@ public sealed class InviteMemberCommandHandler(
         CancellationToken ct)
     {
         // 1. Ensure the request has an authenticated inviter.
-        if (!currentAssociationAsTenant.IsAssociationMemberAuthenticated ||
-            currentAssociationAsTenant.UserId is not Guid userId ||
-            userId == Guid.Empty)
+        if (!currentTenantUser.IsAuthenticated)
         {
             throw new UnauthorizedAccessException(
                 "An authenticated user is required to invite members.");
         }
 
+        var userId = currentTenantUser.UserId;
+
+        if (userId == Guid.Empty)
+        {
+            throw new UnauthorizedAccessException(
+                "A valid authenticated user is required to invite members.");
+        }
+
         // 2. Resolve the association from the current tenant.
-        if (currentAssociationAsTenant.AssociationId is not Guid associationId ||
+        if (currentTenantUser.AssociationId is not Guid associationId ||
             associationId == Guid.Empty)
         {
             throw new InvalidOperationException(
@@ -38,10 +44,10 @@ public sealed class InviteMemberCommandHandler(
         }
 
         // 3. Verify the user's role in this association.
-        if (!currentAssociationAsTenant.IsAssociationMemberAdmin)
+        if (!currentTenantUser.IsAssociationAdmin)
         {
             throw new UnauthorizedAccessException(
-                "Only a TenantAdmin can invite members.");
+                "Only an association admin can invite members.");
         }
 
         // 4. Validate and wrap the email address.
@@ -64,7 +70,7 @@ public sealed class InviteMemberCommandHandler(
         var hasPendingInvitation =
             await invitationRepository.IsPendingInvitationExistsAsync(
                 new AssociationID(associationId),
-                email.Value,
+                email,
                 ct);
 
         if (hasPendingInvitation)

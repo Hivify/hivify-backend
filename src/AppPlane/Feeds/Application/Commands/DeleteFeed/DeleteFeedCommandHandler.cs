@@ -1,6 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
-using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using Feeds.Application.Contracts;
 using Feeds.Domain.ValueObjects;
 using SharedKernel.ValueObjects;
@@ -11,17 +10,14 @@ public sealed class DeleteFeedCommandHandler
     : ICommandHandler<DeleteFeedCommand, bool>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentAssociationAsTenant _currentAssociationAsTenant;
-    private readonly ICurrentHivifyUser _currentUser;
+    private readonly ICurrentTenantUser _currentTenantUser;
 
     public DeleteFeedCommandHandler(
         IFeedRepo feedRepository,
-        ICurrentAssociationAsTenant currentTenant,
-        ICurrentHivifyUser currentUser)
+        ICurrentTenantUser currentTenantUser)
     {
         _feedRepository = feedRepository;
-        _currentAssociationAsTenant = currentTenant;
-        _currentUser = currentUser;
+        _currentTenantUser = currentTenantUser;
     }
 
     public async Task<bool> Handle(
@@ -30,13 +26,13 @@ public sealed class DeleteFeedCommandHandler
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        if (!_currentUser.IsAuthenticated)
+        if (!_currentTenantUser.IsAuthenticated)
         {
             throw new UnauthorizedAccessException(
                 "Authentication is required.");
         }
 
-        var associationId = _currentAssociationAsTenant.AssociationId;
+        var associationId = _currentTenantUser.AssociationId;
 
         if (associationId is null || associationId == Guid.Empty)
         {

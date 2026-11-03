@@ -2,7 +2,7 @@
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
@@ -17,11 +17,11 @@ namespace Hivify.Api.Controllers.ControlPlane.Associations;
 public sealed class PlatformAdminAssociationsController(
     IQuerySender querySender,
     ICommandSender commandSender,
-    IHivifyUserAuthorization authorization
+    IPlatformAuthorization authorization
     ) : ControllerBase
 {
 
-    private readonly IHivifyUserAuthorization _authorization = authorization;
+    private readonly IPlatformAuthorization _authorization = authorization;
 
 
     /// <summary>

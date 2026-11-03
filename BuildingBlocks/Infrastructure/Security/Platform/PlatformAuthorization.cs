@@ -1,6 +1,8 @@
-﻿using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 
-public sealed class HivifyUserAuthorization(ICurrentHivifyUser currentUser) : IHivifyUserAuthorization
+namespace BuildingBlocks.Infrastructure.Security.Platform;
+
+public sealed class PlatformAuthorization(ICurrentPlatformUser currentUser) : IPlatformAuthorization
 {
     public Task EnsureAuthenticatedAsync(CancellationToken ct = default)
     {

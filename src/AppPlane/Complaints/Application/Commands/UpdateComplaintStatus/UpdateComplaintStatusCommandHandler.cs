@@ -1,5 +1,5 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using Complaints.Application.Contracts;
 using Complaints.Domain;
 
@@ -9,17 +9,14 @@ public sealed class UpdateComplaintStatusCommandHandler
     : ICommandHandler<UpdateComplaintStatusCommand, bool>
 {
     private readonly IComplaintRepo _complaintRepository;
-    private readonly ICurrentHivifyUser _currentUser;
-
+    private readonly ICurrentTenantUser _currentTenantUser;
 
     public UpdateComplaintStatusCommandHandler(
         IComplaintRepo complaintRepository,
-        ICurrentHivifyUser currentUser
-       )
+        ICurrentTenantUser currentTenantUser)
     {
         _complaintRepository = complaintRepository;
-        _currentUser = currentUser;
-
+        _currentTenantUser = currentTenantUser;
     }
 
     public async Task<bool> Handle(
@@ -28,10 +25,8 @@ public sealed class UpdateComplaintStatusCommandHandler
     {
         ArgumentNullException.ThrowIfNull(command);
 
-
-        // Authorization – endast admin
-        if (!_currentUser.IsInRole("Admin"))
-            throw new UnauthorizedAccessException("Endast administratörer kan ändra status.");
+        if (!_currentTenantUser.IsAssociationAdmin)
+            throw new UnauthorizedAccessException("Only association administrators can change complaint status.");
 
         var complaint = await _complaintRepository.GetComplaintByIdAsync(
             new ComplaintID(command.ComplaintId),
@@ -40,10 +35,8 @@ public sealed class UpdateComplaintStatusCommandHandler
         if (complaint == null)
             throw new KeyNotFoundException($"Complaint with ID {command.ComplaintId} not found.");
 
-        // Uppdatera status
         complaint.UpdateStatus(command.Status);
 
-        // Lägg till admin-kommentar om den finns
         if (!string.IsNullOrWhiteSpace(command.AdminComment))
         {
             complaint.AddAdminComment(command.AdminComment);
