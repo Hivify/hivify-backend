@@ -1,8 +1,8 @@
-﻿using Association.Application.Commands.CreateAssociation;
+using Association.Application.Commands.CreateAssociation;
 using Association.Application.Queries.GetAllAssociations;
 using Association.Application.Queries.GetUserAssociations;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
@@ -12,30 +12,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace Hivify.Api.Controllers.ControlPlane.Associations;
 
 [ApiController]
-[Route("api/platform-admin/associations")]
+[Route("api/platform/associations")]
 [Authorize(Roles = "Admin")]
-public sealed class PlatformAdminAssociationsController(
+public sealed class PlatformAssociationsController(
     IQuerySender querySender,
     ICommandSender commandSender,
-    IHivifyUserAuthorization authorization
-    ) : ControllerBase
+    IPlatformAuthorization authorization) : ControllerBase
 {
+    private readonly IPlatformAuthorization _authorization = authorization;
 
-    private readonly IHivifyUserAuthorization _authorization = authorization;
-
-
-    /// <summary>
-    ///     create an association 
-    /// </summary>
-    /// <param name="request"></param>
-    /// <param name="ct"></param>
-    /// <returns></returns>
     [HttpPost]
     public async Task<ActionResult<Guid>> CreateAssociation(
         [FromBody] CreateAssociationRequest request,
         CancellationToken ct)
     {
-
         await _authorization.EnsureApplicationAdminAsync(ct);
 
         var associationId = await commandSender.Send(
@@ -51,12 +41,6 @@ public sealed class PlatformAdminAssociationsController(
             associationId);
     }
 
-
-    /// <summary>
-    ///   get all associations as platform admin
-    /// </summary>
-    /// <param name="ct"></param>
-    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<IReadOnlyCollection<AssociationResponse>>> GetAllAssociations(CancellationToken ct)
     {
@@ -71,20 +55,12 @@ public sealed class PlatformAdminAssociationsController(
         return Ok(response);
     }
 
-    /// <summary>
-    ///     get a single association as platform admin
-    /// </summary>
-    /// <param name="userId"></param>
-    /// <param name="ct"></param>
-    /// <returns></returns>
-
     [HttpGet("by-user/{userId:guid}")]
     public async Task<IActionResult> GetAssociationsForUser(
         Guid userId,
         CancellationToken ct)
     {
-
-        await authorization.EnsureApplicationAdminAsync(ct);
+        await _authorization.EnsureApplicationAdminAsync(ct);
 
         var associations = await querySender.Send(
             new GetAssociationsForUserQuery(userId),

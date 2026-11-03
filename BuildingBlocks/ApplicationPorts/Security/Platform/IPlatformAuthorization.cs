@@ -1,6 +1,6 @@
-﻿namespace BuildingBlocks.ApplicationPorts.HivifyUser;
+namespace BuildingBlocks.ApplicationPorts.Security.Platform;
 
-public interface IHivifyUserAuthorization
+public interface IPlatformAuthorization
 {
     Task EnsureAuthenticatedAsync(CancellationToken ct = default);
 

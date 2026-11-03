@@ -1,5 +1,5 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using Complaints.Application.Contracts;
 using Complaints.Application.DTOs;
 using SharedKernel.ValueObjects;
@@ -10,19 +10,19 @@ public sealed class GetUserComplaintsQueryHandler
     : IQueryHandler<GetUserComplaintsQuery, IReadOnlyList<ComplaintListItem>>
 {
     private readonly IComplaintRepo _complaintRepository;
-    private readonly ICurrentHivifyUser _currentUser;
+    private readonly ICurrentTenantUser _currentTenantUser;
 
-    public GetUserComplaintsQueryHandler(IComplaintRepo complaintRepository, ICurrentHivifyUser currentUser)
+    public GetUserComplaintsQueryHandler(IComplaintRepo complaintRepository, ICurrentTenantUser currentTenantUser)
     {
         _complaintRepository = complaintRepository;
-        _currentUser = currentUser;
+        _currentTenantUser = currentTenantUser;
     }
 
     public async Task<IReadOnlyList<ComplaintListItem>> Handle(
         GetUserComplaintsQuery query,
         CancellationToken cancellationToken)
     {
-        var userId = _currentUser.UserId;
+        var userId = _currentTenantUser.UserId;
 
         var complaints = await _complaintRepository.GetComplaintsByUserAsync(
             new UserID(userId),

@@ -2,13 +2,13 @@
 using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.AcceptMemberInvitation;
 
 public sealed class AcceptInvitationCommandHandler(
-    ICurrentHivifyUser currentUser,
+    ICurrentPlatformUser currentUser,
     IAssociationRepository associationRepository,
     IUserSignInRefresher signInRefresher,
     IAssociationInvitationRepository invitationRepository)

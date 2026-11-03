@@ -1,6 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
-using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.HivifyUser;
+﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using Feeds.Application.Contracts;
 using Feeds.Domain.Feeds;
 using SharedKernel.ValueObjects;
@@ -11,17 +10,14 @@ public sealed class CreateFeedCommandHandler
     : ICommandHandler<CreateFeedCommand, Guid>
 {
     private readonly IFeedRepo _feedRepository;
-    private readonly ICurrentHivifyUser _currentUser;
-    private readonly ICurrentAssociationAsTenant _currentAssociationAsTenant;
+    private readonly ICurrentTenantUser _currentTenantUser;
 
     public CreateFeedCommandHandler(
         IFeedRepo feedRepository,
-        ICurrentHivifyUser currentUser,
-        ICurrentAssociationAsTenant currentTenant)
+        ICurrentTenantUser currentTenantUser)
     {
         _feedRepository = feedRepository;
-        _currentUser = currentUser;
-        _currentAssociationAsTenant = currentTenant;
+        _currentTenantUser = currentTenantUser;
     }
 
     public async Task<Guid> Handle(
@@ -30,13 +26,13 @@ public sealed class CreateFeedCommandHandler
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        if (!_currentUser.IsAuthenticated)
+        if (!_currentTenantUser.IsAuthenticated)
         {
             throw new UnauthorizedAccessException(
                 "Authentication is required.");
         }
 
-        var associationId = _currentAssociationAsTenant.AssociationId;
+        var associationId = _currentTenantUser.AssociationId;
 
         if (associationId is null || associationId == Guid.Empty)
         {
@@ -44,7 +40,7 @@ public sealed class CreateFeedCommandHandler
                 "A valid association is required.");
         }
 
-        var userId = _currentUser.UserId;
+        var userId = _currentTenantUser.UserId;
 
         if (userId == Guid.Empty)
         {

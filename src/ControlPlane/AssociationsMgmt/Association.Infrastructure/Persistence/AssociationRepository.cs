@@ -10,6 +10,13 @@ namespace Association.Infrastructure.Persistence;
 
 internal sealed class AssociationRepository(AssociationDbContext dbContext) : IAssociationRepository
 {
+
+    /// <summary>
+    ///     Gets the association by its id.
+    /// </summary>
+    /// <param name="associationId"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     public async Task<AssociationEntity?> GetByIdAsync(AssociationID associationId, CancellationToken ct = default)
     {
         return await dbContext.Associations
@@ -19,6 +26,14 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
                 ct);
     }
 
+
+
+    /// <summary>
+    ///      Gets Association Details by its id.
+    /// </summary>
+    /// <param name="associationId"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
 
     public async Task<AssociationDto?> GetDetailsByIdAsync(
         AssociationID associationId,
@@ -47,61 +62,98 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
     }
 
 
-    public async Task<IReadOnlyList<AssociationEntity>> GetAllAsync(
-        CancellationToken ct = default)
+
+    /// <summary>
+    ///         Get All Associations 
+    /// </summary>
+    /// <param name="ct"></param>
+    /// <returns></returns>
+    public async Task<IReadOnlyList<AssociationEntity>> GetAllAsync(CancellationToken ct = default)
     {
         return await dbContext.Associations
             .Include(a => a.Members)
             .ToListAsync(ct);
     }
 
-    public async Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(
-        UserID userId,
-        CancellationToken cancellationToken = default)
+
+    /// <summary>
+    ///   Gets all joined associations by the user id.
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
+    public async Task<IReadOnlyList<AssociationEntity>> GetByUserIdAsync(UserID userId, CancellationToken ct = default)
     {
         return await dbContext.Associations
             .Include(a => a.Members)
             .Where(a => a.Members.Any(m => m.UserID == userId))
-            .ToListAsync(cancellationToken);
+            .ToListAsync(ct);
     }
 
-    public async Task AddAsync(
-        AssociationEntity association,
-        CancellationToken cancellationToken = default)
+
+    /// <summary>
+    ///      Adds an association 
+    /// </summary>
+    /// <param name="association"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
+    public async Task AddAsync(AssociationEntity association, CancellationToken ct = default)
     {
         await dbContext.Associations.AddAsync(
             association,
-            cancellationToken);
+            ct);
     }
 
-    public async Task<AssociationEntity?> GetByIdentifierAsync(
-        AssociationIdentifier identifier,
-        CancellationToken cancellationToken = default)
+
+    /// <summary>
+    ///      Gets an association by its identifier(is the subdomain)
+    /// </summary>
+    /// <param name="identifier"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
+    public async Task<AssociationEntity?> GetByIdentifierAsync(AssociationIdentifier identifier, CancellationToken ct = default)
     {
         return await dbContext.Associations
             .FirstOrDefaultAsync(
                 a => a.Identifier == identifier,
-                cancellationToken);
+                ct);
     }
 
-    public async Task<bool> ExistsForUserAsync(
-    UserID userId,
-    CancellationToken ct = default)
+
+    /// <summary>
+    ///        Checks if an association exists for given UserId
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
+
+    public async Task<bool> ExistsForUserAsync(UserID userId, CancellationToken ct = default)
     {
-        return await dbContext.Associations
-            .AnyAsync(a => a.Members.Any(m => m.UserID == userId), ct);
+        return await dbContext.Associations.AnyAsync(a => a.Members.Any(m => m.UserID == userId), ct);
     }
 
-    public async Task<bool> ExistsWithNameAsync(
-       AssociationName name,
-       CancellationToken ct = default)
+
+    /// <summary>
+    ///         Checks if an association exists for the given name
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>    
+
+    public async Task<bool> ExistsWithNameAsync(AssociationName name, CancellationToken ct = default)
     {
         return await dbContext.Associations
             .AnyAsync(a => a.Name.Value == name.Value, ct);
     }
 
 
-
+    /// <summary>
+    ///         Checks if an association contains a member with the given email
+    /// </summary>
+    /// <param name="associationId"></param>
+    /// <param name="email"></param>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     public async Task<bool> IsMemberByEmailAsync(
         AssociationID associationId,
         ContactEmail email,

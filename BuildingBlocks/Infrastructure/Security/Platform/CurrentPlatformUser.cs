@@ -1,11 +1,11 @@
-﻿using BuildingBlocks.ApplicationPorts.HivifyUser;
+using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace BuildingBlocks.Infrastructure.HivifyUser;
+namespace BuildingBlocks.Infrastructure.Security.Platform;
 
-public sealed class CurrentHivifyUser(
-    IHttpContextAccessor httpContextAccessor) : ICurrentHivifyUser
+public sealed class CurrentPlatformUser(
+    IHttpContextAccessor httpContextAccessor) : ICurrentPlatformUser
 {
     private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 

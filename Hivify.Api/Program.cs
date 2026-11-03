@@ -9,7 +9,7 @@ using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
-using Hivify.Api.Controllers.ControlPlane.Associations.Authorization.AssociationRoleAuthorization;
+using Hivify.Api.Controllers.AppPlane.Associations.Authorization.AssociationRoleAuthorization;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
@@ -107,7 +107,7 @@ builder.Services.AddBuildingBlocks(builder.Configuration, builder.Environment.Is
 
 // User Management
 builder.Services.AddUserMgmtServices();
-builder.Services.AddUserMgmtInfrastructure(connectionString);
+builder.Services.AddUserIdentityInfrastructure(connectionString);
 
 
 // Documents
