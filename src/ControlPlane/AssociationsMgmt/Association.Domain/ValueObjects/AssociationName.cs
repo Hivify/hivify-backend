@@ -9,7 +9,7 @@ public sealed record AssociationName : BaseValue<string>
     {
     }
 
-    internal static string Validate(string value)
+    private static string Validate(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
             throw new DomainException("Name is required.");
