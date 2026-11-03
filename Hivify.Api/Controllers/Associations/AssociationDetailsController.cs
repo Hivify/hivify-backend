@@ -1,17 +1,17 @@
-﻿using Association.Application.DTOs;
+using Association.Application.DTOs;
 using Association.Application.Queries.GetAssociationDetailsById;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hivify.Api.Controllers.ControlPlane.Associations;
+namespace Hivify.Api.Controllers.Associations;
 
 [ApiController]
-[Route("api/tenant-admin/association")]
+[Route("api/associations")]
 [Authorize(Policy = "AssociationAdmin")]
-public sealed class TenantAdminAssociationController(IQuerySender querySender) : ControllerBase
+public sealed class AssociationDetailsController(IQuerySender querySender) : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("current")]
     public async Task<ActionResult<AssociationDto>> GetCurrentAssociation(
         CancellationToken ct)
     {
