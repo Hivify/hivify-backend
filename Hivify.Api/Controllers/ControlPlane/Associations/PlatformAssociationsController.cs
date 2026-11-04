@@ -1,6 +1,6 @@
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Queries.GetAllAssociations;
-using Association.Application.Queries.GetUserAssociations;
+using Association.Application.Queries.GetAllAssociationsByUser;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
@@ -63,7 +63,7 @@ public sealed class PlatformAssociationsController(
         await _authorization.EnsureApplicationAdminAsync(ct);
 
         var associations = await querySender.Send(
-            new GetAssociationsForUserQuery(userId),
+            new GetAllAssociationsByUserQuery(userId),
             ct);
 
         return Ok(associations);

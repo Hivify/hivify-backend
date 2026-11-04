@@ -3,11 +3,12 @@ using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociations;
+using Association.Application.Queries.GetAllAssociationsByUser;
 using Association.Application.Queries.GetAssociationByIdentifier;
 using Association.Application.Queries.GetAssociationDetailsById;
+using Association.Application.Queries.GetAssociationMembers;
 using Association.Application.Queries.GetInvitationDetailsQuery;
 using Association.Application.Queries.GetUserAssociationClaims;
-using Association.Application.Queries.GetUserAssociations;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
@@ -29,10 +30,6 @@ public static class ApplicationExtensions
             services.AddScoped<
            ICommandHandler<InviteMemberCommand, Guid>,
            InviteMemberCommandHandler>();
-
-            services.AddScoped<
-                IQueryHandler<GetAssociationsForUserQuery, IReadOnlyList<AssciationMemberDto>>,
-                GetAssociationsForUserQueryHandler>();
 
             services.AddScoped<
                 IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<AssociationDto>>,
@@ -57,6 +54,10 @@ public static class ApplicationExtensions
             services.AddScoped<IQueryHandler<GetInvitationDetailsQuery, InvitationDetailsDto?>, GetInvitationDetailsHandler>();
 
             services.AddScoped<ICommandHandler<AcceptInvitationCommand, Guid>, AcceptInvitationCommandHandler>();
+
+            services.AddScoped<IQueryHandler<GetAssociationMembersQuery, IReadOnlyList<AssociationMemberDto>>, GetAssociationMembersQueryHandler>();
+
+            services.AddScoped<IQueryHandler<GetAllAssociationsByUserQuery, IReadOnlyList<UserAssociationDto>>, GetAllAssociationsByUserQueryHandler>();
 
 
             return services;
