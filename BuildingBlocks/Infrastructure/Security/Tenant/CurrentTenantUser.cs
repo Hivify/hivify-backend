@@ -1,5 +1,4 @@
 using BuildingBlocks.ApplicationPorts.Security.Tenant;
-using BuildingBlocks.Infrastructure.AssociationAsTenant;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
@@ -61,7 +60,7 @@ public sealed class CurrentTenantUser(
                 return null;
             }
 
-            foreach (var claim in User.FindAll(AssociationMemberClaimTypes.AssociationMembership))
+            foreach (var claim in User.FindAll(TenantUserClaimTypes.AssociationMembership))
             {
                 var parts = claim.Value.Split('|');
 
