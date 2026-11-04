@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.Security.Tenant;
-using BuildingBlocks.Infrastructure.AssociationAsTenant;
+using BuildingBlocks.Infrastructure.Security.Tenant;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hivify.Api.Controllers.AppPlane.Associations.Authorization.AssociationRoleAuthorization
@@ -14,7 +14,7 @@ namespace Hivify.Api.Controllers.AppPlane.Associations.Authorization.Association
             var associationId = currentAssociationTenant.AssociationId;
 
             var hasRequiredRole = context.User
-                .FindAll(AssociationMemberClaimTypes.AssociationMembership)
+                .FindAll(TenantUserClaimTypes.AssociationMembership)
                 .Any(claim =>
                 {
                     var parts = claim.Value.Split('|');
