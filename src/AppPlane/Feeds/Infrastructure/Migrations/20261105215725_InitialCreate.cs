@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -18,6 +19,7 @@ namespace Feeds.Infrastructure.Migrations
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AssociationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -25,6 +27,11 @@ namespace Feeds.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Feeds", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feeds_AssociationId",
+                table: "Feeds",
+                column: "AssociationId");
         }
 
         /// <inheritdoc />

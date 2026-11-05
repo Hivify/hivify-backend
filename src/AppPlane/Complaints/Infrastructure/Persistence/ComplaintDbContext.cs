@@ -27,10 +27,10 @@ public sealed class ComplaintDbContext(
                 .HasConversion(
                     userId => userId.Value,
                     value => new UserID(value));
-            // Association ID
-            entity.Property(c => c.AssociationId)
+            // Department ID
+            entity.Property(c => c.DepartmentId)
                 .HasConversion(
-                    associationId => associationId.Value,
+                    departmentId => departmentId.Value,
                     value => new DepartmentID(value));
 
             // Title

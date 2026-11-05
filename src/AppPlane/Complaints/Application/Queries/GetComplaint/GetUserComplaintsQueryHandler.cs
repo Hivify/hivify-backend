@@ -32,7 +32,7 @@ public sealed class GetUserComplaintsQueryHandler
             .OrderByDescending(c => c.CreatedDate)
             .Select(c => new ComplaintListItem(
                 c.Id.Value,
-                c.AssociationId.Value,
+                c.DepartmentId.Value,
                 c.Title.Value,
                 c.Description.Value,
                 c.Status,
