@@ -2,7 +2,7 @@ using Complaints.Domain;
 
 namespace Complaints.Application.DTOs;
 
-public sealed record ComplaintListItem(
+public sealed record ComplaintListDto(
 Guid Id,
 Guid AssociationId,
 string Title,

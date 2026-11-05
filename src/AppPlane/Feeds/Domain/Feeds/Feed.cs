@@ -30,19 +30,22 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
     Title title,
     Description content) : base(id)
     {
-        if (associationId.Value == Guid.Empty)
-        {
-            throw new DomainException(
-                "A feed must belong to an association.");
-        }
-
         AssociationId = associationId;
         AuthorId = authorId;
         CreatedDate = DateTime.UtcNow;
-
         SetTitle(title);
         SetContent(content);
     }
+
+
+    /// <summary>
+    ///             Creates a new feed.
+    /// </summary>
+    /// <param name="associationId"></param>
+    /// <param name="authorId"></param>
+    /// <param name="title"></param>
+    /// <param name="content"></param>
+    /// <returns></returns>
 
     public static Feed CreateFeed(
     AssociationID associationId,
@@ -50,6 +53,7 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
     Title title,
     Description content)
     {
+
         return new Feed(
             new FeedID(Guid.NewGuid()),
             associationId,
@@ -57,6 +61,11 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
             title,
             content);
     }
+    /// <summary>
+    ///             Updates the feed.
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="content"></param>  
 
     public void Update(
         Title title,
@@ -67,6 +76,9 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
         SetTitle(title);
         SetContent(content);
     }
+    /// <summary>
+    ///     Soft deletes the feed by setting the DeletedAt property to the current UTC time.
+    /// </summary>
 
     public void Delete()
     {
@@ -89,8 +101,8 @@ public class Feed : BaseEntity<FeedID>, IAggregateRoot
     {
         if (DeletedAt != null)
         {
-            throw new DomainException(
-                "Feed has already been deleted.");
+            throw new DomainException("Feed has already been deleted.");
         }
     }
+
 }

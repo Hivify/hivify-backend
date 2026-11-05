@@ -6,7 +6,7 @@ using Complaints.Domain;
 namespace Complaints.Application.Queries.GetComplaint;
 
 public sealed class GetComplaintByIdQueryHandler
-    : IQueryHandler<GetComplaintByIdQuery, ComplaintListItem?>
+    : IQueryHandler<GetComplaintByIdQuery, ComplaintListDto?>
 {
     private readonly IComplaintRepo _complaintRepository;
 
@@ -15,7 +15,7 @@ public sealed class GetComplaintByIdQueryHandler
         _complaintRepository = complaintRepository;
     }
 
-    public async Task<ComplaintListItem?> Handle(
+    public async Task<ComplaintListDto?> Handle(
         GetComplaintByIdQuery query,
         CancellationToken cancellationToken)
     {
@@ -26,9 +26,9 @@ public sealed class GetComplaintByIdQueryHandler
         if (complaint == null)
             return null;
 
-        return new ComplaintListItem(
+        return new ComplaintListDto(
             complaint.Id.Value,
-            complaint.AssociationId.Value,
+            complaint.DepartmentId.Value,
             complaint.Title.Value,
             complaint.Description.Value,
             complaint.Status,

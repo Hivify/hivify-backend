@@ -7,7 +7,7 @@ using SharedKernel.ValueObjects;
 namespace Complaints.Application.Queries.GetComplaint;
 
 public sealed class GetUserComplaintsQueryHandler
-    : IQueryHandler<GetUserComplaintsQuery, IReadOnlyList<ComplaintListItem>>
+    : IQueryHandler<GetUserComplaintsQuery, IReadOnlyList<ComplaintListDto>>
 {
     private readonly IComplaintRepo _complaintRepository;
     private readonly ICurrentTenantUser _currentTenantUser;
@@ -18,7 +18,7 @@ public sealed class GetUserComplaintsQueryHandler
         _currentTenantUser = currentTenantUser;
     }
 
-    public async Task<IReadOnlyList<ComplaintListItem>> Handle(
+    public async Task<IReadOnlyList<ComplaintListDto>> Handle(
         GetUserComplaintsQuery query,
         CancellationToken cancellationToken)
     {
@@ -30,9 +30,9 @@ public sealed class GetUserComplaintsQueryHandler
 
         return complaints
             .OrderByDescending(c => c.CreatedDate)
-            .Select(c => new ComplaintListItem(
+            .Select(c => new ComplaintListDto(
                 c.Id.Value,
-                c.AssociationId.Value,
+                c.DepartmentId.Value,
                 c.Title.Value,
                 c.Description.Value,
                 c.Status,

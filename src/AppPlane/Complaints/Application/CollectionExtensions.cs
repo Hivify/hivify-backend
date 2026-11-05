@@ -9,19 +9,24 @@ namespace Complaints.Application;
 
 public static class CollectionExtensions
 {
-    public static IServiceCollection AddComplaintServices(this IServiceCollection services)
+
+    extension(IServiceCollection services)
     {
-        // Commands
-        services.AddScoped<ICommandHandler<CreateComplaintCommand, Guid>, CreateComplaintCommandHandler>();
-        services.AddScoped<IQueryHandler<GetComplaintByIdQuery, ComplaintListItem?>, GetComplaintByIdQueryHandler>();
-        services.AddScoped<ICommandHandler<UpdateComplaintStatusCommand, bool>, UpdateComplaintStatusCommandHandler>();
 
-        // Queries
-        services.AddScoped<IQueryHandler<GetUserComplaintsQuery, IReadOnlyList<ComplaintListItem>>, GetUserComplaintsQueryHandler>();
-        services.AddScoped<IQueryHandler<GetAllComplaintsQuery, IReadOnlyList<ComplaintListItem>>, GetAllComplaintsQueryHandler>();
+        public IServiceCollection AddComplaintsApplication()
+        {
+            // Commands
+            services.AddScoped<ICommandHandler<CreateComplaintCommand, Guid>, CreateComplaintCommandHandler>();
+            services.AddScoped<IQueryHandler<GetComplaintByIdQuery, ComplaintListDto?>, GetComplaintByIdQueryHandler>();
+            services.AddScoped<ICommandHandler<UpdateComplaintStatusCommand, bool>, UpdateComplaintStatusCommandHandler>();
 
+            // Queries
+            services.AddScoped<IQueryHandler<GetUserComplaintsQuery, IReadOnlyList<ComplaintListDto>>, GetUserComplaintsQueryHandler>();
+            services.AddScoped<IQueryHandler<GetAllComplaintsQuery, IReadOnlyList<ComplaintListDto>>, GetAllComplaintsQueryHandler>();
 
+            return services;
+        }
 
-        return services;
     }
+
 }

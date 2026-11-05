@@ -3,4 +3,4 @@ using Complaints.Application.DTOs;
 
 namespace Complaints.Application.Queries.GetComplaint;
 
-public sealed record GetUserComplaintsQuery() : IQuery<IReadOnlyList<ComplaintListItem>>;
+public sealed record GetUserComplaintsQuery() : IQuery<IReadOnlyList<ComplaintListDto>>;

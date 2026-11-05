@@ -25,7 +25,7 @@ public sealed class FeedsController : ControllerBase
         _sender = sender;
         _querySender = querySender;
     }
-
+    [Authorize(Policy = "AssociationAdmin")]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<GetFeedRes>>> GetAll(
         CancellationToken cancellationToken)
@@ -42,8 +42,9 @@ public sealed class FeedsController : ControllerBase
 
         return Ok(response);
     }
-
+    [Authorize(Policy = "AssociationAdmin")]
     [HttpGet("{feedId:guid}")]
+
     public async Task<ActionResult<GetFeedRes>> GetById(
         Guid feedId,
         CancellationToken cancellationToken)
@@ -65,9 +66,8 @@ public sealed class FeedsController : ControllerBase
 
         return Ok(response);
     }
-
+    [Authorize(Policy = "AssociationAdmin")]
     [HttpPost]
-    [Authorize(Policy = "TenantAdmin")]
     public async Task<ActionResult<GetFeedRes>> Create(
         CreateFeedRequest request,
         CancellationToken cancellationToken)
@@ -100,7 +100,7 @@ public sealed class FeedsController : ControllerBase
     }
 
     [HttpPut("{feedId:guid}")]
-    [Authorize(Policy = "TenantAdmin")]
+    [Authorize(Policy = "AssociationAdmin")]
     public async Task<IActionResult> Update(
     Guid feedId,
     UpdateFeedRequest request,
@@ -116,8 +116,8 @@ public sealed class FeedsController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Policy = "AssociationAdmin")]
     [HttpDelete("{feedId:guid}")]
-    [Authorize(Policy = "TenantAdmin")]
     public async Task<IActionResult> Delete(
     Guid feedId,
     CancellationToken cancellationToken)

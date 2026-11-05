@@ -36,7 +36,7 @@ public class ComplaintTests
 
         Assert.NotEqual(Guid.Empty, complaint.Id.Value);
         Assert.Equal(userId, complaint.UserId);
-        Assert.Equal(associationId, complaint.AssociationId);
+        Assert.Equal(associationId, complaint.DepartmentId);
         Assert.Equal(title, complaint.Title);
         Assert.Equal(description, complaint.Description);
         Assert.Equal("https://img/1.png", complaint.ImageUrl);
