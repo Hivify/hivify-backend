@@ -2,8 +2,8 @@
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
 using Association.Application.DTOs;
+using Association.Application.Queries.GetAllAssociationByUser;
 using Association.Application.Queries.GetAllAssociations;
-using Association.Application.Queries.GetAllAssociationsByUser;
 using Association.Application.Queries.GetAssociationByIdentifier;
 using Association.Application.Queries.GetAssociationDetailsById;
 using Association.Application.Queries.GetAssociationMembers;

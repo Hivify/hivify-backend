@@ -3,7 +3,7 @@ using Association.Application.DTOs;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using SharedKernel.ValueObjects;
 
-namespace Association.Application.Queries.GetAllAssociationsByUser;
+namespace Association.Application.Queries.GetAllAssociationByUser;
 
 public sealed class GetAllAssociationsByUserQueryHandler(
     IAssociationRepository associationRepository)

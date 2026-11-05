@@ -21,7 +21,7 @@
     <Project Path="src/AppPlane/Departments/Tests/Domain.Test/Domain.Tests.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/DocumentsMgmt/">
-    <Project Path="src/AppPlane/DocumentsMgmt/DocumentsMgmt.Application/DocumentsMgmt.Application.csproj" />
+    <Project Path="src/AppPlane/DocumentsMgmt/DocumentsMgmt.Application/Application.csproj" />
   </Folder>
   <Folder Name="/src/AppPlane/Feeds/">
     <Project Path="src/AppPlane/Feeds/Application/Feeds.Application.csproj" />

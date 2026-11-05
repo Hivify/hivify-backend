@@ -1,6 +1,6 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 
-namespace DocumentsMgmt.Application.Commands
+namespace Application.Commands
 {
     public sealed record UploadDocumentCommand(
         string FileName,

@@ -1,10 +1,10 @@
-﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+﻿using Application.Commands;
+using Application.Queries;
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Storage.DTOs;
-using DocumentsMgmt.Application.Commands;
-using DocumentsMgmt.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DocumentsMgmt.Application;
+namespace Application;
 
 public static class ServiceCollectionExtensions
 {
