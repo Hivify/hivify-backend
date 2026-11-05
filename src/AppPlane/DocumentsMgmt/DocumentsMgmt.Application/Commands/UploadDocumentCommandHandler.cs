@@ -1,7 +1,7 @@
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Storage;
 
-namespace DocumentsMgmt.Application.Commands
+namespace Application.Commands
 {
     public sealed class UploadDocumentCommandHandler : ICommandHandler<UploadDocumentCommand, string>
     {

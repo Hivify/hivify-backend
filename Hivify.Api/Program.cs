@@ -1,3 +1,4 @@
+using Application;
 using Association.Application;
 using Association.Infrastructure;
 using BuildingBlocks.Infrastructure;
@@ -5,11 +6,11 @@ using Complaints.Application;
 using Complaints.Infrastructure;
 using Department.Application;
 using Department.Infrastructure;
-using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
-using Hivify.Api.Controllers.AppPlane.Associations.Authorization.AssociationRoleAuthorization;
+using Hivify.Api.Controllers.AppPlane.Authorization;
+using Hivify.Api.Controllers.AppPlane.Authorization.TenantRoleAuthorization;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
@@ -85,14 +86,13 @@ builder.Services
 
 
 // Register the custom authorization handler for the AssociationRoleRequirement
-builder.Services.AddScoped<IAuthorizationHandler, AssociationRoleAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, TenantRoleAuthorizationHandler>();
 
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("AssociationAdmin", policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.AddRequirements(
-            new AssociationRoleRequirement("AssociationAdmin"));
+        policy.AddRequirements(new TenantRoleRequirement("AssociationAdmin"));
     });
 #endregion
 

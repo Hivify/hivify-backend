@@ -1,6 +1,6 @@
 using Association.Application.Commands.CreateAssociation;
+using Association.Application.Queries.GetAllAssociationByUser;
 using Association.Application.Queries.GetAllAssociations;
-using Association.Application.Queries.GetAllAssociationsByUser;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
