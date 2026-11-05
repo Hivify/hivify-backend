@@ -26,6 +26,7 @@ public sealed class FeedsController : ControllerBase
         _querySender = querySender;
     }
     [Authorize(Policy = "AssociationAdmin")]
+    [Authorize(Policy = "AssociationMember")]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<GetFeedRes>>> GetAll(
         CancellationToken cancellationToken)
@@ -42,6 +43,7 @@ public sealed class FeedsController : ControllerBase
 
         return Ok(response);
     }
+    [Authorize(Policy = "AssociationMember")]
     [Authorize(Policy = "AssociationAdmin")]
     [HttpGet("{feedId:guid}")]
 

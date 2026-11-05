@@ -2,14 +2,14 @@
 using BuildingBlocks.Infrastructure.Security.Tenant;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Hivify.Api.Controllers.AppPlane.Associations.Authorization.AssociationRoleAuthorization
+namespace Hivify.Api.Controllers.AppPlane.Authorization
 {
-    public sealed class AssociationRoleAuthorizationHandler(
-        ICurrentTenantUser currentAssociationTenant) : AuthorizationHandler<AssociationRoleRequirement>
+    public sealed class TenantRoleAuthorizationHandler(
+        ICurrentTenantUser currentAssociationTenant) : AuthorizationHandler<TenantRoleRequirement>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
-            AssociationRoleRequirement requirement)
+            TenantRoleRequirement requirement)
         {
             var associationId = currentAssociationTenant.AssociationId;
 
