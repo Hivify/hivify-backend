@@ -5,7 +5,7 @@ using Complaints.Application.DTOs;
 
 namespace Complaints.Application.Queries.GetComplaint
 {
-    public sealed class GetAllComplaintsQueryHandler : IQueryHandler<GetAllComplaintsQuery, IReadOnlyList<ComplaintListItem>>
+    public sealed class GetAllComplaintsQueryHandler : IQueryHandler<GetAllComplaintsQuery, IReadOnlyList<ComplaintListDto>>
     {
         private readonly IComplaintRepo _complaintRepository;
 
@@ -14,7 +14,7 @@ namespace Complaints.Application.Queries.GetComplaint
             _complaintRepository = complaintRepository;
         }
 
-        public async Task<IReadOnlyList<ComplaintListItem>> Handle(
+        public async Task<IReadOnlyList<ComplaintListDto>> Handle(
             GetAllComplaintsQuery query,
             CancellationToken cancellationToken)
         {
@@ -22,7 +22,7 @@ namespace Complaints.Application.Queries.GetComplaint
 
             return complaints
                 .OrderByDescending(c => c.CreatedDate)
-                .Select(c => new ComplaintListItem(
+                .Select(c => new ComplaintListDto(
                     c.Id.Value,
                     c.DepartmentId.Value,
                     c.Title.Value,

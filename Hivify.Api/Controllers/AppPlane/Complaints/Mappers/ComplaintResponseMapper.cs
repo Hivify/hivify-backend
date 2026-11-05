@@ -6,14 +6,14 @@ namespace Hivify.Api.Controllers.AppPlane.Complaints.Mappers;
 public static class ComplaintResponseMapper
 {
     public static CreatedComplaintResponse ToCreatedResponse(
-        ComplaintListItem complaint)
+        ComplaintListDto complaint)
     {
         return new CreatedComplaintResponse(
             complaint.Id);
     }
 
     public static GetComplaintResponse ToGetResponse(
-        ComplaintListItem complaint)
+        ComplaintListDto complaint)
     {
         return new GetComplaintResponse(
             complaint.Id,

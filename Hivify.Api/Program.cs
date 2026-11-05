@@ -114,7 +114,7 @@ builder.Services.AddUserIdentityInfrastructure(connectionString);
 builder.Services.AddDocumentServices();
 
 //Complaints
-builder.Services.AddComplaintServices();
+builder.Services.AddComplaintsApplication();
 builder.Services.AddComplaintsInfrastructure(connectionString);
 
 // Houses

@@ -6,21 +6,15 @@ using SharedKernel.ValueObjects;
 
 namespace Complaints.Application.Commands.CreateComplaint;
 
-public sealed class CreateComplaintCommandHandler : ICommandHandler<CreateComplaintCommand, Guid>
+public sealed class CreateComplaintCommandHandler(
+    IComplaintRepo complaintRepository,
+    ICurrentTenantUser currentTenantUser
+    ) : ICommandHandler<CreateComplaintCommand, Guid>
 {
-    private readonly IComplaintRepo _complaintRepository;
-    private readonly ICurrentTenantUser _currentTenantUser;
+    private readonly IComplaintRepo _complaintRepository = complaintRepository;
+    private readonly ICurrentTenantUser _currentTenantUser = currentTenantUser;
 
-    public CreateComplaintCommandHandler(
-        IComplaintRepo complaintRepository,
-        ICurrentTenantUser currentTenantUser
-    )
-    {
-        _complaintRepository = complaintRepository;
-        _currentTenantUser = currentTenantUser;
-    }
-
-    public async Task<Guid> Handle(CreateComplaintCommand command, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateComplaintCommand command, CancellationToken ct)
     {
         ArgumentNullException.ThrowIfNull(command);
 
@@ -38,7 +32,7 @@ public sealed class CreateComplaintCommandHandler : ICommandHandler<CreateCompla
             new Description(command.Description),
             command.ImageUrl);
 
-        await _complaintRepository.CreateComplaintAsync(complaint, cancellationToken);
+        await _complaintRepository.CreateComplaintAsync(complaint, ct);
 
         return complaint.Id.Value;
     }
