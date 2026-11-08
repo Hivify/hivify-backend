@@ -1,4 +1,3 @@
-using Application;
 using Association.Application;
 using Association.Infrastructure;
 using BuildingBlocks.Infrastructure;
@@ -6,6 +5,7 @@ using Complaints.Application;
 using Complaints.Infrastructure;
 using Department.Application;
 using Department.Infrastructure;
+using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
@@ -22,7 +22,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnBoarding.Application;
 using OnBoarding.Infrastructure;
+using Tiering.Application;
 using Tiering.Infrastructure;
+using Tiering.Infrastructure.Persistence.Seeders;
 
 
 
@@ -137,7 +139,7 @@ builder.Services.AddOnboardingInfrastructure(connectionString);
 
 // Tiering 
 builder.Services.AddTierInfrastructure(connectionString);
-
+builder.Services.AddTieringServices();
 
 
 #endregion
@@ -171,6 +173,8 @@ app.UseCors("AllowFrontend");
 using (var scope = app.Services.CreateScope())
 {
     await IdentitySeeder.SeedAsync(scope.ServiceProvider);
+    await TierSeeder.SeedAsync(scope.ServiceProvider);
+
 }
 
 #region HTTP Pipeline

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Tiering.Application.Contracts;
+using Tiering.Application.Services;
 
 namespace Tiering.Application
 {
@@ -6,10 +8,10 @@ namespace Tiering.Application
     {
         extension(IServiceCollection services)
         {
-            public IServiceCollection AddOnBoardingServices()
+            public IServiceCollection AddTieringServices()
             {
 
-
+                services.AddScoped<ITierService, TierService>();
                 return services;
             }
 
