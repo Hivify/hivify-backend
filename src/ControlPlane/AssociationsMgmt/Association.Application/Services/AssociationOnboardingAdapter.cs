@@ -1,6 +1,6 @@
 ﻿using Association.Application.Commands.CreateAssociation;
-using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using OnBoarding.Application.Contracts;
 
 namespace Association.Application.Services;
 
@@ -11,9 +11,10 @@ public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociati
         string AssociationName,
         Guid ownerUserId,
         string ownerEmailAddress,
+        Guid tierId,
         CancellationToken ct = default)
     {
-        var command = new CreateAssociationCommand(AssociationName, ownerUserId, ownerEmailAddress);
+        var command = new CreateAssociationCommand(AssociationName, ownerUserId, ownerEmailAddress, tierId);
 
         return commandHandler.Handle(command, ct);
     }

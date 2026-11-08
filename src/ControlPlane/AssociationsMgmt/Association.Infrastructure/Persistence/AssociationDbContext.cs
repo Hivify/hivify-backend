@@ -22,6 +22,14 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                 .HasConversion(
                     id => id.Value,
                     value => new AssociationID(value));
+            // Tier ID
+            entity.Property(a => a.TierId)
+                .HasConversion(
+                    tierId => tierId.Value,
+                    value => new TierID(value))
+                .HasColumnName("TierId")
+                .HasColumnType("uniqueidentifier")
+                .IsRequired();
 
             // Name
             entity.OwnsOne(a => a.Name, name =>

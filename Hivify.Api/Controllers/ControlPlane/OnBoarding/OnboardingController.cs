@@ -23,6 +23,7 @@ public sealed class OnboardingController(
     {
         var result = await onboardingService.StartOnboardingAsync(
             request.AssociationName,
+            request.TierId,
             ct);
 
         if (result.Status == OnboardingStatus.Completed)

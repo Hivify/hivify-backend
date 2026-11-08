@@ -32,7 +32,9 @@ public sealed class PlatformAssociationsController(
             new CreateAssociationCommand(
                 request.Name,
                 request.OwnerUserId,
-                request.OwnerEmailAddress),
+                request.OwnerEmailAddress,
+                request.TierId
+                ),
             ct);
 
         return CreatedAtAction(

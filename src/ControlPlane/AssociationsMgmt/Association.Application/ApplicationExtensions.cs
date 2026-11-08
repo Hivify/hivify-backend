@@ -13,6 +13,7 @@ using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
+using OnBoarding.Application.Contracts;
 using System.Security.Claims;
 
 namespace Association.Application;
