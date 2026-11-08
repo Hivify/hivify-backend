@@ -23,7 +23,7 @@ using Microsoft.EntityFrameworkCore;
 using OnBoarding.Application;
 using OnBoarding.Infrastructure;
 using Tiering.Infrastructure;
-using Tiering.Infrastructure.Presistence.Seeders;
+using Tiering.Infrastructure.Persistence.Seeders;
 
 
 
