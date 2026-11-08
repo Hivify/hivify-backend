@@ -23,6 +23,7 @@ using Microsoft.EntityFrameworkCore;
 using OnBoarding.Application;
 using OnBoarding.Infrastructure;
 using Tiering.Infrastructure;
+using Tiering.Infrastructure.Presistence.Seeders;
 
 
 
@@ -171,6 +172,8 @@ app.UseCors("AllowFrontend");
 using (var scope = app.Services.CreateScope())
 {
     await IdentitySeeder.SeedAsync(scope.ServiceProvider);
+    await TierSeeder.SeedAsync(scope.ServiceProvider);
+
 }
 
 #region HTTP Pipeline
