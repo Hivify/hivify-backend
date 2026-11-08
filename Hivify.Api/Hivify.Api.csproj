@@ -32,7 +32,7 @@
 		<ProjectReference Include="..\src\AppPlane\Complaints\Infrastructure\Complaints.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Departments\Application\Department.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Departments\Infrastructure\Department.Infrastructure.csproj" />
-		<ProjectReference Include="..\src\AppPlane\DocumentsMgmt\DocumentsMgmt.Application\Application.csproj" />
+		<ProjectReference Include="..\src\AppPlane\DocumentsMgmt\DocumentsMgmt.Application\DocumentsMgmt.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Feeds\Application\Feeds.Application.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Feeds\Infrastructure\Feeds.Infrastructure.csproj" />
 		<ProjectReference Include="..\src\AppPlane\Houses\Application\Houses.Application.csproj" />
