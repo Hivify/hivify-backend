@@ -3,15 +3,10 @@ using BuildingBlocks.ApplicationPorts.Storage;
 
 namespace DocumentsMgmt.Application.Commands
 {
-    public sealed class UploadDocumentCommandHandler : ICommandHandler<UploadDocumentCommand, string>
+    public sealed class UploadDocumentCommandHandler(
+        IFileStorage fileStorage) : ICommandHandler<UploadDocumentCommand, string>
     {
-        private readonly IFileStorage _fileStorage;
-
-        public UploadDocumentCommandHandler(
-            IFileStorage fileStorage)
-        {
-            _fileStorage = fileStorage;
-        }
+        private readonly IFileStorage _fileStorage = fileStorage;
 
         public async Task<string> Handle(
             UploadDocumentCommand command,

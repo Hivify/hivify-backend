@@ -1,5 +1,5 @@
-﻿using Association.Application.Queries.GetUserAssociationClaims;
-using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
+﻿using Association.Application.Contracts;
+using Association.Application.Queries.GetUserAssociationClaims;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using System.Security.Claims;
 

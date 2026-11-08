@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
+﻿using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;

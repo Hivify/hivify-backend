@@ -19,7 +19,7 @@ public sealed class GetAssociationMembersQueryHandler(
         var associationId = currentTenantUser.AssociationId;
 
         if (associationId is null)
-            return null;
+            return null!;
 
         var association = await associationRepository
             .GetByIdAsync(new AssociationID(associationId.Value), ct)

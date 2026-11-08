@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace BuildingBlocks.ApplicationPorts.AssociationServicesPorts
+namespace Association.Application.Contracts
 {
     public interface IAssociationMemberClaims
     {

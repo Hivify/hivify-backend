@@ -1,6 +1,7 @@
 ﻿using Association.Application.Commands.AcceptMemberInvitation;
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
+using Association.Application.Contracts;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociationByUser;
 using Association.Application.Queries.GetAllAssociations;
@@ -10,7 +11,6 @@ using Association.Application.Queries.GetAssociationMembers;
 using Association.Application.Queries.GetInvitationDetailsQuery;
 using Association.Application.Queries.GetUserAssociationClaims;
 using Association.Application.Services;
-using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
