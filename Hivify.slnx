@@ -53,7 +53,9 @@
     <Project Path="src/ControlPlane/OnBoarding/OnBoarding.Infrastructure/OnBoarding.Infrastructure.csproj" Id="f91132fd-1efb-4cf1-a352-8879dd138956" />
   </Folder>
   <Folder Name="/src/ControlPlane/Tiering/">
+    <Project Path="src/ControlPlane/Tiering/Tiering.Application/Tiering.Application.csproj" Id="180cf40c-4dc0-4722-83f3-3dc3f5d9cb79" />
     <Project Path="src/ControlPlane/Tiering/Tiering.Domain/Tiering.Domain.csproj" Id="9d1e67e7-dbf1-40fe-abb7-1432085ed21e" />
+    <Project Path="src/ControlPlane/Tiering/Tiering.Infrastructure/Tiering.Infrastructure.csproj" Id="e2e4be3a-8018-4cad-95b3-1e9e73b4234b" />
   </Folder>
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />
   <Project Path="Hivify.AI/Hivify.AI.csproj" />
