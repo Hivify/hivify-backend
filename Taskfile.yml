@@ -71,6 +71,21 @@ tasks:
     desc: Apply EF Core migrations for OnBoarding
     cmds:
       - dotnet ef database update --context OnboardingDbContext --project src/ControlPlane/OnBoarding/OnBoarding.Infrastructure/OnBoarding.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+  # ============================================================
+  # Tiering
+  # ============================================================
+
+  add-tiering-migration:
+    desc: Create EF Core migration for Tiering
+    cmds:
+      - dotnet ef migrations add {{.migrationName | default "InitialCreate"}} --context TieringDbContext --project src/ControlPlane/Tiering/Tiering.Infrastructure/Tiering.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+
+  migrate-tiering:
+    desc: Apply EF Core migrations for Tiering
+    cmds:
+      - dotnet ef database update --context TieringDbContext --project src/ControlPlane/Tiering/Tiering.Infrastructure/Tiering.Infrastructure.csproj --startup-project Hivify.Api/Hivify.Api.csproj
+
+
 
   # ============================================================
   # Complaints
