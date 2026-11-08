@@ -1,10 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SharedKernel;
 
-namespace Tiering.Domain.ValueObjcts
+namespace Tiering.Domain.ValueObjcts;
+
+public readonly record struct TierID : IValue
 {
-    internal class TierID
+    public Guid Value { get; }
+
+    public TierID(Guid value)
     {
+        if (value == Guid.Empty)
+            throw new ArgumentException(
+                "Tier ID cannot be empty.",
+                nameof(value));
+
+        Value = value;
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Tiering.Domain.Enums;
 
-namespace Tiering.Domain.Enums
+public enum TierStatus
 {
-    internal class TierStatus
-    {
-    }
+    Active = 1,
+    Inactive = 2
 }
