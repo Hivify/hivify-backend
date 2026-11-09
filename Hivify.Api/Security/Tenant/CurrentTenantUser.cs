@@ -3,7 +3,7 @@ using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace BuildingBlocks.Infrastructure.Security.Tenant;
+namespace Hivify.Api.Security.Tenant;
 
 public sealed class CurrentTenantUser(
     IMultiTenantContextAccessor<TenantInfo> accessor,

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
+﻿
 using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
@@ -11,53 +11,89 @@ namespace OnBoarding.Application.Services;
 public sealed class OnboardingService(
     ICurrentPlatformUser currentUser,
     IAssociationOnboardingPort associationOnboardingPort,
+    ITieringOnboardingPort tieringOnboardingPort,
     IOnboardingRepository onboardingRepository,
-    ILogger<OnboardingService> logger
-    )
+    ILogger<OnboardingService> logger)
     : IOnboardingService
 {
-    public async Task<StartOnboardingResult> StartOnboardingAsync(string associationName, CancellationToken ct = default)
+    public async Task<StartOnboardingResult> StartOnboardingAsync(
+        string associationName,
+        Guid tierId,
+        CancellationToken ct = default)
     {
+        // 1. Ensure the user is authenticated.
         if (!currentUser.IsAuthenticated)
-        {
             throw new UnauthorizedAccessException();
-        }
 
         var userId = currentUser.UserId;
+        var userID = new UserID(userId);
 
-
-        // Check if the user already has an onboarding process. 
-        var existingProcess = await onboardingRepository.GetProcessByUserIdAsync(new UserID(userId), ct);
+        // 2. Check whether the user already has an onboarding process.
+        var existingProcess = await onboardingRepository
+            .GetProcessByUserIdAsync(userID, ct);
 
         if (existingProcess is not null)
         {
-            logger.LogInformation("User {userId} already has an onboarding process", userId);
-            return new StartOnboardingResult(
-                existingProcess.Id.Value,
-                existingProcess.Status);
+            logger.LogInformation(
+                "User {UserId} already has an onboarding process",
+                userId);
+
+            return ToResult(existingProcess);
         }
 
-        var process = UserOnboardingProcess.Start(new UserID(userId));
-        logger.LogInformation("Starting onboarding process for user {userId}", userId);
+        // 3. Validate the selected tier through the Onboarding port.
+        await EnsureTierIsAvailableAsync(tierId, ct);
 
-        // Step 1: Persist the process first.
+        // 4. Create and persist the onboarding process.
+        var process = UserOnboardingProcess.Start(userID);
+
+        logger.LogInformation(
+            "Starting onboarding process for user {UserId}",
+            userId);
+
         await onboardingRepository.AddProcessAsync(process, ct);
-        logger.LogInformation("Onboarding process persisted for user {userId}", userId);
         await onboardingRepository.SaveChangesAsync(ct);
 
+        // 5. Create the association with the selected tier.
+        await associationOnboardingPort.CreateAssociationAsync(
+            associationName,
+            userId,
+            currentUser.EmailAddress,
+            tierId,
+            ct);
 
-        //// Step 2: Execute onboarding steps.
-        await associationOnboardingPort.CreateAssociationAsync(associationName, userId, currentUser.EmailAddress, ct);
-
-
-
-        // Step 3: Mark onboarding as completed.
+        // 6. Mark onboarding as completed.
         process.Complete();
 
-        logger.LogInformation("Onboarding status changed to {Status}", process.Status);
-
         await onboardingRepository.SaveChangesAsync(ct);
 
-        return new StartOnboardingResult(process.Id.Value, process.Status);
+        logger.LogInformation(
+            "Onboarding completed for user {UserId} with status {Status}",
+            userId,
+            process.Status);
+
+        return ToResult(process);
+    }
+
+    private async Task EnsureTierIsAvailableAsync(
+        Guid tierId,
+        CancellationToken ct)
+    {
+        var isAvailable = await tieringOnboardingPort
+            .IsTierAvailableAsync(tierId, ct);
+
+        if (!isAvailable)
+        {
+            throw new InvalidOperationException(
+                "The selected tier does not exist or is not available.");
+        }
+    }
+
+    private static StartOnboardingResult ToResult(
+        UserOnboardingProcess process)
+    {
+        return new StartOnboardingResult(
+            process.Id.Value,
+            process.Status);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.Infrastructure.Security.Tenant
+﻿namespace BuildingBlocks.ApplicationPorts.Security.Tenant
 {
     public static class TenantUserClaimTypes
     {

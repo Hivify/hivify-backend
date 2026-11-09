@@ -5,5 +5,6 @@ namespace Association.Application.Commands.CreateAssociation;
 public sealed record CreateAssociationCommand(
     string Name,
     Guid OwnerUserId,
-    string OwnerEmailAddress
+    string OwnerEmailAddress,
+    Guid TierId
 ) : ICommand<Guid>;

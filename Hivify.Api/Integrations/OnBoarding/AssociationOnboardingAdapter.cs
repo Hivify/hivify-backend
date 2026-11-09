@@ -1,8 +1,8 @@
 ﻿using Association.Application.Commands.CreateAssociation;
-using BuildingBlocks.ApplicationPorts.AssociationServicesPorts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using OnBoarding.Application.Contracts;
 
-namespace Association.Application.Services;
+namespace Hivify.Api.Integrations.OnBoarding;
 
 public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociationCommand, Guid> commandHandler)
     : IAssociationOnboardingPort
@@ -11,9 +11,10 @@ public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociati
         string AssociationName,
         Guid ownerUserId,
         string ownerEmailAddress,
+        Guid tierId,
         CancellationToken ct = default)
     {
-        var command = new CreateAssociationCommand(AssociationName, ownerUserId, ownerEmailAddress);
+        var command = new CreateAssociationCommand(AssociationName, ownerUserId, ownerEmailAddress, tierId);
 
         return commandHandler.Handle(command, ct);
     }

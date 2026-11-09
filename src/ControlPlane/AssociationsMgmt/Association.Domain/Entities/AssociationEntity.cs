@@ -9,6 +9,7 @@ namespace Association.Domain.Entities;
 public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 {
     public AssociationName Name { get; private set; }
+    public TierID TierId { get; private set; }
     public AssociationIdentifier Identifier { get; private set; }
     public ContactEmail ContactEmail { get; private set; }
     public AssociationStatus Status { get; private set; }
@@ -27,12 +28,14 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
         AssociationID id,
         AssociationIdentifier identifier,
         AssociationName name,
-        ContactEmail contactEmail)
+        ContactEmail contactEmail,
+        TierID tierId)
         : base(id)
     {
         Name = name;
         ContactEmail = contactEmail;
         Identifier = identifier;
+        TierId = tierId;
         Status = AssociationStatus.Pending;
         CreatedDate = DateTime.UtcNow;
     }
@@ -47,17 +50,26 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
     /// <param name="ownerId"></param>
     /// <param name="contactEmail"></param>
     /// <returns> The created association. </returns>
-    public static AssociationEntity Create(AssociationName name, UserID ownerId, ContactEmail contactEmail)
+    public static AssociationEntity Create(
+        AssociationName name,
+        UserID ownerId,
+        ContactEmail contactEmail,
+        TierID tierId)
     {
         var association = new AssociationEntity(
             new AssociationID(Guid.NewGuid()),
             new AssociationIdentifier(Guid.NewGuid()),
             name,
+            contactEmail,
+            tierId);
+
+        association.AddMember(
+            ownerId,
+            AssociationRoles.AssociationAdmin,
             contactEmail);
 
-        association.AddMember(ownerId, AssociationRoles.AssociationAdmin, contactEmail);
-
-        association.RaiseDomainEvent(new AssociationCreatedDomainEvent(association.Id, ownerId));
+        association.RaiseDomainEvent(
+            new AssociationCreatedDomainEvent(association.Id, ownerId));
 
         return association;
     }

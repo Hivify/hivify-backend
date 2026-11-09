@@ -40,6 +40,10 @@ namespace Association.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("TierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TierId");
+
                     b.HasKey("Id");
 
                     b.ToTable("Associations");

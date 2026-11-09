@@ -1,6 +1,6 @@
 ﻿using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.Infrastructure.Security.Tenant;
+using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using SharedKernel.ValueObjects;
 using System.Security.Claims;
 

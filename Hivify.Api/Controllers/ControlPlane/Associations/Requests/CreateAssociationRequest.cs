@@ -3,4 +3,6 @@
 public sealed record CreateAssociationRequest(
     string Name,
     Guid OwnerUserId,
-    string OwnerEmailAddress);
+    string OwnerEmailAddress,
+    Guid TierId
+    );

@@ -1,12 +1,8 @@
 ﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.EmailSender;
-using BuildingBlocks.ApplicationPorts.Security.Platform;
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using BuildingBlocks.ApplicationPorts.Storage;
 using BuildingBlocks.Infrastructure.CQRSMessaging;
 using BuildingBlocks.Infrastructure.EmailSender;
-using BuildingBlocks.Infrastructure.Security.Platform;
-using BuildingBlocks.Infrastructure.Security.Tenant;
 using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,11 +16,7 @@ namespace BuildingBlocks.Infrastructure
         {
             public IServiceCollection AddBuildingBlocks(IConfiguration configuration, bool isDevelopment)
             {
-                // Security contexts
-                services.AddHttpContextAccessor();
-                services.AddScoped<ICurrentPlatformUser, CurrentPlatformUser>();
-                services.AddScoped<IPlatformAuthorization, PlatformAuthorization>();
-                services.AddScoped<ICurrentTenantUser, CurrentTenantUser>();
+
                 // Messaging 
                 services.AddScoped<ICommandSender, CommandSender>();
                 services.AddScoped<IQuerySender, QuerySender>();

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace Hivify.Api.Controllers.AppPlane.Authorization.TenantRoleAuthorization
+namespace Hivify.Api.Security.Tenant.TenantAuthorization
 {
 
     public sealed record TenantRoleRequirement(string Role) : IAuthorizationRequirement;
