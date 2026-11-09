@@ -4,7 +4,7 @@ using Finbuckle.MultiTenant.Extensions;
 
 namespace Hivify.Api.MultiTenancy;
 
-public static class MultiTenantConfiguration
+public static class AddMultiTenantDI
 {
 
     extension(IServiceCollection services)

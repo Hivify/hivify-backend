@@ -2,7 +2,7 @@ using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace BuildingBlocks.Infrastructure.Security.Platform;
+namespace Hivify.Api.Security.Platform;
 
 public sealed class CurrentPlatformUser(
     IHttpContextAccessor httpContextAccessor) : ICurrentPlatformUser
