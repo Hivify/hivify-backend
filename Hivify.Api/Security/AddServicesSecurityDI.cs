@@ -10,7 +10,7 @@ public static class AddServicesSecurityDI
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddSecurityServices()
+        public IServiceCollection AddServicesSecurity()
         {
 
 
