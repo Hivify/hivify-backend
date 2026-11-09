@@ -1,8 +1,8 @@
 ﻿using Association.Application.Commands.CreateAssociation;
-using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using OnBoarding.Application.Contracts;
 
-namespace Association.Application.Services;
+namespace Hivify.Api.Integrations.OnBoarding;
 
 public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociationCommand, Guid> commandHandler)
     : IAssociationOnboardingPort

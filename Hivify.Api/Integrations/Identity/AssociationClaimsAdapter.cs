@@ -1,9 +1,9 @@
-﻿using Association.Application.Contracts;
-using Association.Application.Queries.GetUserAssociationClaims;
+﻿using Association.Application.Queries.GetUserAssociationClaims;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using Identity.Application.Contracts;
 using System.Security.Claims;
 
-namespace Association.Application.Services;
+namespace Hivify.Api.Integrations.Identity;
 
 public sealed class AssociationClaimsAdapter(IQuerySender querySender) : IAssociationMemberClaims
 {

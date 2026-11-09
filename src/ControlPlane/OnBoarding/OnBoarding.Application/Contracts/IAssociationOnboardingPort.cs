@@ -1,4 +1,4 @@
-﻿namespace Association.Application.Contracts;
+﻿namespace OnBoarding.Application.Contracts;
 
 public interface IAssociationOnboardingPort
 {

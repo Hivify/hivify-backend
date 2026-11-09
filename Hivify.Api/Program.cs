@@ -10,6 +10,7 @@ using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
 using Hivify.Api.Controllers.AppPlane.Authorization.TenantRoleAuthorization;
+using Hivify.Api.Integrations;
 using Hivify.Api.MultiTenancy;
 using Houses.Application;
 using Houses.Infrastructure;
@@ -140,6 +141,9 @@ builder.Services.AddOnboardingInfrastructure(connectionString);
 // Tiering 
 builder.Services.AddTierInfrastructure(connectionString);
 builder.Services.AddTieringServices();
+
+// Services Integrations
+builder.Services.AddServicesIntegrations();
 
 
 #endregion
