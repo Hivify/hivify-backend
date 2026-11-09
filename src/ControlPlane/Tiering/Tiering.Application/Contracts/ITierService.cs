@@ -5,5 +5,7 @@ namespace Tiering.Application.Contracts;
 public interface ITierService
 {
     Task<IReadOnlyList<TierDto>> GetAllTiersAsync(CancellationToken ct = default);
+    Task<bool> IsTierAvailableAsync(Guid tierId, CancellationToken ct = default);
+
 
 }

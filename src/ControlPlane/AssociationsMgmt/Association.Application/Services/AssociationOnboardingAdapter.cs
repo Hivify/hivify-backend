@@ -1,6 +1,6 @@
 ﻿using Association.Application.Commands.CreateAssociation;
+using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using OnBoarding.Application.Contracts;
 
 namespace Association.Application.Services;
 

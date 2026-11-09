@@ -1,17 +1,19 @@
 ﻿
+using Association.Application.Contracts;
 using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;
 using OnBoarding.Domain.Entities;
 using SharedKernel.ValueObjects;
+using Tiering.Application.Contracts;
 
 namespace OnBoarding.Application.Services;
 
 public sealed class OnboardingService(
     ICurrentPlatformUser currentUser,
     IAssociationOnboardingPort associationOnboardingPort,
-    ITieringOnboardingPort tieringOnboardingPort,
+    ITierService tieringService,
     IOnboardingRepository onboardingRepository,
     ILogger<OnboardingService> logger)
     : IOnboardingService
@@ -43,7 +45,7 @@ public sealed class OnboardingService(
         }
 
         // 3. Validate the selected tier.
-        var isTierAvailable = await tieringOnboardingPort
+        var isTierAvailable = await tieringService
             .IsTierAvailableAsync(tierId, ct);
 
         if (!isTierAvailable)

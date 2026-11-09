@@ -1,5 +1,8 @@
-﻿using Tiering.Application.Contracts;
+﻿
+using Tiering.Application.Contracts;
 using Tiering.Application.DTOs;
+using Tiering.Domain.Enums;
+using Tiering.Domain.ValueObjcts;
 
 namespace Tiering.Application.Services;
 
@@ -19,5 +22,14 @@ public sealed class TierService(ITierRepository tierRepository) : ITierService
         )).ToList();
     }
 
+    public async Task<bool> IsTierAvailableAsync(
+        Guid tierId,
+        CancellationToken ct = default)
+    {
+        var tier = await tierRepository.GetByIdAsync(
+            new TierID(tierId),
+            ct);
 
+        return tier is not null && tier.Status == TierStatus.Active;
+    }
 }
