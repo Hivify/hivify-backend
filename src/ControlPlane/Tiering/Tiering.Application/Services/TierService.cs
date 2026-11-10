@@ -32,4 +32,21 @@ public sealed class TierService(ITierRepository tierRepository) : ITierService
 
         return tier is not null && tier.Status == TierStatus.Active;
     }
+
+    public async Task<TierPolicyDto?> GetTierPolicyAsync(
+        Guid tierId,
+        CancellationToken ct = default)
+    {
+        var tier = await tierRepository.GetByIdAsync(
+            new TierID(tierId),
+            ct);
+
+        if (tier is null || tier.Status != TierStatus.Active)
+            return null;
+
+        return new TierPolicyDto(
+            tier.MaxMembers.Value,
+            tier.MaxAdministrators.Value,
+            []);
+    }
 }

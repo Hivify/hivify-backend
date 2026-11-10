@@ -1,4 +1,6 @@
-﻿using Hivify.Api.Integrations.Identity;
+﻿using Association.Application.Contracts;
+using Hivify.Api.Integrations.Association;
+using Hivify.Api.Integrations.Identity;
 using Hivify.Api.Integrations.Onboarding;
 using Hivify.Api.Integrations.OnBoarding;
 using Identity.Application.Contracts;
@@ -13,7 +15,9 @@ public static class AddServicesIntegrationsDI
         public IServiceCollection AddServicesIntegrations()
         {
 
+            // Association Service Talking to Tiering for policies
 
+            services.AddScoped<IAssociationTierProvider, AssociationTierAdapter>();
             // OnBoarding Service talking to Tiering service 
             services.AddScoped<ITieringOnboardingPort, TieringOnboardingAdapter>();
 
