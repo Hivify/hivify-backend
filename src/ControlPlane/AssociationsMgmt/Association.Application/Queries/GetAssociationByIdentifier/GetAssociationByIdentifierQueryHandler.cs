@@ -29,6 +29,7 @@ public sealed class GetAssociationByIdentifierQueryHandler(
 
         return new AssociationDto(
             association.Id.Value,
+            association.TierId.Value,
             association.Name.Value,
             association.ContactEmail.Value,
             association.Identifier.Value,

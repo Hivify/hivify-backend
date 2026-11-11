@@ -44,6 +44,7 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
             .Where(a => a.Id == associationId)
             .Select(a => new AssociationDto(
                 a.Id.Value,
+                a.TierId.Value,
                 a.Name.Value,
                 a.Members
                     .Where(m => m.Role == AssociationRoles.AssociationAdmin)
