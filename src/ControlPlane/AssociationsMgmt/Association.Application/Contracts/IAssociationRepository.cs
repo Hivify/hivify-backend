@@ -25,6 +25,9 @@ namespace Association.Application.Contracts
         Task<bool> ExistsWithNameAsync(AssociationName name, CancellationToken ct = default);
 
         Task SaveChangesAsync(CancellationToken ct);
+        Task<int> GetMemberCountAsync(
+    AssociationID associationId,
+    CancellationToken ct = default);
 
     }
 }

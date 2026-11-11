@@ -84,7 +84,17 @@ public sealed class AssociationInvitationRepository(
             invitation => invitation.Id == invitationId,
             ct);
     }
-
+    public async Task<int> GetPendingInvitationCountAsync(
+    AssociationID associationId,
+    CancellationToken ct = default)
+    {
+        return await context.Invitations
+            .CountAsync(
+                invitation =>
+                    invitation.AssociationID == associationId &&
+                    invitation.Status == InvitationStatus.Pending,
+                ct);
+    }
 
     public async Task SaveChangesAsync(CancellationToken ct = default)
     {

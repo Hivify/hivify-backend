@@ -18,5 +18,9 @@ public interface IAssociationInvitationRepository
 
     Task<AssociationInvitation?> GetByIdAsync(InvitationID invitationId, CancellationToken ct = default);
 
+    Task<int> GetPendingInvitationCountAsync(
+    AssociationID associationId,
+    CancellationToken ct = default);
+
     Task SaveChangesAsync(CancellationToken ct = default);
 }
