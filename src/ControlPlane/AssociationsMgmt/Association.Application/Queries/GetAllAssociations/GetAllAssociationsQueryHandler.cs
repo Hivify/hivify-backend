@@ -23,6 +23,7 @@ public sealed class GetAllAssociationsQueryHandler(
         return associations
             .Select(a => new AssociationDto(
                 a.Id.Value,
+                a.TierId.Value,
                 a.Name.Value,
                 a.ContactEmail.Value,
                 a.Identifier.Value,

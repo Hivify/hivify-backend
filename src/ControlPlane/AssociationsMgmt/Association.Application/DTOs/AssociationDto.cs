@@ -3,6 +3,7 @@
 
 public sealed record AssociationDto(
    Guid AssociationId,
+   Guid TierId,
    string Name,
    string ContactEmail,
    Guid Identifier,

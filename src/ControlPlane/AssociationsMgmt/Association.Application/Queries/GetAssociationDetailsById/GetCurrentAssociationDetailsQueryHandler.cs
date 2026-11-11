@@ -30,6 +30,7 @@ public sealed class GetCurrentAssociationDetailsQueryHandler(
 
         return new AssociationDto(
             association.AssociationId,
+            association.TierId,
             association.Name,
             association.ContactEmail,
             association.Identifier,
