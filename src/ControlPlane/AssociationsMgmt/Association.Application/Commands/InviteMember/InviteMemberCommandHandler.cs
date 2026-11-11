@@ -13,6 +13,7 @@ public sealed class InviteMemberCommandHandler(
     ICurrentTenantUser currentTenantUser,
     IAssociationRepository associationRepository,
     IAssociationInvitationRepository invitationRepository,
+    IAssociationTierProvider associationTierProvider,
     IAssociationInvitationEmailSender emailSender)
     : ICommandHandler<InviteMemberCommand, Guid>
 {
@@ -20,8 +21,9 @@ public sealed class InviteMemberCommandHandler(
         InviteMemberCommand command,
         CancellationToken ct)
     {
-        // 1. Ensure the request has an authenticated inviter.
-        if (!currentTenantUser.IsAuthenticated)
+        // 1. Authenticate inviter.
+        if (!currentTenantUser.IsAuthenticated ||
+            currentTenantUser.UserId == Guid.Empty)
         {
             throw new UnauthorizedAccessException(
                 "An authenticated user is required to invite members.");
@@ -29,13 +31,7 @@ public sealed class InviteMemberCommandHandler(
 
         var userId = currentTenantUser.UserId;
 
-        if (userId == Guid.Empty)
-        {
-            throw new UnauthorizedAccessException(
-                "A valid authenticated user is required to invite members.");
-        }
-
-        // 2. Resolve the association from the current tenant.
+        // 2. Resolve current Association.
         if (currentTenantUser.AssociationId is not Guid associationId ||
             associationId == Guid.Empty)
         {
@@ -43,20 +39,60 @@ public sealed class InviteMemberCommandHandler(
                 "No association is resolved for this request.");
         }
 
-        // 3. Verify the user's role in this association.
+        var associationID = new AssociationID(associationId);
+
+        // 3. Verify inviter's role.
         if (!currentTenantUser.IsAssociationAdmin)
         {
             throw new UnauthorizedAccessException(
                 "Only an association admin can invite members.");
         }
 
-        // 4. Validate and wrap the email address.
+        // 4. Load Association to obtain its TierId.
+        var association = await associationRepository.GetByIdAsync(
+            associationID,
+            ct);
+
+        if (association is null)
+        {
+            throw new InvalidOperationException(
+                "The current association could not be found.");
+        }
+
+        // 5. Retrieve the policy for the Association's selected tier.
+        var tierPolicy = await associationTierProvider.GetPolicyAsync(
+            association.TierId.Value,
+            ct);
+
+        if (tierPolicy is null)
+        {
+            throw new InvalidOperationException(
+                "The association's tier is unavailable.");
+        }
+
+        // 6. Check member capacity.
+        var memberCount = await associationRepository.GetMemberCountAsync(
+            associationID,
+            ct);
+
+        var pendingInvitationCount =
+            await invitationRepository.GetPendingInvitationCountAsync(
+                associationID,
+                ct);
+
+        if (memberCount + pendingInvitationCount >= tierPolicy.MaxMembers)
+        {
+            throw new InvalidOperationException(
+                "Your association has reached the maximum member limit for its current tier.");
+        }
+
+        // 7. Validate invitee email.
         var email = new ContactEmail(command.Email);
 
-        // 5. Reject invitations to existing members.
+        // 8. Reject invitations to existing members.
         var isAlreadyMember =
             await associationRepository.IsMemberByEmailAsync(
-                new AssociationID(associationId),
+                associationID,
                 email,
                 ct);
 
@@ -66,10 +102,10 @@ public sealed class InviteMemberCommandHandler(
                 "This email already belongs to a member of the association.");
         }
 
-        // 6. Reject duplicate pending invitations.
+        // 9. Reject duplicate pending invitations.
         var hasPendingInvitation =
             await invitationRepository.IsPendingInvitationExistsAsync(
-                new AssociationID(associationId),
+                associationID,
                 email,
                 ct);
 
@@ -79,29 +115,27 @@ public sealed class InviteMemberCommandHandler(
                 "A pending invitation already exists for this email.");
         }
 
-        // 7. Generate a cryptographically secure, single-use token.
+        // 10. Generate a cryptographically secure token.
         var tokenBytes = RandomNumberGenerator.GetBytes(32);
+
         var invitationToken = Convert.ToBase64String(tokenBytes)
             .TrimEnd('=')
             .Replace('+', '-')
             .Replace('/', '_');
 
-        // . Store only the SHA-256 hash, never the raw token.
         var tokenHash = InvitationTokenHash.Create(invitationToken);
 
-
-
         var invitation = AssociationInvitation.Create(
-            new AssociationID(associationId),
+            associationID,
             new UserID(userId),
             email,
             tokenHash);
 
-        // 8. Persist the invitation before sending the email.
+        // 11. Persist invitation before sending email.
         await invitationRepository.AddAsync(invitation, ct);
         await invitationRepository.SaveChangesAsync(ct);
 
-        // 9. Send the raw token to the invitee.
+        // 12. Send raw token to invitee.
         await emailSender.SendInvitationAsync(
             email.Value,
             invitationToken,

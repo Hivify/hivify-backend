@@ -169,6 +169,17 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
     }
 
 
+    public async Task<int> GetMemberCountAsync(
+    AssociationID associationId,
+    CancellationToken ct = default)
+    {
+        return await dbContext.Associations
+            .Where(a => a.Id == associationId)
+            .SelectMany(a => a.Members)
+            .CountAsync(ct);
+    }
+
+
 
     public async Task SaveChangesAsync(CancellationToken ct = default)
     {
