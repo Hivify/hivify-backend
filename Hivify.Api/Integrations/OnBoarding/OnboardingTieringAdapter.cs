@@ -1,10 +1,10 @@
 ﻿using OnBoarding.Application.Contracts;
 using Tiering.Application.Contracts;
 
-namespace Hivify.Api.Integrations.Onboarding;
+namespace Hivify.Api.Integrations.OnBoarding;
 
-public sealed class TieringOnboardingAdapter(
-    ITierService tierService) : ITieringOnboardingPort
+public sealed class OnboardingTieringAdapter(
+    ITierService tierService) : IOnboardingTieringPort
 {
     public Task<bool> IsTierAvailableAsync(
         Guid tierId,

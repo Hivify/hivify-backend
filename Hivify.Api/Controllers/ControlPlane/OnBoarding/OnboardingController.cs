@@ -1,7 +1,7 @@
-using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Mappers;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Requests;
 using Hivify.Api.Controllers.ControlPlane.OnBoarding.Responses;
+using Identity.Application.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnBoarding.Application.Contracts;

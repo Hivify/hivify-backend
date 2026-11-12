@@ -10,8 +10,8 @@ namespace OnBoarding.Application.Services;
 
 public sealed class OnboardingService(
     ICurrentPlatformUser currentUser,
-    IAssociationOnboardingPort associationOnboardingPort,
-    ITieringOnboardingPort tieringOnboardingPort,
+    IOnboardingAssociationPort onboardingAssociationPort,
+    IOnboardingTieringPort tieringOnboardingPort,
     IOnboardingRepository onboardingRepository,
     ILogger<OnboardingService> logger)
     : IOnboardingService
@@ -55,7 +55,7 @@ public sealed class OnboardingService(
         await onboardingRepository.SaveChangesAsync(ct);
 
         // 5. Create the association with the selected tier.
-        await associationOnboardingPort.CreateAssociationAsync(
+        await onboardingAssociationPort.CreateAssociationAsync(
             associationName,
             userId,
             currentUser.EmailAddress,

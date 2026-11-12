@@ -4,8 +4,7 @@ using Tiering.Application.Contracts;
 
 namespace Hivify.Api.Integrations.Association
 {
-    public sealed class AssociationTierAdapter(
-       ITierService tierService) : IAssociationTierProvider
+    public sealed class AssociationTierAdapter(ITierService tierService) : IAssociationTierProvider
     {
         public async Task<AssociationTierPolicy?> GetPolicyAsync(
             Guid tierId,

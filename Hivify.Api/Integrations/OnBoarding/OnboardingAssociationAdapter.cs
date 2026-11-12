@@ -4,8 +4,8 @@ using OnBoarding.Application.Contracts;
 
 namespace Hivify.Api.Integrations.OnBoarding;
 
-public sealed class AssociationOnboardingAdapter(ICommandHandler<CreateAssociationCommand, Guid> commandHandler)
-    : IAssociationOnboardingPort
+public sealed class OnboardingAssociationAdapter(ICommandHandler<CreateAssociationCommand, Guid> commandHandler)
+    : IOnboardingAssociationPort
 {
     public Task<Guid> CreateAssociationAsync(
         string AssociationName,

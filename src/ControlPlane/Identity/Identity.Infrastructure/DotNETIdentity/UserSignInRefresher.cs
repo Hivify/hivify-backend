@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.Security.Platform;
+using Identity.Application.Contracts;
 using Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 

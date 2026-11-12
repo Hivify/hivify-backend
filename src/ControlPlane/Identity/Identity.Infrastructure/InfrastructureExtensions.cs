@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Security.Platform;
-using Identity.Application.Contracts;
+﻿using Identity.Application.Contracts;
 using Identity.Domain;
 using Identity.Infrastructure.DotNETIdentity;
 using Identity.Infrastructure.Persistence;

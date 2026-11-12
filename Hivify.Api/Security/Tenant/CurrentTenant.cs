@@ -6,8 +6,7 @@ using Hivify.Api.MultiTenancy;
 namespace Hivify.Api.Security.Tenant;
 
 public sealed class CurrentTenant(
-    IMultiTenantContextAccessor<ExtendedTenantInfo> accessor)
-    : ICurrentAssociation
+    IMultiTenantContextAccessor<ExtendedTenantInfo> accessor) : ICurrentTenant
 {
     private ExtendedTenantInfo? TenantInfo =>
         accessor.MultiTenantContext?.TenantInfo;
