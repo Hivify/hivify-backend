@@ -38,7 +38,7 @@ namespace Identity.Infrastructure
 
 
 
-                services.AddScoped<IHivifyUserDirectory, HivifyUsersDirectory>();
+                services.AddScoped<IPlatformUserDirectory, HivifyUsersDirectory>();
                 services.AddSingleton<IEmailSender<DotNETApplicationUser>, IdentityNoOpEmailSender>();
                 services.AddScoped<IUserClaimsPrincipalFactory<DotNETApplicationUser>, HivifyClaimsPrincipalFactory>();
                 services.AddScoped<IUserSignInRefresher, UserSignInRefresher>();

@@ -89,7 +89,7 @@ public static class AddServicesIntegrationsDI
             // Retrieves Association membership claims when creating the user's
             // authentication principal.
             services.AddScoped<
-                IAssociationMemberClaims,
+                ITenantMemberClaims,
                 IdentityAssociationClaimsAdapter>();
 
             return services;

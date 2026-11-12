@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace Hivify.Api.Integrations.Identity;
 
-public sealed class IdentityAssociationClaimsAdapter(IQuerySender querySender) : IAssociationMemberClaims
+public sealed class IdentityAssociationClaimsAdapter(IQuerySender querySender) : ITenantMemberClaims
 {
     private readonly IQuerySender _querySender = querySender;
 

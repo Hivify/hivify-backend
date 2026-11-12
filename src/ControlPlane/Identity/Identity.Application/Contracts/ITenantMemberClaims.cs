@@ -2,7 +2,7 @@
 
 namespace Identity.Application.Contracts
 {
-    public interface IAssociationMemberClaims
+    public interface ITenantMemberClaims
     {
         Task<IReadOnlyCollection<Claim>> GetAssociationMemberClaimsAsync(Guid userId, CancellationToken ct = default);
     }
