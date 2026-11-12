@@ -2,7 +2,5 @@
 
 public interface IOnboardingTieringPort
 {
-    Task<bool> IsTierAvailableAsync(
-        Guid tierId,
-        CancellationToken ct = default);
+    Task<bool> IsTierAvailableAsync(Guid tierId, CancellationToken ct = default);
 }

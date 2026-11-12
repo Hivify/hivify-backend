@@ -9,6 +9,7 @@ using Association.Application.Queries.GetAssociationDetailsById;
 using Association.Application.Queries.GetAssociationMembers;
 using Association.Application.Queries.GetInvitationDetailsQuery;
 using Association.Application.Queries.GetUserAssociationClaims;
+using Association.Application.Services;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
@@ -53,6 +54,8 @@ public static class ApplicationExtensions
             services.AddScoped<IQueryHandler<GetAssociationMembersQuery, IReadOnlyList<AssociationMemberDto>>, GetAssociationMembersQueryHandler>();
 
             services.AddScoped<IQueryHandler<GetAllAssociationsByUserQuery, IReadOnlyList<UserAssociationDto>>, GetAllAssociationsByUserQueryHandler>();
+
+            services.AddScoped<AssociationMemberCapacityChecker>();
 
 
             return services;

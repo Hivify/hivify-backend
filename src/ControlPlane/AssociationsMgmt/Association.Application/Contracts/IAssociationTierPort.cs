@@ -2,7 +2,7 @@
 
 namespace Association.Application.Contracts;
 
-public interface IAssociationTierProvider
+public interface IAssociationTierPort
 {
     Task<AssociationTierPolicy?> GetPolicyAsync(
         Guid tierId,

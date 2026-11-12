@@ -39,7 +39,7 @@ public static class AddServicesIntegrationsDI
             // Association → Tiering:
             // Retrieves tier policies so Association can enforce its business limits.
             services.AddScoped<
-                IAssociationTierProvider,
+                IAssociationTierPort,
                 AssociationTierAdapter>();
 
             // Association → Identity:

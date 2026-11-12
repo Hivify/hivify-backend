@@ -11,7 +11,7 @@ namespace OnBoarding.Application.Services;
 public sealed class OnboardingService(
     ICurrentPlatformUser currentUser,
     IOnboardingAssociationPort onboardingAssociationPort,
-    IOnboardingTieringPort tieringOnboardingPort,
+    IOnboardingTieringPort onboardingTieringPort,
     IOnboardingRepository onboardingRepository,
     ILogger<OnboardingService> logger)
     : IOnboardingService
@@ -79,7 +79,7 @@ public sealed class OnboardingService(
         Guid tierId,
         CancellationToken ct)
     {
-        var isAvailable = await tieringOnboardingPort
+        var isAvailable = await onboardingTieringPort
             .IsTierAvailableAsync(tierId, ct);
 
         if (!isAvailable)
