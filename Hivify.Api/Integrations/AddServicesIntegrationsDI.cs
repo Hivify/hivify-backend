@@ -56,11 +56,7 @@ public static class AddServicesIntegrationsDI
         /// </summary>
         private IServiceCollection AddOnboardingIntegrations()
         {
-            // Onboarding → Identity:
-            // Refreshes the user's sign-in after onboarding completes.
-            services.AddScoped<
-                IOnboardingSignInRefresher,
-                OnboardingSignInRefresherAdapter>();
+
 
             // Onboarding → Tiering:
             // Validates the selected tier during onboarding.
