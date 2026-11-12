@@ -1,5 +1,4 @@
 using BuildingBlocks.ApplicationPorts.Security.Platform;
-using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace Hivify.Api.Security.Platform;

@@ -1,6 +1,6 @@
 ﻿namespace OnBoarding.Application.Contracts;
 
-public interface ITieringOnboardingPort
+public interface IOnboardingTieringPort
 {
     Task<bool> IsTierAvailableAsync(
         Guid tierId,

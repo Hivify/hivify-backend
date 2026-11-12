@@ -1,4 +1,4 @@
-namespace BuildingBlocks.ApplicationPorts.Security.Platform;
+namespace Identity.Application.Contracts;
 
 public interface IUserSignInRefresher
 {

@@ -10,7 +10,7 @@ namespace Association.Application.Commands.AcceptMemberInvitation;
 public sealed class AcceptInvitationCommandHandler(
     ICurrentPlatformUser currentUser,
     IAssociationRepository associationRepository,
-    IUserSignInRefresher signInRefresher,
+    IAssociationSignInRefresher signInRefresher,
     IAssociationInvitationRepository invitationRepository)
     : ICommandHandler<AcceptInvitationCommand, Guid>
 {
