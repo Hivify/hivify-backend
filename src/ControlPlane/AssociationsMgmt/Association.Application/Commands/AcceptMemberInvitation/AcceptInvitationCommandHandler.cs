@@ -8,7 +8,7 @@ using SharedKernel.ValueObjects;
 namespace Association.Application.Commands.AcceptMemberInvitation;
 
 public sealed class AcceptInvitationCommandHandler(
-    ICurrentPlatformUser currentUser,
+    ICurrentPlatformUser currentPlatformUser,
     IAssociationRepository associationRepository,
     IAssociationSignInRefresher signInRefresher,
     IAssociationInvitationRepository invitationRepository)
@@ -18,7 +18,7 @@ public sealed class AcceptInvitationCommandHandler(
         AcceptInvitationCommand command,
         CancellationToken ct)
     {
-        if (!currentUser.IsAuthenticated)
+        if (!currentPlatformUser.IsAuthenticated)
             throw new UnauthorizedAccessException(
                 "User must be authenticated to accept an invitation.");
 
@@ -38,7 +38,7 @@ public sealed class AcceptInvitationCommandHandler(
 
         // 3. Verify authenticated user's email.
         if (!string.Equals(
-                currentUser.EmailAddress,
+                currentPlatformUser.EmailAddress,
                 invitation.Email.Value,
                 StringComparison.OrdinalIgnoreCase))
         {
@@ -52,9 +52,9 @@ public sealed class AcceptInvitationCommandHandler(
 
         // 5. Add authenticated user as a member.
         association.AddMember(
-            new UserID(currentUser.UserId),
+            new UserID(currentPlatformUser.UserId),
             AssociationRoles.AssociationMember,
-            new ContactEmail(currentUser.EmailAddress));
+            new ContactEmail(currentPlatformUser.EmailAddress));
 
         // 6. Accept invitation.
         invitation.Accept();
