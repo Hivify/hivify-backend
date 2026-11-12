@@ -20,6 +20,7 @@ public static class AddServicesSecurityDI
             services.AddScoped<ICurrentPlatformUser, CurrentPlatformUser>();
             services.AddScoped<IPlatformAuthorization, PlatformAuthorization>();
             services.AddScoped<ICurrentTenantUser, CurrentTenantUser>();
+            services.AddScoped<ICurrentTenant, CurrentTenant>();
 
 
             return services;

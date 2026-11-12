@@ -1,12 +1,12 @@
 using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using Finbuckle.MultiTenant.Abstractions;
-using Microsoft.AspNetCore.Http;
+using Hivify.Api.MultiTenancy;
 using System.Security.Claims;
 
 namespace Hivify.Api.Security.Tenant;
 
 public sealed class CurrentTenantUser(
-    IMultiTenantContextAccessor<TenantInfo> accessor,
+    IMultiTenantContextAccessor<ExtendedTenantInfo> accessor,
     IHttpContextAccessor httpContextAccessor)
     : ICurrentTenantUser
 {
