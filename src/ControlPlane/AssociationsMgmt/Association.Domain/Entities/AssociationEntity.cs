@@ -13,8 +13,8 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
     public AssociationIdentifier Identifier { get; private set; }
     public ContactEmail ContactEmail { get; private set; }
     public AssociationStatus Status { get; private set; }
-    public DateTime CreatedDate { get; private set; }
-    public DateTime? DeletedAt { get; private set; }
+    public DateTimeOffset CreatedDate { get; private set; }
+    public DateTimeOffset? DeletedAt { get; private set; }
 
     private readonly List<Membership> _members = new();
 
@@ -37,7 +37,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
         Identifier = identifier;
         TierId = tierId;
         Status = AssociationStatus.Pending;
-        CreatedDate = DateTime.UtcNow;
+        CreatedDate = DateTimeOffset.UtcNow;
     }
 
 

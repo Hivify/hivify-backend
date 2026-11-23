@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/Api/">
+    <Project Path="Api/Hivify.Api.Tests/Hivify.Api.Tests.csproj" Id="c22d96f7-fe54-435e-9de1-3268f5d4817a" />
+    <Project Path="Api/Hivify.Api/Hivify.Api.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="Taskfile.yml" />
   </Folder>
@@ -63,6 +67,5 @@
   </Folder>
   <Project Path="BuildingBlocks/BuildingBlocks.csproj" Id="13b67b05-8a26-45f2-98f5-2c21f4070ade" />
   <Project Path="Hivify.AI/Hivify.AI.csproj" />
-  <Project Path="Hivify.Api/Hivify.Api.csproj" Id="74f6a290-9423-4985-b768-e2f9143a49ac" />
   <Project Path="SharedKernel/SharedKernel.csproj" Id="9432ab2b-f2fd-4ad8-811f-99bbe4cc1c27" />
 </Solution>

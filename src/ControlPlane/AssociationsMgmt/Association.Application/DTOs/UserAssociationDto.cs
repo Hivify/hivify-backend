@@ -5,5 +5,5 @@ public sealed record UserAssociationDto(
     string AssociationName,
     string Status,
     string UserRole,
-    DateTime JoinedAt
+    DateTimeOffset JoinedAt
 );

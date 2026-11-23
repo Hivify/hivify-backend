@@ -3,5 +3,5 @@
 public sealed record AssociationMemberDto(
     Guid UserId,
     string Role,
-    DateTime JoinedAt
+    DateTimeOffset JoinedAt
 );

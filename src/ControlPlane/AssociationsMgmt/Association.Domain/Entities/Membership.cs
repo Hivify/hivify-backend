@@ -7,7 +7,7 @@ public class Membership : BaseEntity<MembershipID>
 {
     public UserID UserID { get; private set; }
     public ContactEmail MemberEmail { get; private set; }
-    public DateTime JoinedAt { get; private set; } = DateTime.UtcNow;
+    public DateTimeOffset JoinedAt { get; private set; } = DateTimeOffset.UtcNow;
     public AssociationRoles Role { get; private set; }
 
     private Membership() { }
