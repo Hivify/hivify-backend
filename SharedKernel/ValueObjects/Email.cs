@@ -11,11 +11,11 @@ public sealed record Email : BaseValue<string>
     private static string Validate(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new DomainException("Email är obligatoriskt.");
+            throw new DomainException("Email is required.");
         value = value.Trim();
 
         if (!IsValidEmail(value))
-            throw new DomainException("Felaktig e-postformat.");
+            throw new DomainException("Not valid email.");
         return value;
     }
 
