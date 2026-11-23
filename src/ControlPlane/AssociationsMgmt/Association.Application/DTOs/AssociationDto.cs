@@ -10,7 +10,7 @@ public sealed record AssociationDto(
    string Status,
    Guid OwnerUserId,
    int MemberCount,
-   DateTime CreatedDate
+   DateTimeOffset CreatedDate
 );
 
 

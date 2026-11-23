@@ -6,7 +6,7 @@ public sealed record AssociationResponse(
     string AdminAssociationEmail,
     Guid Identifier,
     string Status,
-    DateTime CreatedDate
+    DateTimeOffset CreatedDate
 );
 
 
