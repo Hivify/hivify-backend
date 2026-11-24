@@ -13,6 +13,8 @@
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.29.3" />
     <PackageReference Include="Resend" Version="0.24.0" />
+    <PackageReference Include="WolverineFx.EntityFrameworkCore" Version="6.65.1" />
+    <PackageReference Include="WolverineFx.SqlServer" Version="6.65.1" />
   </ItemGroup>
 
 </Project>
