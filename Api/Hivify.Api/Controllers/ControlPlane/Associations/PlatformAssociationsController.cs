@@ -2,10 +2,10 @@ using Association.Application.Commands.CreateAssociation;
 using Association.Application.Queries.GetAllAssociationByUser;
 using Association.Application.Queries.GetAllAssociations;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.Security.Platform;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
+using Hivify.Api.Security.Platform.PlatformAuthorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

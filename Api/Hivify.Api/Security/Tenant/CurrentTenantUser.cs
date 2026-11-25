@@ -34,39 +34,39 @@ public sealed class CurrentTenantUser(
     public string EmailAddress =>
         User?.FindFirstValue(ClaimTypes.Email) ?? string.Empty;
 
-    public Guid? AssociationId
+    public Guid? TenantId
     {
         get
         {
             var tenantInfo = accessor.MultiTenantContext?.TenantInfo;
 
             if (tenantInfo is null ||
-                !Guid.TryParse(tenantInfo.Id, out var associationId) ||
-                associationId == Guid.Empty)
+                !Guid.TryParse(tenantInfo.Id, out var tenantId) ||
+                tenantId == Guid.Empty)
             {
                 return null;
             }
 
-            return associationId;
+            return tenantId;
         }
     }
 
-    public string? AssociationRole
+    public string? TenantRole
     {
         get
         {
-            if (AssociationId is not Guid associationId || User is null)
+            if (TenantId is not Guid tenantId || User is null)
             {
                 return null;
             }
 
-            foreach (var claim in User.FindAll(TenantUserClaimTypes.AssociationMembership))
+            foreach (var claim in User.FindAll(TenantUserClaimTypes.TenantMembership))
             {
                 var parts = claim.Value.Split('|');
 
                 if (parts.Length == 2 &&
-                    Guid.TryParse(parts[0], out var claimAssociationId) &&
-                    claimAssociationId == associationId)
+                    Guid.TryParse(parts[0], out var claimTenantId) &&
+                    claimTenantId == tenantId)
                 {
                     return parts[1];
                 }
@@ -76,9 +76,9 @@ public sealed class CurrentTenantUser(
         }
     }
 
-    public bool IsAssociationAdmin =>
+    public bool IsTenantAdmin =>
         string.Equals(
-            AssociationRole,
+            TenantRole,
             "AssociationAdmin",
             StringComparison.OrdinalIgnoreCase);
 }

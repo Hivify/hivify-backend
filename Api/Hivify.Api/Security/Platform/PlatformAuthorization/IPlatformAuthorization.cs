@@ -1,4 +1,4 @@
-namespace BuildingBlocks.ApplicationPorts.Security.Platform;
+namespace Hivify.Api.Security.Platform.PlatformAuthorization;
 
 public interface IPlatformAuthorization
 {

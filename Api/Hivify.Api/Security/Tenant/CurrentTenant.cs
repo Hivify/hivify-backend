@@ -5,23 +5,22 @@ using Hivify.Api.MultiTenancy;
 
 namespace Hivify.Api.Security.Tenant;
 
-public sealed class CurrentTenant(
-    IMultiTenantContextAccessor<ExtendedTenantInfo> accessor) : ICurrentTenant
+public sealed class CurrentTenant(IMultiTenantContextAccessor<ExtendedTenantInfo> accessor) : ICurrentTenant
 {
     private ExtendedTenantInfo? TenantInfo =>
         accessor.MultiTenantContext?.TenantInfo;
 
-    public Guid? AssociationId
+    public Guid? TenantId
     {
         get
         {
-            if (!Guid.TryParse(TenantInfo?.Id, out var associationId) ||
-                associationId == Guid.Empty)
+            if (!Guid.TryParse(TenantInfo?.Id, out var tenantId) ||
+                tenantId == Guid.Empty)
             {
                 return null;
             }
 
-            return associationId;
+            return tenantId;
         }
     }
 
@@ -44,6 +43,6 @@ public sealed class CurrentTenant(
     public string? Identifier =>
         TenantInfo?.Identifier;
 
-    public string? AssociationName =>
+    public string? TenantName =>
         TenantInfo?.Name;
 }

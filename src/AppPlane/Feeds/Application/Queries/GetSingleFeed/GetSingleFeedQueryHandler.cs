@@ -27,7 +27,7 @@ public sealed class GetSingleFeedQueryHandler
     {
         ArgumentNullException.ThrowIfNull(query);
 
-        var associationId = _currentTenantUser.AssociationId;
+        var associationId = _currentTenantUser.TenantId;
 
         if (associationId is null || associationId == Guid.Empty)
         {

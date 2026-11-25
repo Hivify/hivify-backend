@@ -32,12 +32,12 @@ public sealed class DeleteFeedCommandHandler
                 "Authentication is required.");
         }
 
-        var associationId = _currentTenantUser.AssociationId;
+        var associationId = _currentTenantUser.TenantId;
 
         if (associationId is null || associationId == Guid.Empty)
         {
             throw new UnauthorizedAccessException(
-                "A valid association is required.");
+                "A valid tenant is required.");
         }
 
         var feed = await _feedRepository.GetByIdAsync(

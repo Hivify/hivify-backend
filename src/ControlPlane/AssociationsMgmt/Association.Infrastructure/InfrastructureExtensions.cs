@@ -1,6 +1,7 @@
 ﻿using Association.Application.Contracts;
 using Association.Infrastructure.Email;
 using Association.Infrastructure.Persistence;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.Infrastructure.Messaging.Wolverine;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,8 +13,7 @@ public static class InfrastructureExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddAssociationInfrastructure(
-            string connectionString)
+        public IServiceCollection AddAssociationInfrastructure(string connectionString)
         {
             // 1. Register AssociationDbContext with Wolverine's EF integration
             services.AddDbContextWithWolverineIntegration<AssociationDbContext>(
@@ -25,25 +25,15 @@ public static class InfrastructureExtensions
 
 
             // 3. Register the Association outbox
-            services.AddScoped<WolverineDbContextOutbox<AssociationDbContext>>();
-
-            services.AddScoped<
-                IAssociationOutbox,
-                AssociationOutbox>();
+            services.AddScoped<IOutbox, WolverineDbContextOutbox<AssociationDbContext>>();
 
             // 4. Repositories
-            services.AddScoped<
-                IAssociationRepository,
-                AssociationRepository>();
+            services.AddScoped<IAssociationRepository, AssociationRepository>();
 
-            services.AddScoped<
-                IAssociationInvitationRepository,
-                AssociationInvitationRepository>();
+            services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
 
             // 5. Email
-            services.AddScoped<
-                IAssociationInvitationEmailSender,
-                AssociationInvitationEmailSender>();
+            services.AddScoped<IAssociationInvitationEmailSender, AssociationInvitationEmailSender>();
 
             return services;
         }

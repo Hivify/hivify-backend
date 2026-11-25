@@ -8,9 +8,9 @@ public interface ICurrentTenantUser
 
     string EmailAddress { get; }
 
-    Guid? AssociationId { get; }
+    Guid? TenantId { get; }
 
-    string? AssociationRole { get; }
+    string? TenantRole { get; }
 
-    bool IsAssociationAdmin { get; }
+    bool IsTenantAdmin { get; }
 }

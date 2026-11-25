@@ -2,7 +2,7 @@
 {
     public static class TenantUserClaimTypes
     {
-        // Identifies a association membership, including the user's role.
-        public const string AssociationMembership = "hivify:association_membership";
+        // Identifies a tenant membership, including the user's role.
+        public const string TenantMembership = "hivify:tenant_membership";
     }
 }
