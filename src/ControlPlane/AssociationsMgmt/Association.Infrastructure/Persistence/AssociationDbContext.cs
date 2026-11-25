@@ -32,26 +32,20 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                 .IsRequired();
 
             // Name
-            entity.OwnsOne(a => a.Name, name =>
-            {
-                name.Property(n => n.Value)
-                    .HasColumnName("Name")
-                    .HasMaxLength(100)
-                    .IsRequired();
+            entity.Property(a => a.Name).HasConversion(
+                name => name.Value,
+                value => new AssociationName(value))
+                .HasColumnName("Name")
+                .HasColumnType("nvarchar(100)")
+                .IsRequired();
 
-                name.HasIndex(n => n.Value)
-                    .IsUnique();
-            });
 
-            entity.OwnsOne(
-                 a => a.ContactEmail,
-                 name =>
-                 {
-                     name.Property(n => n.Value)
-                         .HasColumnName("ContactEmail")
-                         .HasMaxLength(320)
-                         .IsRequired();
-                 });
+            entity.Property(a => a.ContactEmail).HasConversion(
+                email => email.Value,
+                value => new AssociationEmail(value))
+                .HasColumnName("ContactEmail")
+                .HasColumnType("nvarchar(320)")
+                .IsRequired();
 
             // Association Identifier
             entity.Property(a => a.Identifier)
