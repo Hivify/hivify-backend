@@ -5,6 +5,7 @@ using Association.Application.Services;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+using BuildingBlocks.ApplicationPorts.Messaging;
 using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using SharedKernel.ValueObjects;
 using System.Security.Cryptography;
@@ -17,7 +18,7 @@ public sealed class InviteMemberCommandHandler(
     IAssociationRepository associationRepository,
     IAssociationInvitationRepository invitationRepository,
     AssociationMemberCapacityChecker capacityChecker,
-    IAssociationOutbox outbox)
+    IOutbox outbox)
     : ICommandHandler<InviteMemberCommand, Guid>
 {
     public async Task<Guid> Handle(

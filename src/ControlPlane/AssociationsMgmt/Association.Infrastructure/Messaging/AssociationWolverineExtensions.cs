@@ -8,8 +8,7 @@ namespace Association.Infrastructure.Messaging;
 
 public static class AssociationWolverineExtensions
 {
-    public static void AddAssociationPersistence(
-        this WolverineOptions opts,
+    public static void AddAssociationPersistence(this WolverineOptions opts,
         string connectionString)
     {
         opts.PersistMessagesWithSqlServer(
