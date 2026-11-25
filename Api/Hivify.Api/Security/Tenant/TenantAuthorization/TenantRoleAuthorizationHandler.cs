@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Authorization;
 namespace Hivify.Api.Security.Tenant.TenantAuthorization
 {
     public sealed class TenantRoleAuthorizationHandler(
-        ICurrentTenantUser currentAssociationTenant) : AuthorizationHandler<TenantRoleRequirement>
+        ICurrentTenantUser currentTenantUser) : AuthorizationHandler<TenantRoleRequirement>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
             TenantRoleRequirement requirement)
         {
-            var associationId = currentAssociationTenant.AssociationId;
+            var associationId = currentTenantUser.TenantId;
 
             var hasRequiredRole = context.User
-                .FindAll(TenantUserClaimTypes.AssociationMembership)
+                .FindAll(TenantUserClaimTypes.TenantMembership)
                 .Any(claim =>
                 {
                     var parts = claim.Value.Split('|');
