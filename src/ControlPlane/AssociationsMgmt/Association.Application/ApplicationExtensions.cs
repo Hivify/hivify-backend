@@ -1,4 +1,5 @@
-﻿using Association.Application.Commands.AcceptMemberInvitation;
+﻿
+using Association.Application.Commands.AcceptMemberInvitation;
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
 using Association.Application.Context;
@@ -23,41 +24,81 @@ public static class ApplicationExtensions
     {
         public IServiceCollection AddAssociationServices()
         {
+            // -----------------------------------------
+            // Command handlers
+            // -----------------------------------------
+
+            // Create a new Association.
             services.AddScoped<
                 ICommandHandler<CreateAssociationCommand, Guid>,
                 CreateAssociationCommandHandler>();
 
+            // Invite a member to an Association.
             services.AddScoped<
-           ICommandHandler<InviteMemberCommand, Guid>,
-           InviteMemberCommandHandler>();
+                ICommandHandler<InviteMemberCommand, Guid>,
+                InviteMemberCommandHandler>();
 
+            // Accept an existing Association invitation.
+            services.AddScoped<
+                ICommandHandler<AcceptInvitationCommand, Guid>,
+                AcceptInvitationCommandHandler>();
+
+
+            // -----------------------------------------
+            // Query handlers
+            // -----------------------------------------
+
+            // Retrieve all Associations.
             services.AddScoped<
                 IQueryHandler<GetAllAssociationsQuery, IReadOnlyList<AssociationDto>>,
                 GetAllAssociationsQueryHandler>();
 
+            // Retrieve an Association by its identifier.
             services.AddScoped<
                 IQueryHandler<GetAssociationByIdentifierQuery, AssociationDto?>,
                 GetAssociationByIdentifierQueryHandler>();
 
+            // Retrieve the current Association's details.
+            services.AddScoped<
+                IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>,
+                GetCurrentAssociationDetailsQueryHandler>();
+
+            // Retrieve all Associations belonging to a user.
+            services.AddScoped<
+                IQueryHandler<GetAllAssociationsByUserQuery, IReadOnlyList<UserAssociationDto>>,
+                GetAllAssociationsByUserQueryHandler>();
+
+            // Retrieve members of an Association.
+            services.AddScoped<
+                IQueryHandler<GetAssociationMembersQuery, IReadOnlyList<AssociationMemberDto>>,
+                GetAssociationMembersQueryHandler>();
+
+            // Retrieve invitation details.
+            services.AddScoped<
+                IQueryHandler<GetInvitationDetailsQuery, InvitationDetailsDto?>,
+                GetInvitationDetailsHandler>();
+
+            // Retrieve tenant membership claims for a user.
             services.AddScoped<
                 IQueryHandler<GetUserAssociationClaimsQuery, IReadOnlyCollection<Claim>>,
                 GetUserAssociationClaimsQueryHandler>();
 
 
-            services.AddScoped<
-                IQueryHandler<GetCurrentAssociationDetailsQuery, AssociationDto?>,
-                GetCurrentAssociationDetailsQueryHandler>();
+            // -----------------------------------------
+            // Application services
+            // -----------------------------------------
 
-            services.AddScoped<IQueryHandler<GetInvitationDetailsQuery, InvitationDetailsDto?>, GetInvitationDetailsHandler>();
-
-            services.AddScoped<ICommandHandler<AcceptInvitationCommand, Guid>, AcceptInvitationCommandHandler>();
-
-            services.AddScoped<IQueryHandler<GetAssociationMembersQuery, IReadOnlyList<AssociationMemberDto>>, GetAssociationMembersQueryHandler>();
-
-            services.AddScoped<IQueryHandler<GetAllAssociationsByUserQuery, IReadOnlyList<UserAssociationDto>>, GetAllAssociationsByUserQueryHandler>();
-
+            // Checks whether an Association has capacity
+            // for additional members based on its tier.
             services.AddScoped<AssociationMemberCapacityChecker>();
 
+
+            // -----------------------------------------
+            // Application context
+            // -----------------------------------------
+
+            // Provides validated information about the
+            // current Association and current tenant user.
             services.AddScoped<ICurrentAssociation, CurrentAssociation>();
 
 

@@ -9,7 +9,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
 {
     public AssociationID AssociationID { get; private set; }
     public UserID InvitedByUserID { get; private set; }
-    public ContactEmail Email { get; private set; }
+    public AssociationEmail Email { get; private set; }
     public InvitationTokenHash TokenHash { get; private set; }
     public InvitationStatus Status { get; private set; }
 
@@ -25,7 +25,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
         InvitationID id,
         AssociationID associationID,
         UserID invitedByUserID,
-        ContactEmail email,
+        AssociationEmail email,
         InvitationTokenHash tokenHash,
         InvitationExpiration expiration)
         : base(id)
@@ -41,7 +41,7 @@ public class AssociationInvitation : BaseEntity<InvitationID>, IAggregateRoot
     public static AssociationInvitation Create(
         AssociationID associationID,
         UserID invitedByUserID,
-        ContactEmail email,
+        AssociationEmail email,
         InvitationTokenHash tokenHash)
     {
         ArgumentNullException.ThrowIfNull(email);

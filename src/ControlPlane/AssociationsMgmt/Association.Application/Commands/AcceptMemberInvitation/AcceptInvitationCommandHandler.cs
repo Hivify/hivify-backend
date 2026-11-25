@@ -54,7 +54,7 @@ public sealed class AcceptInvitationCommandHandler(
         association.AddMember(
             new UserID(currentPlatformUser.UserId),
             AssociationRoles.AssociationMember,
-            new ContactEmail(currentPlatformUser.EmailAddress));
+            new AssociationEmail(currentPlatformUser.EmailAddress));
 
         // 6. Accept invitation.
         invitation.Accept();

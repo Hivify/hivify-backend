@@ -17,8 +17,8 @@ public sealed class AssociationEntityTests
         return AssociationEntity.Create(
             new AssociationName("Hivify"),
             new UserID(Guid.NewGuid()),
-            new ContactEmail("owner@example.com"),
-            new TierID(Guid.NewGuid()));
+            new AssociationEmail("owner@example.com"),
+            new AssociationTierID(Guid.NewGuid()));
     }
 
     [Fact]
@@ -27,8 +27,8 @@ public sealed class AssociationEntityTests
         // Arrange
         var name = new AssociationName("Hivify");
         var ownerId = new UserID(Guid.NewGuid());
-        var email = new ContactEmail("owner@example.com");
-        var tierId = new TierID(Guid.NewGuid());
+        var email = new AssociationEmail("owner@example.com");
+        var tierId = new AssociationTierID(Guid.NewGuid());
 
         // Act
         var association = AssociationEntity.Create(
@@ -51,14 +51,14 @@ public sealed class AssociationEntityTests
     {
         // Arrange
         var ownerId = new UserID(Guid.NewGuid());
-        var email = new ContactEmail("owner@example.com");
+        var email = new AssociationEmail("owner@example.com");
 
         // Act
         var association = AssociationEntity.Create(
             new AssociationName("Hivify"),
             ownerId,
             email,
-            new TierID(Guid.NewGuid()));
+            new AssociationTierID(Guid.NewGuid()));
 
         // Assert
         var owner = Assert.Single(association.Members);
@@ -78,8 +78,8 @@ public sealed class AssociationEntityTests
         var association = AssociationEntity.Create(
             new AssociationName("Hivify"),
             ownerId,
-            new ContactEmail("owner@example.com"),
-            new TierID(Guid.NewGuid()));
+            new AssociationEmail("owner@example.com"),
+            new AssociationTierID(Guid.NewGuid()));
 
         // Assert
         Assert.Contains(
@@ -93,7 +93,7 @@ public sealed class AssociationEntityTests
         // Arrange
         var association = CreateAssociation();
         var userId = new UserID(Guid.NewGuid());
-        var email = new ContactEmail("member@example.com");
+        var email = new AssociationEmail("member@example.com");
 
         // Act
         association.AddMember(

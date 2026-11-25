@@ -31,8 +31,8 @@ public sealed class CreateAssociationCommandHandler(IAssociationRepository assoc
         var association = AssociationEntity.Create(
             new AssociationName(command.Name),
             new UserID(command.OwnerUserId),
-            new ContactEmail(command.OwnerEmailAddress),
-            new TierID(command.TierId)
+            new AssociationEmail(command.OwnerEmailAddress),
+            new AssociationTierID(command.TierId)
             );
 
         await _associationRepository.AddAsync(association, ct);

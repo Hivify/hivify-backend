@@ -9,9 +9,9 @@ namespace Association.Domain.Entities;
 public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 {
     public AssociationName Name { get; private set; }
-    public TierID TierId { get; private set; }
+    public AssociationTierID TierId { get; private set; }
     public AssociationIdentifier Identifier { get; private set; }
-    public ContactEmail ContactEmail { get; private set; }
+    public AssociationEmail ContactEmail { get; private set; }
     public AssociationStatus Status { get; private set; }
     public DateTimeOffset CreatedDate { get; private set; }
     public DateTimeOffset? DeletedAt { get; private set; }
@@ -28,8 +28,8 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
         AssociationID id,
         AssociationIdentifier identifier,
         AssociationName name,
-        ContactEmail contactEmail,
-        TierID tierId)
+        AssociationEmail contactEmail,
+        AssociationTierID tierId)
         : base(id)
     {
         Name = name;
@@ -53,8 +53,8 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
     public static AssociationEntity Create(
         AssociationName name,
         UserID ownerId,
-        ContactEmail contactEmail,
-        TierID tierId)
+        AssociationEmail contactEmail,
+        AssociationTierID tierId)
     {
         var association = new AssociationEntity(
             new AssociationID(Guid.NewGuid()),
@@ -87,7 +87,7 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 
 
 
-    public void AddMember(UserID userId, AssociationRoles role, ContactEmail memberEmail)
+    public void AddMember(UserID userId, AssociationRoles role, AssociationEmail memberEmail)
     {
         if (_members.Any(m => m.UserID == userId))
         {

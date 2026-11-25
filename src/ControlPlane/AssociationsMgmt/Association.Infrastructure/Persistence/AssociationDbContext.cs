@@ -26,7 +26,7 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(a => a.TierId)
                 .HasConversion(
                     tierId => tierId.Value,
-                    value => new TierID(value))
+                    value => new AssociationTierID(value))
                 .HasColumnName("TierId")
                 .HasColumnType("uniqueidentifier")
                 .IsRequired();
@@ -146,7 +146,7 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(i => i.Email)
                  .HasConversion(
                      email => email.Value,
-                     value => new ContactEmail(value))
+                     value => new AssociationEmail(value))
                  .HasColumnName("Email")
                  .HasMaxLength(320)
                  .IsRequired();

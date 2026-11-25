@@ -11,7 +11,7 @@ public sealed class MembershipTests
     {
         // Arrange
         var userId = new UserID(Guid.NewGuid());
-        var email = new ContactEmail("member@example.com");
+        var email = new AssociationEmail("member@example.com");
         var role = AssociationRoles.AssociationMember;
 
         // Act

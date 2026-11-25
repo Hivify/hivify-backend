@@ -1,6 +1,6 @@
 ﻿using Association.Application.Context;
 using Association.Application.Contracts;
-using Association.Application.Messages;
+using Association.Application.QueueMessages;
 using Association.Application.Services;
 using Association.Application.Utilities;
 using Association.Domain.Entities;
@@ -32,7 +32,7 @@ public sealed class InviteMemberCommandHandler(
         var tierId = currentAssociation.GetTierId();
 
         // STEP 3: Convert the supplied email into our value object.
-        var email = new ContactEmail(command.Email);
+        var email = new AssociationEmail(command.Email);
 
         // STEP 4: Check whether the Association has capacity
         // for another member.
@@ -80,7 +80,7 @@ public sealed class InviteMemberCommandHandler(
 
     private async Task EnsureInviteeCanBeInvitedAsync(
         AssociationID associationId,
-        ContactEmail email,
+        AssociationEmail email,
         CancellationToken ct)
     {
         var isAlreadyMember =
