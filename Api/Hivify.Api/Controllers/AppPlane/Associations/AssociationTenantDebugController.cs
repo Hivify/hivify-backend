@@ -1,5 +1,5 @@
-using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
+using Hivify.Api.MultiTenancy;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hivify.Api.Controllers.AppPlane.Associations;
@@ -12,7 +12,7 @@ public sealed class AssociationTenantDebugController : ControllerBase
     public IActionResult GetTenant()
     {
         var tenantInfo = HttpContext
-            .GetMultiTenantContext<TenantInfo>()
+            .GetMultiTenantContext<ExtendedTenantInfo>()
             .TenantInfo;
 
         if (tenantInfo is null)
