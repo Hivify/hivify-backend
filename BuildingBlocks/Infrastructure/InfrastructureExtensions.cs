@@ -8,8 +8,6 @@ using BuildingBlocks.Infrastructure.Storage.CloudinaryStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Resend;
-using Wolverine;
-using Wolverine.EntityFrameworkCore;
 
 namespace BuildingBlocks.Infrastructure;
 
@@ -20,25 +18,13 @@ public static class InfrastructureExtensions
         public IServiceCollection AddBuildingBlocks(IConfiguration configuration, bool isDevelopment)
         {
 
-            var connectionString = configuration.GetConnectionString("DefaultConnection")
-         ?? throw new InvalidOperationException(
-             "Connection string 'DefaultConnection' not found.");
+
 
 
 
             // CQRS
             services.AddScoped<ICommandSender, CommandSender>();
             services.AddScoped<IQuerySender, QuerySender>();
-
-            // Wolverine
-            services.ConfigureWolverine(opts =>
-            {
-                // EF Core transactional messaging support
-                opts.UseEntityFrameworkCoreTransactions();
-
-                // Durable local background queues
-                opts.Policies.UseDurableLocalQueues();
-            });
 
             // Storage
             services.Configure<CloudinaryOptions>(configuration.GetSection("Cloudinary"));

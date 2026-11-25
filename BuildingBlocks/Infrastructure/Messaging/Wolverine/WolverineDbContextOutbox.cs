@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Wolverine.EntityFrameworkCore;
 
-namespace BuildingBlocks.Infrastructure.Messaging;
+namespace BuildingBlocks.Infrastructure.Messaging.Wolverine;
 
 public sealed class WolverineDbContextOutbox<TDbContext>(IDbContextOutbox<TDbContext> outbox) : IOutbox
     where TDbContext : DbContext

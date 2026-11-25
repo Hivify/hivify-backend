@@ -1,12 +1,10 @@
 ﻿using Association.Application.Contracts;
 using Association.Infrastructure.Email;
 using Association.Infrastructure.Persistence;
-using BuildingBlocks.Infrastructure.Messaging;
+using BuildingBlocks.Infrastructure.Messaging.Wolverine;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Wolverine;
-using Wolverine.Persistence.Durability;
-using Wolverine.SqlServer;
+using Wolverine.EntityFrameworkCore;
 
 namespace Association.Infrastructure;
 
@@ -14,34 +12,38 @@ public static class InfrastructureExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddAssociationInfrastructure(string connectionString)
+        public IServiceCollection AddAssociationInfrastructure(
+            string connectionString)
         {
-            // Database
-            services.AddDbContextFactory<AssociationDbContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
+            // 1. Register AssociationDbContext with Wolverine's EF integration
+            services.AddDbContextWithWolverineIntegration<AssociationDbContext>(
+                options =>
+                {
+                    options.UseSqlServer(connectionString);
+                });
 
-            // Association-specific Wolverine Outbox storage
-            services.ConfigureWolverine(opts =>
-            {
-                opts.PersistMessagesWithSqlServer(connectionString, "association_wolverine",
-                    MessageStoreRole.Ancillary)
-                    .Enroll<AssociationDbContext>();
-            });
 
-            // Outbox
+
+            // 3. Register the Association outbox
             services.AddScoped<WolverineDbContextOutbox<AssociationDbContext>>();
 
-            services.AddScoped<IAssociationOutbox, AssociationOutbox>();
+            services.AddScoped<
+                IAssociationOutbox,
+                AssociationOutbox>();
 
-            // Repositories
-            services.AddScoped<IAssociationRepository, AssociationRepository>();
+            // 4. Repositories
+            services.AddScoped<
+                IAssociationRepository,
+                AssociationRepository>();
 
-            services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
+            services.AddScoped<
+                IAssociationInvitationRepository,
+                AssociationInvitationRepository>();
 
-            // Email
-            services.AddScoped<IAssociationInvitationEmailSender, AssociationInvitationEmailSender>();
+            // 5. Email
+            services.AddScoped<
+                IAssociationInvitationEmailSender,
+                AssociationInvitationEmailSender>();
 
             return services;
         }
