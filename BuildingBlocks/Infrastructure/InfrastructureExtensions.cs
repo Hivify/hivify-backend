@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Resend;
 using Wolverine;
 using Wolverine.EntityFrameworkCore;
-using Wolverine.SqlServer;
 
 namespace BuildingBlocks.Infrastructure;
 
@@ -18,20 +17,31 @@ public static class InfrastructureExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddBuildingBlocks(
-            IConfiguration configuration,
-            bool isDevelopment)
+        public IServiceCollection AddBuildingBlocks(IConfiguration configuration, bool isDevelopment)
         {
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection")
+         ?? throw new InvalidOperationException(
+             "Connection string 'DefaultConnection' not found.");
+
+
+
             // CQRS
             services.AddScoped<ICommandSender, CommandSender>();
             services.AddScoped<IQuerySender, QuerySender>();
 
             // Wolverine
-            services.AddWolverineInfrastructure(configuration);
+            services.ConfigureWolverine(opts =>
+            {
+                // EF Core transactional messaging support
+                opts.UseEntityFrameworkCoreTransactions();
+
+                // Durable local background queues
+                opts.Policies.UseDurableLocalQueues();
+            });
 
             // Storage
-            services.Configure<CloudinaryOptions>(
-                configuration.GetSection("Cloudinary"));
+            services.Configure<CloudinaryOptions>(configuration.GetSection("Cloudinary"));
 
             services.AddScoped<IFileStorage, CloudinaryFileStorage>();
 
@@ -42,6 +52,9 @@ public static class InfrastructureExtensions
                     ?? throw new InvalidOperationException(
                         "Resend:ApiKey is not configured.");
             });
+
+
+            // Email sender implementation based on the environment
 
             if (isDevelopment)
             {
@@ -55,28 +68,5 @@ public static class InfrastructureExtensions
             return services;
         }
 
-        private IServiceCollection AddWolverineInfrastructure(IConfiguration configuration)
-        {
-            var connectionString =
-                configuration.GetConnectionString("DefaultConnection")
-                ?? throw new InvalidOperationException(
-                    "Connection string 'DefaultConnection' not found.");
-
-            services.ConfigureWolverine(opts =>
-            {
-                // Durable message storage in SQL Server
-                opts.PersistMessagesWithSqlServer(
-                    connectionString,
-                    "wolverine");
-
-                // EF Core transactional messaging support
-                opts.UseEntityFrameworkCoreTransactions();
-
-                // Durable local background queues
-                opts.Policies.UseDurableLocalQueues();
-            });
-
-            return services;
-        }
     }
 }

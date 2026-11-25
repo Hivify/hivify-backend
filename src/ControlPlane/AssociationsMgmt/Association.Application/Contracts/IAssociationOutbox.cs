@@ -1,10 +1,5 @@
-﻿namespace Association.Application.Contracts;
+﻿using BuildingBlocks.ApplicationPorts.Messaging;
 
-public interface IAssociationOutbox
-{
-    ValueTask PublishAsync<TMessage>(TMessage message)
-        where TMessage : notnull;
+namespace Association.Application.Contracts;
 
-    Task SaveChangesAndFlushMessagesAsync(
-        CancellationToken ct = default);
-}
+public interface IAssociationOutbox : IOutbox;
