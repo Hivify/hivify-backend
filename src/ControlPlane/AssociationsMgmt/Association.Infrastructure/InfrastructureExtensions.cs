@@ -3,6 +3,9 @@ using Association.Infrastructure.Email;
 using Association.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Wolverine;
+using Wolverine.Persistence.Durability;
+using Wolverine.SqlServer;
 namespace Association.Infrastructure
 {
     public static class InfrastructureExtensions
@@ -17,13 +20,26 @@ namespace Association.Infrastructure
                     options.UseSqlServer(connectionString);
                 });
 
-                // Infrastructure
-                services.AddScoped<IAssociationRepository, AssociationRepository>();
+                // Association-specific Wolverine Outbox
+                services.ConfigureWolverine(opts =>
+                {
+                    opts.PersistMessagesWithSqlServer(
+                        connectionString,
+                        "association_wolverine",
+                        MessageStoreRole.Ancillary)
+                        .Enroll<AssociationDbContext>();
+                });
+                //outbox
+                services.AddScoped<IAssociationOutbox, AssociationOutbox>();
 
+
+                // Repositories
+                services.AddScoped<IAssociationRepository, AssociationRepository>();
                 services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
 
-
+                // Email
                 services.AddScoped<IAssociationInvitationEmailSender, AssociationInvitationEmailSender>();
+
 
 
                 return services;

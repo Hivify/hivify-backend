@@ -27,6 +27,7 @@ using OnBoarding.Infrastructure;
 using Tiering.Application;
 using Tiering.Infrastructure;
 using Tiering.Infrastructure.Persistence.Seeders;
+using Wolverine;
 
 
 
@@ -108,6 +109,9 @@ builder.Services.AddAuthorizationBuilder()
 
 // Add buildingBlocks 
 builder.Services.AddBuildingBlocks(builder.Configuration, builder.Environment.IsDevelopment());
+
+// Start Wolverine through the application host
+builder.Host.UseWolverine();
 
 // Multi-Tenancy Integration 
 builder.Services.AddHivifyMultiTenancy();
