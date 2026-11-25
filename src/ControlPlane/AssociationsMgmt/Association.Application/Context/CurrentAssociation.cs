@@ -5,16 +5,14 @@ namespace Association.Application.Context
 {
     public sealed class CurrentAssociation(
       ICurrentTenant currentTenant,
-      ICurrentTenantUser currentTenantUser)
-      : ICurrentAssociation
+      ICurrentTenantUser currentTenantUser) : ICurrentAssociation
     {
         public AssociationID GetAssociationId()
         {
             if (currentTenant.TenantId is not Guid id ||
                 id == Guid.Empty)
             {
-                throw new InvalidOperationException(
-                    "No Tenant is resolved for this request.");
+                throw new InvalidOperationException("No Tenant is resolved for this request.");
             }
 
             return new AssociationID(id);

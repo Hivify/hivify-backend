@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Hivify.Api.Security.Tenant.TenantAuthorization
 {
-    public sealed class TenantRoleAuthorizationHandler(
-        ICurrentTenantUser currentTenantUser) : AuthorizationHandler<TenantRoleRequirement>
+    public sealed class TenantRoleAuthorizationHandler(ICurrentTenantUser currentTenantUser) : AuthorizationHandler<TenantRoleRequirement>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,

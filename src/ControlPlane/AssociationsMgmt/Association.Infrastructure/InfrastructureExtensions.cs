@@ -28,18 +28,12 @@ public static class InfrastructureExtensions
             services.AddScoped<IOutbox, WolverineDbContextOutbox<AssociationDbContext>>();
 
             // 4. Repositories
-            services.AddScoped<
-                IAssociationRepository,
-                AssociationRepository>();
+            services.AddScoped<IAssociationRepository, AssociationRepository>();
 
-            services.AddScoped<
-                IAssociationInvitationRepository,
-                AssociationInvitationRepository>();
+            services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
 
             // 5. Email
-            services.AddScoped<
-                IAssociationInvitationEmailSender,
-                AssociationInvitationEmailSender>();
+            services.AddScoped<IAssociationInvitationEmailSender, AssociationInvitationEmailSender>();
 
             return services;
         }
