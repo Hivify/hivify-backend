@@ -16,7 +16,7 @@ public sealed class GetAssociationMembersQueryHandler(
         GetAssociationMembersQuery query,
         CancellationToken ct)
     {
-        var associationId = currentTenantUser.AssociationId;
+        var associationId = currentTenantUser.TenantId;
 
         if (associationId is null)
             return null!;

@@ -3,6 +3,7 @@ using Association.Infrastructure;
 using Association.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure;
 using BuildingBlocks.Infrastructure.Messaging.Wolverine;
+using BuildingBlocks.Infrastructure.Security.Tenant.TenantAuthorization;
 using Complaints.Application;
 using Complaints.Infrastructure;
 using Department.Application;

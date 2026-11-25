@@ -25,8 +25,8 @@ public sealed class UpdateComplaintStatusCommandHandler
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        if (!_currentTenantUser.IsAssociationAdmin)
-            throw new UnauthorizedAccessException("Only association administrators can change complaint status.");
+        if (!_currentTenantUser.IsTenantAdmin)
+            throw new UnauthorizedAccessException("Only tenant administrators can change complaint status.");
 
         var complaint = await _complaintRepository.GetComplaintByIdAsync(
             new ComplaintID(command.ComplaintId),

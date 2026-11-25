@@ -1,6 +1,7 @@
 ﻿using Association.Application.Commands.AcceptMemberInvitation;
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
+using Association.Application.Context;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociationByUser;
 using Association.Application.Queries.GetAllAssociations;
@@ -56,6 +57,8 @@ public static class ApplicationExtensions
             services.AddScoped<IQueryHandler<GetAllAssociationsByUserQuery, IReadOnlyList<UserAssociationDto>>, GetAllAssociationsByUserQueryHandler>();
 
             services.AddScoped<AssociationMemberCapacityChecker>();
+
+            services.AddScoped<ICurrentAssociation, CurrentAssociation>();
 
 
             return services;

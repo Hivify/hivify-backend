@@ -51,6 +51,10 @@ public static class InfrastructureExtensions
                 services.AddScoped<IEmailSender, ResendEmailSender>();
             }
 
+
+
+
+
             return services;
         }
 

@@ -2,8 +2,8 @@
 
 public interface ICurrentTenant
 {
-    Guid? AssociationId { get; }
+    Guid? TenantId { get; }
     Guid? TierId { get; }
     string? Identifier { get; }
-    string? AssociationName { get; }
+    string? TenantName { get; }
 }
