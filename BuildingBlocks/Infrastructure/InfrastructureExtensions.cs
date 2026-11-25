@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
+﻿
+using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.EmailSender;
 using BuildingBlocks.ApplicationPorts.Storage;
 using BuildingBlocks.Infrastructure.CQRSMessaging;
@@ -8,44 +9,50 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Resend;
 
-namespace BuildingBlocks.Infrastructure
+namespace BuildingBlocks.Infrastructure;
+
+public static class InfrastructureExtensions
 {
-    public static class InfrastructureExtensions
+    extension(IServiceCollection services)
     {
-        extension(IServiceCollection services)
+        public IServiceCollection AddBuildingBlocks(IConfiguration configuration, bool isDevelopment)
         {
-            public IServiceCollection AddBuildingBlocks(IConfiguration configuration, bool isDevelopment)
+
+
+
+
+
+            // CQRS
+            services.AddScoped<ICommandSender, CommandSender>();
+            services.AddScoped<IQuerySender, QuerySender>();
+
+            // Storage
+            services.Configure<CloudinaryOptions>(configuration.GetSection("Cloudinary"));
+
+            services.AddScoped<IFileStorage, CloudinaryFileStorage>();
+
+            // Email
+            services.AddResend(options =>
             {
-
-                // Messaging 
-                services.AddScoped<ICommandSender, CommandSender>();
-                services.AddScoped<IQuerySender, QuerySender>();
-
-                // Storage
-                services.Configure<CloudinaryOptions>(configuration.GetSection("Cloudinary"));
-
-                services.AddScoped<IFileStorage, CloudinaryFileStorage>();
+                options.ApiToken = configuration["Resend:ApiKey"]
+                    ?? throw new InvalidOperationException(
+                        "Resend:ApiKey is not configured.");
+            });
 
 
-                // Email
-                services.AddResend(options =>
-                {
-                    options.ApiToken = configuration["Resend:ApiKey"]
-                        ?? throw new InvalidOperationException(
-                            "Resend:ApiKey is not configured.");
-                });
+            // Email sender implementation based on the environment
 
-                if (isDevelopment)
-                {
-                    services.AddScoped<IEmailSender, DevelopmentEmailSender>();
-                }
-                else
-                {
-                    services.AddScoped<IEmailSender, ResendEmailSender>();
-                }
-
-                return services;
+            if (isDevelopment)
+            {
+                services.AddScoped<IEmailSender, DevelopmentEmailSender>();
             }
+            else
+            {
+                services.AddScoped<IEmailSender, ResendEmailSender>();
+            }
+
+            return services;
         }
+
     }
 }

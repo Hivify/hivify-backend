@@ -143,13 +143,13 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
                     value => new UserID(value))
                 .IsRequired();
 
-            entity.OwnsOne(i => i.Email, email =>
-            {
-                email.Property(e => e.Value)
-                    .HasColumnName("Email")
-                    .HasMaxLength(320)
-                    .IsRequired();
-            });
+            entity.Property(i => i.Email)
+                 .HasConversion(
+                     email => email.Value,
+                     value => new ContactEmail(value))
+                 .HasColumnName("Email")
+                 .HasMaxLength(320)
+                 .IsRequired();
 
             // Invitation token hash
             entity.Property(i => i.TokenHash)

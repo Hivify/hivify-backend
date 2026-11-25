@@ -1,33 +1,51 @@
 ﻿using Association.Application.Contracts;
 using Association.Infrastructure.Email;
 using Association.Infrastructure.Persistence;
+using BuildingBlocks.Infrastructure.Messaging.Wolverine;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-namespace Association.Infrastructure
+using Wolverine.EntityFrameworkCore;
+
+namespace Association.Infrastructure;
+
+public static class InfrastructureExtensions
 {
-    public static class InfrastructureExtensions
+    extension(IServiceCollection services)
     {
-        extension(IServiceCollection services)
+        public IServiceCollection AddAssociationInfrastructure(
+            string connectionString)
         {
-            public IServiceCollection AddAssociationInfrastructure(string connectionString)
-            {
-                // Database
-                services.AddDbContextFactory<AssociationDbContext>(options =>
+            // 1. Register AssociationDbContext with Wolverine's EF integration
+            services.AddDbContextWithWolverineIntegration<AssociationDbContext>(
+                options =>
                 {
                     options.UseSqlServer(connectionString);
                 });
 
-                // Infrastructure
-                services.AddScoped<IAssociationRepository, AssociationRepository>();
-
-                services.AddScoped<IAssociationInvitationRepository, AssociationInvitationRepository>();
 
 
-                services.AddScoped<IAssociationInvitationEmailSender, AssociationInvitationEmailSender>();
+            // 3. Register the Association outbox
+            services.AddScoped<WolverineDbContextOutbox<AssociationDbContext>>();
 
+            services.AddScoped<
+                IAssociationOutbox,
+                AssociationOutbox>();
 
-                return services;
-            }
+            // 4. Repositories
+            services.AddScoped<
+                IAssociationRepository,
+                AssociationRepository>();
+
+            services.AddScoped<
+                IAssociationInvitationRepository,
+                AssociationInvitationRepository>();
+
+            // 5. Email
+            services.AddScoped<
+                IAssociationInvitationEmailSender,
+                AssociationInvitationEmailSender>();
+
+            return services;
         }
     }
 }

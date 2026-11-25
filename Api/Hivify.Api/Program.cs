@@ -1,6 +1,8 @@
 using Association.Application;
 using Association.Infrastructure;
+using Association.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure;
+using BuildingBlocks.Infrastructure.Messaging.Wolverine;
 using Complaints.Application;
 using Complaints.Infrastructure;
 using Department.Application;
@@ -109,6 +111,7 @@ builder.Services.AddAuthorizationBuilder()
 // Add buildingBlocks 
 builder.Services.AddBuildingBlocks(builder.Configuration, builder.Environment.IsDevelopment());
 
+
 // Multi-Tenancy Integration 
 builder.Services.AddHivifyMultiTenancy();
 
@@ -154,9 +157,11 @@ builder.Services.AddOnboardingInfrastructure(connectionString);
 builder.Services.AddTierInfrastructure(connectionString);
 builder.Services.AddTieringServices();
 
-
-
-
+// Wolverine Integration
+builder.Host.AddWolverineMessaging(opts =>
+{
+    opts.AddAssociationPersistence(connectionString);
+});
 #endregion
 
 
@@ -178,6 +183,8 @@ builder.Services.AddCors(options =>
            .AllowCredentials();
     });
 });
+
+
 
 #endregion
 var app = builder.Build();

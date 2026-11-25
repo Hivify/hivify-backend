@@ -18,7 +18,8 @@ namespace Association.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "10.0.14")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("WolverineEnabled", "true");
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
@@ -27,11 +28,11 @@ namespace Association.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("Identifier")
                         .HasColumnType("uniqueidentifier")
@@ -60,6 +61,12 @@ namespace Association.Infrastructure.Migrations
                     b.Property<Guid>("AssociationID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(320)
+                        .HasColumnType("nvarchar(320)")
+                        .HasColumnName("Email");
+
                     b.Property<Guid>("InvitedByUserID")
                         .HasColumnType("uniqueidentifier");
 
@@ -80,6 +87,98 @@ namespace Association.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("AssociationInvitations", (string)null);
+                });
+
+            modelBuilder.Entity("Wolverine.EntityFrameworkCore.Internals.IncomingMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
+
+                    b.Property<int>("Attempts")
+                        .HasColumnType("int")
+                        .HasColumnName("attempts");
+
+                    b.Property<byte[]>("Body")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("body");
+
+                    b.Property<DateTimeOffset?>("ExecutionTime")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("execution_time");
+
+                    b.Property<DateTimeOffset?>("KeepUntil")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("keep_until");
+
+                    b.Property<string>("MessageType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("message_type");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int")
+                        .HasColumnName("owner_id");
+
+                    b.Property<string>("ReceivedAt")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("received_at");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("wolverine_incoming_envelopes", "association_wolverine", t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
+                });
+
+            modelBuilder.Entity("Wolverine.EntityFrameworkCore.Internals.OutgoingMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
+
+                    b.Property<int>("Attempts")
+                        .HasColumnType("int")
+                        .HasColumnName("attempts");
+
+                    b.Property<byte[]>("Body")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("body");
+
+                    b.Property<DateTimeOffset?>("DeliverBy")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("deliver_by");
+
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("destination");
+
+                    b.Property<string>("MessageType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("message_type");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int")
+                        .HasColumnName("owner_id");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("wolverine_outgoing_envelopes", "association_wolverine", t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
             modelBuilder.Entity("Association.Domain.Entities.AssociationEntity", b =>
@@ -133,8 +232,8 @@ namespace Association.Infrastructure.Migrations
                             b1.Property<Guid>("AssociationID")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<DateTime>("JoinedAt")
-                                .HasColumnType("datetime2");
+                            b1.Property<DateTimeOffset>("JoinedAt")
+                                .HasColumnType("datetimeoffset");
 
                             b1.Property<int>("Role")
                                 .HasColumnType("int");
@@ -186,25 +285,6 @@ namespace Association.Infrastructure.Migrations
 
             modelBuilder.Entity("Association.Domain.Entities.AssociationInvitation", b =>
                 {
-                    b.OwnsOne("Association.Domain.ValueObjects.ContactEmail", "Email", b1 =>
-                        {
-                            b1.Property<Guid>("AssociationInvitationId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(320)
-                                .HasColumnType("nvarchar(320)")
-                                .HasColumnName("Email");
-
-                            b1.HasKey("AssociationInvitationId");
-
-                            b1.ToTable("AssociationInvitations");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AssociationInvitationId");
-                        });
-
                     b.OwnsOne("InvitationExpiration", "Expiration", b1 =>
                         {
                             b1.Property<Guid>("AssociationInvitationId")
@@ -225,9 +305,6 @@ namespace Association.Infrastructure.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("AssociationInvitationId");
                         });
-
-                    b.Navigation("Email")
-                        .IsRequired();
 
                     b.Navigation("Expiration")
                         .IsRequired();
