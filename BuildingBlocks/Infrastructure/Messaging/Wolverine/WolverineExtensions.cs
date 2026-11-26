@@ -7,21 +7,22 @@ namespace BuildingBlocks.Infrastructure.Messaging.Wolverine;
 
 public static class WolverineExtensions
 {
-    public static IHostBuilder AddWolverineMessaging(
-        this IHostBuilder host,
-        Action<WolverineOptions> configurePersistence)
+    extension(IHostBuilder host)
     {
-        host.UseWolverine(opts =>
+        public IHostBuilder AddWolverineMessaging(Action<WolverineOptions> configurePersistence)
         {
-            // Shared configuration
-            opts.UseEntityFrameworkCoreTransactions();
-            opts.Policies.UseDurableLocalQueues();
-            opts.UseRuntimeCompilation();
+            host.UseWolverine(opts =>
+            {
+                // Shared configuration
+                opts.UseEntityFrameworkCoreTransactions();
+                opts.Policies.UseDurableLocalQueues();
+                opts.UseRuntimeCompilation();
 
-            // Module-specific persistence configuration
-            configurePersistence(opts);
-        });
+                // Module-specific persistence configuration
+                configurePersistence(opts);
+            });
 
-        return host;
+            return host;
+        }
     }
 }
