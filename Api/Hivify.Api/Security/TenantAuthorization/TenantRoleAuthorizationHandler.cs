@@ -1,7 +1,7 @@
-﻿using BuildingBlocks.ApplicationPorts.Security.Tenant;
+﻿using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Hivify.Api.Security.Tenant.TenantAuthorization
+namespace Hivify.Api.Security.TenantAuthorization
 {
     public sealed class TenantRoleAuthorizationHandler(ICurrentTenantUser currentTenantUser) : AuthorizationHandler<TenantRoleRequirement>
     {

@@ -2,7 +2,7 @@
 using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.Security.Platform;
+using BuildingBlocks.ApplicationPorts.UserContext.Platform;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.AcceptMemberInvitation;

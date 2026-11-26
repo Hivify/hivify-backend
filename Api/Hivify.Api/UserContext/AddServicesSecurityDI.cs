@@ -1,10 +1,10 @@
-﻿using BuildingBlocks.ApplicationPorts.Security.Platform;
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
-using Hivify.Api.Security.Platform;
-using Hivify.Api.Security.Platform.PlatformAuthorization;
-using Hivify.Api.Security.Tenant;
+﻿using BuildingBlocks.ApplicationPorts.UserContext.Platform;
+using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
+using Hivify.Api.Security.PlatformAuthorization;
+using Hivify.Api.UserContext.Platform;
+using Hivify.Api.UserContext.Tenant;
 
-namespace Hivify.Api.Security;
+namespace Hivify.Api.UserContext;
 
 public static class AddServicesSecurityDI
 {

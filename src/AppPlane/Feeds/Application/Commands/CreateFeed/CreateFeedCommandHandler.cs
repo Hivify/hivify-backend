@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
+using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
 using Feeds.Application.Contracts;
 using Feeds.Domain.Feeds;
 using SharedKernel.ValueObjects;

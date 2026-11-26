@@ -1,4 +1,4 @@
-namespace Hivify.Api.Security.Platform.PlatformAuthorization;
+namespace Hivify.Api.Security.PlatformAuthorization;
 
 public interface IPlatformAuthorization
 {

@@ -7,7 +7,7 @@ using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Messaging;
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
+using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.InviteMember;

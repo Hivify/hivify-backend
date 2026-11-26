@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.Security.Tenant;
+﻿using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Context
