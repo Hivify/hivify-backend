@@ -1,7 +1,7 @@
-using BuildingBlocks.ApplicationPorts.UserContext.Platform;
+using BuildingBlocks.ApplicationPorts.Context.Platform;
 using System.Security.Claims;
 
-namespace Hivify.Api.UserContext.Platform;
+namespace Hivify.Api.Context.Platform;
 
 public sealed class CurrentPlatformUser(
     IHttpContextAccessor httpContextAccessor) : ICurrentPlatformUser

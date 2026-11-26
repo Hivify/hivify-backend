@@ -1,6 +1,6 @@
-using BuildingBlocks.ApplicationPorts.UserContext.Platform;
+using BuildingBlocks.ApplicationPorts.Context.Platform;
 
-namespace Hivify.Api.Security.PlatformAuthorization;
+namespace Hivify.Api.Security.PlatformAuth;
 
 public sealed class PlatformAuthorization(ICurrentPlatformUser currentUser) : IPlatformAuthorization
 {

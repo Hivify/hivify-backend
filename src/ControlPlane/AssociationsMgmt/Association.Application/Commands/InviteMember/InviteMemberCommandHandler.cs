@@ -5,9 +5,9 @@ using Association.Application.Services;
 using Association.Application.Utilities;
 using Association.Domain.Entities;
 using Association.Domain.ValueObjects;
+using BuildingBlocks.ApplicationPorts.Context.Tenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using BuildingBlocks.ApplicationPorts.Messaging;
-using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.InviteMember;

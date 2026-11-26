@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ApplicationPorts.UserContext.Tenant
+﻿namespace BuildingBlocks.ApplicationPorts.Context.Tenant
 {
     public static class TenantUserClaimTypes
     {

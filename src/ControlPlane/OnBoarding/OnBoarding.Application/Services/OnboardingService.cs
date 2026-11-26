@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.ApplicationPorts.UserContext.Platform;
+﻿using BuildingBlocks.ApplicationPorts.Context.Platform;
 using Microsoft.Extensions.Logging;
 using OnBoarding.Application.Contracts;
 using OnBoarding.Application.DTOs;

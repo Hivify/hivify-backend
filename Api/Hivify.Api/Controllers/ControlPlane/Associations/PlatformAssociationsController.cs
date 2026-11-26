@@ -5,7 +5,7 @@ using BuildingBlocks.ApplicationPorts.CQRSMessaging;
 using Hivify.Api.Controllers.ControlPlane.Associations.Mappers;
 using Hivify.Api.Controllers.ControlPlane.Associations.Requests;
 using Hivify.Api.Controllers.ControlPlane.Associations.Responses;
-using Hivify.Api.Security.PlatformAuthorization;
+using Hivify.Api.Security.PlatformAuth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

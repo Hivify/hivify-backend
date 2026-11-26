@@ -1,5 +1,5 @@
+using BuildingBlocks.ApplicationPorts.Context.Tenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.UserContext.Tenant;
 using Complaints.Application.Contracts;
 using Complaints.Domain;
 
