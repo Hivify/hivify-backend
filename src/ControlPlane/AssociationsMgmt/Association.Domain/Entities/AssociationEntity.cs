@@ -97,4 +97,12 @@ public class AssociationEntity : BaseEntity<AssociationID>, IAggregateRoot
 
         _members.Add(Membership.Create(userId, role, memberEmail));
     }
+
+    public void RemoveMember(UserID userId)
+    {
+        var member = _members.FirstOrDefault(m => m.UserID == userId)
+            ?? throw new KeyNotFoundException("Member not found in this association.");
+
+        _members.Remove(member);
+    }
 }

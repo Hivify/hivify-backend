@@ -130,4 +130,41 @@ public sealed class AssociationEntityTests
 
         Assert.Single(association.Members);
     }
+
+    [Fact]
+    public void RemoveMember_ShouldRemoveMemberFromAssociation()
+    {
+        // Arrange
+        var association = CreateAssociation();
+        var memberId = new UserID(Guid.NewGuid());
+
+        association.AddMember(
+            memberId,
+            AssociationRoles.AssociationMember,
+            new AssociationEmail("member@example.com"));
+
+        // Act
+        association.RemoveMember(memberId);
+
+        // Assert
+        Assert.Single(association.Members);
+        Assert.DoesNotContain(
+            association.Members,
+            member => member.UserID == memberId);
+    }
+
+    [Fact]
+    public void RemoveMember_WhenUserDoesNotExist_ShouldThrowKeyNotFoundException()
+    {
+        // Arrange
+        var association = CreateAssociation();
+
+        // Act
+        var exception = Assert.Throws<KeyNotFoundException>(
+            () => association.RemoveMember(new UserID(Guid.NewGuid())));
+
+        // Assert
+        Assert.Equal("Member not found in this association.", exception.Message);
+        Assert.Single(association.Members);
+    }
 }

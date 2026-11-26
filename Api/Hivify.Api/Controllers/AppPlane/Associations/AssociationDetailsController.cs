@@ -1,4 +1,5 @@
 using Association.Application.DTOs;
+using Association.Application.Commands.RemoveMember;
 using Association.Application.Queries.GetAssociationDetailsById;
 using Association.Application.Queries.GetAssociationMembers;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
@@ -11,7 +12,9 @@ namespace Hivify.Api.Controllers.AppPlane.Associations;
 [ApiController]
 [Route("api/associations")]
 [Authorize(Policy = "AssociationAdmin")]
-public sealed class AssociationDetailsController(IQuerySender querySender) : ControllerBase
+public sealed class AssociationDetailsController(
+    IQuerySender querySender,
+    ICommandSender commandSender) : ControllerBase
 {
 
 
@@ -60,5 +63,17 @@ public sealed class AssociationDetailsController(IQuerySender querySender) : Con
             .ToList();
 
         return Ok(response);
+    }
+
+    [HttpDelete("members/{memberId:guid}")]
+    public async Task<IActionResult> RemoveMember(
+        Guid memberId,
+        CancellationToken ct)
+    {
+        await commandSender.Send(
+            new RemoveMemberCommand(memberId),
+            ct);
+
+        return NoContent();
     }
 }

@@ -2,6 +2,7 @@
 using Association.Application.Commands.AcceptMemberInvitation;
 using Association.Application.Commands.CreateAssociation;
 using Association.Application.Commands.InviteMember;
+using Association.Application.Commands.RemoveMember;
 using Association.Application.Context;
 using Association.Application.DTOs;
 using Association.Application.Queries.GetAllAssociationByUser;
@@ -37,6 +38,11 @@ public static class ApplicationExtensions
             services.AddScoped<
                 ICommandHandler<InviteMemberCommand, Guid>,
                 InviteMemberCommandHandler>();
+
+            // Remove a member from an Association.
+            services.AddScoped<
+                ICommandHandler<RemoveMemberCommand, bool>,
+                RemoveMemberCommandHandler>();
 
             // Accept an existing Association invitation.
             services.AddScoped<
