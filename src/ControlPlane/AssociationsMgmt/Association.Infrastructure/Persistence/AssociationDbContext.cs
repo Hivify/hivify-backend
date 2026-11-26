@@ -26,32 +26,26 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(a => a.TierId)
                 .HasConversion(
                     tierId => tierId.Value,
-                    value => new TierID(value))
+                    value => new AssociationTierID(value))
                 .HasColumnName("TierId")
                 .HasColumnType("uniqueidentifier")
                 .IsRequired();
 
             // Name
-            entity.OwnsOne(a => a.Name, name =>
-            {
-                name.Property(n => n.Value)
-                    .HasColumnName("Name")
-                    .HasMaxLength(100)
-                    .IsRequired();
+            entity.Property(a => a.Name).HasConversion(
+                name => name.Value,
+                value => new AssociationName(value))
+                .HasColumnName("Name")
+                .HasColumnType("nvarchar(100)")
+                .IsRequired();
 
-                name.HasIndex(n => n.Value)
-                    .IsUnique();
-            });
 
-            entity.OwnsOne(
-                 a => a.ContactEmail,
-                 name =>
-                 {
-                     name.Property(n => n.Value)
-                         .HasColumnName("ContactEmail")
-                         .HasMaxLength(320)
-                         .IsRequired();
-                 });
+            entity.Property(a => a.ContactEmail).HasConversion(
+                email => email.Value,
+                value => new AssociationEmail(value))
+                .HasColumnName("ContactEmail")
+                .HasColumnType("nvarchar(320)")
+                .IsRequired();
 
             // Association Identifier
             entity.Property(a => a.Identifier)
@@ -146,7 +140,7 @@ public sealed class AssociationDbContext(DbContextOptions<AssociationDbContext> 
             entity.Property(i => i.Email)
                  .HasConversion(
                      email => email.Value,
-                     value => new ContactEmail(value))
+                     value => new AssociationEmail(value))
                  .HasColumnName("Email")
                  .HasMaxLength(320)
                  .IsRequired();

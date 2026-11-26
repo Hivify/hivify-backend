@@ -9,7 +9,7 @@ public interface IAssociationInvitationRepository
 {
     Task<bool> IsPendingInvitationExistsAsync(
         AssociationID associationId,
-        ContactEmail email,
+        AssociationEmail email,
         CancellationToken ct = default);
 
     Task AddAsync(AssociationInvitation invitation, CancellationToken ct = default);

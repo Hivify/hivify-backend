@@ -1,4 +1,4 @@
-namespace BuildingBlocks.ApplicationPorts.Security.Platform;
+namespace BuildingBlocks.ApplicationPorts.Context.Platform;
 
 public interface ICurrentPlatformUser
 {

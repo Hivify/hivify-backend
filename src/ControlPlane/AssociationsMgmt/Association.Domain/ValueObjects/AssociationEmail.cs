@@ -3,9 +3,9 @@ using SharedKernel.Exceptions;
 
 namespace Association.Domain.ValueObjects
 {
-    public sealed record ContactEmail : BaseValue<string>
+    public sealed record AssociationEmail : BaseValue<string>
     {
-        public ContactEmail(string value) : base(Validate(value))
+        public AssociationEmail(string value) : base(Validate(value))
         {
         }
 

@@ -1,5 +1,5 @@
+using BuildingBlocks.ApplicationPorts.Context.Tenant;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
 using Complaints.Application.Contracts;
 using Complaints.Application.DTOs;
 using SharedKernel.ValueObjects;

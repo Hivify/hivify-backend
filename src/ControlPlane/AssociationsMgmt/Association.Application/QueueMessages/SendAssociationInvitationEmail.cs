@@ -1,4 +1,4 @@
-﻿namespace Association.Application.Messages;
+﻿namespace Association.Application.QueueMessages;
 
 public sealed record SendAssociationInvitationEmail(
     string Email,

@@ -2,11 +2,11 @@
 
 namespace Association.Domain.ValueObjects;
 
-public readonly record struct TierID : IValue
+public readonly record struct AssociationTierID : IValue
 {
     public Guid Value { get; }
 
-    public TierID(Guid value)
+    public AssociationTierID(Guid value)
     {
         if (value == Guid.Empty)
             throw new ArgumentException(

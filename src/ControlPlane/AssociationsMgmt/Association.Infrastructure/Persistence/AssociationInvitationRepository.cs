@@ -23,7 +23,7 @@ public sealed class AssociationInvitationRepository(
     /// <returns></returns>
     public async Task<bool> IsPendingInvitationExistsAsync(
         AssociationID associationId,
-        ContactEmail email,
+        AssociationEmail email,
         CancellationToken ct = default)
     {
         return await context.Invitations

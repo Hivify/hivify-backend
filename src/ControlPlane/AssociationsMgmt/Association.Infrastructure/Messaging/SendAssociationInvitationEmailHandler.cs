@@ -1,5 +1,5 @@
 ﻿using Association.Application.Contracts;
-using Association.Application.Messages;
+using Association.Application.QueueMessages;
 
 namespace Association.Infrastructure.Messaging;
 

@@ -12,7 +12,7 @@ public sealed class AssociationInvitationTests
         return AssociationInvitation.Create(
             new AssociationID(Guid.NewGuid()),
             new UserID(Guid.NewGuid()),
-            new ContactEmail("member@example.com"),
+            new AssociationEmail("member@example.com"),
             InvitationTokenHash.Create("test-token"));
     }
 

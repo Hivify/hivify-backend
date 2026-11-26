@@ -157,7 +157,7 @@ internal sealed class AssociationRepository(AssociationDbContext dbContext) : IA
     /// <returns></returns>
     public async Task<bool> IsMemberByEmailAsync(
         AssociationID associationId,
-        ContactEmail email,
+        AssociationEmail email,
         CancellationToken ct = default)
     {
         return await dbContext.Associations

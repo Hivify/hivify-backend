@@ -1,8 +1,8 @@
 ﻿using Association.Application.Contracts;
 using Association.Domain.Enums;
 using Association.Domain.ValueObjects;
+using BuildingBlocks.ApplicationPorts.Context.Platform;
 using BuildingBlocks.ApplicationPorts.CQRSMessaging;
-using BuildingBlocks.ApplicationPorts.Security.Platform;
 using SharedKernel.ValueObjects;
 
 namespace Association.Application.Commands.AcceptMemberInvitation;
@@ -54,7 +54,7 @@ public sealed class AcceptInvitationCommandHandler(
         association.AddMember(
             new UserID(currentPlatformUser.UserId),
             AssociationRoles.AssociationMember,
-            new ContactEmail(currentPlatformUser.EmailAddress));
+            new AssociationEmail(currentPlatformUser.EmailAddress));
 
         // 6. Accept invitation.
         invitation.Accept();

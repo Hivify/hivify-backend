@@ -1,9 +1,8 @@
-﻿
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
+﻿using BuildingBlocks.ApplicationPorts.Context.Tenant;
 using Finbuckle.MultiTenant.Abstractions;
 using Hivify.Api.MultiTenancy;
 
-namespace Hivify.Api.Security.Tenant;
+namespace Hivify.Api.Context.Tenant;
 
 public sealed class CurrentTenant(IMultiTenantContextAccessor<ExtendedTenantInfo> accessor) : ICurrentTenant
 {

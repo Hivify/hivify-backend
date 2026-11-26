@@ -1,4 +1,4 @@
-namespace BuildingBlocks.ApplicationPorts.Security.Tenant;
+namespace BuildingBlocks.ApplicationPorts.Context.Tenant;
 
 public interface ICurrentTenantUser
 {

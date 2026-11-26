@@ -6,7 +6,7 @@ using SharedKernel.ValueObjects;
 public class Membership : BaseEntity<MembershipID>
 {
     public UserID UserID { get; private set; }
-    public ContactEmail MemberEmail { get; private set; }
+    public AssociationEmail MemberEmail { get; private set; }
     public DateTimeOffset JoinedAt { get; private set; } = DateTimeOffset.UtcNow;
     public AssociationRoles Role { get; private set; }
 
@@ -15,7 +15,7 @@ public class Membership : BaseEntity<MembershipID>
     private Membership(
         MembershipID id,
         UserID userId,
-        ContactEmail memberEmail,
+        AssociationEmail memberEmail,
         AssociationRoles role)
         : base(id)
     {
@@ -27,7 +27,7 @@ public class Membership : BaseEntity<MembershipID>
     public static Membership Create(
         UserID userId,
         AssociationRoles role,
-        ContactEmail memberEmail)
+        AssociationEmail memberEmail)
     {
         return new Membership(
             new MembershipID(Guid.NewGuid()),

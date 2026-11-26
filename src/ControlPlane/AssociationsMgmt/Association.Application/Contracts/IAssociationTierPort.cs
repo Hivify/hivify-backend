@@ -4,8 +4,6 @@ namespace Association.Application.Contracts;
 
 public interface IAssociationTierPort
 {
-    Task<AssociationTierPolicy?> GetPolicyAsync(
-        Guid tierId,
-        CancellationToken ct = default);
+    Task<AssociationTierPolicy?> GetPolicyAsync(Guid tierId, CancellationToken ct = default);
 }
 

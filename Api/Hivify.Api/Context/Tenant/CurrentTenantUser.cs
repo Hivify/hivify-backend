@@ -1,9 +1,9 @@
-using BuildingBlocks.ApplicationPorts.Security.Tenant;
+using BuildingBlocks.ApplicationPorts.Context.Tenant;
 using Finbuckle.MultiTenant.Abstractions;
 using Hivify.Api.MultiTenancy;
 using System.Security.Claims;
 
-namespace Hivify.Api.Security.Tenant;
+namespace Hivify.Api.Context.Tenant;
 
 public sealed class CurrentTenantUser(
     IMultiTenantContextAccessor<ExtendedTenantInfo> accessor,

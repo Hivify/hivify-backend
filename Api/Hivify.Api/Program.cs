@@ -11,10 +11,11 @@ using DocumentsMgmt.Application;
 using Feeds.Application;
 using Feeds.Infrastructure;
 using Finbuckle.MultiTenant.AspNetCore.Extensions;
+using Hivify.Api.Context;
 using Hivify.Api.Integrations;
 using Hivify.Api.MultiTenancy;
 using Hivify.Api.Security;
-using Hivify.Api.Security.Tenant.TenantAuthorization;
+using Hivify.Api.Security.TenantAuth;
 using Houses.Application;
 using Houses.Infrastructure;
 using Identity.Application;
@@ -114,12 +115,12 @@ builder.Services.AddBuildingBlocks(builder.Configuration, builder.Environment.Is
 
 // Multi-Tenancy Integration 
 builder.Services.AddHivifyMultiTenancy();
-
 // Services Integrations
 builder.Services.AddServicesIntegrations();
-
 // Security Services
-builder.Services.AddServicesSecurity();
+builder.Services.AddSecurityExtensions();
+// Context Services
+builder.Services.AddContextExtensions();
 
 
 
